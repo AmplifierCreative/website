@@ -41,6 +41,7 @@ After clicking that button, you’ll authenticate with GitHub and choose a repos
 ### Access Locally
 
 Pulldown a local copy of the Github repository Netlify created for you, with the name you specified in the previous step
+
 ```
 $ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
 $ cd [REPO_NAME]
@@ -82,13 +83,17 @@ CMS.registerPreviewTemplate('blog', BlogPostPreview)
 
 Note: Don't forget to also remove them from `package.json` and `yarn.lock` / `package-lock.json` using `yarn` or `npm`. During the build netlify-cms-app will bundle the media libraries as well, having them removed will save you build time.
 Example:
+
 ```
 yarn remove netlify-cms-media-library-uploadcare
 ```
+
 OR
+
 ```
 yarn remove netlify-cms-media-library-cloudinary
 ```
+
 ## Getting Started (Without Netlify)
 
 ```
@@ -124,3 +129,8 @@ This plugin uses [gatsby-plugin-purgecss](https://www.gatsbyjs.org/packages/gats
 
 Contributions are always welcome, no matter how large or small. Before contributing,
 please read the [code of conduct](CODE_OF_CONDUCT.md).
+
+# RUN CMS LOCALLY
+
+https://www.netlifycms.org/docs/beta-features/
+npx netlify-cms-proxy-server
