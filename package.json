@@ -42,6 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "connected-react-router": "^6.8.0",
+    "netlify-cms-backend-test": "^2.10.5",
     "prettier": "^2.0.5"
   }
 }
