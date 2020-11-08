@@ -36,14 +36,18 @@ const ImageWithCopy = {
     },
   // Function to create a text block from an instance of this component markdown page
   toBlock: function (obj) {
-    return `{{< ImageWithCopy rightAlignCopy=${obj.rightAlignCopy} image=${obj.image} text=${obj.text} >}}`
+    if (obj.rightAlignCopy === 'false') {
+      return `<span style="width:50%; float:left;"> ${obj.text} </span><img style="width:40%" src="${obj.image}"></image>`
+    } else {
+      return `<span style="width:50%; float:right;"> ${obj.text} </span><img style="width:40%" src="${obj.image}"></image>`
+    }
   },
   // Preview output for this component. Can either be a string or a React component
   toPreview: function (obj) {
     if (obj.rightAlignCopy === 'false') {
-      return `<span style="width:50%; float:left;"> ${obj.text} </span><img style="width:40%" src=${obj.image}></image>`
+      return `<span style="width:50%; float:left;"> ${obj.text} </span><img style="width:40%" src="${obj.image}"></image>`
     } else {
-      return `<span style="width:50%; float:right;"> ${obj.text} </span><img style="width:40%" src=${obj.image}></image>`
+      return `<span style="width:50%; float:right;"> ${obj.text} </span><img style="width:40%" src="${obj.image}"></image>`
     }
   },
 }

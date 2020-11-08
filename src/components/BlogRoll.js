@@ -9,7 +9,13 @@ class BlogRoll extends React.Component {
     const { edges: posts } = data.allMarkdownRemark
 
     const orangeStyle = {
-      color: 'orange',
+      color: '#BA5930',
+      fontFamily: 'VisbyCF-Regular',
+    }
+
+    const blackStyle = {
+      color: '#2D2C2C',
+      marginTop: 0,
     }
 
     return (
@@ -33,18 +39,19 @@ class BlogRoll extends React.Component {
                       />
                     </div>
                   ) : null} */}
-                    <span className="is-size-5 is-block" style={orangeStyle}>
+                    <span className="is-block is-uppercase" style={orangeStyle}>
                       {post.frontmatter.date}
                     </span>
-                    <p className="post-meta">
+                    <h1 className="post-meta mt-0">
                       <Link
-                        className="title has-text-primary is-size-4"
+                        className="title is-size-4"
                         to={post.fields.slug}
+                        style={blackStyle}
                       >
                         {post.frontmatter.title}
                       </Link>
                       <span> &bull; </span>
-                    </p>
+                    </h1>
                   </header>
                   <p>
                     {post.excerpt}
