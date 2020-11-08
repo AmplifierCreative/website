@@ -23,17 +23,27 @@ $body-color: #938C89
   src: url("../fonts/EBGaramond-Regular.ttf");
 
 @font-face 
-  font-family: "VisbyCF";
-  src: url("../fonts/Yantramanav-Bold.ttf");
+  font-family: "VisbyCF-Regular";
+  src: url("../fonts/VisbyCF-Regular.otf");
 
-$family-sans-serif: VisbyCF
+@font-face 
+  font-family: "VisbyCF-Bold";
+  src: url("../fonts/VisbyCF-Bold.otf");
+
+$family-sans-serif: VisbyCF-Regular
+
+$family-sans-serif-bold: VisbyCF-Bold
 
 $family-serif: EBGaramond
 
-body, button, input, textarea
+body
   font-family: $family-serif !important
 
 h1, h2, h3, h4, h5, h6
+  font-family: $family-sans-serif-bold
+  letter-spacing: 2px;
+
+.menu-list li a
   font-family: $family-sans-serif
 
 .navbar .navbar-menu
