@@ -1,5 +1,6 @@
 @import "~bulma/sass/utilities/initial-variables"
 
+
 // Config vars
 // AC logo brand color: TBD
 $AC-orange: #BA9350
@@ -16,6 +17,24 @@ $secondary: $AC-peach
 $secondary-invert: $AC-peach-invert
 $headline-color: #2D2C2C
 $body-color: #938C89
+
+@font-face 
+  font-family: "EBGaramond";
+  src: url("../fonts/EBGaramond-Regular.ttf");
+
+@font-face 
+  font-family: "VisbyCF";
+  src: url("../fonts/Elkwood.ttf");
+
+$family-sans-serif: VisbyCF
+
+$family-serif: EBGaramond
+
+body, button, input, textarea
+  font-family: $family-serif !important
+
+h1, h2, h3, h4, h5, h6
+  font-family: $family-sans-serif
 
 .navbar .navbar-menu
   box-shadow:none !important

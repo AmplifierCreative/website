@@ -8,6 +8,10 @@ class BlogRoll extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
+    const orangeStyle = {
+      color: 'orange',
+    }
+
     return (
       <div className="blog">
         {posts &&
@@ -29,7 +33,7 @@ class BlogRoll extends React.Component {
                       />
                     </div>
                   ) : null} */}
-                    <span className="is-size-5 is-block">
+                    <span className="is-size-5 is-block" style={orangeStyle}>
                       {post.frontmatter.date}
                     </span>
                     <p className="post-meta">
