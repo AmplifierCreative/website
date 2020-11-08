@@ -6,15 +6,59 @@ import twitter from '../img/social/twitter.svg'
 import linkedin from '../img/social/linkedin.svg'
 
 const footer = {
-  color: '#fff',
+  color: '#F8F3F1',
   backgroundColor: '#2D2C2C',
 };
+
+const emailInput = {
+  color: '#F8F3F1',
+  backgroundColor: '#2D2C2C',
+  border: "none",
+  fontSize: "2rem",
+  paddingLeft: "0",
+};
+
+const menuItemLink = {
+  textTransform: "uppercase",
+  paddingLeft: "0",
+}
+
+const footerPolicy = {
+  color: '#F8F3F1',
+  textTransform: "uppercase",
+  letterSpacing: "1px",
+}
+
+const footerPolicyLink = {
+  color: '#F8F3F1',
+  textDecoration: "underline",
+}
+
+const socialTextContainer = {
+  paddingLeft: "0",
+}
+
+const socialText = {
+  fontSize: "2rem",
+  color: '#F8F3F1',
+  fontWeight: "700",
+  paddingTop: "calc(0.5em - 1px)",
+  paddingBottom: "calc(0.5em - 1px)"
+}
 
 const socialCircle = {    
   borderRadius: "50%",
   width: "4rem",
   height: "4rem",
-  background: "#fff",
+  background: "#C4C4C4",
+}
+
+const socialCircleB = {    
+  borderRadius: "50%",
+  width: "4rem",
+  height: "4rem",
+  background: "#C4C4C4",
+  marginLeft: "1.25rem",
 }
 
 const socialSvg = {
@@ -32,18 +76,18 @@ const Footer = class extends React.Component {
           <div className="container">
             <div className="columns">
               <div className="column is-two-thirds">
-                <input className="input is-medium" type="email" placeholder="enter your email address to stay in touch"/>
+                <input className="input is-medium email-input" style={emailInput} type="email" placeholder="enter your email address to stay in touch"/>
                 <div className="columns">
                   <div className="column is-2">
                     <section className="menu">
                       <ul className="menu-list">
                         <li>
-                          <Link to="/" className="navbar-item">
+                          <Link to="/" className="navbar-item" style={menuItemLink}>
                             About
                           </Link>
                         </li>
                         <li>
-                          <Link className="navbar-item" to="/about">
+                          <Link className="navbar-item" to="/about" style={menuItemLink}>
                             Services
                           </Link>
                         </li>
@@ -54,12 +98,12 @@ const Footer = class extends React.Component {
                     <section>
                       <ul className="menu-list">
                         <li>
-                          <Link className="navbar-item" to="/blog">
+                          <Link className="navbar-item" to="/blog" style={menuItemLink}>
                             Portfolio
                           </Link>
                         </li>
                         <li>
-                          <Link className="navbar-item" to="/contact">
+                          <Link className="navbar-item" to="/contact" style={menuItemLink}>
                             Blog
                           </Link>
                         </li>
@@ -70,12 +114,12 @@ const Footer = class extends React.Component {
                     <section>
                       <ul className="menu-list">
                         <li>
-                          <Link className="navbar-item" to="/blog">
+                          <Link className="navbar-item" to="/blog" style={menuItemLink}>
                             Contact
                           </Link>
                         </li>
                         <li>
-                          <Link className="navbar-item" to="/contact">
+                          <Link className="navbar-item" to="/contact" style={menuItemLink}>
                             Privacy
                           </Link>
                         </li>
@@ -84,13 +128,15 @@ const Footer = class extends React.Component {
                   </div>
                 </div>
                 <div className="columns">
-                  <h5>&#169; Amplifier Creative 2020 view our <Link href="#" className="link">Terms of Use</Link> and <Link href="#" className="link">Privacy Policy</Link></h5>
+                  <div className="column">
+                    <h5 style={footerPolicy}>&#169; Amplifier Creative 2020 view our <Link href="#" className="link" style={footerPolicyLink}>Terms of Use</Link> and <Link href="#" className="link" style={footerPolicyLink}>Privacy Policy</Link></h5>
+                  </div>
                 </div>
               </div>
               <div className="column is-one-third">
                 <div className="columns">
-                  <div className="column">
-                    <h5>Follow us</h5>
+                  <div className="column" style={socialTextContainer}>
+                    <h5 style={socialText}>Follow us</h5>
                   </div>
                 </div>
                 <div className="columns">
@@ -103,7 +149,7 @@ const Footer = class extends React.Component {
                       />
                     </a>
                 </div>
-                <div className="column is-2" style={socialCircle}>
+                <div className="column is-2" style={socialCircleB}>
                   <a title="instagram" href="#">
                     <img
                       style={socialSvg}
@@ -112,7 +158,7 @@ const Footer = class extends React.Component {
                     />
                   </a>
                 </div>
-                <div className="column is-2" style={socialCircle}>
+                <div className="column is-2" style={socialCircleB}>
                   <a title="linkedin" href="#">
                     <img
                       style={socialSvg}
