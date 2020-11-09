@@ -1,16 +1,22 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import styles from './all.sass'
 import logo from '../img/logo.svg'
 
 const logoStyle = {
   height: "50px",
   width: "auto",
+  margin: "2rem",
 }
 
 const navItem = {
   color: "#BA5930",
   fontSize: "3rem",
   fontWeight: "800",
+}
+
+const burgerPadding = {
+  padding: "0 2.75em",
 }
 
 const burgerLine = {
@@ -65,11 +71,11 @@ const Navbar = class extends React.Component {
           <div
             className={`navbar-burger burger ${this.state.navBarActiveClass}`}
             data-target="navMenu"
-            onClick={() => this.toggleHamburger()}
+            onClick={() => this.toggleHamburger()} style={burgerPadding}
           >
-            <span style={burgerLine} />
-            <span style={burgerLine}/>
-            <span style={burgerLine}/>
+            <span />
+            <span />
+            <span />
           </div>
         </div>
         <div

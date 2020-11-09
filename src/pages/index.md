@@ -1,16 +1,13 @@
 ---
 templateKey: index-page
-title: Great coffee with a conscience1
+title: Your new creative team has arrived
 image: /img/products-full-width.jpg
 heading: Great coffee with a conscience1
-subheading: Support sustainable farming while enjoying a cup
+subheading: amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.
 mainpitch:
-  title: Why Kaldi
+  title: About Us
   description: >
-    Kaldi is the coffee store for everyone who believes that great coffee
-    shouldn't just taste good, it should do good too. We source all of our beans
-    directly from small scale sustainable farmers and make sure part of the
-    profits are reinvested in their communities.
+    Agencies are everywhere—all specializing in one thing or another, or everything under the sun. While we love those agencies (and have even worked for them), we understand they’re not as accessible for growing businesses and new creative endeavors.
 description: Kaldi is the ultimate spot for coffee lovers who want to learn
   about their java’s origin and support the farmers that grew it. We take coffee
   production, roasting and brewing seriously and we’re glad to pass that
