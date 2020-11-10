@@ -6,7 +6,6 @@ import Layout from '../components/Layout'
 
 const headerStyle = {
   backgroundColor: "#2D2C2C",
-  height: "50vh",
 };
 
 const titleText = {
@@ -44,7 +43,7 @@ export const IndexPageTemplate = ({
   intro,
 }) => (
   <div>
-    <section style={headerStyle} class="hero is-info is-large">
+    <section style={headerStyle} class="hero is-medium">
     <div class="hero-body">
       <div class="container">
         <h1 class="title" style={titleText}>
@@ -95,10 +94,10 @@ export const IndexPageTemplate = ({
             </div>
             <div className="column is-10">
               <h6>We're Pros in:</h6>
-              <h5>Copywriting + editing</h5>
-              <h5>Design</h5>
-              <h5>Social</h5>
-              <h5>Strategy</h5>
+              <h3>Copywriting + editing</h3>
+              <h3>Design</h3>
+              <h3>Social</h3>
+              <h3>Strategy</h3>
             </div>
           </div>
         </div>
