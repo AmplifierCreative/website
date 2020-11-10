@@ -16,7 +16,14 @@ const emailInput = {
   border: "none",
   fontSize: "2rem",
   paddingLeft: "0",
+  marginBottom: "1em",
 };
+
+const menuItemLinkA = {
+  textTransform: "uppercase",
+  paddingLeft: "0",
+  marginBottom: ".75em",
+}
 
 const menuItemLink = {
   textTransform: "uppercase",
@@ -27,6 +34,10 @@ const footerPolicy = {
   color: '#F8F3F1',
   textTransform: "uppercase",
   fontFamily: "VisbyCF-Regular",
+}
+
+const footerPolicyContainer = {
+  marginTop: "2em",
 }
 
 const footerPolicyLink = {
@@ -78,11 +89,11 @@ const Footer = class extends React.Component {
               <div className="column is-two-thirds">
                 <input className="input is-medium email-input" style={emailInput} type="email" placeholder="enter your email address to stay in touch"/>
                 <div className="columns">
-                  <div className="column is-2">
+                  <div className="column is-3">
                     <section className="menu">
                       <ul className="menu-list">
                         <li>
-                          <Link to="/" className="navbar-item" style={menuItemLink}>
+                          <Link to="/" className="navbar-item" style={menuItemLinkA}>
                             About
                           </Link>
                         </li>
@@ -94,11 +105,11 @@ const Footer = class extends React.Component {
                       </ul>
                     </section>
                   </div>
-                  <div className="column is-2">
+                  <div className="column is-3">
                     <section>
                       <ul className="menu-list">
                         <li>
-                          <Link className="navbar-item" to="/blog" style={menuItemLink}>
+                          <Link className="navbar-item" to="/blog" style={menuItemLinkA}>
                             Portfolio
                           </Link>
                         </li>
@@ -110,11 +121,11 @@ const Footer = class extends React.Component {
                       </ul>
                     </section>
                   </div>
-                  <div className="column is-2">
+                  <div className="column is-3">
                     <section>
                       <ul className="menu-list">
                         <li>
-                          <Link className="navbar-item" to="/blog" style={menuItemLink}>
+                          <Link className="navbar-item" to="/blog" style={menuItemLinkA}>
                             Contact
                           </Link>
                         </li>
@@ -128,7 +139,7 @@ const Footer = class extends React.Component {
                   </div>
                 </div>
                 <div className="columns">
-                  <div className="column">
+                  <div className="column" style={footerPolicyContainer}>
                     <p style={footerPolicy}>&#169; Amplifier Creative 2020 view our <Link href="#" className="link" style={footerPolicyLink}>Terms of Use</Link> and <Link href="#" className="link" style={footerPolicyLink}>Privacy Policy</Link></p>
                   </div>
                 </div>

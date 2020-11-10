@@ -4,6 +4,10 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 
+import danielWhiteShow from '../img/clients/The_Daniel_White_Show_new.png'
+import freePizza from '../img/clients/FPP_podStack_color.png'
+import audpop from '../img/clients/AA_AudPop_Stacked_Color.png'
+
 const headerStyle = {
   backgroundColor: "#2D2C2C",
 };
@@ -12,15 +16,24 @@ const titleText = {
   color: "#F8F3F1",
   fontFamily: "VisbyCF-Bold",
   fontWeight: "800",
-  fontSize: "3rem",
+  fontSize: "4rem",
 };
 
-const subTitleText = {
+const subTitleTextA = {
   color: "#F8F3F1",
   fontFamily: "VisbyCF",
   fontWeight: "400",
-  fontSize: "1rem",
-  maxWidth: "50%",
+  fontSize: "1.5rem",
+  maxWidth: "60%",
+  marginTop: "2.5rem",
+}
+
+const subTitleTextB = {
+  color: "#F8F3F1",
+  fontFamily: "VisbyCF",
+  fontWeight: "400",
+  fontSize: "1.5rem",
+  maxWidth: "60%",
 }
 
 const sectionTitle = {
@@ -68,10 +81,25 @@ const servicesText = {
   fontWeight: "800",
 }
 
+const clientsTitle = {
+  fontSize: "2.5em",
+  marginBottom: ".75em",
+}
+
 const placeHolderCard = {
-  backgroundColor: "#938C89",
+  backgroundColor: "#F8F3F1",
   width: "200px",
   height: "200px",
+}
+
+const verticalAlignHelper = {
+  display: "inline-block",
+  height: "100%",
+  verticalAlign: "middle",
+}
+
+const imgStyle = {
+  verticalAlign: "middle",
 }
 
 export const IndexPageTemplate = ({
@@ -90,9 +118,9 @@ export const IndexPageTemplate = ({
         <h1 class="title" style={titleText}>
           Your new creative team has arrived
         </h1>
-        <h2 class="subtitle" style={subTitleText}>
+        <h2 class="subtitle" style={subTitleTextA}>
         amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.</h2>
-        <h2 class="subtitle" style={subTitleText}>
+        <h2 class="subtitle" style={subTitleTextB}>
         We’re the next generation of creators and critical thinkers who want success to always be within arm’s reach—with an overarching goal of instilling positivity, inclusivity, and inspiration in each community we serve.
         </h2>
       </div>
@@ -147,20 +175,41 @@ export const IndexPageTemplate = ({
             <div className="column is-2 has-text-centered">
               <h4 style={sectionTitle}>Clients</h4>
             </div>
-            <div className="column is-10">
-              <h5>We're in good company</h5>
+            <div className="column is-10 has-text-centered">
+             <h6 style={orangeHeaderText}>x x</h6>
+              <h5 style={clientsTitle}>We're in good company</h5>
               <div className="columns">
                 <div className="column">
-                  <div style={placeHolderCard}></div>
+                  <div style={placeHolderCard}>
+                    <a title="Free Pizza Podcast" href="#">
+                      <img
+                        src={freePizza}
+                        alt="Free Pizza Podcast"
+                      />
+                    </a>
+                  </div>
                 </div>
                 <div className="column">
-                    <div style={placeHolderCard}></div>
+                    <div style={placeHolderCard}>
+                      <a title="Daniel White Show" href="#">
+                        <img
+                          src={danielWhiteShow}
+                          alt="Daniel White Show"
+                        />
+                      </a>
+                    </div>
                 </div>
                 <div className="column">
-                    <div style={placeHolderCard}></div>
-                </div>
-                <div className="column">
-                    <div style={placeHolderCard}></div>
+                    <div style={placeHolderCard}>
+                      <a title="Audpop" href="#">
+                        <span style={verticalAlignHelper}></span>
+                        <img
+                          src={audpop}
+                          alt="Audpop"
+                          style={imgStyle}
+                        />
+                      </a>
+                    </div>
                 </div>
               </div>
             </div>
