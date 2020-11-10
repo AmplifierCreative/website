@@ -27,6 +27,33 @@ const sectionTitle = {
   transform: "rotate(270deg)",
 }
 
+const aboutTitle = {
+  fontSize: "2.5em",
+}
+
+const aboutSubtitle = {
+  fontSize: "1.5em",
+  marginTop: "1.5em",
+}
+
+const aboutText = {
+  fontSize: "1.5em",
+}
+
+const aboutText2 = {
+  fontSize: "1.5em",
+  marginTop: "1em",
+}
+
+const orangeHeaderTextAbout = {
+  color: "#BA5930",
+  fontSize: ".75em",
+  textTransform: "uppercase",
+  fontWeight: "400",
+  fontFamily: "VisbyCF-Regular",
+  marginBottom: "1em",
+}
+
 const orangeHeaderText = {
   color: "#BA5930",
   fontSize: ".75em",
@@ -64,7 +91,8 @@ export const IndexPageTemplate = ({
           Your new creative team has arrived
         </h1>
         <h2 class="subtitle" style={subTitleText}>
-        amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.<br/>
+        amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.</h2>
+        <h2 class="subtitle" style={subTitleText}>
         We’re the next generation of creators and critical thinkers who want success to always be within arm’s reach—with an overarching goal of instilling positivity, inclusivity, and inspiration in each community we serve.
         </h2>
       </div>
@@ -73,25 +101,20 @@ export const IndexPageTemplate = ({
     <section className="section section--gradient">
       <div className="container">
         <div className="section">
-          <div className="columns">
-            <div className="column is-2">
+          <div className="columns is-vcentered">
+            <div className="column is-2 has-text-centered">
               <h4 style={sectionTitle}>About Us</h4>
             </div>
-            <div className="column is-5">
-              <div className="content">
-                <div className="content">
-                  <div className="tile">
-                    <h1 className="title">We are blah blah</h1>
-                  </div>
-                  <div className="tile">
-                    <h3 className="subtitle">Lorem ipsum lorem</h3>
-                  </div>
-                </div>
-              </div>
+            <div className="column is-5 has-text-centered">
+              <h6 style={orangeHeaderTextAbout}>x x</h6>
+              <h2 className="title" style={aboutTitle}>We are blah blah</h2>
+              <h3 className="subtitle" style={aboutSubtitle}>Lorem ipsum lorem</h3>
             </div>
-            <div className="column is-5">
-              <p>
-              Agencies are everywhere—all specializing in one thing or another, or everything under the sun. While we love those agencies (and have even worked for them), we understand they’re not as accessible for growing businesses and new creative endeavors.<br/> 
+            <div className="column is-6">
+              <p className="first-letter-stroke" style={aboutText}>
+              Agencies are everywhere—all specializing in one thing or another, or everything under the sun. While we love those agencies (and have even worked for them), we understand they’re not as accessible for growing businesses and new creative endeavors.<br/>
+              </p>
+              <p style={aboutText2}>
               That’s why we’re here to break through that noise by providing a resource that allows all businesses and entrepreneurs to feel comfortable asking for help with their advertising, marketing, and creative.
               </p>
             </div>
@@ -121,7 +144,7 @@ export const IndexPageTemplate = ({
       <div className="container">
         <div className="section">
           <div className="columns is-vcentered">
-            <div className="column is-2">
+            <div className="column is-2 has-text-centered">
               <h4 style={sectionTitle}>Clients</h4>
             </div>
             <div className="column is-10">
