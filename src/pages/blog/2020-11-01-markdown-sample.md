@@ -5,6 +5,8 @@ date: 2020-11-01T21:01:02.889Z
 description: Markdown sample description
 featuredpost: true
 featuredimage: /img/products-grid1.jpg
+tags:
+  - markdown
 ---
 leftimage Test
 

@@ -4,27 +4,27 @@ import styles from './all.sass'
 import logo from '../img/logo.svg'
 
 const logoStyle = {
-  height: "50px",
-  width: "auto",
-  margin: "2rem",
+  height: '50px',
+  width: 'auto',
+  margin: '2rem',
 }
 
 const navItem = {
-  color: "#BA5930",
-  fontSize: "3rem",
-  fontWeight: "800",
+  color: '#BA5930',
+  fontSize: '3rem',
+  fontWeight: '800',
 }
 
 const burgerPadding = {
-  padding: "0 2.75em",
+  padding: '0 2.75em',
 }
 
 const burgerLine = {
-  height: "10px",
-  width: "81px",
-  display: "block",
-  backgroundColor: "#BA5930",
-  margin: "8px 0",
+  height: '10px',
+  width: '81px',
+  display: 'block',
+  backgroundColor: '#BA5930',
+  margin: '8px 0',
 }
 
 const Navbar = class extends React.Component {
@@ -58,20 +58,21 @@ const Navbar = class extends React.Component {
 
   render() {
     return (
-      <nav
-        className="navbar"
-        role="navigation"
-        aria-label="main-navigation"
-      >
-        <div className="navbar-brand" role="navigation" ariaLabel="main navigation">
+      <nav className="navbar" role="navigation" aria-label="main-navigation">
+        <div
+          className="navbar-brand"
+          role="navigation"
+          ariaLabel="main navigation"
+        >
           <Link to="/" className="navbar-item" title="Logo">
-            <img src={logo} alt="Amplifier Creative" style={logoStyle}/>
+            <img src={logo} alt="Amplifier Creative" style={logoStyle} />
           </Link>
           {/* Hamburger menu */}
           <div
             className={`navbar-burger burger ${this.state.navBarActiveClass}`}
             data-target="navMenu"
-            onClick={() => this.toggleHamburger()} style={burgerPadding}
+            onClick={() => this.toggleHamburger()}
+            style={burgerPadding}
           >
             <span />
             <span />
@@ -84,22 +85,37 @@ const Navbar = class extends React.Component {
         >
           <div className="navbar-end">
             <ul class="menu-list has-text-right">
-                <li><Link className="navbar-item" to="/about" style={navItem}>
+              <li>
+                <Link className="navbar-item" to="/about" style={navItem}>
                   About
-                </Link></li>
-                <li><Link className="navbar-item" to="/portfolio" style={navItem}>
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-item" to="/portfolio" style={navItem}>
                   Portfolio
-                </Link></li>
-                <li><Link className="navbar-item" to="/services" style={navItem}>
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-item" to="/services" style={navItem}>
                   Services
-                </Link></li>
-                <li><Link className="navbar-item" to="/blog" style={navItem}>
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-item" to="/blog" style={navItem}>
                   Blog
-                </Link></li>
-                <li><Link className="navbar-item" to="/contact" style={navItem}>
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-item" to="/contact" style={navItem}>
                   Contact
-                </Link></li>
-              </ul>
+                </Link>
+              </li>
+              <li>
+                <Link className="navbar-item" to="/projects" style={navItem}>
+                  Projects
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
