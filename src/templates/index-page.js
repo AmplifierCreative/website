@@ -27,6 +27,20 @@ const sectionTitle = {
   transform: "rotate(270deg)",
 }
 
+const orangeHeaderText = {
+  color: "#BA5930",
+  fontSize: ".75em",
+  textTransform: "uppercase",
+  fontWeight: "400",
+  fontFamily: "VisbyCF-Regular",
+}
+
+const servicesText = {
+  fontSize: "1.5em",
+  lineHeight: "2em",
+  fontWeight: "800",
+}
+
 const placeHolderCard = {
   backgroundColor: "#938C89",
   width: "200px",
@@ -47,10 +61,10 @@ export const IndexPageTemplate = ({
     <div class="hero-body">
       <div class="container">
         <h1 class="title" style={titleText}>
-          You have needs.<br/>We have ideas.
+          Your new creative team has arrived
         </h1>
         <h2 class="subtitle" style={subTitleText}>
-        amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.<br />
+        amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.<br/>
         We’re the next generation of creators and critical thinkers who want success to always be within arm’s reach—with an overarching goal of instilling positivity, inclusivity, and inspiration in each community we serve.
         </h2>
       </div>
@@ -88,16 +102,16 @@ export const IndexPageTemplate = ({
     <section className="section section--gradient">
       <div className="container">
         <div className="section">
-          <div className="columns">
-            <div className="column is-2">
+          <div className="columns is-vcentered">
+            <div className="column is-2 has-text-centered">
               <h4 style={sectionTitle}>Services</h4>
             </div>
-            <div className="column is-10">
-              <h6>We're Pros in:</h6>
-              <h3>Copywriting + editing</h3>
-              <h3>Design</h3>
-              <h3>Social</h3>
-              <h3>Strategy</h3>
+            <div className="column is-10 has-text-centered">
+              <h6 style={orangeHeaderText}>We're Pros in:</h6>
+              <h3 style={servicesText}>Copywriting + editing</h3>
+              <h3 style={servicesText}>Design</h3>
+              <h3 style={servicesText}>Social</h3>
+              <h3 style={servicesText}>Strategy</h3>
             </div>
           </div>
         </div>
