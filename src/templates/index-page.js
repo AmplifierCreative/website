@@ -50,7 +50,6 @@ const sectionTitleA = {
   textTransform: 'uppercase',
   position: 'absolute',
   bottom: '161px',
-  paddingLeft: '3.75rem',
 }
 
 const sectionTitleB = {
@@ -61,7 +60,6 @@ const sectionTitleB = {
   textTransform: 'uppercase',
   position: 'absolute',
   bottom: '133px',
-  paddingLeft: '4rem',
 }
 
 const sectionTitle = {
@@ -71,7 +69,6 @@ const sectionTitle = {
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   float: 'left',
-  paddingLeft: '4.75rem',
 }
 
 const aboutTitle = {
