@@ -12,6 +12,10 @@ const headerStyle = {
   backgroundColor: "#2D2C2C",
 };
 
+const heroPaddingTop = {
+  paddingTop: "6rem",
+}
+
 const titleText = {
   color: "#F8F3F1",
   fontFamily: "VisbyCF-Bold",
@@ -21,27 +25,49 @@ const titleText = {
 
 const subTitleTextA = {
   color: "#F8F3F1",
-  fontFamily: "VisbyCF",
+  fontFamily: "EBGaramond",
   fontWeight: "400",
   fontSize: "1.5rem",
   maxWidth: "60%",
   marginTop: "2.5rem",
+  letterSpacing: ".25px",
 }
 
 const subTitleTextB = {
   color: "#F8F3F1",
-  fontFamily: "VisbyCF",
+  fontFamily: "EBGaramond",
   fontWeight: "400",
   fontSize: "1.5rem",
-  maxWidth: "60%",
+  maxWidth: "70%",
+  letterSpacing: ".25px",
+}
+
+const sectionTitleA = {
+  transform: "rotate(270deg)",
+  textTransform: "uppercase",
+  float: "left",
+  position: "absolute",
+  bottom: "207px",
+}
+
+const sectionTitleB = {
+  transform: "rotate(270deg)",
+  textTransform: "uppercase",
+  float: "left",
+  position: "absolute",
+  bottom: "133px",
 }
 
 const sectionTitle = {
   transform: "rotate(270deg)",
+  textTransform: "uppercase",
+  float: "left",
+  position: "absolute",
 }
 
 const aboutTitle = {
   fontSize: "2.5em",
+  letterSpacing: "1px",
 }
 
 const aboutSubtitle = {
@@ -79,11 +105,13 @@ const servicesText = {
   fontSize: "1.5em",
   lineHeight: "2em",
   fontWeight: "800",
+  letterSpacing: "1px",
 }
 
 const clientsTitle = {
   fontSize: "2.5em",
   marginBottom: ".75em",
+  letterSpacing: "1px",
 }
 
 const placeHolderCard = {
@@ -113,8 +141,8 @@ export const IndexPageTemplate = ({
 }) => (
   <div>
     <section style={headerStyle} class="hero is-medium">
-    <div class="hero-body">
-      <div class="container">
+    <div class="hero-body" style={heroPaddingTop}>
+      <div class="container is-max-widescreen">
         <h1 class="title" style={titleText}>
           Your new creative team has arrived
         </h1>
@@ -130,13 +158,11 @@ export const IndexPageTemplate = ({
       <div className="container">
         <div className="section">
           <div className="columns is-vcentered">
-            <div className="column is-2 has-text-centered">
-              <h4 style={sectionTitle}>About Us</h4>
-            </div>
-            <div className="column is-5 has-text-centered">
-              <h6 style={orangeHeaderTextAbout}>x x</h6>
-              <h2 className="title" style={aboutTitle}>We are blah blah</h2>
-              <h3 className="subtitle" style={aboutSubtitle}>Lorem ipsum lorem</h3>
+            <div className="column is-6 has-text-centered">
+            <h4 style={sectionTitleA}>About Us</h4>
+              <h6 style={orangeHeaderTextAbout}>Community-focused.</h6>
+              <h2 className="title" style={aboutTitle}>Creative-driven.</h2>
+              {/* <h3 className="subtitle" style={aboutSubtitle}>Lorem ipsum lorem</h3> */}
             </div>
             <div className="column is-6">
               <p className="first-letter-stroke" style={aboutText}>
@@ -154,11 +180,9 @@ export const IndexPageTemplate = ({
       <div className="container">
         <div className="section">
           <div className="columns is-vcentered">
-            <div className="column is-2 has-text-centered">
-              <h4 style={sectionTitle}>Services</h4>
-            </div>
-            <div className="column is-10 has-text-centered">
-              <h6 style={orangeHeaderText}>We're Pros in:</h6>
+            <div className="column is-12 has-text-centered">
+              <h4 style={sectionTitleB}>Services</h4>
+              <h6 style={orangeHeaderText}>We’re passionate about:</h6>
               <h3 style={servicesText}>Copywriting + editing</h3>
               <h3 style={servicesText}>Design</h3>
               <h3 style={servicesText}>Social</h3>
@@ -177,7 +201,7 @@ export const IndexPageTemplate = ({
             </div>
             <div className="column is-10 has-text-centered">
              <h6 style={orangeHeaderText}>x x</h6>
-              <h5 style={clientsTitle}>We're in good company</h5>
+              <h5 style={clientsTitle}>We’re in good company</h5>
               <div className="columns">
                 <div className="column">
                   <div style={placeHolderCard}>

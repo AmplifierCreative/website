@@ -20,12 +20,16 @@ const emailInput = {
 };
 
 const menuItemLinkA = {
+  fontFamily: "VisbyCF-Regular",
+  letterSpacing: "2.25px",
   textTransform: "uppercase",
   paddingLeft: "0",
   marginBottom: ".75em",
 }
 
 const menuItemLink = {
+  fontFamily: "VisbyCF-Regular",
+  letterSpacing: "2.25px",
   textTransform: "uppercase",
   paddingLeft: "0",
 }
@@ -34,6 +38,7 @@ const footerPolicy = {
   color: '#F8F3F1',
   textTransform: "uppercase",
   fontFamily: "VisbyCF-Regular",
+  letterSpacing: "2.75px",
 }
 
 const footerPolicyContainer = {
@@ -140,7 +145,7 @@ const Footer = class extends React.Component {
                 </div>
                 <div className="columns">
                   <div className="column" style={footerPolicyContainer}>
-                    <p style={footerPolicy}>&#169; Amplifier Creative 2020 view our <Link href="#" className="link" style={footerPolicyLink}>Terms of Use</Link> and <Link href="#" className="link" style={footerPolicyLink}>Privacy Policy</Link></p>
+                    <p style={footerPolicy}>&#169; Amplifier Creative 2020 view our <Link href="#" className="link" style={footerPolicyLink}>Terms of Use</Link> and <Link href="#" className="link" style={footerPolicyLink}>Privacy Policy</Link>.</p>
                   </div>
                 </div>
               </div>
