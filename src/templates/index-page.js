@@ -48,7 +48,6 @@ const sectionTitleA = {
   fontFamily: "VisbyCF-Regular",
   transform: "rotate(270deg)",
   textTransform: "uppercase",
-  float: "left",
   position: "absolute",
   bottom: "161px",
   paddingLeft: "3.75rem",
@@ -60,7 +59,6 @@ const sectionTitleB = {
   fontFamily: "VisbyCF-Regular",
   transform: "rotate(270deg)",
   textTransform: "uppercase",
-  float: "left",
   position: "absolute",
   bottom: "133px",
   paddingLeft: "4rem",
@@ -110,12 +108,13 @@ const orangeHeaderText = {
   textTransform: "uppercase",
   fontWeight: "500",
   fontFamily: "VisbyCF-Regular",
+  paddingBottom: "1em",
 }
 
 const servicesText = {
-  fontSize: "1.5em",
-  lineHeight: "2em",
-  fontWeight: "800",
+  fontSize: "2em",
+  lineHeight: "1.75em",
+  fontWeight: "700",
   letterSpacing: "1px",
 }
 

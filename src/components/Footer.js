@@ -89,7 +89,7 @@ const Footer = class extends React.Component {
   render() {
     return (
       <footer className="footer" style={footer}>
-          <div className="container">
+          <div className="container is-max-widescreen">
             <div className="columns">
               <div className="column is-two-thirds">
                 <input className="input is-medium email-input" style={emailInput} type="email" placeholder="enter your email address to stay in touch"/>

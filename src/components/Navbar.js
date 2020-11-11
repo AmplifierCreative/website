@@ -24,6 +24,7 @@ const logoStyle = {
   height: '50px',
   width: 'auto',
   margin: '1.5rem 0 0 auto',
+  paddingLeft: "2em",
 }
 
 const fillerContainer = {
@@ -62,6 +63,8 @@ const navMenu = {
   zIndex: "10",
   boxShadow: "none",
   width: "100%",
+  paddingRight: "5em",
+  paddingTop: "2em",
 }
 
 const Navbar = class extends React.Component {
@@ -97,7 +100,7 @@ const Navbar = class extends React.Component {
     return (
       <nav className="columns" role="navigation" aria-label="main-navigation" style={nav}>
         <div
-          className="column is-one-third has-text-right"
+          className="column is-one-third has-text-centered"
           role="navigation"
           ariaLabel="main navigation"
           style={logoContainer}
