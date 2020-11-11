@@ -9,135 +9,135 @@ import freePizza from '../img/clients/FPP_podStack_color.png'
 import audpop from '../img/clients/AA_AudPop_Stacked_Color.png'
 
 const headerStyle = {
-  backgroundColor: "#2D2C2C",
-};
+  backgroundColor: '#2D2C2C',
+}
 
 const heroPaddingTop = {
-  paddingTop: "6rem",
+  paddingTop: '6rem',
 }
 
 const titleText = {
-  color: "#F8F3F1",
-  fontFamily: "VisbyCF-Bold",
-  fontWeight: "800",
-  fontSize: "4rem",
-};
+  color: '#F8F3F1',
+  fontFamily: 'VisbyCF-Bold',
+  fontWeight: '800',
+  fontSize: '4rem',
+}
 
 const subTitleTextA = {
-  color: "#F8F3F1",
-  fontFamily: "EBGaramond",
-  fontWeight: "400",
-  fontSize: "1.5rem",
-  maxWidth: "60%",
-  marginTop: "2.5rem",
-  letterSpacing: ".25px",
+  color: '#F8F3F1',
+  fontFamily: 'EBGaramond',
+  fontWeight: '400',
+  fontSize: '1.5rem',
+  maxWidth: '60%',
+  marginTop: '2.5rem',
+  letterSpacing: '.25px',
 }
 
 const subTitleTextB = {
-  color: "#F8F3F1",
-  fontFamily: "EBGaramond",
-  fontWeight: "400",
-  fontSize: "1.5rem",
-  maxWidth: "70%",
-  letterSpacing: ".25px",
+  color: '#F8F3F1',
+  fontFamily: 'EBGaramond',
+  fontWeight: '400',
+  fontSize: '1.5rem',
+  maxWidth: '70%',
+  letterSpacing: '.25px',
 }
 
-const sectionTitleA = {  
-  fontSize: ".75em",
-  fontWeight: "500",
-  fontFamily: "VisbyCF-Regular",
-  transform: "rotate(270deg)",
-  textTransform: "uppercase",
-  position: "absolute",
-  bottom: "161px",
-  paddingLeft: "3.75rem",
+const sectionTitleA = {
+  fontSize: '.75em',
+  fontWeight: '500',
+  fontFamily: 'VisbyCF-Regular',
+  transform: 'rotate(270deg)',
+  textTransform: 'uppercase',
+  position: 'absolute',
+  bottom: '161px',
+  paddingLeft: '3.75rem',
 }
 
 const sectionTitleB = {
-  fontSize: ".75em",
-  fontWeight: "500",
-  fontFamily: "VisbyCF-Regular",
-  transform: "rotate(270deg)",
-  textTransform: "uppercase",
-  position: "absolute",
-  bottom: "133px",
-  paddingLeft: "4rem",
+  fontSize: '.75em',
+  fontWeight: '500',
+  fontFamily: 'VisbyCF-Regular',
+  transform: 'rotate(270deg)',
+  textTransform: 'uppercase',
+  position: 'absolute',
+  bottom: '133px',
+  paddingLeft: '4rem',
 }
 
 const sectionTitle = {
-  fontSize: ".75em",
-  fontWeight: "500",
-  fontFamily: "VisbyCF-Regular",
-  transform: "rotate(270deg)",
-  textTransform: "uppercase",
-  float: "left",
-  paddingLeft: "4.75rem",
+  fontSize: '.75em',
+  fontWeight: '500',
+  fontFamily: 'VisbyCF-Regular',
+  transform: 'rotate(270deg)',
+  textTransform: 'uppercase',
+  float: 'left',
+  paddingLeft: '4.75rem',
 }
 
 const aboutTitle = {
-  fontSize: "2.5em",
-  letterSpacing: "1px",
+  fontSize: '2.5em',
+  letterSpacing: '1px',
 }
 
 const aboutSubtitle = {
-  fontSize: "1.5em",
-  marginTop: "1.5em",
+  fontSize: '1.5em',
+  marginTop: '1.5em',
 }
 
 const aboutText = {
-  fontSize: "1.5em",
+  fontSize: '1.5em',
 }
 
 const aboutText2 = {
-  fontSize: "1.5em",
-  marginTop: "1em",
+  fontSize: '1.5em',
+  marginTop: '1em',
 }
 
 const orangeHeaderTextAbout = {
-  color: "#BA5930",
-  fontSize: ".75em",
-  textTransform: "uppercase",
-  fontWeight: "500",
-  fontFamily: "VisbyCF-Regular",
-  marginBottom: "1em",
+  color: '#BA5930',
+  fontSize: '.75em',
+  textTransform: 'uppercase',
+  fontWeight: '500',
+  fontFamily: 'VisbyCF-Regular',
+  marginBottom: '1em',
 }
 
 const orangeHeaderText = {
-  color: "#BA5930",
-  fontSize: ".75em",
-  textTransform: "uppercase",
-  fontWeight: "500",
-  fontFamily: "VisbyCF-Regular",
-  paddingBottom: "1em",
+  color: '#BA5930',
+  fontSize: '.75em',
+  textTransform: 'uppercase',
+  fontWeight: '500',
+  fontFamily: 'VisbyCF-Regular',
+  paddingBottom: '1em',
 }
 
 const servicesText = {
-  fontSize: "2em",
-  lineHeight: "1.75em",
-  fontWeight: "700",
-  letterSpacing: "1px",
+  fontSize: '2em',
+  lineHeight: '1.75em',
+  fontWeight: '700',
+  letterSpacing: '1px',
 }
 
 const clientsTitle = {
-  fontSize: "2.5em",
-  marginBottom: ".75em",
-  letterSpacing: "1px",
+  fontSize: '2.5em',
+  marginBottom: '.75em',
+  letterSpacing: '1px',
 }
 
 const placeHolderCard = {
-  backgroundColor: "#F8F3F1",
-  width: "200px",
-  height: "200px",
+  backgroundColor: '#F8F3F1',
+  width: '200px',
+  height: '200px',
 }
 
 const verticalAlignHelper = {
-  display: "inline-block",
-  height: "100%",
-  verticalAlign: "middle",
+  display: 'inline-block',
+  height: '100%',
+  verticalAlign: 'middle',
 }
 
 const imgStyle = {
-  verticalAlign: "middle",
+  verticalAlign: 'middle',
 }
 
 export const IndexPageTemplate = ({
@@ -151,35 +151,51 @@ export const IndexPageTemplate = ({
 }) => (
   <div>
     <section style={headerStyle} class="hero is-medium">
-    <div class="hero-body" style={heroPaddingTop}>
-      <div class="container is-max-widescreen">
-        <h1 class="title" style={titleText}>
-          Your new creative team has arrived
-        </h1>
-        <h2 class="subtitle" style={subTitleTextA}>
-        amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.</h2>
-        <h2 class="subtitle" style={subTitleTextB}>
-        We’re the next generation of creators and critical thinkers who want success to always be within arm’s reach—with an overarching goal of instilling positivity, inclusivity, and inspiration in each community we serve.
-        </h2>
+      <div class="hero-body" style={heroPaddingTop}>
+        <div class="container is-max-widescreen">
+          <h1 class="title" style={titleText}>
+            Your new creative team has arrived
+          </h1>
+          <h2 class="subtitle" style={subTitleTextA}>
+            amplifier creative is a modernized creative agency catered toward
+            up-and-coming businesses, driven entrepreneurs, and committed
+            creative endeavors of all kinds.
+          </h2>
+          <h2 class="subtitle" style={subTitleTextB}>
+            We’re the next generation of creators and critical thinkers who want
+            success to always be within arm’s reach—with an overarching goal of
+            instilling positivity, inclusivity, and inspiration in each
+            community we serve.
+          </h2>
+        </div>
       </div>
-    </div>
     </section>
     <section className="section section--gradient">
-      <div className="container">
+      <div className="container is-max-widescreen">
         <div className="section">
           <div className="columns is-vcentered">
             <div className="column is-6 has-text-centered">
-            <h4 style={sectionTitleA}>About Us</h4>
+              <h4 style={sectionTitleA}>About Us</h4>
               <h6 style={orangeHeaderTextAbout}>Community-focused.</h6>
-              <h2 className="title" style={aboutTitle}>Creative-driven.</h2>
+              <h2 className="title" style={aboutTitle}>
+                Creative-driven.
+              </h2>
               {/* <h3 className="subtitle" style={aboutSubtitle}>Lorem ipsum lorem</h3> */}
             </div>
             <div className="column is-6">
               <p className="first-letter-stroke" style={aboutText}>
-              Agencies are everywhere—all specializing in one thing or another, or everything under the sun. While we love those agencies (and have even worked for them), we understand they’re not as accessible for growing businesses and new creative endeavors.<br/>
+                Agencies are everywhere—all specializing in one thing or
+                another, or everything under the sun. While we love those
+                agencies (and have even worked for them), we understand they’re
+                not as accessible for growing businesses and new creative
+                endeavors.
+                <br />
               </p>
               <p style={aboutText2}>
-              That’s why we’re here to break through that noise by providing a resource that allows all businesses and entrepreneurs to feel comfortable asking for help with their advertising, marketing, and creative.
+                That’s why we’re here to break through that noise by providing a
+                resource that allows all businesses and entrepreneurs to feel
+                comfortable asking for help with their advertising, marketing,
+                and creative.
               </p>
             </div>
           </div>
@@ -187,7 +203,7 @@ export const IndexPageTemplate = ({
       </div>
     </section>
     <section className="section section--gradient">
-      <div className="container">
+      <div className="container is-max-widescreen">
         <div className="section">
           <div className="columns is-vcentered">
             <div className="column is-12 has-text-centered">
@@ -203,47 +219,37 @@ export const IndexPageTemplate = ({
       </div>
     </section>
     <section className="section section--gradient">
-      <div className="container">
+      <div className="container is-max-widescreen">
         <div className="section">
           <div className="columns is-vcentered">
             <div className="column is-2 has-text-centered">
               <h4 style={sectionTitle}>Clients</h4>
             </div>
             <div className="column is-10 has-text-centered">
-             <h6 style={orangeHeaderText}>x x</h6>
+              <h6 style={orangeHeaderText}>x x</h6>
               <h5 style={clientsTitle}>We’re in good company</h5>
               <div className="columns">
                 <div className="column">
                   <div style={placeHolderCard}>
                     <a title="Free Pizza Podcast" href="#">
-                      <img
-                        src={freePizza}
-                        alt="Free Pizza Podcast"
-                      />
+                      <img src={freePizza} alt="Free Pizza Podcast" />
                     </a>
                   </div>
                 </div>
                 <div className="column">
-                    <div style={placeHolderCard}>
-                      <a title="Daniel White Show" href="#">
-                        <img
-                          src={danielWhiteShow}
-                          alt="Daniel White Show"
-                        />
-                      </a>
-                    </div>
+                  <div style={placeHolderCard}>
+                    <a title="Daniel White Show" href="#">
+                      <img src={danielWhiteShow} alt="Daniel White Show" />
+                    </a>
+                  </div>
                 </div>
                 <div className="column">
-                    <div style={placeHolderCard}>
-                      <a title="Audpop" href="#">
-                        <span style={verticalAlignHelper}></span>
-                        <img
-                          src={audpop}
-                          alt="Audpop"
-                          style={imgStyle}
-                        />
-                      </a>
-                    </div>
+                  <div style={placeHolderCard}>
+                    <a title="Audpop" href="#">
+                      <span style={verticalAlignHelper}></span>
+                      <img src={audpop} alt="Audpop" style={imgStyle} />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
