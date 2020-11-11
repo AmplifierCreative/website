@@ -42,27 +42,38 @@ const subTitleTextB = {
   letterSpacing: ".25px",
 }
 
-const sectionTitleA = {
+const sectionTitleA = {  
+  fontSize: ".75em",
+  fontWeight: "500",
+  fontFamily: "VisbyCF-Regular",
   transform: "rotate(270deg)",
   textTransform: "uppercase",
   float: "left",
   position: "absolute",
-  bottom: "207px",
+  bottom: "161px",
+  paddingLeft: "3.75rem",
 }
 
 const sectionTitleB = {
+  fontSize: ".75em",
+  fontWeight: "500",
+  fontFamily: "VisbyCF-Regular",
   transform: "rotate(270deg)",
   textTransform: "uppercase",
   float: "left",
   position: "absolute",
   bottom: "133px",
+  paddingLeft: "4rem",
 }
 
 const sectionTitle = {
+  fontSize: ".75em",
+  fontWeight: "500",
+  fontFamily: "VisbyCF-Regular",
   transform: "rotate(270deg)",
   textTransform: "uppercase",
   float: "left",
-  position: "absolute",
+  paddingLeft: "4.75rem",
 }
 
 const aboutTitle = {
@@ -88,7 +99,7 @@ const orangeHeaderTextAbout = {
   color: "#BA5930",
   fontSize: ".75em",
   textTransform: "uppercase",
-  fontWeight: "400",
+  fontWeight: "500",
   fontFamily: "VisbyCF-Regular",
   marginBottom: "1em",
 }
@@ -97,7 +108,7 @@ const orangeHeaderText = {
   color: "#BA5930",
   fontSize: ".75em",
   textTransform: "uppercase",
-  fontWeight: "400",
+  fontWeight: "500",
   fontFamily: "VisbyCF-Regular",
 }
 

@@ -3,15 +3,44 @@ import { Link } from 'gatsby'
 import styles from './all.sass'
 import logo from '../img/logo.svg'
 
+
+const nav = {
+  backgroundColor: "#2D2C2C",
+  margin: "0 auto",
+  position: "relative",
+}
+
+const logoContainer = {
+  backgroundColor: "#2D2C2C",
+  padding: "0",
+  paddingTop: "4rem",
+}
+
+const navLogoLink = {
+  paddingLeft: "0",
+}
+
 const logoStyle = {
   height: '50px',
   width: 'auto',
-  margin: '2rem',
+  margin: '1.5rem 0 0 auto',
+}
+
+const fillerContainer = {
+  paddingTop: "4rem",
+}
+
+const burgerContainer = {
+  backgroundColor: "#F8F3F1",
+  height: "74.71vh",
+  position: "absolute",
+  right: "0px",
+  paddingTop: "4rem",
 }
 
 const navItem = {
   color: '#BA5930',
-  fontSize: '3rem',
+  fontSize: '2.5rem',
   fontWeight: '800',
 }
 
@@ -25,6 +54,14 @@ const burgerLine = {
   display: 'block',
   backgroundColor: '#BA5930',
   margin: '8px 0',
+}
+
+const navMenu = {
+  position: "absolute",
+  backgroundColor: '#F8F3F1',
+  zIndex: "10",
+  boxShadow: "none",
+  width: "100%",
 }
 
 const Navbar = class extends React.Component {
@@ -58,64 +95,67 @@ const Navbar = class extends React.Component {
 
   render() {
     return (
-      <nav className="navbar" role="navigation" aria-label="main-navigation">
+      <nav className="columns" role="navigation" aria-label="main-navigation" style={nav}>
         <div
-          className="navbar-brand"
+          className="column is-one-third has-text-right"
           role="navigation"
           ariaLabel="main navigation"
+          style={logoContainer}
         >
-          <Link to="/" className="navbar-item" title="Logo">
+          <Link to="/" className="navbar-item" title="Logo" style={navLogoLink}>
             <img src={logo} alt="Amplifier Creative" style={logoStyle} />
           </Link>
-          {/* Hamburger menu */}
+        </div>
+        <div className="column is-one-third" style={fillerContainer}></div>
+        <div className="column is-one-third" style={burgerContainer}> 
           <div
-            className={`navbar-burger burger ${this.state.navBarActiveClass}`}
+            className={`${this.state.navBarActiveClass}`}
             data-target="navMenu"
             onClick={() => this.toggleHamburger()}
             style={burgerPadding}
           >
-            <span />
-            <span />
-            <span />
+            <span style={burgerLine} />
+            <span style={burgerLine} />
+            <span style={burgerLine} />
           </div>
-        </div>
-        <div
-          id="navMenu"
-          className={`navbar-menu ${this.state.navBarActiveClass}`}
-        >
-          <div className="navbar-end">
-            <ul class="menu-list has-text-right">
-              <li>
-                <Link className="navbar-item" to="/about" style={navItem}>
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link className="navbar-item" to="/portfolio" style={navItem}>
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link className="navbar-item" to="/services" style={navItem}>
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link className="navbar-item" to="/blog" style={navItem}>
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link className="navbar-item" to="/contact" style={navItem}>
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link className="navbar-item" to="/projects" style={navItem}>
-                  Projects
-                </Link>
-              </li>
-            </ul>
+          <div
+            id="navMenu"
+            className={`navbar-menu is-active`}
+            style={navMenu}>
+            <div>
+              <ul class="menu-list has-text-right">
+                <li>
+                  <Link className="navbar-item" to="/about" style={navItem}>
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/portfolio" style={navItem}>
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/services" style={navItem}>
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/blog" style={navItem}>
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/contact" style={navItem}>
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/projects" style={navItem}>
+                    Projects
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
