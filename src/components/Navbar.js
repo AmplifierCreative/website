@@ -5,7 +5,6 @@ import logo from '../img/logo.svg'
 
 
 const nav = {
-  backgroundColor: "#2D2C2C",
   margin: "0 auto",
   position: "relative",
 }
@@ -16,13 +15,9 @@ const navBarContainer = {
 }
 
 const logoContainer = {
-  backgroundColor: "#2D2C2C",
+  backgroundColor: "transparent",
   padding: "0",
   paddingTop: "4rem",
-}
-
-const navLogoLink = {
-  paddingLeft: "0",
 }
 
 const logoStyle = {
@@ -33,9 +28,14 @@ const fillerContainer = {
   paddingTop: "4rem",
 }
 
+const toggleContainer = {
+  position: "relative",
+}
+
 const burgerContainer = {
-  backgroundColor: "#2D2C2C",
+  backgroundColor: "transparent",
   paddingTop: "4rem",
+  paddingBottom: ".25em",
 }
 
 const burger = {
@@ -47,42 +47,50 @@ const burger = {
   cursor: "pointer",
 }
 
+const burgerLineTop = {
+  height: '10px',
+  width: '81px',
+  display: 'block',
+}
+
 const burgerLine = {
   height: '10px',
   width: '81px',
   display: 'block',
-  backgroundColor: '#BA5930',
   marginTop: "8px",
 }
 
 const navMenuContainer = {
   backgroundColor: '#F8F3F1',
-  height: "76.3vh",
+  height: "80vh",
   position: "absolute",
   right: "0px",
   top: "0",
   right: "0",
-  width: "33.333%",
+  width: "38%",
   zIndex: "10",
 }
 
 const navMenu = {
-  boxShadow: "none",
-  paddingRight: "5em",
+  position: "absolute",
+  right: "10px",
+  zIndex: "99",
   paddingTop: "3em",
 }
 
 const navItem = {
   color: '#BA5930',
-  fontSize: '2.5rem',
+  fontSize: '2.5em',
   fontWeight: '800',
   padding: "0",
+  lineHeight: "1.75em",
 }
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       active: false,
+      navBarActiveClass: '',
     }
   }
 
@@ -92,78 +100,93 @@ const Navbar = class extends React.Component {
       {
         active: !this.state.active,
       },    
+      // after state has been updated,
+      () => {
+        // set the class in state for the navbar accordingly
+        this.state.active
+          ? this.setState({
+              navBarActiveClass: 'is-active',
+            })
+          : this.setState({
+              navBarActiveClass: '',
+            })
+      }
     )
   }
 
   render() {
     return (
-      <nav className="columns" role="navigation" aria-label="main-navigation" style={nav}>
+      <nav className="columns nav-container" role="navigation" aria-label="main-navigation" style={nav}>
         <div className="column" style={navBarContainer}>
-        <div className="columns">
-        <div
-          className="column is-one-third"
-          role="navigation"
-          ariaLabel="main navigation"
-          style={logoContainer}
-        >
-            <Link to="/" className="navbar-item" title="Logo" style={navLogoLink}>
-              <img src={logo} alt="Amplifier Creative" style={logoStyle} />
-            </Link>
-          </div>
-          <div className="column is-one-third" style={fillerContainer}></div>
-          <div className="column is-one-third" style={burgerContainer}> 
+          <div className="columns is-vcentered">
             <div
-              onClick={() => this.toggleHamburger()}
-              style={burger}
+              className="column is-one-third"
+              role="navigation"
+              ariaLabel="main navigation"
+              style={logoContainer}
             >
-              <span style={burgerLine} />
-              <span style={burgerLine} />
-              <span style={burgerLine} />
+              <Link to="/" className="nav-logo-link" title="Logo" >
+                <img src={logo} alt="Amplifier Creative" style={logoStyle} />
+              </Link>
+            </div>
+            <div className="column is-one-third" style={fillerContainer}></div>
+            <div className="column is-one-third" style={toggleContainer}> 
+              <div style={burgerContainer}>
+                <div
+                  onClick={() => this.toggleHamburger()}
+                  style={burger}
+                >
+                  <span className={`burger-line ${this.state.navBarActiveClass}`} style={burgerLineTop} />
+                  <span className={`burger-line ${this.state.navBarActiveClass}`} style={burgerLine} />
+                  <span className={`burger-line ${this.state.navBarActiveClass}`} style={burgerLine} />
+                </div>
+              </div> 
+            { this.state.active ? 
+              (<div
+                id="navMenu"
+                className={`navbar-menu ${this.state.navBarActiveClass}`}
+                style={navMenu}>
+                <div>
+                  <ul class="menu-list has-text-right">
+                    <li>
+                      <Link className="navbar-item" to="/about" style={navItem}>
+                        About
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="navbar-item" to="/portfolio" style={navItem}>
+                        Portfolio
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="navbar-item" to="/services" style={navItem}>
+                        Services
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="navbar-item" to="/blog" style={navItem}>
+                        Blog
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="navbar-item" to="/contact" style={navItem}>
+                        Contact
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="navbar-item" to="/projects" style={navItem}>
+                        Projects
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>): null }
             </div>
           </div>
-        </div>
         </div>
         {this.state.active ? (
-          <div style={navMenuContainer}>
-            <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-            style={navMenu}>
-            <div>
-              <ul class="menu-list has-text-right">
-                <li>
-                  <Link className="navbar-item" to="/about" style={navItem}>
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/portfolio" style={navItem}>
-                    Portfolio
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/services" style={navItem}>
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/blog" style={navItem}>
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/contact" style={navItem}>
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/projects" style={navItem}>
-                    Projects
-                  </Link>
-                </li>
-              </ul>
-            </div>
-        </div>
+          <div className="nav-menu-container" style={navMenuContainer}>
+
       </div> 
         ): null
 

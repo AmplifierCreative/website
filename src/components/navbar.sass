@@ -1,0 +1,27 @@
+@import "variables"
+// navbar
+.nav-container
+    background-color: $AC-black;
+
+.burger-line
+    background-color: $AC-white
+    &.is-active
+        background-color: $AC-orange;
+
+.nav-menu-container
+    background-color: $AC-white;
+
+a.navbar-item:hover
+    color: $AC-black;
+
+.nav-logo-link:hover
+    background-color: transparent;
+
+// overrides
+$navbar-item-hover-background-color: $AC-white;
+
+// theming 
+.menu-color-2 nav 
+    background-color: $AC-white
+    .burger-line
+    background-color: $AC-black
