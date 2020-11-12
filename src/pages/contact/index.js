@@ -2,6 +2,20 @@ import React from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
 
+const contactContainer = {
+  marginTop: "7em",
+}
+
+const contactInfoText = {
+  fontSize: '2.5em',
+  fontFamily: "VisbyCF-Bold",
+  lineHeight: "1.5em",
+}
+
+const formContainer = {
+  border: "2px solid #2D2C2C",
+}
+
 const visuallyHidden = {
   border: "0",
   clip: "rect(0 0 0 0)",
@@ -13,6 +27,24 @@ const visuallyHidden = {
   width: "1px",
 };
 
+const twoUpContainer = {
+  display: "flex",
+
+}
+
+const inputContainer = {
+  borderBottom: "2px solid #2D2C2C",
+  height: "7em",
+  margin: "0",
+}
+
+const contactFormTextArea = {
+  lineHeight: "104px"
+}
+
+const buttonContainer = {
+  marginTop: "4em",
+}
 
 function encode(data) {
   return Object.keys(data)
@@ -48,9 +80,16 @@ export default class Index extends React.Component {
   render() {
     return (
       <Layout>
-        <section className="section">
+        <section className="section" style={contactContainer}>
           <div className="container is-max-widescreen">
-            <div className="content">
+            <div className="columns">
+              <div className="column is-half">
+                <p style={contactInfoText}>
+                Let it all out: your hopes, dreams, fears, dogs… Or we can just talk about your creative needs. That’s fine, too.
+                </p>
+              </div>
+              <div className="column is-half">
+              <div className="content">
               <form
                 name="contact"
                 method="post"
@@ -59,146 +98,154 @@ export default class Index extends React.Component {
                 data-netlify-honeypot="bot-field"
                 onSubmit={this.handleSubmit}
               >
-                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-                <input type="hidden" name="form-name" value="contact" />
-                <div hidden>
-                  <label>
-                    Don’t fill this out:{' '}
-                    <input name="bot-field" onChange={this.handleChange} />
-                  </label>
-                </div>
+                <div style={formContainer}>
+                  {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div hidden>
+                    <label>
+                      Don’t fill this out:{' '}
+                      <input name="bot-field" onChange={this.handleChange} />
+                    </label>
+                  </div>
+                  <div style={twoUpContainer}>
+                    <div className="field" style={inputContainer}>
+                      <label className="label" htmlFor={'name'} style={visuallyHidden}>
+                        Your name
+                      </label>
+                      <div className="control">
+                        <input
+                          className="input contact-form-input"
+                          type={'text'}
+                          name={'name'}
+                          onChange={this.handleChange}
+                          id={'name'}
+                          required={true}
+                          placeholder={'name'}
+                        />
+                      </div>
+                    </div>
+                    <div className="field">
+                      <label className="label" htmlFor={'business'} style={visuallyHidden}>
+                        Business
+                      </label>
+                      <div className="control">
+                        <input
+                          className="input contact-form-input"
+                          type={'text'}
+                          name={'business'}
+                          onChange={this.handleChange}
+                          id={'business'}
+                          required={true}
+                          placeholder={'business'}
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className="field">
-                    <label className="label" htmlFor={'name'} style={visuallyHidden}>
-                      Your name
+                    <label className="label" htmlFor={'email'} style={visuallyHidden}>
+                      Email
                     </label>
                     <div className="control">
                       <input
-                        className="input"
-                        type={'text'}
-                        name={'name'}
+                        className="input contact-form-input"
+                        type={'email'}
+                        name={'email'}
                         onChange={this.handleChange}
-                        id={'name'}
+                        id={'email'}
                         required={true}
-                        placeholder={'name'}
+                        placeholder={'email'}
                       />
                     </div>
                   </div>
                   <div className="field">
-                    <label className="label" htmlFor={'business'} style={visuallyHidden}>
-                      Business
+                    <label className="label" htmlFor={'phone'} style={visuallyHidden}>
+                      Phone
                     </label>
                     <div className="control">
                       <input
-                        className="input"
-                        type={'text'}
-                        name={'business'}
+                        className="input contact-form-input"
+                        type={'tel'}
+                        name={'phone'}
                         onChange={this.handleChange}
-                        id={'business'}
+                        id={'phone'}
                         required={true}
-                        placeholder={'business'}
+                        placeholder={'phone'}
                       />
                     </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'email'} style={visuallyHidden}>
-                    Email
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'email'}
-                      name={'email'}
-                      onChange={this.handleChange}
-                      id={'email'}
-                      required={true}
-                      placeholder={'email'}
-                    />
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'phone'} style={visuallyHidden}>
-                    Phone
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'tel'}
-                      name={'phone'}
-                      onChange={this.handleChange}
-                      id={'phone'}
-                      required={true}
-                      placeholder={'phone'}
-                    />
+                  <div className="field">
+                    <label className="label" htmlFor={'location'} style={visuallyHidden}>
+                      City and State
+                    </label>
+                    <div className="control">
+                      <input
+                        className="input contact-form-input"
+                        type={'text'}
+                        name={'location'}
+                        onChange={this.handleChange}
+                        id={'location'}
+                        required={true}
+                        placeholder={'City x State'}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'location'} style={visuallyHidden}>
-                    City and State
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'text'}
-                      name={'location'}
-                      onChange={this.handleChange}
-                      id={'location'}
-                      required={true}
-                      placeholder={'City x State'}
-                    />
+                  <div className="field">
+                    <label className="label" htmlFor={'method'}  style={visuallyHidden}>
+                      Preferred contact method
+                    </label>
+                    <div className="control">
+                      <div className="select">
+                        <select name={'method'} id={'method'}>
+                          <option>Email</option>
+                          <option>Phone</option>
+                          <option>Text</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'method'}  style={visuallyHidden}>
-                    Preferred contact method
-                  </label>
-                  <div className="control">
-                    <div className="select">
-                      <select name={'method'} id={'method'}>
-                        <option>Email</option>
-                        <option>Phone</option>
-                        <option>Text</option>
-                      </select>
+                  <div className="field">
+                    <label className="label" htmlFor={'message'} style={visuallyHidden}>
+                      Message
+                    </label>
+                    <div className="control">
+                      <textarea
+                        style={contactFormTextArea}
+                        className="textarea contact-form-input"
+                        name={'message'}
+                        onChange={this.handleChange}
+                        id={'message'}
+                        required={true}
+                        placeholder={'Service(s) you’re interested in'}
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label className="label" htmlFor={'dog'} style={visuallyHidden}>
+                      Your dog’s name
+                    </label>
+                    <div className="control">
+                      <input
+                        className="input contact-form-input"
+                        type={'text'}
+                        name={'dog'}
+                        onChange={this.handleChange}
+                        id={'dog'}
+                        required={true}
+                        placeholder={'Your dog’s name'}
+                      />
                     </div>
                   </div>
                 </div>
-                <div className="field">
-                  <label className="label" htmlFor={'message'} style={visuallyHidden}>
-                    Message
-                  </label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      name={'message'}
-                      onChange={this.handleChange}
-                      id={'message'}
-                      required={true}
-                      placeholder={'Service(s) you’re interested in'}
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'dog'} style={visuallyHidden}>
-                    Your dog’s name
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'text'}
-                      name={'dog'}
-                      onChange={this.handleChange}
-                      id={'dog'}
-                      required={true}
-                      placeholder={'Your dog’s name'}
-                    />
-                  </div>
-                </div>
-                <div className="field">
+                <div className="field" style={buttonContainer}>
                   <button className="button" type="submit">
                     Submit
                   </button>
                 </div>
               </form>
             </div>
+              </div>
+            </div>
+ 
           </div>
         </section>
       </Layout>
