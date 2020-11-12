@@ -43,43 +43,45 @@ const subTitleTextB = {
 }
 
 const sectionTitleA = {
-  fontSize: '.75em',
+  fontSize: '1em',
   fontWeight: '500',
-  fontFamily: 'VisbyCF-Regular',
+  fontFamily: 'VisbyCF-Medium',
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
   bottom: '161px',
   left: '-30px',
-  width: '80px',
+  width: '90px',
+  letterSpacing: '2px',
 }
 
 const sectionTitleB = {
-  fontSize: '.75em',
+  fontSize: '1em',
   fontWeight: '500',
-  fontFamily: 'VisbyCF-Regular',
+  fontFamily: 'VisbyCF-Medium',
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
   bottom: '133px',
   left: '-30px',
-  width: '80px',
+  width: '90px',
+  letterSpacing: '2px',
 }
 
 const sectionTitle = {
-  fontSize: '.75em',
+  fontSize: '1em',
   fontWeight: '500',
-  fontFamily: 'VisbyCF-Regular',
+  fontFamily: 'VisbyCF-Medium',
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
   left: '-30px',
-  width: '80px',
+  width: '90px',
+  letterSpacing: '2px',
 }
 
 const aboutTitle = {
   fontSize: '2.5em',
-  letterSpacing: '1px',
 }
 
 const aboutSubtitle = {
@@ -96,35 +98,25 @@ const aboutText2 = {
   marginTop: '1em',
 }
 
-const orangeHeaderTextAbout = {
-  color: '#BA5930',
-  fontSize: '.75em',
-  textTransform: 'uppercase',
-  fontWeight: '500',
-  fontFamily: 'VisbyCF-Regular',
-  marginBottom: '1em',
-}
-
 const orangeHeaderText = {
   color: '#BA5930',
-  fontSize: '.75em',
+  fontSize: '1em',
   textTransform: 'uppercase',
   fontWeight: '500',
-  fontFamily: 'VisbyCF-Regular',
+  fontFamily: 'VisbyCF-Medium',
   paddingBottom: '1em',
+  letterSpacing: '2px',
 }
 
 const servicesText = {
   fontSize: '2em',
   lineHeight: '1.75em',
   fontWeight: '700',
-  letterSpacing: '1px',
 }
 
 const clientsTitle = {
   fontSize: '2.5em',
-  marginBottom: '.75em',
-  letterSpacing: '1px',
+  marginBottom: '1em',
 }
 
 const placeHolderCard = {
@@ -179,7 +171,7 @@ export const IndexPageTemplate = ({
           <div className="columns is-vcentered">
             <div className="column is-6 has-text-centered">
               <h4 style={sectionTitleA}>About Us</h4>
-              <h6 style={orangeHeaderTextAbout}>Community-focused.</h6>
+              <h6 style={orangeHeaderText}>Community-focused.</h6>
               <h2 className="title" style={aboutTitle}>
                 Creative-driven.
               </h2>
