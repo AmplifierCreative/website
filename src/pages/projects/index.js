@@ -12,19 +12,10 @@ export default class ProjectsIndexPage extends React.Component {
           style={{
             // backgroundImage: `url('/img/blog-index.jpg')`,
             backgroundColor: '#2D2C2C',
-            color: 'white',
           }}
         >
           <div class="container is-max-widescreen">
-            <h1
-              className="line-header"
-              style={{
-                color: 'white',
-              }}
-            >
-              portfolio
-            </h1>
-            <br />
+            <h1 className="line-header">portfolio</h1>
             <h2
               style={{
                 fontFamily: 'VisbyCF-Regular',
@@ -35,21 +26,7 @@ export default class ProjectsIndexPage extends React.Component {
             </h2>
             <br />
             <Link to="/contact">
-              <button
-                class="button is-uppercase"
-                style={{
-                  backgroundColor: '#BA5930',
-                  borderWidth: '0px',
-                  borderRadius: '0px',
-                  color: 'white',
-                  letterSpacing: '2px',
-                  paddingLeft: '71px',
-                  paddingRight: '71px',
-                  lineHeight: 1,
-                }}
-              >
-                Let's Chat
-              </button>
+              <button class="button is-uppercase">Let's Chat</button>
             </Link>
           </div>
         </div>

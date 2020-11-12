@@ -9,24 +9,9 @@ class ProjectRoll extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
-    const clientNameStyle = {
-      color: '#BA5930',
-      fontFamily: 'VisbyCF-Regular',
-      marginTop: '40px',
-    }
-
     const blackStyle = {
       color: '#2D2C2C',
       marginTop: 0,
-    }
-
-    const buttonStyle = {
-      width: '40%',
-      float: 'right',
-      height: '100%',
-      borderRadius: '0px',
-      color: '#BA5930',
-      backgroundColor: 'rgba(196, 196, 196, 0.25)',
     }
 
     return (
@@ -36,26 +21,29 @@ class ProjectRoll extends React.Component {
         </Helmet>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="columns mb-2">
+            <div className="columns mb-2 is-vcentered">
               <div class="column has-text-centered">
-                <span className="is-block is-uppercase orange-text">
-                  {/* {post.frontmatter.date} */}
-                  Client Name
-                </span>
-                <h1 className="post-meta mt-0">
-                  <Link
-                    className="title is-size-2"
-                    to={post.fields.slug}
-                    style={blackStyle}
-                  >
-                    {post.frontmatter.title}
-                  </Link>
-                </h1>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                </p>
+                <h4 class="vertical-text">Category</h4>
+                <div class="project-container">
+                  <span className="is-block is-uppercase orange-text">
+                    {/* {post.frontmatter.date} */}
+                    Client Name
+                  </span>
+                  <h1 className="post-meta mt-0">
+                    <Link
+                      className="title is-size-2"
+                      to={post.fields.slug}
+                      style={blackStyle}
+                    >
+                      {post.frontmatter.title}
+                    </Link>
+                  </h1>
+                  <p>
+                    {post.excerpt}
+                    <br />
+                    <br />
+                  </p>
+                </div>
               </div>
               <div className="column" key={post.id}>
                 {/* <Link
