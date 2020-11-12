@@ -17,6 +17,7 @@ export default class ProjectsIndexPage extends React.Component {
         >
           <div class="container is-max-widescreen">
             <h1
+              className="line-header"
               style={{
                 color: 'white',
               }}
