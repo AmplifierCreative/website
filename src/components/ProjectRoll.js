@@ -43,16 +43,12 @@ class ProjectRoll extends React.Component {
                     <br />
                     <br />
                   </p>
+                  <Link className="button" to={post.fields.slug}>
+                    View More
+                  </Link>
                 </div>
               </div>
               <div className="column" key={post.id}>
-                {/* <Link
-                  className="button"
-                  to={post.fields.slug}
-                  style={buttonStyle}
-                >
-                  Keep Reading →
-                </Link> */}
                 {post.frontmatter.featuredimage ? (
                   <div className="featured-thumbnail">
                     <PreviewCompatibleImage
