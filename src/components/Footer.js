@@ -42,7 +42,7 @@ const footerPolicy = {
 }
 
 const footerPolicyContainer = {
-  marginTop: '2em',
+  marginTop: '3.5em',
 }
 
 const footerPolicyLink = {
@@ -101,11 +101,11 @@ const Footer = class extends React.Component {
               <div className="columns">
                 <div className="column is-3">
                   <section className="menu">
-                    <ul className="menu-list">
+                    <ul className="footer-list">
                       <li>
                         <Link
                           to="/"
-                          className="navbar-item"
+                          className="footer-item"
                           style={menuItemLinkA}
                         >
                           About
@@ -113,7 +113,7 @@ const Footer = class extends React.Component {
                       </li>
                       <li>
                         <Link
-                          className="navbar-item"
+                          className="footer-item"
                           to="/about"
                           style={menuItemLink}
                         >
@@ -125,10 +125,10 @@ const Footer = class extends React.Component {
                 </div>
                 <div className="column is-3">
                   <section>
-                    <ul className="menu-list">
+                    <ul className="footer-list">
                       <li>
                         <Link
-                          className="navbar-item"
+                          className="footer-item"
                           to="/blog"
                           style={menuItemLinkA}
                         >
@@ -137,7 +137,7 @@ const Footer = class extends React.Component {
                       </li>
                       <li>
                         <Link
-                          className="navbar-item"
+                          className="footer-item"
                           to="/contact"
                           style={menuItemLink}
                         >
@@ -149,10 +149,10 @@ const Footer = class extends React.Component {
                 </div>
                 <div className="column is-3">
                   <section>
-                    <ul className="menu-list">
+                    <ul className="footer-list">
                       <li>
                         <Link
-                          className="navbar-item"
+                          className="footer-item"
                           to="/blog"
                           style={menuItemLinkA}
                         >
@@ -161,7 +161,7 @@ const Footer = class extends React.Component {
                       </li>
                       <li>
                         <Link
-                          className="navbar-item"
+                          className="footer-item"
                           to="/contact"
                           style={menuItemLink}
                         >

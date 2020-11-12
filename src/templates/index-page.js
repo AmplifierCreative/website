@@ -30,7 +30,6 @@ const subTitleTextA = {
   fontSize: '1.5rem',
   maxWidth: '60%',
   marginTop: '2.5rem',
-  letterSpacing: '.25px',
 }
 
 const subTitleTextB = {
@@ -39,7 +38,6 @@ const subTitleTextB = {
   fontWeight: '400',
   fontSize: '1.5rem',
   maxWidth: '70%',
-  letterSpacing: '.25px',
 }
 
 const sectionTitleA = {
