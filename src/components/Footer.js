@@ -174,7 +174,7 @@ const Footer = class extends React.Component {
               </div>
               <div className="columns">
                 <div className="column" style={footerPolicyContainer}>
-                  <p style={footerPolicy}>
+                  <span style={footerPolicy}>
                     &#169; Amplifier Creative 2020 view our{' '}
                     <Link href="#" className="link" style={footerPolicyLink}>
                       Terms of Use
@@ -184,7 +184,7 @@ const Footer = class extends React.Component {
                       Privacy Policy
                     </Link>
                     .
-                  </p>
+                  </span>
                 </div>
               </div>
             </div>
