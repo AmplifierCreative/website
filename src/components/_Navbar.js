@@ -58,7 +58,7 @@ const Navbar = class extends React.Component {
 
   render() {
     return (
-      <nav className="navbar" role="navigation" aria-label="main-navigation">
+      <nav className={`navbar ${this.state.navBarActiveClass}`} role="navigation" aria-label="main-navigation">
         <div
           className="navbar-brand"
           role="navigation"

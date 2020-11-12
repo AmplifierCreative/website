@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styles from './all.sass'
+import styles from "./variables.sass"
 import logo from '../img/logo.svg'
 
 
@@ -8,6 +8,11 @@ const nav = {
   backgroundColor: "#2D2C2C",
   margin: "0 auto",
   position: "relative",
+}
+
+const navBarContainer = {
+  maxWidth: "1240px",
+  margin: "auto",
 }
 
 const logoContainer = {
@@ -21,10 +26,7 @@ const navLogoLink = {
 }
 
 const logoStyle = {
-  height: '50px',
-  width: 'auto',
-  margin: '1.5rem 0 0 auto',
-  paddingLeft: "2em",
+marginLeft: "-6px",
 }
 
 const fillerContainer = {
@@ -32,10 +34,7 @@ const fillerContainer = {
 }
 
 const burgerContainer = {
-  backgroundColor: "#F8F3F1",
-  height: "74.71vh",
-  position: "absolute",
-  right: "0px",
+  backgroundColor: "#2D2C2C",
   paddingTop: "4rem",
 }
 
@@ -45,8 +44,11 @@ const navItem = {
   fontWeight: '800',
 }
 
-const burgerPadding = {
-  padding: '0 2.75em',
+const burger = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "end",
+  zIndex: "1000",
 }
 
 const burgerLine = {
@@ -54,7 +56,14 @@ const burgerLine = {
   width: '81px',
   display: 'block',
   backgroundColor: '#BA5930',
-  margin: '8px 0',
+  marginTop: "8px",
+}
+
+const navMenuContainer = {
+  display: "none",
+  height: "76.3vh",
+  position: "absolute",
+  right: "0px",
 }
 
 const navMenu = {
@@ -64,7 +73,7 @@ const navMenu = {
   boxShadow: "none",
   width: "100%",
   paddingRight: "5em",
-  paddingTop: "2em",
+  paddingTop: "3em",
 }
 
 const Navbar = class extends React.Component {
@@ -99,68 +108,77 @@ const Navbar = class extends React.Component {
   render() {
     return (
       <nav className="columns" role="navigation" aria-label="main-navigation" style={nav}>
+        <div className="column" style={navBarContainer}>
+        <div className="columns">
         <div
-          className="column is-one-third has-text-centered"
+          className="column is-one-third"
           role="navigation"
           ariaLabel="main navigation"
           style={logoContainer}
         >
-          <Link to="/" className="navbar-item" title="Logo" style={navLogoLink}>
-            <img src={logo} alt="Amplifier Creative" style={logoStyle} />
-          </Link>
-        </div>
-        <div className="column is-one-third" style={fillerContainer}></div>
-        <div className="column is-one-third" style={burgerContainer}> 
-          <div
-            className={`${this.state.navBarActiveClass}`}
-            data-target="navMenu"
-            onClick={() => this.toggleHamburger()}
-            style={burgerPadding}
-          >
-            <span style={burgerLine} />
-            <span style={burgerLine} />
-            <span style={burgerLine} />
+            <Link to="/" className="navbar-item" title="Logo" style={navLogoLink}>
+              <img src={logo} alt="Amplifier Creative" style={logoStyle} />
+            </Link>
           </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu is-active`}
-            style={navMenu}>
-            <div>
-              <ul class="menu-list has-text-right">
-                <li>
-                  <Link className="navbar-item" to="/about" style={navItem}>
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/portfolio" style={navItem}>
-                    Portfolio
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/services" style={navItem}>
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/blog" style={navItem}>
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/contact" style={navItem}>
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link className="navbar-item" to="/projects" style={navItem}>
-                    Projects
-                  </Link>
-                </li>
-              </ul>
+          <div className="column is-one-third" style={fillerContainer}></div>
+          <div className="column is-one-third" style={burgerContainer}> 
+            <div
+              className={`${this.state.navBarActiveClass}`}
+              data-target="navMenu"
+              onClick={() => this.toggleHamburger()}
+              style={burger}
+            >
+              <span style={burgerLine} />
+              <span style={burgerLine} />
+              <span style={burgerLine} />
             </div>
           </div>
         </div>
+        </div>
+
+        <div className="" style={navMenuContainer}>
+          <div className="">
+            <div
+              id="navMenu"
+              className={`navbar-menu ${this.state.navBarActiveClass}`}
+              style={navMenu}>
+              <div>
+                <ul class="menu-list has-text-right">
+                  <li>
+                    <Link className="navbar-item" to="/about" style={navItem}>
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="navbar-item" to="/portfolio" style={navItem}>
+                      Portfolio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="navbar-item" to="/services" style={navItem}>
+                      Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="navbar-item" to="/blog" style={navItem}>
+                      Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="navbar-item" to="/contact" style={navItem}>
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="navbar-item" to="/projects" style={navItem}>
+                      Projects
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div> 
       </nav>
     )
   }
