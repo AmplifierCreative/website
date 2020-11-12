@@ -38,17 +38,13 @@ const burgerContainer = {
   paddingTop: "4rem",
 }
 
-const navItem = {
-  color: '#BA5930',
-  fontSize: '2.5rem',
-  fontWeight: '800',
-}
-
 const burger = {
   display: "flex",
   flexDirection: "column",
   alignItems: "end",
   zIndex: "1000",
+  position: "relative",
+  cursor: "pointer",
 }
 
 const burgerLine = {
@@ -60,28 +56,33 @@ const burgerLine = {
 }
 
 const navMenuContainer = {
-  display: "none",
+  backgroundColor: '#F8F3F1',
   height: "76.3vh",
   position: "absolute",
   right: "0px",
+  top: "0",
+  right: "0",
+  width: "33.333%",
+  zIndex: "10",
 }
 
 const navMenu = {
-  position: "absolute",
-  backgroundColor: '#F8F3F1',
-  zIndex: "10",
   boxShadow: "none",
-  width: "100%",
   paddingRight: "5em",
   paddingTop: "3em",
 }
 
+const navItem = {
+  color: '#BA5930',
+  fontSize: '2.5rem',
+  fontWeight: '800',
+  padding: "0",
+}
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       active: false,
-      navBarActiveClass: '',
     }
   }
 
@@ -90,18 +91,7 @@ const Navbar = class extends React.Component {
     this.setState(
       {
         active: !this.state.active,
-      },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: 'is-active',
-            })
-          : this.setState({
-              navBarActiveClass: '',
-            })
-      }
+      },    
     )
   }
 
@@ -123,8 +113,6 @@ const Navbar = class extends React.Component {
           <div className="column is-one-third" style={fillerContainer}></div>
           <div className="column is-one-third" style={burgerContainer}> 
             <div
-              className={`${this.state.navBarActiveClass}`}
-              data-target="navMenu"
               onClick={() => this.toggleHamburger()}
               style={burger}
             >
@@ -135,50 +123,51 @@ const Navbar = class extends React.Component {
           </div>
         </div>
         </div>
-
-        <div className="" style={navMenuContainer}>
-          <div className="">
+        {this.state.active ? (
+          <div style={navMenuContainer}>
             <div
-              id="navMenu"
-              className={`navbar-menu ${this.state.navBarActiveClass}`}
-              style={navMenu}>
-              <div>
-                <ul class="menu-list has-text-right">
-                  <li>
-                    <Link className="navbar-item" to="/about" style={navItem}>
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="navbar-item" to="/portfolio" style={navItem}>
-                      Portfolio
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="navbar-item" to="/services" style={navItem}>
-                      Services
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="navbar-item" to="/blog" style={navItem}>
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="navbar-item" to="/contact" style={navItem}>
-                      Contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="navbar-item" to="/projects" style={navItem}>
-                      Projects
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            id="navMenu"
+            className={`navbar-menu ${this.state.navBarActiveClass}`}
+            style={navMenu}>
+            <div>
+              <ul class="menu-list has-text-right">
+                <li>
+                  <Link className="navbar-item" to="/about" style={navItem}>
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/portfolio" style={navItem}>
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/services" style={navItem}>
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/blog" style={navItem}>
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/contact" style={navItem}>
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link className="navbar-item" to="/projects" style={navItem}>
+                    Projects
+                  </Link>
+                </li>
+              </ul>
             </div>
-          </div>
-        </div> 
+        </div>
+      </div> 
+        ): null
+
+        }
       </nav>
     )
   }
