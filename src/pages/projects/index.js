@@ -15,19 +15,19 @@ export default class ProjectsIndexPage extends React.Component {
             color: 'white',
           }}
         >
-          <div class="container">
+          <div class="container is-max-widescreen">
             <h1
-              className="has-text-weight-bold is-size-1"
               style={{
                 color: 'white',
               }}
             >
-              Work
+              portfolio
             </h1>
             <br />
             <h2
               style={{
                 fontFamily: 'VisbyCF-Regular',
+                fontSize: '1.5em',
               }}
             >
               Want to join the list? Let's make something you love.
@@ -41,18 +41,19 @@ export default class ProjectsIndexPage extends React.Component {
                   borderWidth: '0px',
                   borderRadius: '0px',
                   color: 'white',
-                  letterSpacing: '1px',
-                  paddingleft: '20px',
-                  paddingRight: '20px',
+                  letterSpacing: '2px',
+                  paddingLeft: '71px',
+                  paddingRight: '71px',
+                  lineHeight: 1,
                 }}
               >
-                Contact Us
+                Let's Chat
               </button>
             </Link>
           </div>
         </div>
         <section className="section">
-          <div className="container">
+          <div className="container is-max-widescreen">
             <div className="content">
               <ProjectRoll />
             </div>

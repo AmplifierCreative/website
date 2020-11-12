@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
+import { Helmet } from 'react-helmet'
 
 class ProjectRoll extends React.Component {
   render() {
@@ -30,11 +31,14 @@ class ProjectRoll extends React.Component {
 
     return (
       <div className="project">
+        <Helmet>
+          <body className="menu-color-2" />
+        </Helmet>
         {posts &&
           posts.map(({ node: post }) => (
             <div className="columns mb-2">
               <div class="column has-text-centered">
-                <span className="is-block is-uppercase" style={clientNameStyle}>
+                <span className="is-block is-uppercase orange-text">
                   {/* {post.frontmatter.date} */}
                   Client Name
                 </span>
