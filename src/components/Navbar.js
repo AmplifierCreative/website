@@ -73,7 +73,7 @@ const navMenuContainer = {
 
 const navMenu = {
   position: "absolute",
-  right: "10px",
+  right: "13px",
   zIndex: "99",
   paddingTop: "3em",
 }
@@ -155,7 +155,7 @@ const Navbar = class extends React.Component {
                       </Link>
                     </li>
                     <li>
-                      <Link className="navbar-item" to="/portfolio" style={navItem}>
+                      <Link className="navbar-item" to="/projects" style={navItem}>
                         Portfolio
                       </Link>
                     </li>
