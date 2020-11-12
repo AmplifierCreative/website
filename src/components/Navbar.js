@@ -48,14 +48,14 @@ const burger = {
 }
 
 const burgerLineTop = {
-  height: '10px',
-  width: '81px',
+  height: '8px',
+  width: '70px',
   display: 'block',
 }
 
 const burgerLine = {
-  height: '10px',
-  width: '81px',
+  height: '8px',
+  width: '70px',
   display: 'block',
   marginTop: "8px",
 }
@@ -83,7 +83,8 @@ const navItem = {
   fontSize: '2.5em',
   fontWeight: '800',
   padding: "0",
-  lineHeight: "1.75em",
+  lineHeight: "1.5em",
+  letterSpacing: "1px",
 }
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -171,11 +172,6 @@ const Navbar = class extends React.Component {
                     <li>
                       <Link className="navbar-item" to="/contact" style={navItem}>
                         Contact
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="navbar-item" to="/projects" style={navItem}>
-                        Projects
                       </Link>
                     </li>
                   </ul>
