@@ -87,17 +87,11 @@ const input = {
 const select = {
   width: "100%",
   height: "110px",
-  boxShadow: "none",
-  border: "none",
   backgroundColor: "#F8F3F1",
-  color: "#FAB395",
+}
+
+const optionStyle = {
   textAlign: "center",
-  fontFamily: "VisbyCF-Regular !important",
-  fontWeight: "500",
-  lineSpacing: ".2em",
-  borderRadius: "0",
-  lineHeight: "22.5px",
-  textTransform: "uppercase",
 }
 
 const contactFormTextArea = {
@@ -274,9 +268,10 @@ export default class Index extends React.Component {
                       <label className="label" htmlFor={'method'}  style={visuallyHidden}>
                         Preferred contact method
                       </label>
-                      <div className="control" style={inputContainer}>
-                        <div className="">
+                      <div style={inputContainer}>
+                        <div className="form-select">
                           <select name={'method'} id={'method'} style={select}>
+                            <option style={optionStyle}>Preferred method of contact</option>
                             <option>Email</option>
                             <option>Phone</option>
                             <option>Text</option>
