@@ -84,14 +84,51 @@ const input = {
   height: "100%"
 }
 
+const selectContainer = {
+  position: "relative",
+}
+
 const select = {
+  position: "relative",
   width: "100%",
   height: "110px",
-  backgroundColor: "#F8F3F1",
+  backgroundColor: "transparent",
+  zIndex: "3",
+
 }
 
 const optionStyle = {
   textAlign: "center",
+}
+
+const arrowDown = {
+  position: "absolute",
+  right: "29px",
+  top: "29px",
+  width: "33.53px",
+  height: "33.53px",
+  border: "solid #2D2C2C",
+  borderWidth: "0 2px 2px 0",
+  display: "inline-block",
+  color: "#F8F3F1",
+  transform: "rotate(45deg)",
+  webkitTtransform: "rotate(45deg)",
+  zIndex: "2",
+}
+
+const arrowUp = {
+  position: "absolute",
+  right: "29px",
+  top: "50px",
+  width: "33.53px",
+  height: "33.53px",
+  border: "solid #2D2C2C",
+  borderWidth: "0 2px 2px 0",
+  display: "inline-block",
+  color: "#F8F3F1",
+  transform: "rotate(-135deg)",
+  webkitTtransform: "rotate(-135deg)",
+  zIndex: "2",
 }
 
 const contactFormTextArea = {
@@ -104,6 +141,7 @@ const contactFormTextArea = {
 
 const buttonContainer = {
   marginTop: "4em",
+  marginBottom:"9em",
 }
 
 const buttonStyle = {
@@ -120,7 +158,10 @@ function encode(data) {
 export default class Index extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isValidated: false }
+    this.state = { 
+      isValidated: false,
+      active: false,
+    }
   }
 
   handleChange = (e) => {
@@ -140,6 +181,13 @@ export default class Index extends React.Component {
     })
       .then(() => navigate(form.getAttribute('action')))
       .catch((error) => alert(error))
+  }
+
+  toggleArrow = () => {
+    this.setState(
+      {
+        active: !this.state.active,
+      })
   }
 
   render() {
@@ -264,12 +312,13 @@ export default class Index extends React.Component {
                     </div>
                   </div>
                   <div style={formRow}>
-                    <div className="field" style={fieldContaine100}>
+                    <div className="field" style={fieldContaine100} onClick={this.toggleArrow}>
                       <label className="label" htmlFor={'method'}  style={visuallyHidden}>
                         Preferred contact method
                       </label>
                       <div style={inputContainer}>
-                        <div className="form-select">
+                        <div className="form-select" style={selectContainer}>
+                          {this.state.active ? (<div style={arrowUp}></div>) : (<div style={arrowDown}></div>)}
                           <select name={'method'} id={'method'} style={select}>
                             <option style={optionStyle}>Preferred method of contact</option>
                             <option>Email</option>
