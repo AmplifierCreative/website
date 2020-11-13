@@ -7,7 +7,7 @@
 .project .vertical-text
   font-size: 1em !important
   font-weight: 500
-  font-family: VisbyCF-Medium
+  font-family: $family-sans-serif-medium
   transform: rotate(270deg)
   text-transform: uppercase
   position: absolute
@@ -15,6 +15,23 @@
   width: 90px
   letter-spacing: 2px
   top: 40%
+
+.filter .title
+  font-family: $family-serif
+  font-weight: 500
+  font-size: 1.5em
+
+.filter .taglist
+  justify-content: center
+
+.filter .taglist li
+  padding: 0 1rem 1rem 1rem
+
+.filter .taglist a
+  color: $AC-orange
+  font-family: $family-sans-serif-medium
+  letter-spacing: 2px
+  text-transform: uppercase
 
 @media (min-width: $desktop)
   .project-container

@@ -133,4 +133,4 @@ please read the [code of conduct](CODE_OF_CONDUCT.md).
 # RUN CMS LOCALLY
 
 https://www.netlifycms.org/docs/beta-features/
-npx netlify-cms-proxy-server
+\$ npx netlify-cms-proxy-server

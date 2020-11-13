@@ -23,7 +23,7 @@ class ProjectRoll extends React.Component {
           posts.map(({ node: post }) => (
             <div className="columns mb-2 is-vcentered">
               <div class="column has-text-centered">
-                <h4 class="vertical-text">Category</h4>
+                <h4 class="vertical-text">{post.frontmatter.tags}</h4>
                 <div class="project-container">
                   <span className="is-block is-uppercase orange-text">
                     {/* {post.frontmatter.date} */}
@@ -95,6 +95,7 @@ export default () => (
                 title
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
+                tags
                 featuredimage {
                   childImageSharp {
                     fluid(maxWidth: 650, quality: 100) {
