@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styles from "./variables.sass"
 import logo from '../img/logo.svg'
+import logoDark from '../img/logo-dk.svg'
 
 
 const nav = {
@@ -22,6 +23,11 @@ const logoContainer = {
 
 const logoStyle = {
 marginLeft: "-6px",
+}
+
+const logoDarkStyle = {
+  display: "none",
+  marginLeft: "-6px",
 }
 
 const fillerContainer = {
@@ -62,7 +68,7 @@ const burgerLine = {
 
 const navMenuContainer = {
   backgroundColor: '#F8F3F1',
-  height: "80vh",
+  height: "100vh",
   position: "absolute",
   right: "0px",
   top: "0",
@@ -128,6 +134,7 @@ const Navbar = class extends React.Component {
             >
               <Link to="/" className="nav-logo-link" title="Logo" >
                 <img src={logo} alt="Amplifier Creative" style={logoStyle} />
+                <img src={logoDark} alt="Amplifier Creative" style={logoDarkStyle} />
               </Link>
             </div>
             <div className="column is-one-third" style={fillerContainer}></div>

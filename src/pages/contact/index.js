@@ -1,6 +1,7 @@
 import React from 'react'
 import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
+import { Helmet } from 'react-helmet'
 
 const columnStyleRight = {
   paddingTop: "2rem",
@@ -193,6 +194,9 @@ export default class Index extends React.Component {
   render() {
     return (
       <Layout>
+        <Helmet>
+          <body className="menu-color-2" />
+        </Helmet>  
         <section className="section" style={contactContainer}>
           <div className="container is-max-widescreen">
             <div className="columns">

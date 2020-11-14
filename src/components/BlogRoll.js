@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
+import { Helmet } from 'react-helmet'
 
 class BlogRoll extends React.Component {
   render() {
@@ -20,6 +21,9 @@ class BlogRoll extends React.Component {
 
     return (
       <div className="blog">
+        <Helmet>
+          <body className="menu-color-2" />
+        </Helmet>
         {posts &&
           posts.map(({ node: post }) => (
             <div className="columns mb-2">
