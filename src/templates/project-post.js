@@ -21,7 +21,7 @@ export const ProjectPostTemplate = ({
       {helmet || ''}
       <div className="container content">
         <div className="columns">
-          <div className="column is-half is-offset-one-quarter">
+          <div className="column">
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
               {title}
             </h1>
@@ -33,7 +33,9 @@ export const ProjectPostTemplate = ({
                 <ul className="taglist">
                   {tags.map((tag) => (
                     <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
+                      <Link to={`/projects/tags/${kebabCase(tag)}/`}>
+                        {tag}
+                      </Link>
                     </li>
                   ))}
                 </ul>
