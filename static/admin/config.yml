@@ -142,15 +142,15 @@ collections:
                   },
                 ],
             }
-      - file: 'src/pages/about/index.md'
-        label: 'About'
-        name: 'about'
+      - file: 'src/pages/privacy/index.md'
+        label: 'Privacy'
+        name: 'Privacy'
         fields:
           - {
               label: 'Template Key',
               name: 'templateKey',
               widget: 'hidden',
-              default: 'about-page',
+              default: 'privacy-page',
             }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Body', name: 'body', widget: 'markdown' }
