@@ -33,6 +33,10 @@ h1
   text-transform: uppercase
   font-family: $family-sans-serif-medium
 
+.section
+  padding-left: 0 !important
+  padding-right: 0 !important
+
 .menu-list li a
   font-family: $family-sans-serif-bold
   color: $AC-white
@@ -167,6 +171,30 @@ $menu-list-link-padding: 0 .75em
   top: 18px
   left: -10px
 
+//link style
+.link-underline
+  position: relative
+  display: inline-block
+  z-index: 4
+  cursor: pointer
+  text-decoration: none
+  color: $AC-black
+  &:hover
+    color: $AC-white
+    background-color: $AC-peach
+  &::before
+    content: ""
+    opacity: .5
+    width: 102%
+    height: 51%
+    position: absolute
+    z-index: -1
+    left: -2%
+    bottom: 5%
+    background-color: $AC-peach
+  &:hover::before
+    background-color: transparent
+
 //form styling
 .contact-form-input
   color: $AC-orange
@@ -184,7 +212,7 @@ $menu-list-link-padding: 0 .75em
 
 .form-select select
   color: $AC-peach
-  background-color: $AC-white
+  background-color: transparent
   text-align: center
   text-transform: uppercase
   font-family: $family-sans-serif

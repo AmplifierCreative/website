@@ -22,15 +22,6 @@ const aboutText = {
   fontSize: '1.65em',
 }
 
-const linkWrapper = {
-  backgroundColor: "#FAB395",
-  opacity: ".5",
-}
-
-const linkHighlight = {
-  textDecoration: "none",
-  color: "#2D2C2C",
-}
 
 export default () => (
   <Layout>
@@ -47,11 +38,11 @@ export default () => (
           <p style={aboutText}>
             We’ll be in touch within the next day or two. In the meantime,<br/>check out
             {' '}
-            <span style={linkWrapper}>
-              <Link to="/projects" style={linkHighlight}>
-              this cool stuff.
+            <span>
+              <Link to="/projects" className="link-underline">
+              this cool stuff
               </Link>
-            </span>
+            </span>.
           </p>
           </div>
         </div>
