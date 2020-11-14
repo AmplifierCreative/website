@@ -1,36 +1,36 @@
 @import "variables"
 // navbar
 .nav-container
-    background-color: $AC-black;
+    background-color: $AC-black
 
 .burger-line
     background-color: $AC-white
     &.is-active
-        background-color: $AC-orange !important;
+        background-color: $AC-orange !important
 
 .nav-menu-container
-    background-color: $AC-white;
+    background-color: $AC-white
 
 a.navbar-item:hover
-    color: $AC-black;
+    color: $AC-black
 
 .nav-logo-link:hover
-    background-color: transparent;
+    background-color: transparent
 
 // overrides
-$navbar-item-hover-background-color: $AC-white;
+$navbar-item-hover-background-color: $AC-white
 
 // theming 
-.menu-color-2 div div div nav 
+.menu-color-2 nav
     background-color: $AC-white !important
 
-.menu-color-2 div div div nav div div div div div span
+.menu-color-2 .burger span
     background-color: $AC-black !important
     &.burger-line.is-active
-    background-color: $AC-orange
+        background-color: $AC-orange !important
 
-.menu-color-2 div div div nav div div div a img:nth-child(1)
+.menu-color-2 .nav-logo a img:nth-child(1)
     display: none
 
-.menu-color-2 div div div nav div div div a img:nth-child(2)
-    display: block !important;
+.menu-color-2 .nav-logo a img:nth-child(2)
+    display: block !important
