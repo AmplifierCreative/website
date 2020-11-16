@@ -2,6 +2,9 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 
+import hollie from '../../img/Hollie-Bio.png'
+import jen from '../../img/Jen-Bio.png'
+
 const heroContainer = {
     backgroundColor: '#2D2C2C',
     marginTop: '0',
@@ -15,12 +18,16 @@ const sectionContainer = {
     paddingBottom: '10em',
 }
 
-const fillerA = {
-    height: '700px',
+const hollieContainer = {
+    height: '550px',
 }
 
-const fillerB = {
-    height: '800px',
+const jenContainer = {
+    height: '650px',
+}
+
+const jenPadding = {
+  paddingTop: "10em",
 }
 
 const paragraphText = {
@@ -62,7 +69,11 @@ const AboutIndexPage = ({
                 image will go here aboslute positioned over top & parent div will be set to relative 
                 </div> */}
                 <div className="column is-half" style={divider}>
-                    <div className="columns" style={fillerA}></div>
+                    <div className="columns" style={hollieContainer}>
+                      <figure className="image is-4by3">
+                        <img src={hollie}/>
+                      </figure>  
+                    </div>
                     <div className="columns">
                         <div className="column has-text-right">
                             <p style={paragraphText}>
@@ -82,7 +93,11 @@ const AboutIndexPage = ({
                             </p>
                         </div>
                     </div>
-                    <div className="columns" style={fillerB}></div>
+                    <div className="columns" style={jenContainer}>
+                      <figure className="image is-4by3" style={jenPadding}>
+                        <img src={jen}/>
+                      </figure>  
+                    </div>
                 </div>
             </div>
         </div>
