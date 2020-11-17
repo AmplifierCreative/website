@@ -32,6 +32,10 @@ h1
   line-height: 1
   text-transform: uppercase
   font-family: $family-sans-serif-medium
+  &:hover
+    background-color: $AC-white
+    color: $AC-black
+    border: 2px solid $AC-black
 
 .section
   padding-left: 0 !important
@@ -192,8 +196,7 @@ $menu-list-link-padding: 0 .75em
   text-decoration: none
   color: $AC-black
   &:hover
-    color: $AC-white
-    background-color: $AC-peach
+    color: $AC-orange
   &::before
     content: ""
     opacity: .5
@@ -204,8 +207,6 @@ $menu-list-link-padding: 0 .75em
     left: -2%
     bottom: 5%
     background-color: $AC-peach
-  &:hover::before
-    background-color: transparent
 
 //form styling
 .contact-form-input

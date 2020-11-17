@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 
 import hollie from '../../img/Hollie-Bio.png'
@@ -23,7 +22,7 @@ const hollieContainer = {
 }
 
 const jenContainer = {
-    height: '650px',
+  height: '650px',
 }
 
 const jenPadding = {
@@ -45,14 +44,14 @@ const divider = {
     borderRight: '2px solid #BA5930',
 }
 
-const AboutIndexPage = ({
-  /* data: {
+const AboutIndexPage = (/* {
+  data: {
     allMarkdownRemark: { group },
     site: {
       siteMetadata: { title },
     },
-  }, */
-}) => (
+  },
+} */) => (
   <Layout>
     <div
       className="full-width-image-container has-text-left"
@@ -65,13 +64,10 @@ const AboutIndexPage = ({
     <section className="section" style={sectionContainer}>
         <div className="container is-max-widescreen">
             <div className="columns is-vcentered">
-                {/* <div>
-                image will go here aboslute positioned over top & parent div will be set to relative 
-                </div> */}
                 <div className="column is-half" style={divider}>
                     <div className="columns" style={hollieContainer}>
-                      <figure className="image is-4by3">
-                        <img src={hollie}/>
+                      <figure className="">
+                        <img alt="An illustration of Hollie" src={hollie}/>
                       </figure>  
                     </div>
                     <div className="columns">
@@ -94,8 +90,8 @@ const AboutIndexPage = ({
                         </div>
                     </div>
                     <div className="columns" style={jenContainer}>
-                      <figure className="image is-4by3" style={jenPadding}>
-                        <img src={jen}/>
+                      <figure className="" style={jenPadding}>
+                        <img alt="An illustration of Jen" src={jen}/>
                       </figure>  
                     </div>
                 </div>

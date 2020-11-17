@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
 
 const heroContainer = {
@@ -66,14 +66,14 @@ const buttonStyle = {
     height: "51px",
   }
 
-const ServicesIndexPage = ({
-  /* data: {
+const ServicesIndexPage = (/* {
+  data: {
     allMarkdownRemark: { group },
     site: {
       siteMetadata: { title },
     },
-  }, */
-}) => (
+  },
+} */) => (
   <Layout>
     <div
       className="full-width-image-container has-text-left"

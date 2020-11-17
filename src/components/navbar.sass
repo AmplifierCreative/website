@@ -12,7 +12,8 @@
     background-color: $AC-white
 
 a.navbar-item:hover
-    color: $AC-black
+    color: $AC-peach !important
+    background-color: $AC-white !important
 
 .nav-logo-link:hover
     background-color: transparent
@@ -27,10 +28,19 @@ $navbar-item-hover-background-color: $AC-white
 .menu-color-2 .burger span
     background-color: $AC-black !important
     &.burger-line.is-active
-        background-color: $AC-orange !important
+        background-color: $AC-white !important
 
 .menu-color-2 .nav-logo a img:nth-child(1)
     display: none
 
 .menu-color-2 .nav-logo a img:nth-child(2)
     display: block !important
+
+.menu-color-2 div div div nav div.nav-menu-container
+    background-color: $AC-orange !important
+
+.menu-color-2 nav div div div div div ul li a
+    color: $AC-white !important
+    &:hover
+        color: $AC-peach !important
+        background-color: $AC-orange !important

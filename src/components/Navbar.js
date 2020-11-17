@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styles from './variables.sass'
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
@@ -69,7 +68,6 @@ const navMenuContainer = {
   backgroundColor: '#F8F3F1',
   height: '100vh',
   position: 'absolute',
-  right: '0px',
   top: '0',
   right: '0',
   width: '38%',
@@ -152,6 +150,8 @@ const Navbar = class extends React.Component {
                   onClick={() => this.toggleHamburger()}
                   style={burger}
                   className={'burger'}
+                  role="button"
+                  tabIndex="1"
                 >
                   <span
                     className={`burger-line ${this.state.navBarActiveClass}`}
