@@ -104,7 +104,7 @@ const Footer = class extends React.Component {
                     <ul className="footer-list">
                       <li>
                         <Link
-                          to="/"
+                          to="/about"
                           className="footer-item"
                           style={menuItemLinkA}
                         >
@@ -114,7 +114,7 @@ const Footer = class extends React.Component {
                       <li>
                         <Link
                           className="footer-item"
-                          to="/about"
+                          to="/services"
                           style={menuItemLink}
                         >
                           Services
@@ -129,7 +129,7 @@ const Footer = class extends React.Component {
                       <li>
                         <Link
                           className="footer-item"
-                          to="/blog"
+                          to="/projects"
                           style={menuItemLinkA}
                         >
                           Portfolio
@@ -138,7 +138,7 @@ const Footer = class extends React.Component {
                       <li>
                         <Link
                           className="footer-item"
-                          to="/contact"
+                          to="/blog"
                           style={menuItemLink}
                         >
                           Blog
@@ -153,7 +153,7 @@ const Footer = class extends React.Component {
                       <li>
                         <Link
                           className="footer-item"
-                          to="/blog"
+                          to="/contact"
                           style={menuItemLinkA}
                         >
                           Contact
@@ -162,7 +162,7 @@ const Footer = class extends React.Component {
                       <li>
                         <Link
                           className="footer-item"
-                          to="/contact"
+                          to="/privacy"
                           style={menuItemLink}
                         >
                           Privacy
@@ -176,11 +176,11 @@ const Footer = class extends React.Component {
                 <div className="column" style={footerPolicyContainer}>
                   <span style={footerPolicy}>
                     &#169; Amplifier Creative 2020 view our{' '}
-                    <Link href="#" className="link footer-link-hover" style={footerPolicyLink}>
+                    <Link to="/terms" className="link footer-link-hover" style={footerPolicyLink}>
                       Terms of Use
                     </Link>{' '}
                     and{' '}
-                    <Link href="#" className="link footer-link-hover" style={footerPolicyLink}>
+                    <Link to="/privacy" className="link footer-link-hover" style={footerPolicyLink}>
                       Privacy Policy
                     </Link>
                     .

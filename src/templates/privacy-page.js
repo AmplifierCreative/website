@@ -3,19 +3,23 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import { Helmet } from 'react-helmet'
 
 export const PrivacyPageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content
 
   return (
     <section className="section section--gradient">
-      <div className="container">
+      <Helmet>
+        <body className="menu-color-2" />
+      </Helmet>  
+      <div className="container is-text">
         <div className="columns">
-          <div className="column is-10 is-offset-1">
+          <div className="column">
             <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
+              <h1 className="title privacy-title">
                 {title}
-              </h2>
+              </h1>
               <PageContent className="content" content={content} />
             </div>
           </div>

@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
+
 const nav = {
   margin: '0 auto',
   position: 'relative',
