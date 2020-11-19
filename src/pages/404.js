@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import { Helmet } from 'react-helmet'
 import { Link } from 'gatsby'
 
-import _404 from '../img/404.png'
+import _404 from '../img/404-cropped.jpg'
 
 const container = {
   width: '100%',
@@ -23,7 +23,6 @@ const text = {
   color: '#F8F3F1',
   fontSize: '2.25em',
   position: 'relative',
-  top: '-47px',
 }
 
 const NotFoundPage = () => (
@@ -31,12 +30,19 @@ const NotFoundPage = () => (
     <div style={container}>
       <Helmet>
         <body className="menu-color-2" />
-      </Helmet>          
+      </Helmet>
       <figure className="">
-          <img alt="Page not found image" src={_404}/>
+        <img alt="Page not found image" src={_404} />
       </figure>
       <div className="container" style={textContainer}>
-        <h3 style={text}>No one’s home—because they’re<br/> all hanging out over <Link className="link-underline-dk" to="/">here</Link>.</h3> 
+        <h3 style={text}>
+          No one’s home—because they’re
+          <br /> all hanging out over{' '}
+          <Link className="link-underline-dk" to="/">
+            here
+          </Link>
+          .
+        </h3>
       </div>
     </div>
   </Layout>
