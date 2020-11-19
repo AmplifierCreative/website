@@ -3,10 +3,9 @@ import { Link } from 'gatsby'
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
-
 const nav = {
-  margin: '0 auto',
-  position: 'relative',
+  margin: '0',
+  // position: 'relative',
 }
 
 const navBarContainer = {
@@ -66,13 +65,16 @@ const burgerLine = {
 }
 
 const navMenuContainer = {
-  backgroundColor: '#F8F3F1',
-  height: '100vh',
-  position: 'absolute',
+  padding: 0,
+  margin: 0,
+  position: 'fixed',
   top: '0',
   right: '0',
+  bottom: '0',
   width: '38%',
-  zIndex: '10',
+  overflow: 'auto',
+  backgroundColor: '#F8F3F1',
+  zIndex: 1,
 }
 
 const navMenu = {

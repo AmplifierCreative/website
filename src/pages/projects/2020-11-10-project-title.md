@@ -3,7 +3,7 @@ templateKey: project-post
 title: Project Title
 date: 2020-11-10T02:55:34.791Z
 description: Test
-featuredimage: /img/products-grid1.jpg
+featuredimage: /img/placeholder-2.jpg
 tags:
   - Copy
 ---
