@@ -7,6 +7,7 @@ import Layout from '../components/Layout'
 import danielWhiteShow from '../img/clients/The_Daniel_White_Show_new.png'
 import freePizza from '../img/clients/FPP_podStack_color.png'
 import audpop from '../img/clients/AA_AudPop_Stacked_Color.png'
+import cardinal from '../img/clients/cardinal_joinery.png'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
@@ -236,6 +237,14 @@ export const IndexPageTemplate = ({
                     <a title="Audpop" href="#">
                       <span style={verticalAlignHelper}></span>
                       <img src={audpop} alt="Audpop" style={imgStyle} />
+                    </a>
+                  </div>
+                </div>
+                <div className="column">
+                  <div style={placeHolderCard}>
+                    <a title="Cardinal Joinery" href="#">
+                      <span style={verticalAlignHelper}></span>
+                      <img src={cardinal} alt="Cardinal Joinery Logo" style={imgStyle} />
                     </a>
                   </div>
                 </div>

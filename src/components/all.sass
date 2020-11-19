@@ -208,6 +208,26 @@ $menu-list-link-padding: 0 .75em
     bottom: 5%
     background-color: $AC-peach
 
+.link-underline-dk
+  position: relative
+  display: inline-block
+  z-index: 4
+  cursor: pointer
+  text-decoration: none
+  color: $AC-white
+  &:hover
+    color: $AC-peach
+  &::before
+    content: ""
+    opacity: .5
+    width: 102%
+    height: 51%
+    position: absolute
+    z-index: -1
+    left: -2%
+    bottom: 5%
+    background-color: $AC-peach
+
 //form styling
 .contact-form-input
   color: $AC-orange
@@ -248,4 +268,4 @@ $menu-list-link-padding: 0 .75em
 @import "projectroll"
 @import "footer"
 @import "navbar"
-@import "privacy"
+@import "contracts"
