@@ -126,7 +126,7 @@ const Navbar = class extends React.Component {
       <nav
         className="columns nav-container"
         role="navigation"
-        aria-label="main-navigation"
+        ariaLabel="main-navigation"
         style={nav}
       >
         <div className="column" style={navBarContainer}>

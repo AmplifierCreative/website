@@ -139,18 +139,18 @@ export const IndexPageTemplate = ({
   intro,
 }) => (
   <div>
-    <section style={headerStyle} class="hero is-medium">
-      <div class="hero-body" style={heroPaddingTop}>
-        <div class="container is-max-widescreen">
-          <h1 class="title" style={titleText}>
+    <section style={headerStyle} className="hero is-medium">
+      <div className="hero-body" style={heroPaddingTop}>
+        <div className="container is-max-widescreen">
+          <h1 className="title" style={titleText}>
             Your new creative team has arrived
           </h1>
-          <h2 class="subtitle" style={subTitleTextA}>
+          <h2 className="subtitle" style={subTitleTextA}>
             amplifier creative is a modernized creative agency catered toward
             up-and-coming businesses, driven entrepreneurs, and committed
             creative endeavors of all kinds.
           </h2>
-          <h2 class="subtitle" style={subTitleTextB}>
+          <h2 className="subtitle" style={subTitleTextB}>
             We’re the next generation of creators and critical thinkers who want
             success to always be within arm’s reach—with an overarching goal of
             instilling positivity, inclusivity, and inspiration in each
