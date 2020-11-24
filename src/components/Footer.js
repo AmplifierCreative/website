@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 import instagram from '../img/social/instagram.svg'
 import twitter from '../img/social/twitter.svg'
@@ -86,18 +87,40 @@ const socialSvg = {
 }
 
 const Footer = class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+    //this.handleSubmit= this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {    
+    this.setState({value: event.target.value});  
+  }
+
+ 
+  handleSubmit = async event => {
+    event.preventDefault()
+    let email = this.state.value;
+    const response = await addToMailchimp(email);
+  }
+
   render() {
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
           <div className="columns">
             <div className="column is-two-thirds">
-              <input
-                className="input is-medium email-input"
-                style={emailInput}
-                type="email"
-                placeholder="enter your email address to stay in touch"
-              />
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  className="input is-medium email-input"
+                  style={emailInput}
+                  type="email"
+                  placeholder="enter your email address to stay in touch"
+                  value={this.state.value} 
+                  onChange={this.handleChange} 
+                />
+              </form>
               <div className="columns">
                 <div className="column is-3">
                   <section className="menu">

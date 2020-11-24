@@ -32,6 +32,13 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+          endpoint: 'https://amplifiercreative.us2.list-manage.com/subscribe/post?u=e07e8e01225fa7bdd539e21ae&amp;id=71d00af653',
+          timeout: 3500,
+      },
+    },
+    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [

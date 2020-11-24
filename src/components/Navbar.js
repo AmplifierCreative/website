@@ -133,8 +133,6 @@ const Navbar = class extends React.Component {
           <div className="columns is-vcentered">
             <div
               className="column is-one-third nav-logo"
-              role="navigation"
-              ariaLabel="main navigation"
               style={logoContainer}
             >
               <Link to="/" className="nav-logo-link" title="Logo">
