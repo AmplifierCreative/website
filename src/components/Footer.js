@@ -64,22 +64,19 @@ const socialText = {
 }
 
 const socialCircle = {
-  borderRadius: '50%',
+  border: '3px solid #F4F4F4',
   width: '4rem',
   height: '4rem',
-  background: '#C4C4C4',
 }
 
 const socialCircleB = {
-  borderRadius: '50%',
+  border: '3px solid rgb(244, 244, 244)',
   width: '4rem',
   height: '4rem',
-  background: '#C4C4C4',
   marginLeft: '1.25rem',
 }
 
 const socialSvg = {
-  width: '90%',
   height: 'auto',
   display: 'block',
   marginRight: 'auto',
