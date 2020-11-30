@@ -7,11 +7,26 @@
     font-size: 3rem !important
     font-weight: 800
 
+.date-modified
+    font-size: .9em
+    color: $AC-orange
+    font-weight: 500
+    font-family: $family-sans-serif
+    text-transform: uppercase
+    letter-spacing: 2px
+    padding-bottom: 2.5em
+
 .contracts > h2
     font-size: 3rem !important
+    line-height: 1.5
 
 .contracts > h3
     font-size: 2.25rem !important
+
+.contracts > h4
+    font-family: $family-sans-serif
+    font-size: 1.9rem !important
+    line-height: 1.5
 
 .contracts > ul
     margin-left: 0
@@ -22,6 +37,10 @@
     &::marker
         font-size: .65em
 
+.contracts > ul > li > p
+    font-size: 1em
+    display: inline
+
 .contracts > ul > li > strong
     font-size: .63em
     color: $AC-orange
@@ -29,3 +48,14 @@
     font-family: $family-sans-serif
     text-transform: uppercase
     letter-spacing: 2px
+
+.contracts > ul > li > a, .contracts > p > a
+    position: relative
+    box-shadow: rgba(250, 179, 149, .5) 0em -.7em inset
+    display: inline
+    color: black
+    cursor: pointer
+    text-decoration: none
+    color: $AC-black
+.contracts > ul > li > a:hover, .contracts > p > a:hover
+    color: $AC-orange

@@ -5,9 +5,8 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import { Helmet } from 'react-helmet'
 
-export const PrivacyPageTemplate = ({ title, date, mtime, content, contentComponent }) => {
+export const PrivacyPageTemplate = ({ title, mtime, content, contentComponent }) => {
   const PageContent = contentComponent || Content
-
   return (
     <section className="section section--gradient">
       <Helmet>
@@ -20,7 +19,7 @@ export const PrivacyPageTemplate = ({ title, date, mtime, content, contentCompon
               <h1 className="">
                 {title}
               </h1>
-              <p>{date}</p>
+              <p className="date-modified">Last Updated: {mtime}</p>
               <PageContent className="content contracts" content={content} />
             </div>
           </div>
@@ -44,6 +43,7 @@ const PrivacyPage = ({ data }) => {
       <PrivacyPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        mtime={post.parent.mtime}
         content={post.html}
       />
     </Layout>
@@ -62,13 +62,13 @@ export const privacyPageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
       }
       parent {
         ... on File {
-          mtime
+          mtime(formatString: "MMMM DD, YYYY")
         }
       }
     }
   }
 `
+
