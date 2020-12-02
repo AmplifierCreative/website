@@ -13,15 +13,36 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-const heroPaddingTop = {
-  paddingTop: '6rem',
+const hero = {
+  height: '100vh',
+  paddingTop: '8rem',
 }
 
 const titleText = {
   color: '#F8F3F1',
   fontFamily: 'VisbyCF-Bold',
-  fontWeight: '800',
+  fontWeight: '400',
   fontSize: '4rem',
+}
+
+const arrowContainer = {
+  width: '100%',
+  textAlign: 'center',
+  marginTop: '6em',
+  marginBottom: '6em',
+}
+
+const arrowDown = {
+  marginRight: 'auto',
+  marginLeft: 'auto',
+  width: '33.53px',
+  height: '33.53px',
+  border: 'solid #F8F3F1',
+  borderWidth: '0 2px 2px 0',
+  color: '#2D2C2C',
+  transform: 'rotate(45deg)',
+  webkitTtransform: 'rotate(45deg)',
+  zIndex: '2',
 }
 
 const subTitleTextA = {
@@ -61,7 +82,7 @@ const sectionTitleB = {
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
-  bottom: '133px',
+  bottom: '220px',
   left: '-30px',
   width: '90px',
   letterSpacing: '2px',
@@ -74,9 +95,16 @@ const sectionTitle = {
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
+  bottom: '230px',
   left: '-30px',
   width: '90px',
   letterSpacing: '2px',
+}
+
+const sectionSubhead = {
+  fontSize: '1.9em',
+  fontFamily: 'VisbyCF-Regular',
+  fontWeight: '400',
 }
 
 const aboutTitle = {
@@ -103,9 +131,8 @@ const orangeHeaderText = {
 }
 
 const servicesText = {
-  fontSize: '2em',
+  fontSize: '2.5em',
   lineHeight: '1.75em',
-  fontWeight: '700',
 }
 
 const clientsTitle = {
@@ -140,11 +167,12 @@ export const IndexPageTemplate = ({
 }) => (
   <div>
     <section style={headerStyle} className="hero is-medium">
-      <div className="hero-body" style={heroPaddingTop}>
+      <div className="hero-body" style={hero}>
         <div className="container is-max-widescreen">
           <h1 className="title" style={titleText}>
             Your new creative team has arrived
           </h1>
+          <div style={arrowContainer}><div style={arrowDown}></div></div>
           <h2 className="subtitle" style={subTitleTextA}>
             amplifier creative is a modernized creative agency catered toward
             up-and-coming businesses, driven entrepreneurs, and committed
@@ -165,11 +193,11 @@ export const IndexPageTemplate = ({
           <div className="columns is-vcentered">
             <div className="column is-6 has-text-centered">
               <h4 style={sectionTitleA}>About Us</h4>
-              <h6 style={orangeHeaderText}>Community-focused.</h6>
-              <h2 className="title" style={aboutTitle}>
-                Creative-driven.
+              <h6 style={orangeHeaderText}>xx</h6>
+              <h2 style={aboutTitle}>
+                Community-focused.
               </h2>
-              {/* <h3 className="subtitle" style={aboutSubtitle}>Lorem ipsum lorem</h3> */}
+              <h3 style={sectionSubhead}>Creative-driven.</h3>
             </div>
             <div className="column is-6">
               <p className="first-letter-stroke" style={aboutText}>
@@ -197,7 +225,8 @@ export const IndexPageTemplate = ({
           <div className="columns is-vcentered">
             <div className="column is-12 has-text-centered">
               <h4 style={sectionTitleB}>Services</h4>
-              <h6 style={orangeHeaderText}>We’re passionate about:</h6>
+              <h6 style={orangeHeaderText}>xx</h6>
+              <h3 style={sectionSubhead}>We’re passionate about:</h3>
               <h3 style={servicesText}>Copywriting + editing</h3>
               <h3 style={servicesText}>Design</h3>
               <h3 style={servicesText}>Social</h3>
@@ -215,7 +244,7 @@ export const IndexPageTemplate = ({
               <h4 style={sectionTitle}>Clients</h4>
             </div>
             <div className="column is-10 has-text-centered">
-              <h6 style={orangeHeaderText}>x x</h6>
+              <h6 style={orangeHeaderText}>xx</h6>
               <h5 style={clientsTitle}>We’re in good company</h5>
               <div className="columns">
                 <div className="column">

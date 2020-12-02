@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import { Helmet } from 'react-helmet'
 import { Link } from 'gatsby'
 
-import _404 from '../img/404-cropped.jpg'
+import _404 from '../img/404.gif'
 
 const container = {
   width: '100%',

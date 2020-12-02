@@ -5,7 +5,6 @@ import logoDark from '../img/logo-dk.svg'
 
 const nav = {
   margin: '0',
-  // position: 'relative',
 }
 
 const navBarContainer = {
