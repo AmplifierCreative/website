@@ -2,6 +2,11 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
 
+import copywrite from '../../img/copywrite.gif'
+import design from '../../img/design.gif'
+import social from '../../img/social.gif'
+import strategy from '../../img/strategy.gif'
+
 const heroContainer = {
     backgroundColor: '#2D2C2C',
     marginTop: '0',
@@ -18,6 +23,18 @@ const heroText = {
 const sectionContainer = {
     backgroundColor: '#2D2C2C',
     paddingTop: '0',
+}
+
+const copywriteImage = {
+  width: '70%'
+}
+
+const designImage = {
+  width: '64%'
+}
+
+const lastTwoImages = {
+  width: '49%'
 }
 
 const titleText = {
@@ -93,7 +110,11 @@ const ServicesIndexPage = (/* {
     <section className="section" style={sectionContainer}>
       <div className="container">
         <div className="columns is-vcentered">
-            <div className="column is-half"></div>
+            <div className="column is-half has-text-right">
+              <figure>
+                <img alt="An animated illustration of hands typing on a laptop" style={copywriteImage} src={copywrite}/>
+              </figure>
+            </div>
             <div className="column is-half ">
                 <h2 style={titleText}>Copywriting + editing</h2>
                 <p style={paragraphText}>
@@ -133,6 +154,11 @@ const ServicesIndexPage = (/* {
                     Social media assets
                 </p>
             </div>
+            <div className="column is-half">
+              <figure>
+                <img alt="An illustration of hands weaving chakra" style={designImage} src={design}/>
+              </figure>
+            </div>
         </div>
       </div>
     </section>
@@ -147,7 +173,11 @@ const ServicesIndexPage = (/* {
     <section className="section" style={sectionContainer}>
       <div className="container">
         <div className="columns is-vcentered">
-            <div className="column is-half"></div>
+            <div className="column is-half has-text-right">
+               <figure>
+                <img alt="An animated illustration of hands using a phone" style={lastTwoImages} src={social}/>
+              </figure>
+            </div>
             <div className="column is-half ">
                 <h2 style={titleText}>Social</h2>
                 <p style={paragraphText}>
@@ -181,6 +211,11 @@ const ServicesIndexPage = (/* {
                     Brand strategy development<br/>
                     Integrated marketing campaign strategy
                 </p>
+            </div>
+            <div className="column is-half">
+              <figure>
+                <img alt="An animated illustration of hands pointing at a chart" style={lastTwoImages} src={strategy}/>
+              </figure>
             </div>
         </div>
       </div>
