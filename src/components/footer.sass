@@ -1,12 +1,18 @@
 @import "variables"
 // footer 
-footer input::placeholder
+footer input::placeholder, footer textarea::placeholder
   color: $AC-white !important
   font-size: 2rem
   font-weight: 800
   font-family: $family-sans-serif-bold
 
-footer input::focus
+@media screen and (max-width: 410px)
+  footer textarea
+    margin-bottom: 0
+    &::placeholder
+      font-size: 1.5rem
+
+footer input::focus, footer textarea::focus
   border: 1px solid $AC-white
 
 footer.footer

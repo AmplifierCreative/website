@@ -20,6 +20,19 @@ const emailInput = {
   marginBottom: '1em',
 }
 
+const emailTextArea = {
+  color: '#F8F3F1',
+  backgroundColor: '#2D2C2C',
+  border: 'none',
+  fontSize: '2rem',
+  paddingTop: '2%',
+  paddingLeft: '0',
+  marginBottom: '.75em',
+  textAlign: 'center',
+  width: '100%',
+}
+
+
 const menuItemLinkA = {
   fontFamily: 'VisbyCF-Medium',
   letterSpacing: '2px',
@@ -83,10 +96,176 @@ const socialSvg = {
   marginLeft: 'auto',
 }
 
+/* const mobileInput = <textarea
+  className="input is-medium email-input"
+  style={emailTextArea}
+  type="email"
+  placeholder="enter your email address to stay in touch"
+  emailValue={this.state.emailValue} 
+  onChange={this.handleChange}
+  /> */
+
+const mobileMenu = <div className="columns is-mobile has-text-centered">
+<div className="column is-6">
+  <section className="menu">
+    <ul className="footer-list">
+      <li>
+        <Link
+          to="/about"
+          className="footer-item"
+          style={menuItemLinkA}
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/services"
+          style={menuItemLink}
+        >
+          Services
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/contact"
+          style={menuItemLinkA}
+        >
+          Contact
+        </Link>
+      </li>
+    </ul>
+  </section>
+</div>
+<div className="column is-6">
+  <section>
+    <ul className="footer-list">
+    <li>
+        <Link
+          className="footer-item"
+          to="/projects"
+          style={menuItemLinkA}
+        >
+          Portfolio
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/blog"
+          style={menuItemLink}
+        >
+          Blog
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/privacy"
+          style={menuItemLink}
+        >
+          Privacy
+        </Link>
+      </li>
+    </ul>
+  </section>
+</div>
+</div>
+
+/* const desktopInput = <input
+  className="input is-medium email-input"
+  style={emailInput}
+  type="email"
+  placeholder="enter your email address to stay in touch"
+  emailValue={this.state.emailValue} 
+  onChange={this.handleChange} 
+  /> */
+
+const desktopMenu = <div className="columns">
+<div className="column is-3">
+  <section className="menu">
+    <ul className="footer-list">
+      <li>
+        <Link
+          to="/about"
+          className="footer-item"
+          style={menuItemLinkA}
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/services"
+          style={menuItemLink}
+        >
+          Services
+        </Link>
+      </li>
+    </ul>
+  </section>
+</div>
+<div className="column is-3">
+  <section>
+    <ul className="footer-list">
+      <li>
+        <Link
+          className="footer-item"
+          to="/projects"
+          style={menuItemLinkA}
+        >
+          Portfolio
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/blog"
+          style={menuItemLink}
+        >
+          Blog
+        </Link>
+      </li>
+    </ul>
+  </section>
+</div>
+<div className="column is-3">
+  <section>
+    <ul className="footer-list">
+      <li>
+        <Link
+          className="footer-item"
+          to="/contact"
+          style={menuItemLinkA}
+        >
+          Contact
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="footer-item"
+          to="/privacy"
+          style={menuItemLink}
+        >
+          Privacy
+        </Link>
+      </li>
+    </ul>
+  </section>
+</div>
+</div>
+
+
 const Footer = class extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {
+      emailValue: '',
+      isDesktop: '',
+    };
     //this.handleSubmit= this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this);
   }
@@ -98,7 +277,7 @@ const Footer = class extends React.Component {
  
   handleSubmit = async event => {
     event.preventDefault()
-    let email = this.state.value;
+    let email = this.state.emailValue;
     const response = await addToMailchimp(email);
   }
 
@@ -106,115 +285,29 @@ const Footer = class extends React.Component {
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
-          <div className="columns">
+          <div className="columns has-text-centered">
             <div className="column is-two-thirds">
               <form onSubmit={this.handleSubmit}>
-                <input
-                  className="input is-medium email-input"
-                  style={emailInput}
-                  type="email"
-                  placeholder="enter your email address to stay in touch"
-                  value={this.state.value} 
-                  onChange={this.handleChange} 
-                />
+              <textarea
+                className="email-input"
+                style={emailTextArea}
+                type="email"
+                placeholder="enter your email address to stay in touch"
+                rows="2"
+                col="20"
+                emailValue={this.state.emailValue} 
+                onChange={this.handleChange}
+              />
               </form>
-              <div className="columns">
-                <div className="column is-3">
-                  <section className="menu">
-                    <ul className="footer-list">
-                      <li>
-                        <Link
-                          to="/about"
-                          className="footer-item"
-                          style={menuItemLinkA}
-                        >
-                          About
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="footer-item"
-                          to="/services"
-                          style={menuItemLink}
-                        >
-                          Services
-                        </Link>
-                      </li>
-                    </ul>
-                  </section>
-                </div>
-                <div className="column is-3">
-                  <section>
-                    <ul className="footer-list">
-                      <li>
-                        <Link
-                          className="footer-item"
-                          to="/projects"
-                          style={menuItemLinkA}
-                        >
-                          Portfolio
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="footer-item"
-                          to="/blog"
-                          style={menuItemLink}
-                        >
-                          Blog
-                        </Link>
-                      </li>
-                    </ul>
-                  </section>
-                </div>
-                <div className="column is-3">
-                  <section>
-                    <ul className="footer-list">
-                      <li>
-                        <Link
-                          className="footer-item"
-                          to="/contact"
-                          style={menuItemLinkA}
-                        >
-                          Contact
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="footer-item"
-                          to="/privacy"
-                          style={menuItemLink}
-                        >
-                          Privacy
-                        </Link>
-                      </li>
-                    </ul>
-                  </section>
-                </div>
-              </div>
-              <div className="columns">
-                <div className="column" style={footerPolicyContainer}>
-                  <span style={footerPolicy}>
-                    &#169; Amplifier Creative 2020 view our{' '}
-                    <Link to="/terms" className="link footer-link-hover" style={footerPolicyLink}>
-                      Terms of Use
-                    </Link>{' '}
-                    and{' '}
-                    <Link to="/privacy" className="link footer-link-hover" style={footerPolicyLink}>
-                      Privacy Policy
-                    </Link>
-                    .
-                  </span>
-                </div>
-              </div>
+              {mobileMenu}
             </div>
-            <div className="column is-one-third">
+            <div className="column is-one-third has-text-centered">
               <div className="columns">
                 <div className="column" style={socialTextContainer}>
                   <h5 style={socialText}>Follow us</h5>
                 </div>
               </div>
-              <div className="columns">
+              <div className="columns is-mobile is-centered">
                 <div className="column is-2" style={socialCircle}>
                   <a title="twitter" href="#">
                     <img style={socialSvg} src={twitter} alt="Twitter" />
@@ -233,6 +326,21 @@ const Footer = class extends React.Component {
               </div>
             </div>
           </div>
+          <div className="columns has-text-centered">
+                <div className="column " style={footerPolicyContainer}>
+                  <span style={footerPolicy}>
+                    &#169; Amplifier Creative 2020 view our{' '}
+                    <Link to="/terms" className="link footer-link-hover" style={footerPolicyLink}>
+                      Terms of Use
+                    </Link>{' '}
+                    and{' '}
+                    <Link to="/privacy" className="link footer-link-hover" style={footerPolicyLink}>
+                      Privacy Policy
+                    </Link>
+                    .
+                  </span>
+                </div>
+              </div>
         </div>
       </footer>
     )

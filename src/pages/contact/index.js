@@ -23,6 +23,13 @@ const contactInfoText = {
   lineHeight: "1.5em",
 }
 
+const contactInfoSmallText = {
+  fontSize: '2em',
+  fontFamily: "VisbyCF-Regular",
+  lineHeight: "1.5em",
+  paddingTop: '1em',
+}
+
 const formContainer = {
   border: "2px solid #2D2C2C",
 }
@@ -202,7 +209,10 @@ export default class Index extends React.Component {
             <div className="columns">
               <div className="column is-half" style={columnStyleLeft}>
                 <p style={contactInfoText}>
-                Let it all out: your hopes, dreams, fears, dogs… Or we can just talk about your creative needs. That’s fine, too.
+                Let it all out: your hopes, dreams, fears, dogs…
+                </p>
+                <p style={contactInfoSmallText}>
+                Or we can just talk about your creative needs. That’s fine, too.
                 </p>
               </div>
               <div className="column is-half" style={columnStyleRight}>
