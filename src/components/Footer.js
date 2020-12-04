@@ -96,15 +96,6 @@ const socialSvg = {
   marginLeft: 'auto',
 }
 
-/* const mobileInput = <textarea
-  className="input is-medium email-input"
-  style={emailTextArea}
-  type="email"
-  placeholder="enter your email address to stay in touch"
-  emailValue={this.state.emailValue} 
-  onChange={this.handleChange}
-  /> */
-
 const mobileMenu = <div className="columns is-mobile has-text-centered">
 <div className="column is-6">
   <section className="menu">
@@ -173,15 +164,6 @@ const mobileMenu = <div className="columns is-mobile has-text-centered">
   </section>
 </div>
 </div>
-
-/* const desktopInput = <input
-  className="input is-medium email-input"
-  style={emailInput}
-  type="email"
-  placeholder="enter your email address to stay in touch"
-  emailValue={this.state.emailValue} 
-  onChange={this.handleChange} 
-  /> */
 
 const desktopMenu = <div className="columns">
 <div className="column is-3">
@@ -258,23 +240,34 @@ const desktopMenu = <div className="columns">
 </div>
 </div>
 
-
 const Footer = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       emailValue: '',
-      isDesktop: '',
+      isMobile: '',
     };
-    //this.handleSubmit= this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this);
+    this.updateSize = this.updateSize.bind(this);
   }
 
+  componentDidMount() {
+    this.updateSize();
+    window.addEventListener("resize", this.updateSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateSize);
+  }
+
+  updateSize() {
+    this.setState({ isMobile: window.innerWidth < 769 });
+  }
+  
   handleChange(event) {    
     this.setState({value: event.target.value});  
   }
 
- 
   handleSubmit = async event => {
     event.preventDefault()
     let email = this.state.emailValue;
@@ -282,32 +275,44 @@ const Footer = class extends React.Component {
   }
 
   render() {
+    const isMobile= this.state.isMobile;
+    
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
-          <div className="columns has-text-centered">
+          <div className={`columns ${ this.state.isMobile && 'has-text-centered'}`}>
             <div className="column is-two-thirds">
               <form onSubmit={this.handleSubmit}>
-              <textarea
-                className="email-input"
-                style={emailTextArea}
-                type="email"
-                placeholder="enter your email address to stay in touch"
-                rows="2"
-                col="20"
-                emailValue={this.state.emailValue} 
-                onChange={this.handleChange}
-              />
+              { isMobile ? 
+                  <textarea
+                    className="email-input"
+                    style={emailTextArea}
+                    type="email"
+                    placeholder="enter your email address to stay in touch"
+                    rows="2"
+                    col="20"
+                    emailValue={this.state.emailValue} 
+                    onChange={this.handleChange}
+                  /> : 
+                  <input
+                    className="input is-medium email-input"
+                    style={emailInput}
+                    type="email"
+                    placeholder="enter your email address to stay in touch"
+                    emailValue={this.state.emailValue} 
+                    onChange={this.handleChange} 
+                  />
+                }
               </form>
-              {mobileMenu}
+              {isMobile ? mobileMenu : desktopMenu}
             </div>
-            <div className="column is-one-third has-text-centered">
+            <div className="column is-one-third">
               <div className="columns">
                 <div className="column" style={socialTextContainer}>
                   <h5 style={socialText}>Follow us</h5>
                 </div>
               </div>
-              <div className="columns is-mobile is-centered">
+              <div className={`columns is-mobile ${ this.state.isMobile && 'is-centered'}`}>
                 <div className="column is-2" style={socialCircle}>
                   <a title="twitter" href="#">
                     <img style={socialSvg} src={twitter} alt="Twitter" />
@@ -326,7 +331,7 @@ const Footer = class extends React.Component {
               </div>
             </div>
           </div>
-          <div className="columns has-text-centered">
+          <div className={`columns ${ this.state.isMobile && 'has-text-centered'}`}>
                 <div className="column " style={footerPolicyContainer}>
                   <span style={footerPolicy}>
                     &#169; Amplifier Creative 2020 view our{' '}
