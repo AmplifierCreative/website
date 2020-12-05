@@ -12,10 +12,22 @@ const navBarContainer = {
   margin: 'auto',
 }
 
+const navBarContainerMobile = {
+  paddingRight: '2em',
+  paddingLeft: '2em',
+}
+
 const logoContainer = {
   backgroundColor: 'transparent',
   padding: '0',
   paddingTop: '4rem',
+}
+
+const logoContainerMobile = {
+  backgroundColor: 'transparent',
+  padding: '0',
+  paddingTop: '4rem',
+  width: '51%',
 }
 
 const logoStyle = {
@@ -25,10 +37,6 @@ const logoStyle = {
 const logoDarkStyle = {
   display: 'none',
   marginLeft: '-6px',
-}
-
-const fillerContainer = {
-  paddingTop: '4rem',
 }
 
 const toggleContainer = {
@@ -71,6 +79,19 @@ const navMenuContainer = {
   right: '0',
   bottom: '0',
   width: '38%',
+  overflow: 'auto',
+  backgroundColor: '#F8F3F1',
+  zIndex: 1,
+}
+
+const navMenuContainerMobile = {
+  padding: 0,
+  margin: 0,
+  position: 'fixed',
+  top: '0',
+  right: '0',
+  bottom: '0',
+  width: '65%',
   overflow: 'auto',
   backgroundColor: '#F8F3F1',
   zIndex: 1,
@@ -136,6 +157,8 @@ const Navbar = class extends React.Component {
   }
 
   render() {
+    const isMobile= this.state.isMobile;
+
     return (
       <nav
         className="columns nav-container"
@@ -143,11 +166,11 @@ const Navbar = class extends React.Component {
         ariaLabel="main-navigation"
         style={nav}
       >
-        <div className="column" style={navBarContainer}>
+        <div className="column" style={isMobile ? navBarContainerMobile : navBarContainer}>
           <div className="columns is-vcentered is-mobile">
             <div
               className="column is-one-third nav-logo"
-              style={logoContainer}
+              style={isMobile ? logoContainerMobile : logoContainer}
             >
               <Link to="/" className="nav-logo-link" title="Logo">
                 <img src={logo} alt="Amplifier Creative" style={logoStyle} />
@@ -158,8 +181,7 @@ const Navbar = class extends React.Component {
                 />
               </Link>
             </div>
-            <div className="column is-one-third" style={fillerContainer}></div>
-            <div className="column is-one-third" style={toggleContainer}>
+            <div className="column " style={toggleContainer}>
               <div style={burgerContainer}>
                 <div
                   onClick={() => this.toggleHamburger()}
@@ -243,7 +265,7 @@ const Navbar = class extends React.Component {
           </div>
         </div>
         {this.state.active ? (
-          <div className="nav-menu-container" style={navMenuContainer}></div>
+          <div className="nav-menu-container" style={isMobile ? navMenuContainerMobile : navMenuContainer}></div>
         ) : null}
       </nav>
     )
