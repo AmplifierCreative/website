@@ -97,7 +97,22 @@ const Navbar = class extends React.Component {
     this.state = {
       active: false,
       navBarActiveClass: '',
-    }
+      isMobile: '',
+    };
+    this.updateSize = this.updateSize.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateSize();
+    window.addEventListener("resize", this.updateSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateSize);
+  }
+
+  updateSize() {
+    this.setState({ isMobile: window.innerWidth < 769 });
   }
 
   toggleHamburger = () => {
@@ -129,7 +144,7 @@ const Navbar = class extends React.Component {
         style={nav}
       >
         <div className="column" style={navBarContainer}>
-          <div className="columns is-vcentered">
+          <div className="columns is-vcentered is-mobile">
             <div
               className="column is-one-third nav-logo"
               style={logoContainer}
