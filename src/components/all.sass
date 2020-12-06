@@ -257,5 +257,56 @@ h1
 .full-width-image-container h2
   color: $AC-white
 
+//Home Page Styles
+.hero-body
+  min-height: 100vh
+  padding-top: 8rem
+
+.home-about-section
+  padding-top: 0
+
+.home-section
+  padding-top: 3rem
+  padding-bottom: 3rem
+
+.home-sideways-title-about
+  left: -30px
+  bottom: 161px
+
+.home-sideways-title-services
+  left: -30px
+  bottom: 220px
+
+.home-sideways-title-clients
+  left: -30px
+  bottom: 332px
+
+.home-client-section
+  padding-bottom: 6rem
+
+//Mobile Styles
+@media screen and (max-width: 768px)
+  .header-arrow-container
+    display: none
+  .hero-body
+    min-height: 60vh
+    padding-top: 5rem
+    padding-bottom: 5rem
+  .home-about-section
+    padding-left: 2rem
+    padding-right: 2rem
+  .home-section-mobile-padding
+    padding-bottom: 3rem
+  .home-sideways-title-about
+    position: relative !important
+    left: -34px
+    bottom: -57px
+  .home-sideways-title-services
+    left: 1px
+    bottom: 332px
+  .home-sideways-title-clients
+    left: 1px
+    bottom: 322px !important
+
 @import "blogroll"
 @import "projectroll"

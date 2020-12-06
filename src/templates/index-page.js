@@ -13,11 +13,6 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-const hero = {
-  height: '100vh',
-  paddingTop: '8rem',
-}
-
 const titleText = {
   color: '#F8F3F1',
   fontFamily: 'VisbyCF-Bold',
@@ -50,7 +45,7 @@ const subTitleTextA = {
   fontFamily: 'EBGaramond',
   fontWeight: '400',
   fontSize: '1.5rem',
-  maxWidth: '60%',
+  maxWidth: '760px',
   marginTop: '2.5rem',
 }
 
@@ -59,7 +54,7 @@ const subTitleTextB = {
   fontFamily: 'EBGaramond',
   fontWeight: '400',
   fontSize: '1.5rem',
-  maxWidth: '70%',
+  maxWidth: '760px',
 }
 
 const sectionTitleA = {
@@ -69,8 +64,6 @@ const sectionTitleA = {
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
-  bottom: '161px',
-  left: '-30px',
   width: '90px',
   letterSpacing: '2px',
 }
@@ -82,10 +75,12 @@ const sectionTitleB = {
   transform: 'rotate(270deg)',
   textTransform: 'uppercase',
   position: 'absolute',
-  bottom: '220px',
-  left: '-30px',
   width: '90px',
   letterSpacing: '2px',
+}
+
+const sectionContainer = {
+  position: 'relative',
 }
 
 const sectionTitle = {
@@ -96,7 +91,6 @@ const sectionTitle = {
   textTransform: 'uppercase',
   position: 'absolute',
   bottom: '230px',
-  left: '-30px',
   width: '90px',
   letterSpacing: '2px',
 }
@@ -167,12 +161,12 @@ export const IndexPageTemplate = ({
 }) => (
   <div>
     <section style={headerStyle} className="hero is-medium">
-      <div className="hero-body" style={hero}>
+      <div className="hero-body">
         <div className="container is-max-widescreen">
           <h1 className="title" style={titleText}>
             Your new creative team has arrived
           </h1>
-          <div style={arrowContainer}><div style={arrowDown}></div></div>
+          <div className="header-arrow-container" style={arrowContainer}><div style={arrowDown}></div></div>
           <h2 className="subtitle" style={subTitleTextA}>
             amplifier creative is a modernized creative agency catered toward
             up-and-coming businesses, driven entrepreneurs, and committed
@@ -187,17 +181,23 @@ export const IndexPageTemplate = ({
         </div>
       </div>
     </section>
-    <section className="section section--gradient">
-      <div className="container is-max-widescreen">
+    <div className="container is-max-widescreen">
+      <section className="section--gradient home-about-section" style={sectionContainer}>
         <div className="section">
           <div className="columns is-vcentered">
-            <div className="column is-6 has-text-centered">
-              <h4 style={sectionTitleA}>About Us</h4>
-              <h6 style={orangeHeaderText}>xx</h6>
-              <h2 style={aboutTitle}>
-                Community-focused.
-              </h2>
-              <h3 style={sectionSubhead}>Creative-driven.</h3>
+            <div className="column is-6 has-text-centered home-section-mobile-padding">
+              <div className="columns is-mobile">
+                <div className="column is-2">
+                  <h4 className="home-sideways-title-about" style={sectionTitleA}>About Us</h4>
+                </div>
+                <div className="column is-9">
+                  <h6 style={orangeHeaderText}>xx</h6>
+                  <h2 style={aboutTitle}>
+                    Community-focused.
+                  </h2>
+                  <h3 style={sectionSubhead}>Creative-driven.</h3>
+                </div>
+              </div>
             </div>
             <div className="column is-6">
               <p className="first-letter-stroke" style={aboutText}>
@@ -217,63 +217,61 @@ export const IndexPageTemplate = ({
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section className="section section--gradient">
-      <div className="container is-max-widescreen">
+      </section>
+      <section className="home-section" style={sectionContainer}>
         <div className="section">
           <div className="columns is-vcentered">
-            <div className="column is-12 has-text-centered">
-              <h4 style={sectionTitleB}>Services</h4>
-              <h6 style={orangeHeaderText}>xx</h6>
-              <h3 style={sectionSubhead}>We’re passionate about:</h3>
-              <h3 style={servicesText}>Copywriting + editing</h3>
-              <h3 style={servicesText}>Design</h3>
-              <h3 style={servicesText}>Social</h3>
-              <h3 style={servicesText}>Strategy</h3>
+            <div className="column is-12 has-text-centered home-section-mobile-padding">
+              <div className="columns is-mobile">
+                <div className="column is-2">
+                  <h4 className="home-sideways-title-services" style={sectionTitleB}>Services</h4>
+                </div>
+                <div className="column is-9">
+                  <h6 style={orangeHeaderText}>xx</h6>
+                  <h3 style={sectionSubhead}>We’re passionate about:</h3>
+                  <h3 style={servicesText}>Copywriting + editing</h3>
+                  <h3 style={servicesText}>Design</h3>
+                  <h3 style={servicesText}>Social</h3>
+                  <h3 style={servicesText}>Strategy</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section className="section section--gradient">
-      <div className="container is-max-widescreen">
-        <div className="section">
-          <div className="columns is-vcentered">
-            <div className="column is-2 has-text-centered">
-              <h4 style={sectionTitle}>Clients</h4>
-            </div>
-            <div className="column is-10 has-text-centered">
-              <h6 style={orangeHeaderText}>xx</h6>
-              <h5 style={clientsTitle}>We’re in good company</h5>
-              <div className="columns">
-                <div className="column">
-                  <div style={placeHolderCard}>
+      </section>
+      <section className="home-section home-client-section" style={sectionContainer}>
+        <div className="columns is-mobile is-vcentered">
+          <div className="column is-2 has-text-centered home-section-mobile-padding">
+            <h4 className="home-sideways-title-clients" style={sectionTitle}>Clients</h4>
+          </div>
+          <div className="column is-9 has-text-centered">
+            <h6 style={orangeHeaderText}>xx</h6>
+            <h5 style={clientsTitle}>We’re in good company</h5>
+            <div className="columns">
+              <div className="column">
+                <div className="columns is-mobile">
+                  <div className="column is-6-mobile">
                     <a title="Free Pizza Podcast" href="#">
                       <img src={freePizza} alt="Free Pizza Podcast" />
                     </a>
                   </div>
-                </div>
-                <div className="column">
-                  <div style={placeHolderCard}>
+                  <div className="column is-6-mobile">
                     <a title="Daniel White Show" href="#">
                       <img src={danielWhiteShow} alt="Daniel White Show" />
                     </a>
                   </div>
                 </div>
-                <div className="column">
-                  <div style={placeHolderCard}>
-                    <a title="Audpop" href="#">
-                      <span style={verticalAlignHelper}></span>
-                      <img src={audpop} alt="Audpop" style={imgStyle} />
+              </div>
+              <div className="column">
+                <div className="columns is-mobile">
+                  <div className="column is-6-mobile">
+                    <a title="Free Pizza Podcast" href="#">
+                    <img src={audpop} alt="Audpop" style={imgStyle} />
                     </a>
                   </div>
-                </div>
-                <div className="column">
-                  <div style={placeHolderCard}>
-                    <a title="Cardinal Joinery" href="#">
-                      <span style={verticalAlignHelper}></span>
-                      <img src={cardinal} alt="Cardinal Joinery Logo" style={imgStyle} />
+                  <div className="column is-6-mobile">
+                    <a title="Daniel White Show" href="#">
+                    <img src={cardinal} alt="Cardinal Joinery Logo" style={imgStyle} />
                     </a>
                   </div>
                 </div>
@@ -281,8 +279,8 @@ export const IndexPageTemplate = ({
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 )
 
