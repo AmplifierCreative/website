@@ -50,9 +50,7 @@ const burgerContainer = {
 }
 
 const burger = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'end',
+  float: 'right',
   zIndex: '1000',
   position: 'relative',
   cursor: 'pointer',
@@ -137,14 +135,11 @@ const Navbar = class extends React.Component {
   }
 
   toggleHamburger = () => {
-    // toggle the active boolean in the state
     this.setState(
       {
         active: !this.state.active,
       },
-      // after state has been updated,
       () => {
-        // set the class in state for the navbar accordingly
         this.state.active
           ? this.setState({
               navBarActiveClass: 'is-active',
@@ -181,7 +176,7 @@ const Navbar = class extends React.Component {
                 />
               </Link>
             </div>
-            <div className="column " style={toggleContainer}>
+            <div className="column" style={toggleContainer}>
               <div style={burgerContainer}>
                 <div
                   onClick={() => this.toggleHamburger()}

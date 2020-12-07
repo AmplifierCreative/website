@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
+import Carousel from '../components/Carousel'
 
 import danielWhiteShow from '../img/clients/The_Daniel_White_Show_new.png'
 import freePizza from '../img/clients/FPP_podStack_color.png'
@@ -158,7 +159,9 @@ export const IndexPageTemplate = ({
   mainpitch,
   description,
   intro,
-}) => (
+}) => {
+  
+  return (
   <div>
     <section style={headerStyle} className="hero is-medium">
       <div className="hero-body">
@@ -247,42 +250,13 @@ export const IndexPageTemplate = ({
           <div className="column is-9 has-text-centered">
             <h6 style={orangeHeaderText}>xx</h6>
             <h5 style={clientsTitle}>We’re in good company</h5>
-            <div className="columns">
-              <div className="column">
-                <div className="columns is-mobile">
-                  <div className="column is-6-mobile">
-                    <a title="Free Pizza Podcast" href="#">
-                      <img src={freePizza} alt="Free Pizza Podcast" />
-                    </a>
-                  </div>
-                  <div className="column is-6-mobile">
-                    <a title="Daniel White Show" href="#">
-                      <img src={danielWhiteShow} alt="Daniel White Show" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="column">
-                <div className="columns is-mobile">
-                  <div className="column is-6-mobile">
-                    <a title="Free Pizza Podcast" href="#">
-                    <img src={audpop} alt="Audpop" style={imgStyle} />
-                    </a>
-                  </div>
-                  <div className="column is-6-mobile">
-                    <a title="Daniel White Show" href="#">
-                    <img src={cardinal} alt="Cardinal Joinery Logo" style={imgStyle} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Carousel/>
           </div>
         </div>
       </section>
     </div>
   </div>
-)
+)}
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

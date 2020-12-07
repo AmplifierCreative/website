@@ -1,0 +1,21 @@
+@import "variables"
+
+.carousel-item-container
+    display: flex !important
+    align-items: center
+    height: 360px
+    border: 2px solid $AC-peach
+    text-align: center
+    margin: 1rem
+    position: relative
+    z-index: 10
+    &:hover
+        border: 2px solid $AC-orange
+        background-color: $AC-peach
+        opacity: 0.85
+
+@media screen and (max-width: 768px)
+    .carousel-item-container
+        height: auto
+        margin: 0
+        border: none
