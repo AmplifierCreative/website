@@ -17,6 +17,7 @@ const container = {
 const textContainer = {
   maxWidth: '818px',
   position: 'relative',
+  padding: '2rem',
 }
 
 const text = {

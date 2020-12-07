@@ -4,17 +4,18 @@ import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 const thankYouContainer = {
-  marginTop: "7em",
-  marginBottom: "7em",
+  marginTop: '7em',
+  marginBottom: '7em',
+  padding: '2rem',
 }
 
 const thankYou = {
-  maxWidth: "844px",
-  margin: "auto",
+  maxWidth: '844px',
+  margin: 'auto',
 }
 
 const aboutTitle = {
-  color: "#BA5930",
+  color: '#BA5930',
   fontSize: '3em',
 }
 
@@ -28,7 +29,7 @@ export default () => (
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>  
-    <section className="section" style={thankYouContainer}>
+    <section style={thankYouContainer}>
       <div className="container is-max-widescreen">
         <div className="columns">
           <div className="column" style={thankYou}>              

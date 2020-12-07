@@ -284,7 +284,7 @@ h1
 .home-client-section
   padding-bottom: 6rem
 
-//Mobile Styles
+//Home Page Mobile Styles
 @media screen and (max-width: 768px)
   .header-arrow-container
     display: none
@@ -307,6 +307,61 @@ h1
   .home-sideways-title-clients
     left: 1px
     bottom: 322px !important
+
+//Services Page
+.services-strategy-section
+  padding-bottom: 15.5em
+
+.services-filler-mobile-only
+  display: none
+
+@media screen and (max-width: 768px)
+  .services-container
+    background-color: $AC-black
+    padding-left: 2rem
+    padding-right: 2rem
+  .services-column-mobile
+    text-align: center !important
+  .services-reverse-column
+    display: flex
+    flex-direction: column-reverse
+  .services-strategy-section
+    padding-bottom: 0
+  .services-filler-mobile-only
+    display: block
+  .services-cta-container
+    padding-bottom: 5em !important
+
+//About Page
+.about-border
+  border-right: 2px solid $AC-orange
+.about-section-container
+  background-color: $AC-black
+  padding-right: 2rem
+  padding-left: 2rem
+  padding-bottom: 10em
+
+@media screen and (max-width: 768px)
+  .about-img-container
+    display: none
+  .about-column-mobile
+    text-align: left !important
+  .about-border
+    border: none
+  .about-section-container
+    padding-bottom: 5em
+//Shared Classes
+  //services-reverse-column
+  //services-filler-mobile-only
+
+//Contact Page 
+.contact-form-container
+  padding-top: 2rem
+  padding-left: 2rem
+
+@media screen and (max-width: 768px)
+  .contact-form-container
+    padding-left: 0
 
 @import "blogroll"
 @import "projectroll"

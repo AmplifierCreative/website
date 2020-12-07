@@ -3,11 +3,6 @@ import { navigate } from 'gatsby-link'
 import Layout from '../../components/Layout'
 import { Helmet } from 'react-helmet'
 
-const columnStyleRight = {
-  paddingTop: "2rem",
-  paddingLeft: "2rem",
-}
-
 const columnStyleLeft = {
   paddingTop: "2rem",
   paddingRight: "2rem",
@@ -15,6 +10,7 @@ const columnStyleLeft = {
 
 const contactContainer = {
   marginTop: "7em",
+  padding: '2rem',
 }
 
 const contactInfoText = {
@@ -204,7 +200,7 @@ export default class Index extends React.Component {
         <Helmet>
           <body className="menu-color-2" />
         </Helmet>  
-        <section className="section" style={contactContainer}>
+        <section style={contactContainer}>
           <div className="container is-max-widescreen">
             <div className="columns">
               <div className="column is-half" style={columnStyleLeft}>
@@ -215,7 +211,7 @@ export default class Index extends React.Component {
                 Or we can just talk about your creative needs. That’s fine, too.
                 </p>
               </div>
-              <div className="column is-half" style={columnStyleRight}>
+              <div className="column is-half contact-form-container">
               <div className="content">
               <form
                 name="contact"
