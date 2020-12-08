@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { useSpring, animated } from 'react-spring'
 
 import Layout from '../components/Layout'
 import Carousel from '../components/Carousel'
 
-import danielWhiteShow from '../img/clients/The_Daniel_White_Show_new.png'
-import freePizza from '../img/clients/FPP_podStack_color.png'
-import audpop from '../img/clients/AA_AudPop_Stacked_Color.png'
-import cardinal from '../img/clients/cardinal_joinery.png'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
@@ -161,15 +158,50 @@ export const IndexPageTemplate = ({
   intro,
 }) => {
   
+  const config = 	{ mass: 5, tension: 280, friction: 120, duration: 3000 }
+  const config2 = { mass: 5, tension: 280, friction: 120, duration: 2000, delay: 1000 }
+  const config3 = { mass: 5, tension: 280, friction: 120, duration: 1000, delay: 2000 }
+
+  const props = useSpring({
+    to: {opacity: 1,
+      transform: 'translateX(0)', },
+      from: {
+        opacity: 0, 
+        transform: 'translateX(-1000px)'
+      }}, config)
+
+  const props2 = useSpring({
+    to: {opacity: 1,
+    transform: 'translateX(0)', },
+    from: {
+      opacity: 0, 
+      transform: 'translateX(1000px)'
+    }}, config2)
+
+  const props3 = useSpring({
+    to: {opacity: 1,
+    transform: 'translateY(0)', },
+    from: {
+      opacity: 0, 
+      transform: 'translateY(500px)'
+    }}, config3)
+
   return (
   <div>
     <section style={headerStyle} className="hero is-medium">
       <div className="hero-body">
         <div className="container is-max-widescreen">
-          <h1 className="title" style={titleText}>
-            Your new creative team has arrived
-          </h1>
-          <div className="header-arrow-container" style={arrowContainer}><div style={arrowDown}></div></div>
+          <animated.div style={props}>
+            <h1 className="title" style={titleText}>
+              Your new creative team has arrived
+            </h1>
+          </animated.div>
+          <div className="header-arrow-container" style={arrowContainer}>
+            <animated.div style={props2}>
+              <div style={arrowDown}></div>
+              </animated.div>
+          </div>
+          <animated.div style={props3}>
           <h2 className="subtitle" style={subTitleTextA}>
             amplifier creative is a modernized creative agency catered toward
             up-and-coming businesses, driven entrepreneurs, and committed
@@ -181,6 +213,7 @@ export const IndexPageTemplate = ({
             instilling positivity, inclusivity, and inspiration in each
             community we serve.
           </h2>
+          </animated.div>
         </div>
       </div>
     </section>
