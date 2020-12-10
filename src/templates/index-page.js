@@ -132,21 +132,6 @@ const clientsTitle = {
   marginBottom: '1em',
 }
 
-const placeHolderCard = {
-  backgroundColor: '#F8F3F1',
-  width: '200px',
-  height: '200px',
-}
-
-const verticalAlignHelper = {
-  display: 'inline-block',
-  height: '100%',
-  verticalAlign: 'middle',
-}
-
-const imgStyle = {
-  verticalAlign: 'middle',
-}
 
 export const IndexPageTemplate = ({
   image,

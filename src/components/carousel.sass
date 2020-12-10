@@ -1,21 +1,37 @@
 @import "variables"
 
+.carousel
+    display: grid
+    grid-template: 360px / repeat(4, 1fr)
+    column-gap: 10px
+    justify-items: center
+    align-items: center
+    justify-content: center
+    align-content: center
+
 .carousel-item-container
+    display: none
+
+.carousel-item-container.is-active
     display: flex !important
     align-items: center
-    height: 360px
+    height: 100%
     border: 2px solid $AC-peach
-    text-align: center
-    margin: 1rem
-    position: relative
-    z-index: 10
     &:hover
         border: 2px solid $AC-orange
         background-color: $AC-peach
         opacity: 0.85
 
 @media screen and (max-width: 768px)
-    .carousel-item-container
+    .carousel
+        grid-template: auto / repeat(2, 1fr)
+        column-gap: 10px
+        row-gap: 10px
+    .carousel-item-container.is-active
         height: auto
         margin: 0
         border: none
+        &:hover
+            border: none
+            background-color: $AC-white
+            opacity: 1

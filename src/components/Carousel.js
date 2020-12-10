@@ -8,16 +8,40 @@ import freePizza from '../img/clients/FPP_podStack_color.png'
 import audpop from '../img/clients/AA_AudPop_Stacked_Color.png'
 import cardinal from '../img/clients/cardinal_joinery.png'
 
+const images = [danielWhiteShow, freePizza, audpop, cardinal]
 
 class Carousel extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      active: false,
+      carouselActiveClass: '',
+    };
+  }
+
+  moveCarousel = () => {
+    this.setState(
+      {
+        active: !this.state.active,
+      },
+      () => {
+        this.state.active
+          ? this.setState({
+            carouselActiveClass: 'is-active',
+            })
+          : this.setState({
+            carouselActiveClass: '',
+            })
+      }
+    )
+  }
+
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
     const logoImage = {
         verticalAlign: 'middle',
-        maxHeight: '200px',
-        maxWidth: '200px',
         position: 'relative',
         zIndex: '1',
     }
@@ -47,7 +71,6 @@ class Carousel extends React.Component {
 
     return (
       <div className="carousel">
-        <div className="columns is-mobile is-vcentered">
             {/* posts &&
             posts.map(({ node: post }) => (
                 <div className="column" key={post.id}>
@@ -67,44 +90,54 @@ class Carousel extends React.Component {
                     </Link>
                 </div>
             )) */}
-            <div className="columns" style={carouselParent}>
-              <div className="column" style={carouselRow}>
-                <div className="columns is-mobile">
-                  <div className="column is-6-mobile carousel-item-container">
+                  <div className={`carousel-item-container is-active`}>
                     <a title="Free Pizza Podcast" href="#">
                         <img src={freePizza} alt="Free Pizza Podcast" style={logoImage}/>
                     </a>
                   </div>
-                  <div className="column is-6-mobile carousel-item-container">
+                  <div className="carousel-item-container is-active">
                     <a title="Daniel White Show" href="#">
                       <img src={danielWhiteShow} alt="Daniel White Show" style={logoImage}/>
                     </a>
                   </div>
-                </div>
-              </div>
-              <div className="column" style={carouselRow}>
-                <div className="columns is-mobile">
-                  <div className="column is-6-mobile carousel-item-container">
+                  <div className="carousel-item-container is-active">
                     <a title="Audpop" href="#">
                         <img src={audpop} alt="Audpop" style={logoImage}/>
                     </a>
                   </div>
-                  <div className="column is-6-mobile carousel-item-container">
+                  <div className="carousel-item-container is-active">
                     <a title="Caridnal Joinery" href="#">
                         <img src={cardinal} alt="Cardinal Joinery Logo" style={logoImage} />
                     </a>
                   </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div className="columns is-mobile" style={carouselControls}>
-                <div className="column">
-                    <span style={dot}></span>
-                    <span style={dot}></span>
-                    <span style={dot}></span>
-                </div>
-            </div>
+                  <div className="carousel-item-container" >
+                    <a title="Free Pizza Podcast" href="#">
+                        <img src={freePizza} alt="Free Pizza Podcast" style={logoImage}/>
+                    </a>
+                  </div>
+                  <div className="carousel-item-container">
+                    <a title="Daniel White Show" href="#">
+                      <img src={danielWhiteShow} alt="Daniel White Show" style={logoImage}/>
+                    </a>
+                  </div>
+                  <div className="carousel-item-container">
+                    <a title="Audpop" href="#">
+                        <img src={audpop} alt="Audpop" style={logoImage}/>
+                    </a>
+                  </div>
+                  <div className="carousel-item-container">
+                    <a title="Caridnal Joinery" href="#">
+                        <img src={cardinal} alt="Cardinal Joinery Logo" style={logoImage} />
+                    </a>
+                  </div>
+                  <div className="columns is-mobile" style={carouselControls}>
+                    <div className="column">
+                        <span style={dot}></span>
+                        <span style={dot}></span>
+                        <span style={dot}></span>
+                    </div>
+                  </div>
+                  {/* <button className="button is-light is-Large" onClick={this.moveCarousel}>Move Carousel</button> */}
       </div>
     )
   }
