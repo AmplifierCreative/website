@@ -2,19 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
+import {Keyframes, config} from 'react-spring/renderprops'
+
 
 import danielWhiteShow from '../img/clients/The_Daniel_White_Show_new.png'
 import freePizza from '../img/clients/FPP_podStack_color.png'
 import audpop from '../img/clients/AA_AudPop_Stacked_Color.png'
 import cardinal from '../img/clients/cardinal_joinery.png'
 
-const images = [danielWhiteShow, freePizza, audpop, cardinal]
+const logoImage = {
+  verticalAlign: 'middle',
+  position: 'relative',
+  zIndex: '1',
+}
+
+// You can create keyframes for springs and trails
+const Container =  Keyframes.Spring(async next =>
+  {while (true)
+    await next({ opacity: 1, from: { opacity: 0 }, reset: true, config: config.molasses })}
+)
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      active: false,
+      active: true,
       carouselActiveClass: '',
     };
   }
@@ -40,35 +52,6 @@ class Carousel extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
-    const logoImage = {
-        verticalAlign: 'middle',
-        position: 'relative',
-        zIndex: '1',
-    }
-    
-    const carouselParent = {
-        width: '100%',
-    }
-
-    const carouselRow = {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-    }
-
-    const carouselControls= {
-        display: 'none',
-    }
-
-    const dot = { 
-        height: '5px',
-        width: '5px',
-        border: '2px solid #FAB395',
-        backgroundColor: 'transparent',
-        borderRadius: '50%',
-        display: 'inline-block',
-    }
-
     return (
       <div className="carousel">
             {/* posts &&
@@ -90,55 +73,35 @@ class Carousel extends React.Component {
                     </Link>
                 </div>
             )) */}
-                  <div className={`carousel-item-container is-active`}>
-                    <a title="Free Pizza Podcast" href="#">
+                  <Container>{styles => 
+                    <div className="carousel-item-container is-active" style={styles}>
+                      <a title="Free Pizza Podcast" href="#">
                         <img src={freePizza} alt="Free Pizza Podcast" style={logoImage}/>
-                    </a>
-                  </div>
-                  <div className="carousel-item-container is-active">
+                      </a>
+                    </div>}
+                  </Container>
+                  <Container>{styles => 
+                    <div className="carousel-item-container is-active" style={styles}>
                     <a title="Daniel White Show" href="#">
                       <img src={danielWhiteShow} alt="Daniel White Show" style={logoImage}/>
                     </a>
-                  </div>
-                  <div className="carousel-item-container is-active">
+                    </div>}
+                  </Container>
+                  <Container>{styles => 
+                    <div className="carousel-item-container is-active" style={styles}>
                     <a title="Audpop" href="#">
                         <img src={audpop} alt="Audpop" style={logoImage}/>
                     </a>
-                  </div>
-                  <div className="carousel-item-container is-active">
+                    </div>}
+                  </Container>
+                  <Container>{styles => 
+                    <div className="carousel-item-container is-active" style={styles}>
                     <a title="Caridnal Joinery" href="#">
                         <img src={cardinal} alt="Cardinal Joinery Logo" style={logoImage} />
                     </a>
-                  </div>
-                  <div className="carousel-item-container" >
-                    <a title="Free Pizza Podcast" href="#">
-                        <img src={freePizza} alt="Free Pizza Podcast" style={logoImage}/>
-                    </a>
-                  </div>
-                  <div className="carousel-item-container">
-                    <a title="Daniel White Show" href="#">
-                      <img src={danielWhiteShow} alt="Daniel White Show" style={logoImage}/>
-                    </a>
-                  </div>
-                  <div className="carousel-item-container">
-                    <a title="Audpop" href="#">
-                        <img src={audpop} alt="Audpop" style={logoImage}/>
-                    </a>
-                  </div>
-                  <div className="carousel-item-container">
-                    <a title="Caridnal Joinery" href="#">
-                        <img src={cardinal} alt="Cardinal Joinery Logo" style={logoImage} />
-                    </a>
-                  </div>
-                  <div className="columns is-mobile" style={carouselControls}>
-                    <div className="column">
-                        <span style={dot}></span>
-                        <span style={dot}></span>
-                        <span style={dot}></span>
-                    </div>
-                  </div>
-                  {/* <button className="button is-light is-Large" onClick={this.moveCarousel}>Move Carousel</button> */}
-      </div>
+                    </div>}
+                  </Container>
+                      </div>
     )
   }
 }
