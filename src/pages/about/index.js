@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import Layout from '../../components/Layout'
+
+import { useSpring, animated } from 'react-spring'
 
 import hollie from '../../img/Hollie-Bio.png'
 import jen from '../../img/Jen-Bio.png'
@@ -61,7 +63,16 @@ const AboutIndexPage = (/* {
       siteMetadata: { title },
     },
   },
-} */) => (
+} */) => {
+  const [open, toggle] = useState(false)
+
+  const { transform, opacity } = useSpring({
+    from: { opacity: 0, transform: 'translateX(-1000px)',},
+    to: { opacity: 1, transform: 'translateX(0)', },
+    config: { duration: 3000 }
+  })
+
+  return (
   <Layout>
     <div
       className="has-text-left"
@@ -80,14 +91,14 @@ const AboutIndexPage = (/* {
                   <img alt="An illustration of Hollie" src={hollie}/>
                 </figure>  
               </div>
-              <div className="columns">
-                  <div className="column has-text-right about-column-mobile">
+              <div className="columns" onClick={() => toggle(!open)}>
+                  <animated.div style={{ transform, opacity }} className="column has-text-right about-column-mobile">
                       <p style={paragraphText}>
                       What once was a completely volunteer-run magazine is now a creative agency operated by a copy + design duo with the same vision in mind as our small magazine: to support and uplift businesses, entrepreneurs, and creative endeavors that are deserving of success and recognition.<br style={paragraphBreak}/>
                       Since the beginning of our careers, we’ve been the workhorses—not the show ponies. The ones who pick up the slack, put the pieces back together, ground creative in strategy, and stick up for the work we believe in no matter what it takes.<br style={paragraphBreak}/>
                       Now, it’s our turn to call the shots—and do it in a more meaningful way than before.
                       </p>
-                  </div>
+                  </animated.div>
               </div>
           </div>
           <div className="section services-filler-mobile-only" style={sectionContainer}>
@@ -116,7 +127,7 @@ const AboutIndexPage = (/* {
       </div>
     </section>
   </Layout>
-)
+)}
 
 export default AboutIndexPage
 
