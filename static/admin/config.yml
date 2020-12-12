@@ -144,6 +144,13 @@ collections:
                   },
                 ],
             }
+      - file: 'src/pages/contact/index.md'
+        label: 'Contact'
+        name: 'Contact'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Description, name: description, widget: string }
       - file: 'src/pages/privacy/index.md'
         label: 'Privacy'
         name: 'Privacy'
