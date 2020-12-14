@@ -9,4 +9,4 @@ featuredimage: /img/placeholder-2.jpg
 tags:
   - Copy
 ---
-Description goes here and  may be long, so let’s have body copy.
+Description goes here and  may be long, so let’s have body copy. Daniel White Show
