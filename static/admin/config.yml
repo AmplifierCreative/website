@@ -60,7 +60,7 @@ collections:
     label: 'Pages'
     files:
       - file: 'src/pages/index.md'
-        label: 'Landing Page'
+        label: 'Home Page'
         name: 'index'
         fields:
           - {
@@ -71,77 +71,39 @@ collections:
             }
           - { label: Title, name: title, widget: string }
           - { label: Image, name: image, widget: image }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Subheading, name: subheading, widget: string }
           - {
-              label: Mainpitch,
-              name: mainpitch,
-              widget: object,
-              fields:
-                [
-                  { label: Title, name: title, widget: string },
-                  { label: Description, name: description, widget: text },
-                ],
-            }
-          - { label: Description, name: description, widget: string }
-          - {
-              label: Intro,
-              name: intro,
+              label: Hero,
+              name: hero,
               widget: object,
               fields:
                 [
                   { label: Heading, name: heading, widget: string },
+                  { label: Subheading, name: subheading, widget: text },
                   { label: Description, name: description, widget: text },
-                  {
-                    label: Blurbs,
-                    name: blurbs,
-                    widget: list,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Text, name: text, widget: text },
-                      ],
-                  },
                 ],
             }
           - {
-              label: Main,
-              name: main,
+              label: About,
+              name: about,
               widget: object,
               fields:
                 [
                   { label: Heading, name: heading, widget: string },
+                  { label: Subeading, name: subheading, widget: string },
                   { label: Description, name: description, widget: text },
-                  {
-                    label: Image1,
-                    name: image1,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image2,
-                    name: image2,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
-                  {
-                    label: Image3,
-                    name: image3,
-                    widget: object,
-                    fields:
-                      [
-                        { label: Image, name: image, widget: image },
-                        { label: Alt, name: alt, widget: string },
-                      ],
-                  },
+                ],
+            }
+          - {
+              label: Services,
+              name: services,
+              widget: object,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Subheading1, name: subheading1, widget: string },
+                  { label: Subheading2, name: subheading2, widget: string },
+                  { label: Subheading3, name: subheading3, widget: string },
+                  { label: Subheading4, name: subheading4, widget: string },
                 ],
             }
       - file: 'src/pages/contact/index.md'

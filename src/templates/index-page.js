@@ -136,11 +136,9 @@ const clientsTitle = {
 export const IndexPageTemplate = ({
   image,
   title,
-  heading,
-  subheading,
-  mainpitch,
-  description,
-  intro,
+  hero,
+  about,
+  services,
 }) => {
   
   const config = 	{ mass: 5, tension: 280, friction: 120, duration: 3000 }
@@ -178,7 +176,7 @@ export const IndexPageTemplate = ({
         <div className="container is-max-widescreen">
           <animated.div style={props}>
             <h1 className="title" style={titleText}>
-              Your new creative team has arrived
+              {hero.heading}
             </h1>
           </animated.div>
           <div className="header-arrow-container" style={arrowContainer}>
@@ -188,15 +186,10 @@ export const IndexPageTemplate = ({
           </div>
           <animated.div style={props3}>
           <h2 className="subtitle" style={subTitleTextA}>
-            amplifier creative is a modernized creative agency catered toward
-            up-and-coming businesses, driven entrepreneurs, and committed
-            creative endeavors of all kinds.
+            {hero.subheading}
           </h2>
           <h2 className="subtitle" style={subTitleTextB}>
-            We’re the next generation of creators and critical thinkers who want
-            success to always be within arm’s reach—with an overarching goal of
-            instilling positivity, inclusivity, and inspiration in each
-            community we serve.
+            {hero.description}
           </h2>
           </animated.div>
         </div>
@@ -279,13 +272,9 @@ export const IndexPageTemplate = ({
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  mainpitch: PropTypes.object,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
+  hero: PropTypes.string,
+  about: PropTypes.string,
+  services: PropTypes.string,
 }
 
 const IndexPage = ({ data }) => {
@@ -296,11 +285,9 @@ const IndexPage = ({ data }) => {
       <IndexPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
+        hero={frontmatter.hero}
+        about={frontmatter.about}
+        services={frontmatter.services}
       />
     </Layout>
   )
@@ -328,26 +315,22 @@ export const pageQuery = graphql`
             }
           }
         }
-        heading
-        subheading
-        mainpitch {
-          title
+        hero {
+          heading
+          subheading
           description
         }
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            text
-          }
+        about {
           heading
+          subheading
           description
+        }
+        services {
+          heading
+          subheading1
+          subheading2
+          subheading3
+          subheading4
         }
       }
     }
