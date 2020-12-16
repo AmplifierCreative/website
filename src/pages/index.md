@@ -16,7 +16,12 @@ about:
   title: About Us
   heading: Community-focused.
   subheading: Creative-driven.
-  description: >
+  description1: >
+    Agencies are everywhere—all specializing in one thing or another, or
+    everything under the sun. While we love those agencies (and have even worked
+    for them), we understand they’re not as accessible for growing businesses
+    and new creative endeavors.
+  description2: >
     Agencies are everywhere—all specializing in one thing or another, or
     everything under the sun. While we love those agencies (and have even worked
     for them), we understand they’re not as accessible for growing businesses
@@ -28,4 +33,7 @@ services:
   subheading2: Design
   subheading3: Social
   subheading4: Strategy
+clients:
+  title: Clients
+  heading: We’re in good company
 ---

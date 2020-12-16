@@ -90,7 +90,8 @@ collections:
                 [
                   { label: Heading, name: heading, widget: string },
                   { label: Subeading, name: subheading, widget: string },
-                  { label: Description, name: description, widget: text },
+                  { label: Description1, name: description1, widget: text },
+                  { label: Description2, name: description2, widget: text },
                 ],
             }
           - {
@@ -99,11 +100,22 @@ collections:
               widget: object,
               fields:
                 [
+                  { label: Title, name: title, widget: string },
                   { label: Heading, name: heading, widget: string },
                   { label: Subheading1, name: subheading1, widget: string },
                   { label: Subheading2, name: subheading2, widget: string },
                   { label: Subheading3, name: subheading3, widget: string },
                   { label: Subheading4, name: subheading4, widget: string },
+                ],
+            }
+          - {
+              label: Clients,
+              name: clients,
+              widget: object,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Heading, name: heading, widget: string },
                 ],
             }
       - file: 'src/pages/contact/index.md'

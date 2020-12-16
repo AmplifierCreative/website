@@ -139,6 +139,7 @@ export const IndexPageTemplate = ({
   hero,
   about,
   services,
+  clients,
 }) => {
   
   const config = 	{ mass: 5, tension: 280, friction: 120, duration: 3000 }
@@ -202,31 +203,23 @@ export const IndexPageTemplate = ({
             <div className="column is-6 has-text-centered home-section-mobile-padding">
               <div className="columns is-mobile">
                 <div className="column is-2">
-                  <h4 className="home-sideways-title-about" style={sectionTitleA}>About Us</h4>
+                  <h4 className="home-sideways-title-about" style={sectionTitleA}>{about.title}</h4>
                 </div>
                 <div className="column is-9">
                   <h6 style={orangeHeaderText}>xx</h6>
                   <h2 style={aboutTitle}>
-                    Community-focused.
+                    {about.heading}
                   </h2>
-                  <h3 style={sectionSubhead}>Creative-driven.</h3>
+                  <h3 style={sectionSubhead}>{about.subheading}</h3>
                 </div>
               </div>
             </div>
             <div className="column is-6">
               <p className="first-letter-stroke" style={aboutText}>
-                Agencies are everywhere—all specializing in one thing or
-                another, or everything under the sun. While we love those
-                agencies (and have even worked for them), we understand they’re
-                not as accessible for growing businesses and new creative
-                endeavors.
-                <br />
+                {about.description1}
               </p>
               <p style={aboutText2}>
-                That’s why we’re here to break through that noise by providing a
-                resource that allows all businesses and entrepreneurs to feel
-                comfortable asking for help with their advertising, marketing,
-                and creative.
+                {about.description2}
               </p>
             </div>
           </div>
@@ -238,15 +231,15 @@ export const IndexPageTemplate = ({
             <div className="column is-12 has-text-centered home-section-mobile-padding">
               <div className="columns is-mobile">
                 <div className="column is-2">
-                  <h4 className="home-sideways-title-services" style={sectionTitleB}>Services</h4>
+                  <h4 className="home-sideways-title-services" style={sectionTitleB}>{services.title}</h4>
                 </div>
                 <div className="column is-9">
                   <h6 style={orangeHeaderText}>xx</h6>
-                  <h3 style={sectionSubhead}>We’re passionate about:</h3>
-                  <h3 style={servicesText}>Copywriting + editing</h3>
-                  <h3 style={servicesText}>Design</h3>
-                  <h3 style={servicesText}>Social</h3>
-                  <h3 style={servicesText}>Strategy</h3>
+                  <h3 style={sectionSubhead}>{services.heading}</h3>
+                  <h3 style={servicesText}>{services.subheading1}</h3>
+                  <h3 style={servicesText}>{services.subheading2}</h3>
+                  <h3 style={servicesText}>{services.subheading3}</h3>
+                  <h3 style={servicesText}>{services.subheading4}</h3>
                 </div>
               </div>
             </div>
@@ -256,11 +249,11 @@ export const IndexPageTemplate = ({
       <section className="home-section home-client-section" style={sectionContainer}>
         <div className="columns is-mobile is-vcentered">
           <div className="column is-2 has-text-centered home-section-mobile-padding">
-            <h4 className="home-sideways-title-clients" style={sectionTitle}>Clients</h4>
+            <h4 className="home-sideways-title-clients" style={sectionTitle}>{clients.title}</h4>
           </div>
           <div className="column is-9 has-text-centered">
             <h6 style={orangeHeaderText}>xx</h6>
-            <h5 style={clientsTitle}>We’re in good company</h5>
+            <h5 style={clientsTitle}>{clients.heading}</h5>
             <Carousel/>
           </div>
         </div>
@@ -275,6 +268,7 @@ IndexPageTemplate.propTypes = {
   hero: PropTypes.string,
   about: PropTypes.string,
   services: PropTypes.string,
+  clients: PropTypes.string,
 }
 
 const IndexPage = ({ data }) => {
@@ -288,6 +282,7 @@ const IndexPage = ({ data }) => {
         hero={frontmatter.hero}
         about={frontmatter.about}
         services={frontmatter.services}
+        clients={frontmatter.clients}
       />
     </Layout>
   )
@@ -323,14 +318,20 @@ export const pageQuery = graphql`
         about {
           heading
           subheading
-          description
+          description1
+          description2
         }
         services {
+          title
           heading
           subheading1
           subheading2
           subheading3
           subheading4
+        }
+        clients {
+          title
+          heading
         }
       }
     }
