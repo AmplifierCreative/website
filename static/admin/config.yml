@@ -69,53 +69,132 @@ collections:
               widget: 'hidden',
               default: 'index-page',
             }
-          - { label: Title, name: title, widget: string }
-          - { label: Image, name: image, widget: image }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Image', name: 'image', widget: 'image' }
           - {
-              label: Hero,
-              name: hero,
-              widget: object,
+              label: 'Hero',
+              name: 'hero',
+              widget: 'object',
               fields:
                 [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Subheading, name: subheading, widget: text },
-                  { label: Description, name: description, widget: text },
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Subheading', name: 'subheading', widget: 'text' },
+                  { label: 'Description', name: 'description', widget: 'text' },
                 ],
             }
           - {
-              label: About,
-              name: about,
-              widget: object,
+              label: 'About',
+              name: 'about',
+              widget: 'object',
               fields:
                 [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Subeading, name: subheading, widget: string },
-                  { label: Description1, name: description1, widget: text },
-                  { label: Description2, name: description2, widget: text },
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Subeading', name: 'subheading', widget: 'string' },
+                  {
+                    label: 'Description1',
+                    name: 'description1',
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Description2',
+                    name: 'description2',
+                    widget: 'text',
+                  },
                 ],
             }
           - {
-              label: Services,
-              name: services,
-              widget: object,
+              label: 'Services',
+              name: 'services',
+              widget: 'object',
               fields:
                 [
-                  { label: Title, name: title, widget: string },
-                  { label: Heading, name: heading, widget: string },
-                  { label: Subheading1, name: subheading1, widget: string },
-                  { label: Subheading2, name: subheading2, widget: string },
-                  { label: Subheading3, name: subheading3, widget: string },
-                  { label: Subheading4, name: subheading4, widget: string },
+                  { label: 'Title', name: 'title', widget: 'string' },
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  {
+                    label: 'Subheading1',
+                    name: 'subheading1',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Subheading2',
+                    name: 'subheading2',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Subheading3',
+                    name: 'subheading3',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Subheading4',
+                    name: 'subheading4',
+                    widget: 'string',
+                  },
                 ],
             }
           - {
-              label: Clients,
-              name: clients,
-              widget: object,
+              label: 'Clients',
+              name: 'clients',
+              widget: 'object',
               fields:
                 [
-                  { label: Title, name: title, widget: string },
-                  { label: Heading, name: heading, widget: string },
+                  { label: 'Title', name: 'title', widget: 'string' },
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                ],
+            }
+      - file: 'src/pages/about/index.md'
+        label: 'About Page'
+        name: 'about'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'about-page',
+            }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Image', name: 'image', widget: 'image' }
+          - {
+              label: 'Top Section',
+              name: 'topSection',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Description 1',
+                    name: 'description1',
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Description 2',
+                    name: 'description2',
+                    widget: 'text',
+                  },
+                  { label: 'Image', name: 'image', widget: 'image' },
+                ],
+            }
+          - {
+              label: 'Bottom Section',
+              name: 'bottomSection',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Description 1',
+                    name: 'description1',
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Description 2',
+                    name: 'description2',
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Description 3',
+                    name: 'description3',
+                    widget: 'text',
+                  },
+                  { label: 'Image', name: 'image', widget: 'image' },
                 ],
             }
       - file: 'src/pages/contact/index.md'

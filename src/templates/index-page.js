@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useSpring, animated } from 'react-spring'
