@@ -4,8 +4,6 @@ import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { graphql } from 'gatsby'
 
-
-
 const heroContainer = {
     backgroundColor: '#2D2C2C',
     marginTop: '0',
@@ -33,17 +31,22 @@ const fillerStyle = {
   marginBottom: '3em',
 }
 
-const hollieContainer = {
+const imageTopContainer = {
     height: '550px',
 }
 
-const jenContainer = {
+const imageBottomContainer = {
   height: '650px',
 }
 
-const jenPadding = {
+const imageBottom = {
   paddingTop: "10em",
+  width: '100%'
 }
+
+const imageTop = {
+    width: '100%'
+  }
 
 const paragraphText = {
     fontFamily: 'EBGaramond',
@@ -60,6 +63,7 @@ export const AboutPageTemplate = ({
     topSection,
     bottomSection,
 }) => {
+    console.log(bottomSection.image)
   return (
     <React.Fragment>
         <div
@@ -74,10 +78,16 @@ export const AboutPageTemplate = ({
         <div className="container is-max-widescreen">
             <div className="columns services-reverse-column is-vcentered">
             <div className="column is-half about-border">
-                    <div className="columns about-img-container" style={hollieContainer}>
-                        <figure className="">
-                        <img alt="An illustration of Hollie" src={topSection.image}/>
-                        </figure>  
+                    <div className="columns about-img-container" style={imageTopContainer}>
+                        {topSection.image ? (
+                          <figure style={imageTop}>
+                            <PreviewCompatibleImage
+                              imageInfo={{
+                                image: topSection.image,
+                                }}
+                            />
+                          </figure>
+                        ) : null}
                     </div>
                     <div className="columns">
                         <div className="column has-text-right about-column-mobile">
@@ -111,21 +121,17 @@ export const AboutPageTemplate = ({
                         </p>
                     </div>
                 </div>
-                <div className="columns about-img-container" style={jenContainer}>
-                <figure className="" style={jenPadding}>
-                    <img alt="An illustration of Jen" src={bottomSection.image}/>
-                    
-                </figure>  
-{/*                     {bottomSection.image ? (
-                          <figure className="" style={jenPadding}>
+                <div className="columns about-img-container" style={imageBottomContainer}>
+                    {bottomSection.image ? (
+                          <figure style={imageBottom}>
                             <PreviewCompatibleImage
                               imageInfo={{
                                 image: bottomSection.image,
-                                alt: `Something`,
+                        
                               }}
                             />
                           </figure>
-                        ) : null} */}
+                        ) : null}
 
                 </div>
             </div>
