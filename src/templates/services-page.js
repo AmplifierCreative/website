@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import Layout from '../../components/Layout'
+import { graphql, Link } from 'gatsby'
+import PropTypes from 'prop-types'
 
-import copywrite from '../../img/copywrite.gif'
-import design from '../../img/design.gif'
-import social from '../../img/social.gif'
-import strategy from '../../img/strategy.gif'
+import Layout from '../components/Layout'
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
 const heroContainer = {
     backgroundColor: '#2D2C2C',
@@ -88,38 +86,37 @@ const buttonStyle = {
     height: "51px",
   }
 
-const ServicesIndexPage = (/* {
-  data: {
-    allMarkdownRemark: { group },
-    site: {
-      siteMetadata: { title },
-    },
-  },
-} */) => (
-  <Layout>
+export const ServicesPageTemplate = ({
+    image,
+    title,
+    hero,
+    section1,
+    section2,
+    section3,
+    section4,
+    cta
+}) => (
     <div className="services-container">
       <div
         className="has-text-left"
         style={heroContainer}
       >
         <div class="container is-max-widescreen">
-          <h1 className="line-header" style={lineHeader}>services</h1>
+          <h1 className="line-header" style={lineHeader}>{/* {hero.heading} */}</h1>
           <p
             style={heroText}
           >
-            Long story short: Our services are tailored to your needs, so pricing ranges—but there’s no task too small or too big. Because at the end of the day, your success is our passion—and we want to be a part of your journey. 
+            {/* {hero.subheading}  */}
           </p>
-          <br />
-  
         </div>
       </div>
       <section className="section" style={sectionContainer}>
         <div className="container">
           <div className="columns is-vcentered">
               <div className="column is-half has-text-right services-column-mobile">
-                <figure>
+{/*                 <figure>
                   <img alt="An animated illustration of hands typing on a laptop" style={copywriteImage} src={copywrite}/>
-                </figure>
+                </figure> */}
               </div>
               <div className="column is-half services-column-mobile">
                   <h2 style={titleText}>Copywriting + editing</h2>
@@ -161,9 +158,9 @@ const ServicesIndexPage = (/* {
                   </p>
               </div>
               <div className="column is-half services-column-mobile">
-                <figure>
+{/*                 <figure>
                   <img alt="An illustration of hands weaving chakra" style={designImage} src={design}/>
-                </figure>
+                </figure> */}
               </div>
           </div>
         </div>
@@ -180,9 +177,9 @@ const ServicesIndexPage = (/* {
         <div className="container">
           <div className="columns is-vcentered">
               <div className="column is-half has-text-right services-column-mobile">
-                <figure>
+{/*                 <figure>
                   <img alt="An animated illustration of hands using a phone" style={lastTwoImages} src={social}/>
-                </figure>
+                </figure> */}
               </div>
               <div className="column is-half services-column-mobile">
                   <h2 style={titleText}>Social</h2>
@@ -219,9 +216,9 @@ const ServicesIndexPage = (/* {
                   </p>
               </div>
               <div className="column is-half services-column-mobile">
-                <figure>
+{/*                 <figure>
                   <img alt="An animated illustration of hands pointing at a chart" style={lastTwoImages} src={strategy}/>
-                </figure>
+                </figure> */}
               </div>
           </div>
         </div>
@@ -247,23 +244,141 @@ const ServicesIndexPage = (/* {
         </div>
       </section>
     </div>
-  </Layout>
 )
 
-export default ServicesIndexPage
+ServicesPageTemplate.propTypes = {
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    title: PropTypes.string,
+    hero: PropTypes.object,
+    section1: PropTypes.object,
+    section2: PropTypes.object,
+    section3: PropTypes.object,
+    section4: PropTypes.object,
+    cta: PropTypes.string,
+  }
 
-/* export const projectsPageQuery = graphql`
-  query ProjectTagsQuery {
-    site {
-      siteMetadata {
-        title
-      }
+const ServicesPage = ({ data }) => {
+    const { frontmatter } = data.markdownRemark
+    
+    return (
+        <Layout>
+          <ServicesPageTemplate
+            image={frontmatter.image}
+            title={frontmatter.title}
+            hero={frontmatter.hero}
+            section1={frontmatter.section1}
+            section2={frontmatter.section2}
+            section3={frontmatter.section3}
+            section4={frontmatter.section4}
+            cta={frontmatter.cta}
+          />
+        </Layout>
+      )
     }
-    allMarkdownRemark(limit: 1000) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
+    
+    ServicesPage.propTypes = {
+        data: PropTypes.shape({
+          markdownRemark: PropTypes.shape({
+            frontmatter: PropTypes.object,
+          }),
+        }),
+      } 
+
+export default ServicesPage
+
+export const pageQuery = graphql`
+  query ServicesPageTemplate {
+    markdownRemark(frontmatter: { templateKey: { eq: "services-page" } }) {
+      frontmatter {
+        image {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        title
+        hero {
+            heading
+            subheading
+        }
+        section1 {
+            heading
+            description1
+            description2
+            description3
+            description4
+            description5
+            description6
+            description7
+            description8
+            image {
+                childImageSharp {
+                    fluid(maxWidth: 2048, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }
+        section2 {
+            heading
+            description1
+            description2
+            description3
+            description4
+            description5
+            description6
+            description7
+            description8
+            image {
+                childImageSharp {
+                    fluid(maxWidth: 2048, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }        
+        section3 {
+            heading
+            description1
+            description2
+            description3
+            description4
+            description5
+            description6
+            description7
+            description8
+            image {
+                childImageSharp {
+                    fluid(maxWidth: 2048, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }        
+        section4 {
+            heading
+            description1
+            description2
+            description3
+            description4
+            description5
+            description6
+            description7
+            description8
+            image {
+                childImageSharp {
+                    fluid(maxWidth: 2048, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+        }
+        cta {
+            heading
+            button
+        }
       }
     }
   }
-` */
+`

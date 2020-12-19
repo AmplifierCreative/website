@@ -197,6 +197,238 @@ collections:
                   { label: 'Image', name: 'image', widget: 'image' },
                 ],
             }
+      - file: 'src/pages/services/index.md'
+        label: 'Services Page'
+        name: 'services'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'services-page',
+            }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Image', name: 'image', widget: 'image' }
+          - {
+              label: 'Hero',
+              name: 'hero',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Subheading', name: 'subheading', widget: 'text' },
+                ],
+            }
+          - {
+              label: 'Section 1',
+              name: 'section1',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  {
+                    label: 'Description 1',
+                    name: 'description1',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 2',
+                    name: 'description2',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 3',
+                    name: 'description3',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 4',
+                    name: 'description4',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 5',
+                    name: 'description5',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 6',
+                    name: 'description6',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 7',
+                    name: 'description7',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 8',
+                    name: 'description8',
+                    widget: 'string',
+                  },
+                  { label: 'Image', name: 'image', widget: 'image' },
+                ],
+            }
+          - {
+              label: 'Section 2',
+              name: 'section2',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  {
+                    label: 'Description 1',
+                    name: 'description1',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 2',
+                    name: 'description2',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 3',
+                    name: 'description3',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 4',
+                    name: 'description4',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 5',
+                    name: 'description5',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 6',
+                    name: 'description6',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 7',
+                    name: 'description7',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 8',
+                    name: 'description8',
+                    widget: 'string',
+                  },
+                  { label: 'Image', name: 'image', widget: 'image' },
+                ],
+            }
+          - {
+              label: 'Section 3',
+              name: 'section3',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  {
+                    label: 'Description 1',
+                    name: 'description1',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 2',
+                    name: 'description2',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 3',
+                    name: 'description3',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 4',
+                    name: 'description4',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 5',
+                    name: 'description5',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 6',
+                    name: 'description6',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 7',
+                    name: 'description7',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 8',
+                    name: 'description8',
+                    widget: 'string',
+                  },
+                  { label: 'Image', name: 'image', widget: 'image' },
+                ],
+            }
+          - {
+              label: 'Section 4',
+              name: 'section4',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  {
+                    label: 'Description 1',
+                    name: 'description1',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 2',
+                    name: 'description2',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 3',
+                    name: 'description3',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 4',
+                    name: 'description4',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 5',
+                    name: 'description5',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 6',
+                    name: 'description6',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 7',
+                    name: 'description7',
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description 8',
+                    name: 'description8',
+                    widget: 'string',
+                  },
+                  { label: 'Image', name: 'image', widget: 'image' },
+                ],
+            }
+          - {
+              label: 'CTA',
+              name: 'cta',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Button', name: 'button', widget: 'string' },
+                ],
+            }
       - file: 'src/pages/contact/index.md'
         label: 'Contact'
         name: 'Contact'
