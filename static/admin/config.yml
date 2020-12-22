@@ -559,3 +559,60 @@ collections:
                   },
                 ],
             }
+      - file: 'src/pages/global/index.md'
+        label: 'Global'
+        name: 'global'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'global',
+            }
+          - {
+              label: 'Menu',
+              name: 'menu',
+              widget: 'list',
+              allow-add: 'false',
+              field:
+                {
+                  label: 'Item',
+                  name: 'item',
+                  widget: 'object',
+                  fields:
+                    [
+                      {
+                        label: 'Local',
+                        name: 'local',
+                        widget: 'boolean',
+                        default: true,
+                      },
+                      { label: 'Text', name: 'text', widget: 'string' },
+                      { label: 'path', name: 'path', widget: 'string' },
+                    ],
+                },
+            }
+          - { label: 'Copywrite', name: 'copywrite', widget: 'text' }
+          - {
+              label: 'Social',
+              name: 'social',
+              widget: 'list',
+              allow-add: 'false',
+              field:
+                {
+                  label: 'Item',
+                  name: 'item',
+                  widget: 'object',
+                  fields:
+                    [
+                      {
+                        label: 'Local',
+                        name: 'local',
+                        widget: 'boolean',
+                        default: true,
+                      },
+                      { label: 'Text', name: 'text', widget: 'string' },
+                      { label: 'path', name: 'path', widget: 'string' },
+                    ],
+                },
+            }

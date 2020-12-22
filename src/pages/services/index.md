@@ -4,10 +4,10 @@ title: services
 image: /img/placeholder-2.jpg
 hero:
   heading: services
-  subheading: 'Long story short: Our services are tailored to your needs, so
+  subheading: "Long story short: Our services are tailored to your needs, so
     pricing ranges—but there’s no task too small or too big. Because at the end
     of the day, your success is our passion—and we want to be a part of your
-    journey.'
+    journey."
 section1:
   heading: Copywriting + editing
   description1: Landing and product page copy
@@ -16,9 +16,9 @@ section1:
   description4: Emails and newsletters
   description5: Press releases
   description6: Brand campaign copy
+  image: /img/copywrite.gif
   description7: Social media copy
   description8: Naming
-  image: /img/copywrite.gif
 section2:
   heading: Design
   description1: Video and animation
@@ -27,9 +27,9 @@ section2:
   description4: Branding and logo design
   description5: Image sourcing and editing
   description6: Email and newsletter templates
+  image: /img/design.gif
   description7: Social media assets
   description8: df
-  image: /img/design.gif
 section3:
   heading: Social
   description1: Social media content planning and creation
@@ -38,9 +38,9 @@ section3:
   description4: Community management
   description5: Social media trends and insights
   description6: sf
+  image: /img/social.gif
   description7: sd
   description8: df
-  image: /img/social.gif
 section4:
   heading: Strategy
   description1: SEO research and strategy
@@ -49,9 +49,9 @@ section4:
   description4: Brand strategy development
   description5: Integrated marketing campaign strategy
   description6: df
+  image: /img/strategy.gif
   description7: df
   description8: df
-  image: /img/strategy.gif
 cta:
   heading: See something you like? Let’s chat over coffee. (We’re buying.)
   button: contact us

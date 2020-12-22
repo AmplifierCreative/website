@@ -8,6 +8,7 @@ import ProjectPostPreview from './preview-templates/ProjectPostPreview'
 import ContactPagePreview from './preview-templates/ContactPagePreview'
 import AboutPagePreview from './preview-templates/AboutPagePreview'
 import ServicesPagePreview from './preview-templates/ServicesPagePreview'
+import GlobalPagePreview from './preview-templates/GlobalPagePreview'
 
 import Video from './editor-templates/Video'
 import ImageWithCopy from './editor-templates/ImageWithCopy'
@@ -20,6 +21,7 @@ CMS.registerPreviewTemplate('projects', ProjectPostPreview)
 CMS.registerPreviewTemplate('contact', ContactPagePreview)
 CMS.registerPreviewTemplate('about', AboutPagePreview)
 CMS.registerPreviewTemplate('services', ServicesPagePreview)
+CMS.registerPreviewTemplate('global', GlobalPagePreview)
 
 CMS.registerEditorComponent(Video)
 CMS.registerEditorComponent(ImageWithCopy)

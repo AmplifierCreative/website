@@ -3,7 +3,11 @@ import { graphql, Link } from 'gatsby'
 import PropTypes from 'prop-types'
 
 import Layout from '../components/Layout'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+
+import social from '../img/social.gif'
+import copywrite from '../img/copywrite.gif'
+import design from '../img/design.gif'
+import strategy from '../img/strategy.gif'
 
 const heroContainer = {
     backgroundColor: '#2D2C2C',
@@ -30,15 +34,19 @@ const sectionContainer = {
 }
 
 const copywriteImage = {
-  width: '70%'
+    width: '71%',
 }
 
 const designImage = {
-  width: '64%'
+  width: '77%',
 }
 
-const lastTwoImages = {
-  width: '49%'
+const socialImage = {
+  width: '77%',
+}
+
+const strategyImage = {
+  width: '77%',
 }
 
 const titleText = {
@@ -95,18 +103,19 @@ export const ServicesPageTemplate = ({
     section3,
     section4,
     cta
-}) => (
+}) => {
+  return (
     <div className="services-container">
       <div
         className="has-text-left"
         style={heroContainer}
       >
-        <div class="container is-max-widescreen">
-          <h1 className="line-header" style={lineHeader}>{/* {hero.heading} */}</h1>
+        <div className="container is-max-widescreen">
+          <h1 className="line-header" style={lineHeader}>{hero.heading}</h1>
           <p
             style={heroText}
           >
-            {/* {hero.subheading}  */}
+            {hero.subheading}
           </p>
         </div>
       </div>
@@ -114,21 +123,35 @@ export const ServicesPageTemplate = ({
         <div className="container">
           <div className="columns is-vcentered">
               <div className="column is-half has-text-right services-column-mobile">
-{/*                 <figure>
-                  <img alt="An animated illustration of hands typing on a laptop" style={copywriteImage} src={copywrite}/>
-                </figure> */}
+                <figure>
+                  <img src={copywrite} style={copywriteImage} />
+                </figure>                  
               </div>
               <div className="column is-half services-column-mobile">
-                  <h2 style={titleText}>Copywriting + editing</h2>
+                  <h2 style={titleText}>{section1.heading}</h2>
                   <p style={paragraphText}>
-                  Landing and product page copy<br/>
-                  SEO-first articles<br/>
-                  Marketing content <br/>
-                  Emails and newsletters<br/>
-                  Press releases<br/>
-                  Brand campaign copy<br/>
-                  Social media copy<br/>
-                  Naming
+                    {section1.description1}
+                  </p>
+                  <p style={paragraphText}>
+                    {section1.description2}
+                  </p>
+                  <p style={paragraphText}>
+                    {section1.description3}
+                  </p>
+                  <p style={paragraphText}>
+                    {section1.description4}
+                  </p>
+                  <p style={paragraphText}>
+                    {section1.description5}
+                  </p>
+                  <p style={paragraphText}>
+                    {section1.description6}
+                  </p>                  
+                  <p style={paragraphText}>
+                    {section1.description7}
+                  </p>
+                  <p style={paragraphText}>
+                    {section1.description8}
                   </p>
               </div>
           </div>
@@ -146,21 +169,33 @@ export const ServicesPageTemplate = ({
         <div className="container">
           <div className="columns is-vcentered services-reverse-column">
               <div className="column is-half has-text-right services-column-mobile">
-                  <h2 style={titleText}>Design</h2>
+                  <h2 style={titleText}>{section2.heading}</h2>
                   <p style={paragraphText}>
-                      Video and animation<br/>
-                      Photography<br/>
-                      Illustration<br/>
-                      Branding and logo design<br/>
-                      Image sourcing and editing<br/>
-                      Email and newsletter templates<br/>
-                      Social media assets
+                    {section2.description1}
+                  </p>
+                  <p style={paragraphText}>
+                    {section2.description2}
+                  </p>
+                  <p style={paragraphText}>
+                    {section2.description3}
+                  </p>
+                  <p style={paragraphText}>
+                    {section2.description4}
+                  </p>
+                  <p style={paragraphText}>
+                    {section2.description5}
+                  </p>
+                  <p style={paragraphText}>
+                    {section2.description6}
+                  </p>                  
+                  <p style={paragraphText}>
+                    {section2.description7}
                   </p>
               </div>
               <div className="column is-half services-column-mobile">
-{/*                 <figure>
+                <figure>
                   <img alt="An illustration of hands weaving chakra" style={designImage} src={design}/>
-                </figure> */}
+                </figure>
               </div>
           </div>
         </div>
@@ -177,18 +212,26 @@ export const ServicesPageTemplate = ({
         <div className="container">
           <div className="columns is-vcentered">
               <div className="column is-half has-text-right services-column-mobile">
-{/*                 <figure>
-                  <img alt="An animated illustration of hands using a phone" style={lastTwoImages} src={social}/>
-                </figure> */}
+                <figure>
+                  <img alt="An animated illustration of hands using a phone" style={socialImage} src={social}/>
+                </figure>
               </div>
               <div className="column is-half services-column-mobile">
-                  <h2 style={titleText}>Social</h2>
+                  <h2 style={titleText}>{section3.heading}</h2>
                   <p style={paragraphText}>
-                  Social media content planning and creation<br/>
-                  Social media reporting<br/>
-                  Social media strategy<br/>
-                  Community management<br/>
-                  Social media trends and insights 
+                    {section3.description1}
+                  </p>
+                  <p style={paragraphText}>
+                    {section3.description2}
+                  </p>
+                  <p style={paragraphText}>
+                    {section3.description3}
+                  </p>
+                  <p style={paragraphText}>
+                    {section3.description4}
+                  </p>
+                  <p style={paragraphText}>
+                    {section3.description5}
                   </p>
               </div>
           </div>
@@ -206,19 +249,27 @@ export const ServicesPageTemplate = ({
         <div className="container ">
           <div className="columns is-vcentered services-reverse-column">
               <div className="column is-half has-text-right services-column-mobile">
-                  <h2 style={titleText}>Strategy</h2>
+                  <h2 style={titleText}>{section4.heading}</h2>
                   <p style={paragraphText}>
-                      SEO research and strategy<br/>
-                      Digital marketing strategy<br/>
-                      Content marketing strategy and planning<br/>
-                      Brand strategy development<br/>
-                      Integrated marketing campaign strategy
+                    {section4.description1}
+                  </p>
+                  <p style={paragraphText}>
+                    {section4.description2}
+                  </p>
+                  <p style={paragraphText}>
+                    {section4.description3}
+                  </p>
+                  <p style={paragraphText}>
+                    {section4.description4}
+                  </p>
+                  <p style={paragraphText}>
+                    {section4.description5}
                   </p>
               </div>
               <div className="column is-half services-column-mobile">
-{/*                 <figure>
-                  <img alt="An animated illustration of hands pointing at a chart" style={lastTwoImages} src={strategy}/>
-                </figure> */}
+                <figure>
+                  <img alt="An animated illustration of hands pointing at a chart" style={strategyImage} src={strategy}/>
+                </figure>
               </div>
           </div>
         </div>
@@ -235,16 +286,16 @@ export const ServicesPageTemplate = ({
         <div className="container is-max-widescreen">
           <div className="content">
               <p style={contactText}>
-              See something you like? Let’s chat over coffee. (We’re buying.)
+              {cta.heading}
               </p>
           <Link to="/contact">
-              <button class="button is-uppercase" style={buttonStyle}>Contact us</button>
+              <button class="button is-uppercase" style={buttonStyle}>{cta.button}</button>
           </Link>
           </div>
         </div>
       </section>
     </div>
-)
+)}
 
 ServicesPageTemplate.propTypes = {
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -254,7 +305,7 @@ ServicesPageTemplate.propTypes = {
     section2: PropTypes.object,
     section3: PropTypes.object,
     section4: PropTypes.object,
-    cta: PropTypes.string,
+    cta: PropTypes.object,
   }
 
 const ServicesPage = ({ data }) => {

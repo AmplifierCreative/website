@@ -63,7 +63,6 @@ export const AboutPageTemplate = ({
     topSection,
     bottomSection,
 }) => {
-    console.log(bottomSection.image)
   return (
     <React.Fragment>
         <div

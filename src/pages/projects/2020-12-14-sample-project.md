@@ -6,5 +6,7 @@ description: Another sample project
 featuredpost: true
 clientlogo: /img/aa_audpop_stacked_color.png
 featuredimage: /img/products-grid2.jpg
+tags:
+  - Clients
 ---
 Using this to complete the carousel
