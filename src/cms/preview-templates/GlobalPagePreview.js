@@ -9,9 +9,8 @@ const GlobalPagePreview = ({ entry, getAsset }) => {
     return (
       <GlobalPageTemplate
         title={data.title}
-        menu={data.menu}
-        copywrite={data.copywrite}
-        social={data.social}
+        footer={data.footer}
+        nav={data.nav}
       />
     )
   } else {

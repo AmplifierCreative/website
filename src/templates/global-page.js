@@ -4,25 +4,36 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 
+const parentContainer = {
+  height: '400px',
+}
 
+const container = {
+  color: 'black',
+  fontSize: '2em',
+}
 
 export const GlobalPageTemplate = ({
   title,
-  menu,
-  copywrite,
-  social,
+  footer,
+  nav,
 }) => {
   return (   
-    <div className="container is-max-widescreen">
-        {title}
+    <div className="container is-max-widescreen" style={parentContainer}>
+        {footer && footer.menu.map((item) => (
+          <div style={container}>
+            <p>{item.text}</p>
+            <p>{item.path}</p>
+          </div>
+          )
+        )}
     </div>
 )}
 
 GlobalPageTemplate.propTypes = {
   title: PropTypes.string,
-  menu: PropTypes.object,
-  copywrite: PropTypes.string,
-  social: PropTypes.object,
+  footer: PropTypes.object,
+  nav: PropTypes.object,
 }
 
 const GlobalPage = ({ data }) => {
@@ -32,9 +43,8 @@ const GlobalPage = ({ data }) => {
     <Layout>
       <GlobalPageTemplate
         title={frontmatter.title}
-        menu={frontmatter.menu}
-        copywrite={frontmatter.copywrite}
-        social={frontmatter.social}
+        footer={frontmatter.footer}
+        nav={frontmatter.nav}
       />
     </Layout>
   )
@@ -55,21 +65,24 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "global-page" } }) {
       frontmatter {
         title
-        menu {
-            item {
-                local
+        footer {
+            menu {
                 text
+                local
+                path
+            }
+            copywrite
+            menu {
+                text
+                local
                 path
             }
         }
-        copywrite
-        social {
-            item {
-                local
-                text
-                path
-            }
-        }
+        nav {
+            text
+            local
+            path
+        }  
       }
     }
   }

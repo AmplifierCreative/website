@@ -567,52 +567,64 @@ collections:
               label: 'Template Key',
               name: 'templateKey',
               widget: 'hidden',
-              default: 'global',
+              default: 'global-page',
+            }
+          - { label: Title, name: title, widget: string }
+          - {
+              label: 'Footer',
+              name: 'footer',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Menu',
+                    name: 'menu',
+                    widget: 'list',
+                    fields:
+                      [
+                        { label: 'Text', name: 'text', widget: 'string' },
+                        {
+                          label: 'Local',
+                          name: 'local',
+                          widget: 'boolean',
+                          default: true,
+                        },
+                        { label: 'path', name: 'path', widget: 'string' },
+                      ],
+                  },
+                  { label: 'Copywrite', name: 'copywrite', widget: 'text' },
+                  {
+                    label: 'Social',
+                    name: 'social',
+                    widget: 'list',
+                    fields:
+                      [
+                        { label: 'Text', name: 'text', widget: 'string' },
+                        {
+                          label: 'Local',
+                          name: 'local',
+                          widget: 'boolean',
+                          default: true,
+                        },
+                        { label: 'path', name: 'path', widget: 'string' },
+                      ],
+                  },
+                ],
             }
           - {
-              label: 'Menu',
-              name: 'menu',
+              label: 'Navigation',
+              name: 'nav',
               widget: 'list',
-              allow-add: 'false',
-              field:
-                {
-                  label: 'Item',
-                  name: 'item',
-                  widget: 'object',
-                  fields:
-                    [
-                      {
-                        label: 'Local',
-                        name: 'local',
-                        widget: 'boolean',
-                        default: true,
-                      },
-                      { label: 'Text', name: 'text', widget: 'string' },
-                      { label: 'path', name: 'path', widget: 'string' },
-                    ],
-                },
-            }
-          - { label: 'Copywrite', name: 'copywrite', widget: 'text' }
-          - {
-              label: 'Social',
-              name: 'social',
-              widget: 'list',
-              allow-add: 'false',
-              field:
-                {
-                  label: 'Item',
-                  name: 'item',
-                  widget: 'object',
-                  fields:
-                    [
-                      {
-                        label: 'Local',
-                        name: 'local',
-                        widget: 'boolean',
-                        default: true,
-                      },
-                      { label: 'Text', name: 'text', widget: 'string' },
-                      { label: 'path', name: 'path', widget: 'string' },
-                    ],
-                },
+              allow-add: true,
+              fields:
+                [
+                  { label: 'Text', name: 'text', widget: 'string' },
+                  {
+                    label: 'Local',
+                    name: 'local',
+                    widget: 'boolean',
+                    default: true,
+                  },
+                  { label: 'path', name: 'path', widget: 'string' },
+                ],
             }

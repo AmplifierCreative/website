@@ -1,24 +1,27 @@
 ---
 templateKey: global-page
 title: Global
-menu:
-  - item:
+footer:
+  menu:
+    - text: LinkTest
       local: true
-      text: LinkTest
       path: /blog
-  - item:
+    - text: LinkTest2
       local: false
-      text: TestLink
       path: /thanks
-copywrite: >
-  Here is something
-social:
-  - item:
+  copywrite: Here is something
+  social:
+    - text: Facebook
       local: false
-      text: Facebook
       path: https://www.facebook.com
-  - item:
+    - text: Instragram
       local: false
-      text: Instragram
       path: https://www.facebook.com
+nav:
+  - text: LinkTest
+    local: true
+    path: /blog
+  - text: TestLink
+    local: false
+    path: /thanks
 ---
