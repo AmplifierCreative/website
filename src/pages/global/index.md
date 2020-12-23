@@ -1,6 +1,12 @@
 ---
 templateKey: global-page
-title: Global
+nav:
+  - text: LinkTest
+    local: true
+    path: /blog
+  - text: TestLink
+    local: false
+    path: /thanks
 footer:
   menu:
     - text: LinkTest
@@ -17,11 +23,4 @@ footer:
     - text: Instragram
       local: false
       path: https://www.facebook.com
-nav:
-  - text: LinkTest
-    local: true
-    path: /blog
-  - text: TestLink
-    local: false
-    path: /thanks
 ---

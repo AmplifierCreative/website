@@ -5,28 +5,100 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 
 const parentContainer = {
-  height: '400px',
+  paddingTop: '4em',
+  paddingBottom: '8em',
 }
 
-const container = {
-  color: 'black',
-  fontSize: '2em',
+const tableContainer = {
+  margin: '1.75em',
+  paddingBottom: '1em',
 }
-
 export const GlobalPageTemplate = ({
-  title,
   footer,
   nav,
 }) => {
   return (   
     <div className="container is-max-widescreen" style={parentContainer}>
-        {footer && footer.menu.map((item) => (
-          <div style={container}>
-            <p>{item.text}</p>
-            <p>{item.path}</p>
+      <div className="">
+        <div className="global-header-container">
+            <h3 className="global-header">Navigation</h3>
+        </div>
+        <div className="">
+          <h4>Menu:</h4>
+        </div>
+        <div style={tableContainer}>
+          <table className="table">
+            <thead>
+              <th className="theader">Label</th>
+              <th className="theader">Path</th>
+              <th className="theader">Internal</th>
+            </thead>
+            {nav && nav.map((item) => (
+              <tr className="table-row">
+                <td className="td">{item.text}</td>
+                <td className="td">{item.path}</td>
+                <td className="td">{item.local.toString()}</td>
+              </tr>
+            )) 
+            }
+          </table>
+        </div>
+      </div>
+      <div>
+        <div className="global-header-container">
+          <h3 className="global-header">Footer</h3>
+        </div> 
+      <div className="">
+        <div className="">
+          <h4>Menu:</h4>
+        </div>
+        <div style={tableContainer}>
+          <table className="table">
+            <thead>
+              <th className="theader">Label</th>
+              <th className="theader">Path</th>
+              <th className="theader">Internal</th>
+            </thead>
+            {footer.menu && footer.menu.map((item) => (
+              <tr className="table-row">
+                <td className="td">{item.text}</td>
+                <td className="td">{item.path}</td>
+                <td className="td">{item.local.toString()}</td>
+              </tr>
+            )) 
+            }
+          </table>
+        </div>
+      </div>
+      <div className="">
+        <div>
+          <h4>Social Paths:</h4>
+        </div>
+        <div style={tableContainer}>
+          <table className="table">
+            <thead>
+              <th className="theader">Path</th>
+            </thead>
+            {footer.social && footer.social.map((item) => (
+              <tr className="table-row">
+                <td className="td">{item.path}</td>
+              </tr>
+            )) 
+            }
+          </table>
+        </div>
+        </div>
+        <div className="">
+          <div>
+            <h4>Copywrite</h4>
           </div>
-          )
-        )}
+          <div style={tableContainer}>
+            <div>
+              <p>{footer.copywrite}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 )}
 
@@ -42,7 +114,6 @@ const GlobalPage = ({ data }) => {
   return (
     <Layout>
       <GlobalPageTemplate
-        title={frontmatter.title}
         footer={frontmatter.footer}
         nav={frontmatter.nav}
       />
@@ -64,7 +135,6 @@ export const pageQuery = graphql`
   query GlobalPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "global-page" } }) {
       frontmatter {
-        title
         footer {
             menu {
                 text
@@ -72,7 +142,7 @@ export const pageQuery = graphql`
                 path
             }
             copywrite
-            menu {
+            social {
                 text
                 local
                 path

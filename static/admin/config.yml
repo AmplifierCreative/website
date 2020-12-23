@@ -569,7 +569,23 @@ collections:
               widget: 'hidden',
               default: 'global-page',
             }
-          - { label: Title, name: title, widget: string }
+          - {
+              label: 'Navigation',
+              name: 'nav',
+              widget: 'list',
+              allow-add: true,
+              fields:
+                [
+                  { label: 'Text', name: 'text', widget: 'string' },
+                  {
+                    label: 'Local',
+                    name: 'local',
+                    widget: 'boolean',
+                    default: true,
+                  },
+                  { label: 'path', name: 'path', widget: 'string' },
+                ],
+            }
           - {
               label: 'Footer',
               name: 'footer',
@@ -609,22 +625,5 @@ collections:
                         { label: 'path', name: 'path', widget: 'string' },
                       ],
                   },
-                ],
-            }
-          - {
-              label: 'Navigation',
-              name: 'nav',
-              widget: 'list',
-              allow-add: true,
-              fields:
-                [
-                  { label: 'Text', name: 'text', widget: 'string' },
-                  {
-                    label: 'Local',
-                    name: 'local',
-                    widget: 'boolean',
-                    default: true,
-                  },
-                  { label: 'path', name: 'path', widget: 'string' },
                 ],
             }

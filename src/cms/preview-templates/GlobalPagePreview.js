@@ -8,7 +8,6 @@ const GlobalPagePreview = ({ entry, getAsset }) => {
   if (data) {
     return (
       <GlobalPageTemplate
-        title={data.title}
         footer={data.footer}
         nav={data.nav}
       />
