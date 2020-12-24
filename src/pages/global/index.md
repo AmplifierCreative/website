@@ -1,26 +1,42 @@
 ---
 templateKey: global-page
 nav:
-  - text: LinkTest
+  - text: about
     local: true
+    path: /about
+  - text: portfolio
+    local: true
+    path: /projects
+  - local: true
+    text: services
+    path: /services
+  - local: true
+    text: blog
     path: /blog
-  - text: TestLink
-    local: false
-    path: /thanks
+  - local: true
+    text: contact
+    path: /contact
 footer:
   menu:
-    - text: LinkTest
+    - text: About
       local: true
+      path: /about
+    - text: Services
+      local: true
+      path: /services
+    - local: true
+      text: Portfolio
+      path: /projects
+    - local: true
+      text: Blog
       path: /blog
-    - text: LinkTest2
-      local: false
-      path: /thanks
-  copywrite: Here is something
+    - local: true
+      text: Contact
+      path: /contact
+  copywrite: © Amplifier Creative 2020 view our Terms of Use and Privacy Policy.
   social:
-    - text: Facebook
-      local: false
+    - local: false
       path: https://www.facebook.com
-    - text: Instragram
-      local: false
-      path: https://www.facebook.com
+    - local: false
+      path: https://www.instagram.com
 ---

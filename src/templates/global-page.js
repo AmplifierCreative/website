@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
 
@@ -19,6 +20,9 @@ export const GlobalPageTemplate = ({
 }) => {
   return (   
     <div className="container is-max-widescreen" style={parentContainer}>
+    <Helmet>
+      <body className="menu-color-2" />
+    </Helmet>
       <div className="">
         <div className="global-header-container">
             <h3 className="global-header">Navigation</h3>
@@ -78,10 +82,12 @@ export const GlobalPageTemplate = ({
           <table className="table">
             <thead>
               <th className="theader">Path</th>
+              <th className="theader">Internal</th>
             </thead>
             {footer.social && footer.social.map((item) => (
               <tr className="table-row">
                 <td className="td">{item.path}</td>
+                <td className="td">{item.local.toString()}</td>
               </tr>
             )) 
             }
@@ -135,6 +141,11 @@ export const pageQuery = graphql`
   query GlobalPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "global-page" } }) {
       frontmatter {
+        nav {
+            text
+            local
+            path
+        }  
         footer {
             menu {
                 text
@@ -143,16 +154,10 @@ export const pageQuery = graphql`
             }
             copywrite
             social {
-                text
                 local
                 path
             }
         }
-        nav {
-            text
-            local
-            path
-        }  
       }
     }
   }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import { Link, graphql, StaticQuery } from 'gatsby'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 import instagram from '../img/social/instagram.svg'
@@ -240,7 +241,7 @@ const desktopMenu = <div className="columns">
 </div>
 </div>
 
-const Footer = class extends React.Component {
+class Footer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -276,7 +277,11 @@ const Footer = class extends React.Component {
 
   render() {
     const isMobile= this.state.isMobile;
+
+    const { data } = this.props
+    const { edges: posts } = data.allMarkdownRemark
     
+    console.log(posts[0].node.frontmatter.footer.copywrite)
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
@@ -352,4 +357,47 @@ const Footer = class extends React.Component {
   }
 }
 
-export default Footer
+Footer.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
+}
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query FooterQuery {
+        allMarkdownRemark(
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "global-page" }
+            }
+          }
+        ) {
+          edges {
+            node {
+              frontmatter {
+                templateKey
+                footer {
+                  menu {
+                    text
+                    path
+                    local
+                  }
+                  copywrite
+                  social {
+                    path
+                    local
+                  }
+                }
+                }
+              }
+            }
+          }
+        }  
+      `}
+    render={(data) => <Footer data={data} />}
+  />
+)

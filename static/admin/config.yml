@@ -596,6 +596,8 @@ collections:
                     label: 'Menu',
                     name: 'menu',
                     widget: 'list',
+                    min: 5,
+                    max: 6,
                     fields:
                       [
                         { label: 'Text', name: 'text', widget: 'string' },
@@ -613,9 +615,10 @@ collections:
                     label: 'Social',
                     name: 'social',
                     widget: 'list',
+                    min: 2,
+                    max: 3,
                     fields:
                       [
-                        { label: 'Text', name: 'text', widget: 'string' },
                         {
                           label: 'Local',
                           name: 'local',

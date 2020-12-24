@@ -148,6 +148,6 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <Carousel data={data} count={count} />}
+    render={(data) => <Carousel data={data} />}
   />
 )
