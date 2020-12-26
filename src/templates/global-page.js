@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
+import Content, { HTMLContent } from '../components/Content'
 import Layout from '../components/Layout'
 
 const parentContainer = {
   paddingTop: '4em',
   paddingBottom: '8em',
+  paddingLeft: '1em',
+  paddingRight: '1em',
 }
 
 const tableContainer = {
@@ -17,7 +20,11 @@ const tableContainer = {
 export const GlobalPageTemplate = ({
   footer,
   nav,
+  content, 
+  contentComponent 
 }) => {
+  const PageContent = contentComponent || Content
+  console.log(contentComponent)
   return (   
     <div className="container is-max-widescreen" style={parentContainer}>
     <Helmet>
@@ -96,11 +103,11 @@ export const GlobalPageTemplate = ({
         </div>
         <div className="">
           <div>
-            <h4>Copywrite</h4>
+            <h4>Copyright:</h4>
           </div>
           <div style={tableContainer}>
             <div>
-              <p>{footer.copywrite}</p>
+              <PageContent content={content} />
             </div>
           </div>
         </div>
@@ -109,9 +116,13 @@ export const GlobalPageTemplate = ({
 )}
 
 GlobalPageTemplate.propTypes = {
-  title: PropTypes.string,
-  footer: PropTypes.object,
-  nav: PropTypes.object,
+  footer: PropTypes.shape({
+    menu: PropTypes.array,
+    social: PropTypes.array,
+  }),
+  nav: PropTypes.array,
+  content: PropTypes.node.isRequired,
+  contentComponent: PropTypes.func,
 }
 
 const GlobalPage = ({ data }) => {
@@ -122,6 +133,8 @@ const GlobalPage = ({ data }) => {
       <GlobalPageTemplate
         footer={frontmatter.footer}
         nav={frontmatter.nav}
+        content={data.markdownRemark.html}
+        contentComponent={HTMLContent}
       />
     </Layout>
   )
@@ -152,7 +165,6 @@ export const pageQuery = graphql`
                 local
                 path
             }
-            copywrite
             social {
                 local
                 path

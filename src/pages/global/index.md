@@ -33,10 +33,11 @@ footer:
     - local: true
       text: Contact
       path: /contact
-  copywrite: © Amplifier Creative 2020 view our Terms of Use and Privacy Policy.
   social:
     - local: false
       path: https://www.facebook.com
     - local: false
       path: https://www.instagram.com
 ---
+
+© Amplifier Creative 2020 view our [Terms of Use](/terms) and [Privacy Policy](/privacy).

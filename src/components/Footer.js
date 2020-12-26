@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 
+import Content, { HTMLContent } from '../components/Content'
 import instagram from '../img/social/instagram.svg'
 import twitter from '../img/social/twitter.svg'
 import linkedin from '../img/social/linkedin.svg'
@@ -281,7 +282,7 @@ class Footer extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
     
-    console.log(posts[0].node.frontmatter.footer.copywrite)
+    console.log(posts[0].node.frontmatter.footer.copyright)
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
@@ -386,7 +387,6 @@ export default () => (
                     path
                     local
                   }
-                  copywrite
                   social {
                     path
                     local

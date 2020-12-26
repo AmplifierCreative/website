@@ -574,6 +574,7 @@ collections:
               name: 'nav',
               widget: 'list',
               allow-add: true,
+              label_singular: 'Navigation Item',
               fields:
                 [
                   { label: 'Text', name: 'text', widget: 'string' },
@@ -598,6 +599,7 @@ collections:
                     widget: 'list',
                     min: 5,
                     max: 6,
+                    label_singular: 'Menu Item',
                     fields:
                       [
                         { label: 'Text', name: 'text', widget: 'string' },
@@ -610,13 +612,13 @@ collections:
                         { label: 'path', name: 'path', widget: 'string' },
                       ],
                   },
-                  { label: 'Copywrite', name: 'copywrite', widget: 'text' },
                   {
                     label: 'Social',
                     name: 'social',
                     widget: 'list',
                     min: 2,
                     max: 3,
+                    label_singular: 'Social Item',
                     fields:
                       [
                         {
@@ -630,3 +632,4 @@ collections:
                   },
                 ],
             }
+          - { label: 'Copyright', name: 'body', widget: 'markdown' }
