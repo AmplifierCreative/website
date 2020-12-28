@@ -24,7 +24,6 @@ export const GlobalPageTemplate = ({
   contentComponent 
 }) => {
   const PageContent = contentComponent || Content
-  console.log(contentComponent)
   return (   
     <div className="container is-max-widescreen" style={parentContainer}>
     <Helmet>
@@ -153,6 +152,7 @@ export default GlobalPage
 export const pageQuery = graphql`
   query GlobalPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "global-page" } }) {
+      html
       frontmatter {
         nav {
             text

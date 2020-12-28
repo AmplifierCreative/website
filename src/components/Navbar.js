@@ -5,6 +5,8 @@ import logoDark from '../img/logo-dk.svg'
 
 const nav = {
   margin: '0',
+  postion: 'fixed',
+  width: '100%',
 }
 
 const navBarContainer = {

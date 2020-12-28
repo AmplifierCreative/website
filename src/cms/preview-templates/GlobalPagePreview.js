@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { GlobalPageTemplate } from '../../templates/global-page'
 
-const GlobalPagePreview = ({ entry, getAsset }) => {
+const GlobalPagePreview = ({ entry, widgetFor }) => {
   const data = entry.getIn(['data']).toJS()
 
   if (data) {
@@ -10,6 +10,7 @@ const GlobalPagePreview = ({ entry, getAsset }) => {
       <GlobalPageTemplate
         footer={data.footer}
         nav={data.nav}
+        content={widgetFor('body')}
       />
     )
   } else {
@@ -21,7 +22,7 @@ GlobalPagePreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
   }),
-  getAsset: PropTypes.func,
+  widgetFor: PropTypes.func,
 }
 
 export default GlobalPagePreview

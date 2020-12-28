@@ -34,20 +34,12 @@ const emailTextArea = {
   width: '100%',
 }
 
-
-const menuItemLinkA = {
-  fontFamily: 'VisbyCF-Medium',
-  letterSpacing: '2px',
-  textTransform: 'uppercase',
-  paddingLeft: '0',
-  marginBottom: '.75em',
-}
-
 const menuItemLink = {
   fontFamily: 'VisbyCF-Medium',
   letterSpacing: '2px',
   textTransform: 'uppercase',
   paddingLeft: '0',
+  marginBottom: '.75em',
 }
 
 const footerPolicy = {
@@ -58,7 +50,7 @@ const footerPolicy = {
 }
 
 const footerPolicyContainer = {
-  marginTop: '3.5em',
+  marginTop: '2.75em',
 }
 
 const footerPolicyLink = {
@@ -98,15 +90,55 @@ const socialSvg = {
   marginLeft: 'auto',
 }
 
+const LinksMenu = (links) => {
+  return links.links.map((link) => {
+    const { path, text, local } = link
+
+    if (local) {
+      return (
+        <li>
+          <Link
+          to={link.path}
+          className="footer-item"
+          style={menuItemLink}
+          >
+            {link.text}
+          </Link>
+        </li>
+      )
+    } 
+
+    if (!local) {
+      return (
+      <li>
+        <a
+        href={path}
+        className="footer-item"
+        style={menuItemLink}
+        >
+          {text}
+        </a>
+      </li>
+      )
+    }
+    return null
+  })
+}
+
+LinksMenu.propTypes = {
+  links: PropTypes.array,
+}
+
 const mobileMenu = <div className="columns is-mobile has-text-centered">
 <div className="column is-6">
   <section className="menu">
     <ul className="footer-list">
+      
       <li>
         <Link
           to="/about"
           className="footer-item"
-          style={menuItemLinkA}
+          style={menuItemLink}
         >
           About
         </Link>
@@ -124,7 +156,7 @@ const mobileMenu = <div className="columns is-mobile has-text-centered">
         <Link
           className="footer-item"
           to="/contact"
-          style={menuItemLinkA}
+          style={menuItemLink}
         >
           Contact
         </Link>
@@ -139,7 +171,7 @@ const mobileMenu = <div className="columns is-mobile has-text-centered">
         <Link
           className="footer-item"
           to="/projects"
-          style={menuItemLinkA}
+          style={menuItemLink}
         >
           Portfolio
         </Link>
@@ -167,80 +199,88 @@ const mobileMenu = <div className="columns is-mobile has-text-centered">
 </div>
 </div>
 
-const desktopMenu = <div className="columns">
-<div className="column is-3">
-  <section className="menu">
-    <ul className="footer-list">
-      <li>
-        <Link
-          to="/about"
-          className="footer-item"
-          style={menuItemLinkA}
-        >
-          About
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/services"
-          style={menuItemLink}
-        >
-          Services
-        </Link>
-      </li>
-    </ul>
-  </section>
-</div>
-<div className="column is-3">
-  <section>
-    <ul className="footer-list">
-      <li>
-        <Link
-          className="footer-item"
-          to="/projects"
-          style={menuItemLinkA}
-        >
-          Portfolio
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/blog"
-          style={menuItemLink}
-        >
-          Blog
-        </Link>
-      </li>
-    </ul>
-  </section>
-</div>
-<div className="column is-3">
-  <section>
-    <ul className="footer-list">
-      <li>
-        <Link
-          className="footer-item"
-          to="/contact"
-          style={menuItemLinkA}
-        >
-          Contact
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/privacy"
-          style={menuItemLink}
-        >
-          Privacy
-        </Link>
-      </li>
-    </ul>
-  </section>
-</div>
-</div>
+const DesktopMenu = ( { _links } ) => 
+{ return (
+  <div className="columns">
+    <div className="column is-3">
+      <section className="menu">
+        <ul className="footer-list">
+         {/*  <LinksMenu links={ _links } /> */}
+          <li>
+            <Link
+              to="/about"
+              className="footer-item"
+              style={menuItemLink}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="footer-item"
+              to="/services"
+              style={menuItemLink}
+            >
+              Services
+            </Link>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div className="column is-3">
+      <section>
+        <ul className="footer-list">
+          <li>
+            <Link
+              className="footer-item"
+              to="/projects"
+              style={menuItemLink}
+            >
+              Portfolio
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="footer-item"
+              to="/blog"
+              style={menuItemLink}
+            >
+              Blog
+            </Link>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div className="column is-3">
+      <section>
+        <ul className="footer-list">
+          <li>
+            <Link
+              className="footer-item"
+              to="/contact"
+              style={menuItemLink}
+            >
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="footer-item"
+              to="/privacy"
+              style={menuItemLink}
+            >
+              Privacy
+            </Link>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>)
+  }
+
+DesktopMenu.propTypes = {
+  _links: PropTypes.array,
+}
 
 class Footer extends React.Component {
   constructor(props) {
@@ -277,12 +317,11 @@ class Footer extends React.Component {
   }
 
   render() {
-    const isMobile= this.state.isMobile;
+    const isMobile = this.state.isMobile;
 
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-    
-    console.log(posts[0].node.frontmatter.footer.copyright)
+    console.log(posts[0].node.frontmatter.footer.menu)
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
@@ -310,7 +349,7 @@ class Footer extends React.Component {
                   />
                 }
               </form>
-              {isMobile ? mobileMenu : desktopMenu}
+              {isMobile ? mobileMenu : <DesktopMenu _links={posts[0].node.frontmatter.footer.menu} />}
             </div>
             <div className="column is-one-third">
               <div className="columns">
@@ -350,6 +389,9 @@ class Footer extends React.Component {
                     </Link>
                     .
                   </span>
+                  <span style={footerPolicy}>
+                    <HTMLContent content={posts[0].node.html} />
+                  </span>
                 </div>
               </div>
         </div>
@@ -379,6 +421,7 @@ export default () => (
         ) {
           edges {
             node {
+              html
               frontmatter {
                 templateKey
                 footer {
