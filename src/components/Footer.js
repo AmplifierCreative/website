@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 
-import Content, { HTMLContent } from '../components/Content'
+import { HTMLContent } from '../components/Content'
 import instagram from '../img/social/instagram.svg'
 import twitter from '../img/social/twitter.svg'
 import linkedin from '../img/social/linkedin.svg'

@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql, StaticQuery } from 'gatsby'
+import PropTypes from 'prop-types'
+
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
@@ -112,7 +114,42 @@ const navItem = {
   lineHeight: '1.5em',
   letterSpacing: '1px',
 }
-const Navbar = class extends React.Component {
+
+const NavLinksMenu = ({ links }) => {
+  return links.map((link) => {
+    const { path, text, local } = link
+
+    if (local) {
+      return (
+        <li>
+          <Link
+          to={link.path}
+          className="navbar-item"
+          style={navItem}
+          >
+            {link.text}
+          </Link>
+        </li>
+      )
+    } 
+
+    if (!local) {
+      return (
+      <li>
+        <a
+        href={path}
+        className="footer-item"
+        style={navItem}
+        >
+          {text}
+        </a>
+      </li>
+      )
+    }
+    return null
+  })
+}
+class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -154,7 +191,10 @@ const Navbar = class extends React.Component {
   }
 
   render() {
-    const isMobile= this.state.isMobile;
+    const isMobile = this.state.isMobile
+    
+    const { data } = this.props
+    const { edges: posts } = data.allMarkdownRemark
 
     return (
       <nav
@@ -209,51 +249,7 @@ const Navbar = class extends React.Component {
                 >
                   <div>
                     <ul class="menu-list has-text-right">
-                      <li>
-                        <Link
-                          className="navbar-item"
-                          to="/about"
-                          style={navItem}
-                        >
-                          About
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="navbar-item"
-                          to="/projects"
-                          style={navItem}
-                        >
-                          Portfolio
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="navbar-item"
-                          to="/services"
-                          style={navItem}
-                        >
-                          Services
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="navbar-item"
-                          to="/blog"
-                          style={navItem}
-                        >
-                          Blog
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="navbar-item"
-                          to="/contact"
-                          style={navItem}
-                        >
-                          Contact
-                        </Link>
-                      </li>
+                      <NavLinksMenu links={posts[0].node.frontmatter.nav} />
                     </ul>
                   </div>
                 </div>
@@ -269,4 +265,40 @@ const Navbar = class extends React.Component {
   }
 }
 
-export default Navbar
+Navbar.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
+}
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query NavbarQuery {
+        allMarkdownRemark(
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "global-page" }
+            }
+          }
+        ) {
+          edges {
+            node {
+              frontmatter {
+                templateKey
+                nav {
+                  text
+                  path
+                  local
+                }
+              }
+              }
+            }
+          }
+        }  
+      `}
+    render={(data) => <Navbar data={data} />}
+  />
+)

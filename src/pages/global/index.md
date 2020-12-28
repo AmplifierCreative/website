@@ -1,20 +1,20 @@
 ---
 templateKey: global-page
 nav:
-  - text: about
+  - text: About
     local: true
     path: /about
-  - text: portfolio
+  - text: Portfolio
     local: true
     path: /projects
   - local: true
-    text: services
+    text: Services
     path: /services
   - local: true
-    text: blog
+    text: Blog
     path: /blog
   - local: true
-    text: contact
+    text: Contact
     path: /contact
 footer:
   menu:
