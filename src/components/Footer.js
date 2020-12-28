@@ -90,8 +90,8 @@ const socialSvg = {
   marginLeft: 'auto',
 }
 
-const LinksMenu = (links) => {
-  return links.links.map((link) => {
+const LinksMenu = ({ links, start, end }) => {
+  return links.slice(start, end).map((link) => {
     const { path, text, local } = link
 
     if (local) {
@@ -129,154 +129,58 @@ LinksMenu.propTypes = {
   links: PropTypes.array,
 }
 
-const mobileMenu = <div className="columns is-mobile has-text-centered">
-<div className="column is-6">
-  <section className="menu">
-    <ul className="footer-list">
-      
-      <li>
-        <Link
-          to="/about"
-          className="footer-item"
-          style={menuItemLink}
-        >
-          About
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/services"
-          style={menuItemLink}
-        >
-          Services
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/contact"
-          style={menuItemLink}
-        >
-          Contact
-        </Link>
-      </li>
-    </ul>
-  </section>
-</div>
-<div className="column is-6">
-  <section>
-    <ul className="footer-list">
-    <li>
-        <Link
-          className="footer-item"
-          to="/projects"
-          style={menuItemLink}
-        >
-          Portfolio
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/blog"
-          style={menuItemLink}
-        >
-          Blog
-        </Link>
-      </li>
-      <li>
-        <Link
-          className="footer-item"
-          to="/privacy"
-          style={menuItemLink}
-        >
-          Privacy
-        </Link>
-      </li>
-    </ul>
-  </section>
-</div>
-</div>
+const MobileMenu = ({ _links }) => {
+  return (
+    <div className="columns is-mobile has-text-centered">
+      <div className="column is-6">
+        <section className="menu">
+          <ul className="footer-list">
+             <LinksMenu links={ _links } start={0} end={3} />
+          </ul>
+        </section>
+      </div>
+      <div className="column is-6">
+        <section>
+          <ul className="footer-list">
+            <LinksMenu links={ _links } start={3} end={6} />
+          </ul>
+        </section>
+      </div>
+    </div>
+  )
+}
 
-const DesktopMenu = ( { _links } ) => 
-{ return (
-  <div className="columns">
-    <div className="column is-3">
-      <section className="menu">
-        <ul className="footer-list">
-         {/*  <LinksMenu links={ _links } /> */}
-          <li>
-            <Link
-              to="/about"
-              className="footer-item"
-              style={menuItemLink}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="footer-item"
-              to="/services"
-              style={menuItemLink}
-            >
-              Services
-            </Link>
-          </li>
-        </ul>
-      </section>
+const DesktopMenu = ({ _links }) => { 
+  return (
+    <div className="columns">
+      <div className="column is-3">
+        <section className="menu">
+          <ul className="footer-list">
+            <LinksMenu links={ _links } start={0} end={2} />
+          </ul>
+        </section>
+      </div>
+      <div className="column is-3">
+        <section>
+          <ul className="footer-list">
+            <LinksMenu links={ _links } start={2} end={4} />
+          </ul>
+        </section>
+      </div>
+      <div className="column is-3">
+        <section>
+          <ul className="footer-list">
+            <LinksMenu links={ _links } start={4} end={6} />
+          </ul>
+        </section>
+      </div>
     </div>
-    <div className="column is-3">
-      <section>
-        <ul className="footer-list">
-          <li>
-            <Link
-              className="footer-item"
-              to="/projects"
-              style={menuItemLink}
-            >
-              Portfolio
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="footer-item"
-              to="/blog"
-              style={menuItemLink}
-            >
-              Blog
-            </Link>
-          </li>
-        </ul>
-      </section>
-    </div>
-    <div className="column is-3">
-      <section>
-        <ul className="footer-list">
-          <li>
-            <Link
-              className="footer-item"
-              to="/contact"
-              style={menuItemLink}
-            >
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="footer-item"
-              to="/privacy"
-              style={menuItemLink}
-            >
-              Privacy
-            </Link>
-          </li>
-        </ul>
-      </section>
-    </div>
-  </div>)
-  }
+  )
+}
+
+MobileMenu.propTypes = {
+  _links: PropTypes.array,
+}
 
 DesktopMenu.propTypes = {
   _links: PropTypes.array,
@@ -321,7 +225,7 @@ class Footer extends React.Component {
 
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-    console.log(posts[0].node.frontmatter.footer.menu)
+    
     return (
       <footer className="footer" style={footer}>
         <div className="container is-max-widescreen">
@@ -349,7 +253,10 @@ class Footer extends React.Component {
                   />
                 }
               </form>
-              {isMobile ? mobileMenu : <DesktopMenu _links={posts[0].node.frontmatter.footer.menu} />}
+              { isMobile ? 
+                  <MobileMenu _links={posts[0].node.frontmatter.footer.menu} /> : 
+                  <DesktopMenu _links={posts[0].node.frontmatter.footer.menu}/>
+              }
             </div>
             <div className="column is-one-third">
               <div className="columns">
@@ -359,17 +266,17 @@ class Footer extends React.Component {
               </div>
               <div className={`columns is-mobile ${ this.state.isMobile && 'is-centered'}`}>
                 <div className="column is-2" style={socialCircle}>
-                  <a title="twitter" href="#">
+                  <a title="twitter" href={posts[0].node.frontmatter.footer.social.twitter}>
                     <img style={socialSvg} src={twitter} alt="Twitter" />
                   </a>
                 </div>
                 <div className="column is-2" style={socialCircleB}>
-                  <a title="instagram" href="#">
+                  <a title="instagram" href={posts[0].node.frontmatter.footer.social.ig}>
                     <img style={socialSvg} src={instagram} alt="Instagram" />
                   </a>
                 </div>
                 <div className="column is-2" style={socialCircleB}>
-                  <a title="linkedin" href="#">
+                  <a title="linkedin" href={posts[0].node.frontmatter.footer.social.linkedin}>
                     <img style={socialSvg} src={linkedin} alt="LinkedIn" />
                   </a>
                 </div>
@@ -379,18 +286,7 @@ class Footer extends React.Component {
           <div className={`columns ${ this.state.isMobile && 'has-text-centered'}`}>
                 <div className="column " style={footerPolicyContainer}>
                   <span style={footerPolicy}>
-                    &#169; Amplifier Creative 2020 view our{' '}
-                    <Link to="/terms" className="link footer-link-hover" style={footerPolicyLink}>
-                      Terms of Use
-                    </Link>{' '}
-                    and{' '}
-                    <Link to="/privacy" className="link footer-link-hover" style={footerPolicyLink}>
-                      Privacy Policy
-                    </Link>
-                    .
-                  </span>
-                  <span style={footerPolicy}>
-                    <HTMLContent content={posts[0].node.html} />
+                    <HTMLContent content={posts[0].node.html} className={"link footer-link-hover"} />
                   </span>
                 </div>
               </div>
@@ -431,8 +327,9 @@ export default () => (
                     local
                   }
                   social {
-                    path
-                    local
+                    twitter
+                    ig
+                    linkedin
                   }
                 }
                 }

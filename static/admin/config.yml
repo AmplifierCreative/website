@@ -615,19 +615,16 @@ collections:
                   {
                     label: 'Social',
                     name: 'social',
-                    widget: 'list',
-                    min: 2,
-                    max: 3,
-                    label_singular: 'Social Item',
+                    widget: 'object',
                     fields:
                       [
+                        { label: 'Twitter', name: 'twitter', widget: 'string' },
+                        { label: 'Instragram', name: 'ig', widget: 'string' },
                         {
-                          label: 'Local',
-                          name: 'local',
-                          widget: 'boolean',
-                          default: true,
+                          label: 'Linkedin',
+                          name: 'linkedin',
+                          widget: 'string',
                         },
-                        { label: 'path', name: 'path', widget: 'string' },
                       ],
                   },
                 ],

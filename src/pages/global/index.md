@@ -34,10 +34,9 @@ footer:
       text: Contact
       path: /contact
   social:
-    - local: false
-      path: https://www.facebook.com
-    - local: false
-      path: https://www.instagram.com
+    twitter: https://www.facebook.com
+    ig: https://www.instagram.com
+    linkedin: https://www.instagram.com
 ---
 
 © Amplifier Creative 2020 view our [Terms of Use](/terms) and [Privacy Policy](/privacy).

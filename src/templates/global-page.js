@@ -87,16 +87,21 @@ export const GlobalPageTemplate = ({
         <div style={tableContainer}>
           <table className="table">
             <thead>
+              <th className="theader">Icon</th>
               <th className="theader">Path</th>
-              <th className="theader">Internal</th>
             </thead>
-            {footer.social && footer.social.map((item) => (
               <tr className="table-row">
-                <td className="td">{item.path}</td>
-                <td className="td">{item.local.toString()}</td>
-              </tr>
-            )) 
-            }
+                <td className="td">Twitter</td>
+                <td className="td">{footer.social.twitter}</td>
+              </tr> 
+              <tr className="table-row">
+                <td className="td">Instagram</td>
+                <td className="td">{footer.social.ig}</td>
+              </tr> 
+              <tr className="table-row">
+                <td className="td">Linkedin</td>
+                <td className="td">{footer.social.linkedin}</td>
+              </tr> 
           </table>
         </div>
         </div>
@@ -117,7 +122,7 @@ export const GlobalPageTemplate = ({
 GlobalPageTemplate.propTypes = {
   footer: PropTypes.shape({
     menu: PropTypes.array,
-    social: PropTypes.array,
+    social: PropTypes.object,
   }),
   nav: PropTypes.array,
   content: PropTypes.node.isRequired,
@@ -166,8 +171,9 @@ export const pageQuery = graphql`
                 path
             }
             social {
-                local
-                path
+              twitter
+              ig
+              linkedin
             }
         }
       }
