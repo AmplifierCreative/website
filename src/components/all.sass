@@ -370,5 +370,31 @@ h1
   .contact-form-container
     padding-left: 0
 
+//404 Page
+.not-found-page > h3
+  color: $AC-white
+  font-size: 2.25em
+  position: relative
+
+.not-found-page > h3 > a
+  position: relative
+  display: inline-block
+  z-index: 4
+  cursor: pointer
+  text-decoration: none
+  color: $AC-white
+  &:hover
+    color: $AC-peach
+  &::before
+    content: ""
+    opacity: .5
+    width: 102%
+    height: 51%
+    position: absolute
+    z-index: -1
+    left: -2%
+    bottom: 5%
+    background-color: $AC-peach
+
 @import "blogroll"
 @import "projectroll"

@@ -630,3 +630,22 @@ collections:
                 ],
             }
           - { label: 'Copyright', name: 'body', widget: 'markdown' }
+      - file: 'src/pages/notFound/index.md'
+        label: '404 Page'
+        name: 'notFound-page'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'notFound-page',
+            }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - {
+              label: 'Use Image',
+              name: 'useImage',
+              widget: 'boolean',
+              default: false,
+            }
+          - { label: 'Image', name: 'image', widget: 'image' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }

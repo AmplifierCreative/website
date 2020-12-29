@@ -30,9 +30,9 @@ const text = {
   position: 'relative',
 }
 
-export const _404PageTemplate = ({ title, image, content, contentComponent, useImage }) => {
+export const NotFoundPageTemplate = ({ title, image, content, contentComponent, useImage }) => {
   const PageContent = contentComponent || Content
-
+  console.log(image)
   return (
     <div style={container}>
       <Helmet>
@@ -53,7 +53,7 @@ export const _404PageTemplate = ({ title, image, content, contentComponent, useI
   )
 } 
 
-_404PageTemplate.propTypes = {
+NotFoundPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
@@ -61,12 +61,12 @@ _404PageTemplate.propTypes = {
 
 }
 
-const _404Page = ({ data }) => {
+const NotFoundPage = ({ data }) => {
   const { markdownRemark: post } = data
 
   return (
     <Layout>
-      <_404PageTemplate
+      <NotFoundPageTemplate
         image={post.frontmatter.image}
         title={post.frontmatter.title}
         content={post.html}
@@ -77,14 +77,14 @@ const _404Page = ({ data }) => {
   )
 }
   
-_404Page.propTypes = {
+NotFoundPage.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default _404Page
+export default NotFoundPage
 
-export const _404PageQuery = graphql`
-  query _404PageTemplate {
+export const notFoundPageQuery = graphql`
+  query NotFoundPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "notFound-page" } }) {
       html
       frontmatter {

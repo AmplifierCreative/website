@@ -9,6 +9,7 @@ import ContactPagePreview from './preview-templates/ContactPagePreview'
 import AboutPagePreview from './preview-templates/AboutPagePreview'
 import ServicesPagePreview from './preview-templates/ServicesPagePreview'
 import GlobalPagePreview from './preview-templates/GlobalPagePreview'
+import NotFoundPagePreview from './preview-templates/NotFoundPagePreview'
 
 import Video from './editor-templates/Video'
 import ImageWithCopy from './editor-templates/ImageWithCopy'
@@ -22,6 +23,7 @@ CMS.registerPreviewTemplate('contact', ContactPagePreview)
 CMS.registerPreviewTemplate('about', AboutPagePreview)
 CMS.registerPreviewTemplate('services', ServicesPagePreview)
 CMS.registerPreviewTemplate('global', GlobalPagePreview)
+CMS.registerPreviewTemplate('notFound', NotFoundPagePreview)
 
 CMS.registerEditorComponent(Video)
 CMS.registerEditorComponent(ImageWithCopy)
