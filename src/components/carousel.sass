@@ -1,17 +1,15 @@
 @import "variables"
 
 .carousel-item-container
-    display: block
-    align-items: center
-    height: 360px
     margin: 10px
     &:hover
         border: 2px solid $AC-orange
         background-color: $AC-peach
         opacity: 0.85
 
-.slick-slide img
-    position: static !important
+.slick-track
+    display: flex !important
+    align-items: center !important
 
 @media screen and (max-width: 768px)
     .carousel
