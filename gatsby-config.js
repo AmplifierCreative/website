@@ -34,8 +34,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
-          endpoint: 'https://amplifiercreative.us2.list-manage.com/subscribe/post?u=e07e8e01225fa7bdd539e21ae&amp;id=71d00af653',
-          timeout: 3500,
+        endpoint:
+          'https://amplifiercreative.us2.list-manage.com/subscribe/post?u=e07e8e01225fa7bdd539e21ae&amp;id=71d00af653',
+        timeout: 3500,
       },
     },
     {
@@ -76,7 +77,9 @@ module.exports = {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
+        whitelist: ['strong'],
         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
+        printRejected: true,
       },
     }, // must be after other CSS plugins
     'gatsby-plugin-netlify', // make sure to keep it last in the array
