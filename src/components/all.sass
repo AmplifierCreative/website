@@ -56,6 +56,23 @@ h1
     margin-bottom: 1.5rem
     margin-top: 0
 
+.content blockquote
+  background-image: url('../img/orange-line.svg')
+  background-size: 55px 55px
+  background-repeat: no-repeat
+  background-color: none !important
+  border-left-width: 0px
+  padding: 0px
+  font-family: $family-sans-serif-bold
+  font-size: 2em
+  padding-left: 2em
+  margin-left: 33%
+  float: right
+
+.content .overview p
+  font-family: $family-sans-serif-bold
+  font-size: 2em
+  margin-bottom: 2em
 // Helper Classes
 .full-width-image-container
   width: 100vw
@@ -397,6 +414,19 @@ h1
     left: -2%
     bottom: 5%
     background-color: $AC-peach
+
+// projects
+.line-header:after
+  display: block
+  content: ' '
+  background-image: url('../img/orange-line.svg')
+  background-size: 55px 55px
+  height: 55px
+  width: 55px
+  position: absolute
+  z-index: -1
+  top: 18px
+  left: -10px
 
 @import "blogroll"
 @import "projectroll"

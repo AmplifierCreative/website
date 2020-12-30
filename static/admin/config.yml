@@ -35,6 +35,18 @@ collections:
       - { label: 'Featured Image', name: 'featuredimage', widget: image }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Result', name: 'result', widget: 'text' }
+      - {
+          label: Testimonials,
+          name: testimonials,
+          widget: list,
+          fields:
+            [
+              { label: Quote, name: quote, widget: string },
+              { label: Author, name: author, widget: string },
+              { label: AuthorBio, name: authorBio, widget: string },
+            ],
+        }
 
   - name: 'blog'
     label: 'Blog'

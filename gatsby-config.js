@@ -77,7 +77,13 @@ module.exports = {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
-        whitelist: ['strong', 'slick-track'],
+        whitelist: [
+          'strong',
+          'slick-track',
+          'quote',
+          'right-align-true',
+          'right-align-false',
+        ],
         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
         printRejected: true,
       },

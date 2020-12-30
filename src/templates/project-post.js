@@ -4,7 +4,14 @@ import { kebabCase } from 'lodash'
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
+import Testimonials from '../components/Testimonials'
 import Content, { HTMLContent } from '../components/Content'
+
+const titleText = {
+  fontFamily: 'VisbyCF-Bold',
+  fontWeight: '400',
+  fontSize: '4rem',
+}
 
 export const ProjectPostTemplate = ({
   content,
@@ -13,43 +20,64 @@ export const ProjectPostTemplate = ({
   tags,
   title,
   helmet,
+  result,
+  testimonials,
 }) => {
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section">
-      {helmet || ''}
-      <div className="container is-max-widescreen content">
-        <div className="columns">
-          <div className="column">
-            <h1
-              className="title has-text-weight-bold is-bold-light"
-              style={{ fontSize: `4rem` }}
-            >
+    <div>
+      <section className="hero is-small">
+        <div
+          className="hero-body"
+          style={{ minHeight: '30vh', paddingTop: '10vh' }}
+        >
+          <div className="container is-max-widescreen">
+            <h1 className="title" style={titleText}>
               {title}
             </h1>
-            <h2 className="orange-text">Overview</h2>
-            <p>{description}</p>
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h2 className="orange-text">Services</h2>
-                <ul className="taglist">
-                  {tags.map((tag) => (
-                    <li key={tag + `tag`}>
-                      {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
-                      <span style={{ fontSize: '1.5em' }}>{tag}</span>
-                      {/* </Link> */}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            <h2 className="orange-text">What We Did</h2>
-            <PostContent content={content} />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="section">
+        {helmet || ''}
+        <div className="container is-max-widescreen content">
+          <div className="columns">
+            <div className="column is-two-thirds overview">
+              <h2 className="orange-text">Overview</h2>
+              <p>{description}</p>
+            </div>
+            <div className="column is-one-third">
+              {tags && tags.length ? (
+                <div>
+                  <h2 className="orange-text">Services</h2>
+                  <ul className="taglist" style={{ marginTop: 0 }}>
+                    {tags.map((tag) => (
+                      <li key={tag + `tag`}>
+                        {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
+                        <span style={{ fontSize: '1.5em' }}>{tag}</span>
+                        {/* </Link> */}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column is-full">
+              <h2 className="orange-text">What We Did</h2>
+              <PostContent content={content} />
+              <h2 className="orange-text">The Result</h2>
+              <p>{result}</p>
+              {testimonials && testimonials.length ? (
+                <Testimonials testimonials={testimonials} />
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 
@@ -58,7 +86,9 @@ ProjectPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
+  result: PropTypes.string,
   helmet: PropTypes.object,
+  testimonials: PropTypes.array,
 }
 
 const ProjectPost = ({ data }) => {
@@ -77,10 +107,13 @@ const ProjectPost = ({ data }) => {
               name="description"
               content={`${post.frontmatter.description}`}
             />
+            <body className="menu-color-2" />
           </Helmet>
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        result={post.frontmatter.result}
+        testimonials={post.frontmatter.testimonials}
       />
     </Layout>
   )
@@ -104,6 +137,12 @@ export const pageQuery = graphql`
         title
         description
         tags
+        result
+        testimonials {
+          author
+          quote
+          authorBio
+        }
       }
     }
   }

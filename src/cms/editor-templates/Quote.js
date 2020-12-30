@@ -39,7 +39,11 @@ const Quote = {
     },
   // Function to create a text block from an instance of this component markdown page
   toBlock: function (obj) {
-    return `<div class="quote align-right-${obj.rightAlignCopy}"> <blockquote>${obj.quoteText}</blockquote> <h3>-${obj.quoteAuthor}</h3> <h4>${obj.quoteAuthorTitle}</h4></div>`
+    if (obj.rightAlignCopy === 'true') {
+      return `<div class="columns quote"><div> <blockquote>${obj.quoteText}</blockquote> <h3 class="has-text-right">-${obj.quoteAuthor}</h3> <h4 class="has-text-right">${obj.quoteAuthorTitle}</h4></div></div>`
+    } else {
+      return `<div class="columns quote"><div class="has-text-left"> <blockquote>${obj.quoteText}</blockquote> <h3>-${obj.quoteAuthor}</h3> <h4>${obj.quoteAuthorTitle}</h4></div></div>`
+    }
   },
   // Preview output for this component. Can either be a string or a React component
   toPreview: function (obj) {

@@ -10,9 +10,19 @@ clientlogo: /img/the_daniel_white_show_new.png
 featuredimage: /img/placeholder-2.jpg
 tags:
   - Copy
+result: >
+  High Brew Coffee benefitted from a quicker uptick in sales than other podcast
+  advertisements.
+testimonials:
+  - quote: n works with precision and excellence when bringing ads to life for this
+      podcast. Being a podcast that caters to all creatives, she was able to
+      create ads that fit the mold of Free Pizza
+    author: Daniel White
+    authorBio: Host and Founder, Free Pizza Podcast
+  - quote: n works with precision and excellence when bringing ads to life for this
+      podcast. Being a podcast that caters to all creatives, she was able to
+      create ads that fit the mold of Free Pizza
+    author: Dan White
+    authorBio: Host and Founder, Free Pizza Podcast
 ---
-{{< Video url=/img/strategy.gif control=true loop=false autoplay=false muted=true height=200 width=300 poster=/img/blog-index.jpg >}}
-
-<div class="align-right-true"> <blockquote>Jen works with precision and excellence when bringing ads to life for this podcast. Being a podcast that caters to all creatives, she was able to create ads that fit the mold of Free Pizza</blockquote> <h3>-Daniel White</h3> <h4>Host and Founder, Free Pizza Podcast</h4></div>
-
 Description goes here and may be long, so let’s have body copy. Daniel White Show
