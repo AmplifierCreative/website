@@ -23,7 +23,7 @@ class ProjectsFilter extends React.Component {
                   tags.map((tag) => (
                     <li key={tag.fieldValue}>
                       <Link to={`/projects/tags/${kebabCase(tag.fieldValue)}/`}>
-                        {tag.fieldValue} ({tag.totalCount})
+                        {tag.fieldValue}
                       </Link>
                     </li>
                   ))}

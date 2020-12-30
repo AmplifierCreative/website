@@ -19,17 +19,17 @@ export const ProjectPostTemplate = ({
   return (
     <section className="section">
       {helmet || ''}
-      <div className="container content">
+      <div className="container is-max-widescreen content">
         <div className="columns">
           <div className="column">
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
               {title}
             </h1>
+            <h2>Overview</h2>
             <p>{description}</p>
-            <PostContent content={content} />
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
+                <h4>Services</h4>
                 <ul className="taglist">
                   {tags.map((tag) => (
                     <li key={tag + `tag`}>
@@ -41,6 +41,8 @@ export const ProjectPostTemplate = ({
                 </ul>
               </div>
             ) : null}
+            <h2>What We Did</h2>
+            <PostContent content={content} />
           </div>
         </div>
       </div>

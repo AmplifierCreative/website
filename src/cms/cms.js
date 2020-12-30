@@ -13,6 +13,7 @@ import NotFoundPagePreview from './preview-templates/NotFoundPagePreview'
 
 import Video from './editor-templates/Video'
 import ImageWithCopy from './editor-templates/ImageWithCopy'
+import Quote from './editor-templates/Quote'
 
 CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('privacy', PrivacyPagePreview)
@@ -27,3 +28,4 @@ CMS.registerPreviewTemplate('notFound', NotFoundPagePreview)
 
 CMS.registerEditorComponent(Video)
 CMS.registerEditorComponent(ImageWithCopy)
+CMS.registerEditorComponent(Quote)
