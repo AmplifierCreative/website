@@ -7,13 +7,16 @@ import logoDark from '../img/logo-dk.svg'
 
 const nav = {
   margin: '0',
-  postion: 'fixed',
   width: '100%',
+  zIndex: '99',
+  position: 'sticky',
+  top: '0',
 }
 
 const navBarContainer = {
   maxWidth: '1240px',
   margin: 'auto',
+
 }
 
 const navBarContainerMobile = {
@@ -83,7 +86,7 @@ const navMenuContainer = {
   width: '38%',
   overflow: 'auto',
   backgroundColor: '#F8F3F1',
-  zIndex: 1,
+  zIndex: 100,
 }
 
 const navMenuContainerMobile = {
@@ -96,13 +99,13 @@ const navMenuContainerMobile = {
   width: '85%',
   overflow: 'auto',
   backgroundColor: '#F8F3F1',
-  zIndex: 1,
+  zIndex: 100,
 }
 
 const navMenu = {
   position: 'absolute',
   right: '13px',
-  zIndex: '99',
+  zIndex: '999',
   paddingTop: '3em',
 }
 

@@ -32,6 +32,8 @@ footer input::placeholder, footer textarea::placeholder
   font-family: $family-sans-serif-bold
   border-left: 1px solid $AC-peach
   height: 100%
+  position: relative
+  right: 9999px
   &:hover
     color: $AC-white
     background-color: $AC-peach
@@ -39,12 +41,29 @@ footer input::placeholder, footer textarea::placeholder
   &:active
     color: $AC-white
     border: 1px solid $AC-white
-  &::before
+  &::after
     content: " "
-    background-image: url('../img/return-arrow.svg')
+    background-image: url("../img/return-arrow.svg")
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+    position: absolute
+    top: 20px
+    right: -9984px
+    width: 67%
+    text-align: center
+    height: 62%
+    font-size: 2em
+    line-height: 30.8px
+  &:hover::before
+    background-color: $AC-peach
+    color: $AC-white
+  &:active::before
+    color: $AC-white
+    border: 1px solid $AC-white
 
 .submit-btn.is-active
-  display: block
+  display: inline-block
 
 .reset-btn
   background: $AC-black
