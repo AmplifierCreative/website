@@ -22,26 +22,29 @@ export const ProjectPostTemplate = ({
       <div className="container is-max-widescreen content">
         <div className="columns">
           <div className="column">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
+            <h1
+              className="title has-text-weight-bold is-bold-light"
+              style={{ fontSize: `4rem` }}
+            >
               {title}
             </h1>
-            <h2>Overview</h2>
+            <h2 className="orange-text">Overview</h2>
             <p>{description}</p>
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
-                <h4>Services</h4>
+                <h2 className="orange-text">Services</h2>
                 <ul className="taglist">
                   {tags.map((tag) => (
                     <li key={tag + `tag`}>
-                      <Link to={`/projects/tags/${kebabCase(tag)}/`}>
-                        {tag}
-                      </Link>
+                      {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
+                      <span style={{ fontSize: '1.5em' }}>{tag}</span>
+                      {/* </Link> */}
                     </li>
                   ))}
                 </ul>
               </div>
             ) : null}
-            <h2>What We Did</h2>
+            <h2 className="orange-text">What We Did</h2>
             <PostContent content={content} />
           </div>
         </div>
