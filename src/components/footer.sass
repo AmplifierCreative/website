@@ -6,18 +6,73 @@ footer input::placeholder, footer textarea::placeholder
   font-weight: 800
   font-family: $family-sans-serif-bold
 
+.footer-form
+  display: flex
+  flex-direction: row
+
+.footer-form.is-active, .footer-response
+  box-shadow: 0 0 0 0.125em $AC-peach
+  align-items: center
+  justify-content: space-between
+
+.email-input
+  min-width: 620px
+
+.input:focus
+  box-shadow: 0 0.0625em 0.125em $AC-peach
+
+.submit-btn
+  display: none
+  flex-grow: 2
+  background: $AC-black
+  border: none
+  color: $AC-light-black
+  font-size: 2em
+  text-transform: lowercase
+  font-family: $family-sans-serif-bold
+  border-left: 1px solid $AC-peach
+  height: 100%
+  &:hover
+    color: $AC-white
+    background-color: $AC-peach
+    cursor: pointer
+  &:active
+    color: $AC-white
+    border: 1px solid $AC-white
+  &::before
+    content: " "
+    background-image: url('../img/return-arrow.svg')
+
+.submit-btn.is-active
+  display: block
+
+.reset-btn
+  background: $AC-black
+  border: none
+  color: $AC-light-black
+  font-size: 2em
+  text-transform: lowercase
+  font-family: $family-sans-serif-bold
+  border-left: 1px solid $AC-peach
+  height: 100%
+  &:hover
+    color: $AC-white
+    background-color: $AC-peach
+    cursor: pointer
+  &:active
+    color: $AC-peach
+    background-color: $AC-white
+    border-left: 1px solid $AC-peach
+
 @media screen and (max-width: 1024px)
-  footer input::placeholder
+  .email-input::placeholder
     font-size: 1.5rem
 
 @media screen and (max-width: 410px)
-  footer textarea
+  .email-input
     margin-bottom: 0
     &::placeholder
       font-size: 1.5rem
-
-footer input::focus, footer textarea::focus
-  border: 1px solid $AC-white
 
 footer.footer
   background-color: $AC-black
@@ -46,3 +101,6 @@ footer.footer
   text-decoration: underline
   &:hover
     color: $AC-peach !important
+
+$input-focus-border-color: $AC-peach
+$input-hover-border-color: $AC-peach 

@@ -13,19 +13,24 @@ const footer = {
   backgroundColor: '#2D2C2C',
 }
 
+const formContainer = {
+  width: '100%',
+  maxWidth: '760px',
+  height: '80px',
+  marginBottom: '1em',
+}
+
 const emailInput = {
   color: '#F8F3F1',
   backgroundColor: '#2D2C2C',
   border: 'none',
   fontSize: '2rem',
   paddingLeft: '0',
-  marginBottom: '1em',
 }
 
 const emailTextArea = {
   color: '#F8F3F1',
   backgroundColor: '#2D2C2C',
-  border: 'none',
   fontSize: '2rem',
   paddingTop: '2%',
   paddingLeft: '0',
@@ -51,11 +56,6 @@ const footerPolicy = {
 
 const footerPolicyContainer = {
   marginTop: '2.75em',
-}
-
-const footerPolicyLink = {
-  color: '#F8F3F1',
-  textDecoration: 'underline',
 }
 
 const socialTextContainer = {
@@ -89,6 +89,15 @@ const socialSvg = {
   marginRight: 'auto',
   marginLeft: 'auto',
 }
+
+const resultsTextContainer = {
+  paddingLeft: '1em',
+}
+
+const resText = {
+  display: 'inline',
+}
+
 
 const LinksMenu = ({ links, start, end }) => {
   return links.slice(start, end).map((link) => {
@@ -192,9 +201,14 @@ class Footer extends React.Component {
     this.state = {
       emailValue: '',
       isMobile: '',
+      res: '',
+      active: false,
+      footerActiveClass: '',
+      sent: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateSize = this.updateSize.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
   componentDidMount() {
@@ -211,13 +225,32 @@ class Footer extends React.Component {
   }
   
   handleChange(event) {    
-    this.setState({value: event.target.value});  
+    this.setState({emailValue: event.target.value});
+    
   }
 
   handleSubmit = async event => {
     event.preventDefault()
     let email = this.state.emailValue;
-    const response = await addToMailchimp(email);
+    const response = await addToMailchimp(email)
+    console.log(response)
+    this.setState({ res: response })
+    this.setState({ sent: !this.state.sent });
+  }
+
+  resetForm() {
+    this.setState({ sent: !this.state.sent })
+  }
+
+  showSubmit = () => {
+    this.setState(
+      {
+        active: true,
+      },
+      this.setState({
+        footerActiveClass: 'is-active',
+      })
+    )
   }
 
   render() {
@@ -231,28 +264,43 @@ class Footer extends React.Component {
         <div className="container is-max-widescreen">
           <div className={`columns ${ this.state.isMobile && 'has-text-centered'}`}>
             <div className="column is-two-thirds">
-              <form onSubmit={this.handleSubmit}>
-              { isMobile ? 
-                  <textarea
-                    className="email-input"
-                    style={emailTextArea}
-                    type="email"
-                    placeholder="enter your email address to stay in touch"
-                    rows="2"
-                    col="20"
-                    emailValue={this.state.emailValue} 
-                    onChange={this.handleChange}
-                  /> : 
-                  <input
-                    className="input is-medium email-input"
-                    style={emailInput}
-                    type="email"
-                    placeholder="enter your email address to stay in touch"
-                    emailValue={this.state.emailValue} 
-                    onChange={this.handleChange} 
-                  />
-                }
-              </form>
+              <div>
+                { this.state.sent ?
+                  <div className="footer-form footer-response" style={formContainer}>
+                    <div style={resultsTextContainer}>
+                      <h5>{(this.state.res.result == "error") ? ":/ " : "Woot! "}</h5>
+                      <p style={resText}>{this.state.res.msg}</p>
+                    </div>
+                    <button className="reset-btn" onClick={this.resetForm} >
+                      {(this.state.res.result == "error") ? "Try again" : "Add another"}
+                    </button>
+                  </div>
+                  : <form className={`footer-form ${this.state.footerActiveClass}`} onSubmit={this.handleSubmit} style={formContainer}>
+                { isMobile ? 
+                    <textarea
+                      className="email-input"
+                      style={emailTextArea}
+                      type="email"
+                      placeholder="enter your email address to stay in touch"
+                      rows="2"
+                      col="20"
+                      emailValue={this.state.emailValue} 
+                      onChange={this.handleChange}
+                      onFocus={this.showSubmit}
+                    /> : 
+                    <input
+                      className="is-medium email-input input"
+                      style={emailInput}
+                      type="email"
+                      placeholder="enter your email address to stay in touch"
+                      emailValue={this.state.emailValue} 
+                      onChange={this.handleChange}
+                      onFocus={this.showSubmit}
+                    />
+                  }
+                  <button onSubmit={this.handleSubmit} className={`submit-btn ${this.state.footerActiveClass}`} >Submit</button>
+                </form>}
+              </div>
               { isMobile ? 
                   <MobileMenu _links={posts[0].node.frontmatter.footer.menu} /> : 
                   <DesktopMenu _links={posts[0].node.frontmatter.footer.menu}/>
