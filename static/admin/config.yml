@@ -431,11 +431,38 @@ collections:
             }
       - file: 'src/pages/contact/index.md'
         label: 'Contact'
-        name: 'Contact'
+        name: 'contact'
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Description, name: description, widget: string }
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'contact-page',
+            }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Heading', name: 'heading', widget: 'string' }
+          - { label: 'Description', name: 'description', widget: 'text' }
+          - {
+              label: 'Thank You Page',
+              name: 'thanks',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Subheading', name: 'subheading', widget: 'text' },
+                  {
+                    label: 'Link',
+                    name: 'link',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Text', name: 'text', widget: 'string' },
+                        { label: 'Local', name: 'local', widget: 'boolean' },
+                        { label: 'Path', name: 'path', widget: 'string' },
+                      ],
+                  },
+                ],
+            }
       - file: 'src/pages/privacy/index.md'
         label: 'Privacy'
         name: 'Privacy'

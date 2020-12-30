@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
@@ -160,20 +160,21 @@ function encode(data) {
     .join('&')
 }
 
-export default class ContactPageTemplate extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isValidated: false,
-      active: false,
-    }
+export const ContactPageTemplate = ({ 
+  title,
+  heading, 
+  description,
+}) => {
+
+  const [ active, setActive ] = useState(false)
+  const [ name, setName ] = useState('')
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value)
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
     fetch('/', {
@@ -181,274 +182,299 @@ export default class ContactPageTemplate extends React.Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        ...this.state,
+        ...name,
       }),
     })
       .then(() => navigate(form.getAttribute('action')))
       .catch((error) => alert(error))
   }
 
-  toggleArrow = () => {
-    this.setState({
-      active: !this.state.active,
-    })
+  const toggleArrow = () => {
+    setActive(!active)
   }
 
-  render() {
-    const data = this.props.data.markdownRemark.frontmatter
-    return (
-      <Layout>
-        <Helmet>
-          <body className="menu-color-2" />
-        </Helmet>
-        <section style={contactContainer}>
-          <div className="container is-max-widescreen">
-            <div className="columns">
-              <div className="column is-half" style={columnStyleLeft}>
-                <p style={contactInfoText}>{data.heading}</p>
-                <p style={contactInfoSmallText}>{data.description}</p>
-              </div>
-              <div className="column is-half contact-form-container">
-                <div className="content">
-                  <form
-                    name="contact"
-                    method="post"
-                    action="/contact/thanks/"
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
-                    onSubmit={this.handleSubmit}
-                  >
-                    <div style={formContainer}>
-                      {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-                      <input type="hidden" name="form-name" value="contact" />
-                      <div hidden>
-                        <label>
-                          Don’t fill this out:{' '}
-                          <input
-                            name="bot-field"
-                            onChange={this.handleChange}
-                          />
-                        </label>
-                      </div>
-                      <div style={formRow}>
-                        <div className="field" style={fieldContainer50}>
-                          <label
-                            className="label"
-                            htmlFor={'name'}
-                            style={visuallyHidden}
-                          >
-                            Your name
-                          </label>
-                          <div className="control" style={inputContainerRight}>
-                            <input
-                              style={input}
-                              className="input contact-form-input"
-                              type={'text'}
-                              name={'name'}
-                              onChange={this.handleChange}
-                              id={'name'}
-                              required={true}
-                              placeholder={'name'}
-                            />
-                          </div>
-                        </div>
-                        <div className="field" style={fieldContainer50}>
-                          <label
-                            className="label"
-                            htmlFor={'business'}
-                            style={visuallyHidden}
-                          >
-                            Business
-                          </label>
-                          <div className="control" style={inputContainer}>
-                            <input
-                              style={input}
-                              className="input contact-form-input"
-                              type={'text'}
-                              name={'business'}
-                              onChange={this.handleChange}
-                              id={'business'}
-                              required={true}
-                              placeholder={'business'}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div style={formRow}>
-                        <div className="field" style={fieldContaine100}>
-                          <label
-                            className="label"
-                            htmlFor={'email'}
-                            style={visuallyHidden}
-                          >
-                            Email
-                          </label>
-                          <div className="control" style={inputContainer}>
-                            <input
-                              style={input}
-                              className="input contact-form-input"
-                              type={'email'}
-                              name={'email'}
-                              onChange={this.handleChange}
-                              id={'email'}
-                              required={true}
-                              placeholder={'email'}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div style={formRow}>
-                        <div className="field" style={fieldContainer50}>
-                          <label
-                            className="label"
-                            htmlFor={'phone'}
-                            style={visuallyHidden}
-                          >
-                            Phone
-                          </label>
-                          <div className="control" style={inputContainerRight}>
-                            <input
-                              style={input}
-                              className="input contact-form-input"
-                              type={'tel'}
-                              name={'phone'}
-                              onChange={this.handleChange}
-                              id={'phone'}
-                              required={true}
-                              placeholder={'phone'}
-                            />
-                          </div>
-                        </div>
-                        <div className="field" style={fieldContainer50}>
-                          <label
-                            className="label"
-                            htmlFor={'location'}
-                            style={visuallyHidden}
-                          >
-                            City and State
-                          </label>
-                          <div className="control" style={inputContainer}>
-                            <input
-                              style={input}
-                              className="input contact-form-input"
-                              type={'text'}
-                              name={'location'}
-                              onChange={this.handleChange}
-                              id={'location'}
-                              required={true}
-                              placeholder={'City x State'}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div style={formRow}>
-                        <div
-                          className="field"
-                          style={fieldContaine100}
-                          onClick={this.toggleArrow}
+  return (
+    <React.Fragment>
+      <Helmet>
+        <body className="menu-color-2" />
+      </Helmet>
+      <section style={contactContainer}>
+        <div className="container is-max-widescreen">
+          <div className="columns">
+            <div className="column is-half" style={columnStyleLeft}>
+              <p style={contactInfoText}>{heading}</p>
+              <p style={contactInfoSmallText}>{description}</p>
+            </div>
+            <div className="column is-half contact-form-container">
+              <div className="content">
+                <form
+                  name="contact"
+                  method="post"
+                  action="/contact/thanks/"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                >
+                  <div style={formContainer}>
+                    {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div hidden>
+                      <label>
+                        Don’t fill this out:{' '}
+                        <input
+                          name="bot-field"
+                          onChange={handleChange}
+                        />
+                      </label>
+                    </div>
+                    <div style={formRow}>
+                      <div className="field" style={fieldContainer50}>
+                        <label
+                          className="label"
+                          htmlFor={'name'}
+                          style={visuallyHidden}
                         >
-                          <label
-                            className="label"
-                            htmlFor={'method'}
-                            style={visuallyHidden}
-                          >
-                            Preferred contact method
-                          </label>
-                          <div style={inputContainer}>
-                            <div
-                              className="form-select"
-                              style={selectContainer}
-                            >
-                              {this.state.active ? (
-                                <div style={arrowUp}></div>
-                              ) : (
-                                <div style={arrowDown}></div>
-                              )}
-                              <select
-                                name={'method'}
-                                id={'method'}
-                                style={select}
-                              >
-                                <option style={optionStyle}>
-                                  Preferred method of contact
-                                </option>
-                                <option>Email</option>
-                                <option>Phone</option>
-                                <option>Text</option>
-                              </select>
-                            </div>
-                          </div>
+                          Your name
+                        </label>
+                        <div className="control" style={inputContainerRight}>
+                          <input
+                            style={input}
+                            className="input contact-form-input"
+                            type={'text'}
+                            name={'name'}
+                            onChange={handleChange}
+                            id={'name'}
+                            required={true}
+                            placeholder={'name'}
+                          />
                         </div>
                       </div>
-                      <div style={formRowTextArea}>
-                        <div className="field" style={fieldContaine100}>
-                          <label
-                            className="label"
-                            htmlFor={'message'}
-                            style={visuallyHidden}
-                          >
-                            Message
-                          </label>
-                          <div className="control" style={inputContainer}>
-                            <textarea
-                              style={contactFormTextArea}
-                              className="textarea contact-form-input"
-                              name={'message'}
-                              onChange={this.handleChange}
-                              id={'message'}
-                              required={true}
-                              placeholder={'Service(s) you’re interested in'}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div style={formRowBottom}>
-                        <div className="field" style={fieldContaine100}>
-                          <label
-                            className="label"
-                            htmlFor={'dog'}
-                            style={visuallyHidden}
-                          >
-                            Your dog’s name
-                          </label>
-                          <div className="control" style={inputContainer}>
-                            <input
-                              style={input}
-                              className="input contact-form-input"
-                              type={'text'}
-                              name={'dog'}
-                              onChange={this.handleChange}
-                              id={'dog'}
-                              required={true}
-                              placeholder={'Your dog’s name'}
-                            />
-                          </div>
+                      <div className="field" style={fieldContainer50}>
+                        <label
+                          className="label"
+                          htmlFor={'business'}
+                          style={visuallyHidden}
+                        >
+                          Business
+                        </label>
+                        <div className="control" style={inputContainer}>
+                          <input
+                            style={input}
+                            className="input contact-form-input"
+                            type={'text'}
+                            name={'business'}
+                            onChange={handleChange}
+                            id={'business'}
+                            required={true}
+                            placeholder={'business'}
+                          />
                         </div>
                       </div>
                     </div>
-                    <div className="field" style={buttonContainer}>
-                      <button
-                        className="button"
-                        type="submit"
-                        style={buttonStyle}
+                    <div style={formRow}>
+                      <div className="field" style={fieldContaine100}>
+                        <label
+                          className="label"
+                          htmlFor={'email'}
+                          style={visuallyHidden}
+                        >
+                          Email
+                        </label>
+                        <div className="control" style={inputContainer}>
+                          <input
+                            style={input}
+                            className="input contact-form-input"
+                            type={'email'}
+                            name={'email'}
+                            onChange={handleChange}
+                            id={'email'}
+                            required={true}
+                            placeholder={'email'}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div style={formRow}>
+                      <div className="field" style={fieldContainer50}>
+                        <label
+                          className="label"
+                          htmlFor={'phone'}
+                          style={visuallyHidden}
+                        >
+                          Phone
+                        </label>
+                        <div className="control" style={inputContainerRight}>
+                          <input
+                            style={input}
+                            className="input contact-form-input"
+                            type={'tel'}
+                            name={'phone'}
+                            onChange={handleChange}
+                            id={'phone'}
+                            required={true}
+                            placeholder={'phone'}
+                          />
+                        </div>
+                      </div>
+                      <div className="field" style={fieldContainer50}>
+                        <label
+                          className="label"
+                          htmlFor={'location'}
+                          style={visuallyHidden}
+                        >
+                          City and State
+                        </label>
+                        <div className="control" style={inputContainer}>
+                          <input
+                            style={input}
+                            className="input contact-form-input"
+                            type={'text'}
+                            name={'location'}
+                            onChange={handleChange}
+                            id={'location'}
+                            required={true}
+                            placeholder={'City x State'}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div style={formRow}>
+                      <div
+                        className="field"
+                        style={fieldContaine100}
+                        onClick={toggleArrow}
                       >
-                        Submit
-                      </button>
+                        <label
+                          className="label"
+                          htmlFor={'method'}
+                          style={visuallyHidden}
+                        >
+                          Preferred contact method
+                        </label>
+                        <div style={inputContainer}>
+                          <div
+                            className="form-select"
+                            style={selectContainer}
+                          >
+                            { active ? (
+                              <div style={arrowUp}></div>
+                            ) : (
+                              <div style={arrowDown}></div>
+                            )}
+                            <select
+                              name={'method'}
+                              id={'method'}
+                              style={select}
+                            >
+                              <option style={optionStyle}>
+                                Preferred method of contact
+                              </option>
+                              <option>Email</option>
+                              <option>Phone</option>
+                              <option>Text</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </form>
-                </div>
+                    <div style={formRowTextArea}>
+                      <div className="field" style={fieldContaine100}>
+                        <label
+                          className="label"
+                          htmlFor={'message'}
+                          style={visuallyHidden}
+                        >
+                          Message
+                        </label>
+                        <div className="control" style={inputContainer}>
+                          <textarea
+                            style={contactFormTextArea}
+                            className="textarea contact-form-input"
+                            name={'message'}
+                            onChange={handleChange}
+                            id={'message'}
+                            required={true}
+                            placeholder={'Service(s) you’re interested in'}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div style={formRowBottom}>
+                      <div className="field" style={fieldContaine100}>
+                        <label
+                          className="label"
+                          htmlFor={'dog'}
+                          style={visuallyHidden}
+                        >
+                          Your dog’s name
+                        </label>
+                        <div className="control" style={inputContainer}>
+                          <input
+                            style={input}
+                            className="input contact-form-input"
+                            type={'text'}
+                            name={'dog'}
+                            onChange={handleChange}
+                            id={'dog'}
+                            required={true}
+                            placeholder={'Your dog’s name'}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field" style={buttonContainer}>
+                    <button
+                      className="button"
+                      type="submit"
+                      style={buttonStyle}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-        </section>
-      </Layout>
-    )
-  }
+        </div>
+      </section>
+    </React.Fragment>                        
+  )
 }
 
-export const contactPageQuery = graphql`
-  query ContactPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+ContactPageTemplate.propTypes = {
+  title: PropTypes.string,
+  heading: PropTypes.string,
+  description: PropTypes.string,
+}
+
+const ContactPage = ({ data }) => {
+  const { frontmatter } = data.markdownRemark
+
+return (
+  <Layout>
+    <ContactPageTemplate
+      title={frontmatter.title}
+      heading={frontmatter.heading}
+      description={frontmatter.description}
+    />
+  </Layout>
+  )
+}
+
+ContactPage.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.object,
+    }),
+  }),
+}
+
+export default ContactPage
+
+export const pageQuery = graphql`
+  query ContactPage {
+    markdownRemark (frontmatter: { templateKey: { eq: "contact-page" } }) {
       frontmatter {
         title
         heading
