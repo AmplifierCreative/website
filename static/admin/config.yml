@@ -47,6 +47,16 @@ collections:
               { label: AuthorBio, name: authorBio, widget: string },
             ],
         }
+      - {
+          label: Statistics,
+          name: statistics,
+          widget: list,
+          fields:
+            [
+              { label: Number, name: number, widget: string },
+              { label: Blurb, name: blurb, widget: string },
+            ],
+        }
 
   - name: 'blog'
     label: 'Blog'

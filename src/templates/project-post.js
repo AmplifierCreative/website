@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Testimonials from '../components/Testimonials'
+import Statistics from '../components/Statistics'
 import Content, { HTMLContent } from '../components/Content'
 
 const titleText = {
@@ -22,6 +23,7 @@ export const ProjectPostTemplate = ({
   helmet,
   result,
   testimonials,
+  statistics,
 }) => {
   const PostContent = contentComponent || Content
 
@@ -73,6 +75,9 @@ export const ProjectPostTemplate = ({
               {testimonials && testimonials.length ? (
                 <Testimonials testimonials={testimonials} />
               ) : null}
+              {statistics && statistics.length ? (
+                <Statistics statistics={statistics} />
+              ) : null}
             </div>
           </div>
         </div>
@@ -114,6 +119,7 @@ const ProjectPost = ({ data }) => {
         title={post.frontmatter.title}
         result={post.frontmatter.result}
         testimonials={post.frontmatter.testimonials}
+        statistics={post.frontmatter.statistics}
       />
     </Layout>
   )
@@ -142,6 +148,10 @@ export const pageQuery = graphql`
           author
           quote
           authorBio
+        }
+        statistics {
+          number
+          blurb
         }
       }
     }

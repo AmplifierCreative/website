@@ -24,5 +24,12 @@ testimonials:
       create ads that fit the mold of Free Pizza
     author: Dan White
     authorBio: Host and Founder, Free Pizza Podcast
+statistics:
+  - number: "123"
+    blurb: increase in sales lorem ipsum
+  - number: "456"
+    blurb: increase in sales lorem ipsum
+  - number: "789"
+    blurb: increase in sales lorem ipsum
 ---
 Description goes here and may be long, so let’s have body copy. Daniel White Show
