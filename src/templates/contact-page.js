@@ -167,11 +167,11 @@ export const ContactPageTemplate = ({
 }) => {
 
   const [ active, setActive ] = useState(false)
-  const [ name, setName ] = useState('')
+  const [ values, setValues ] = useState([])
 
   const handleChange = (e) => {
-    e.preventDefault();
-    setName(e.target.value)
+    e.persist();
+    setValues( values => ({...values, [e.target.name]: e.target.value}))
   }
 
   const handleSubmit = (e) => {
@@ -182,7 +182,7 @@ export const ContactPageTemplate = ({
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        ...name,
+        values,
       }),
     })
       .then(() => navigate(form.getAttribute('action')))
@@ -244,7 +244,7 @@ export const ContactPageTemplate = ({
                             name={'name'}
                             onChange={handleChange}
                             id={'name'}
-                            required={true}
+                            required={false}
                             placeholder={'name'}
                           />
                         </div>
@@ -265,7 +265,7 @@ export const ContactPageTemplate = ({
                             name={'business'}
                             onChange={handleChange}
                             id={'business'}
-                            required={true}
+                            required={false}
                             placeholder={'business'}
                           />
                         </div>
@@ -311,7 +311,7 @@ export const ContactPageTemplate = ({
                             name={'phone'}
                             onChange={handleChange}
                             id={'phone'}
-                            required={true}
+                            required={false}
                             placeholder={'phone'}
                           />
                         </div>
@@ -332,7 +332,7 @@ export const ContactPageTemplate = ({
                             name={'location'}
                             onChange={handleChange}
                             id={'location'}
-                            required={true}
+                            required={false}
                             placeholder={'City x State'}
                           />
                         </div>
@@ -393,7 +393,7 @@ export const ContactPageTemplate = ({
                             name={'message'}
                             onChange={handleChange}
                             id={'message'}
-                            required={true}
+                            required={false}
                             placeholder={'Service(s) you’re interested in'}
                           />
                         </div>
@@ -416,7 +416,7 @@ export const ContactPageTemplate = ({
                             name={'dog'}
                             onChange={handleChange}
                             id={'dog'}
-                            required={true}
+                            required={false}
                             placeholder={'Your dog’s name'}
                           />
                         </div>
