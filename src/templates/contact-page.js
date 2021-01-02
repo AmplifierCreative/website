@@ -161,7 +161,6 @@ function encode(data) {
 }
 
 export const ContactPageTemplate = ({ 
-  title,
   heading, 
   description,
 }) => {
@@ -177,12 +176,13 @@ export const ContactPageTemplate = ({
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
+    const formValues = Object.values(values)
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        values,
+        ...formValues,
       }),
     })
       .then(() => navigate(form.getAttribute('action')))
@@ -443,22 +443,20 @@ export const ContactPageTemplate = ({
 }
 
 ContactPageTemplate.propTypes = {
-  title: PropTypes.string,
   heading: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.object,
 }
 
 const ContactPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
-return (
-  <Layout>
-    <ContactPageTemplate
-      title={frontmatter.title}
-      heading={frontmatter.heading}
-      description={frontmatter.description}
-    />
-  </Layout>
+  return (
+    <Layout>
+      <ContactPageTemplate
+        heading={frontmatter.heading}
+        description={frontmatter.description}
+      />
+    </Layout>
   )
 }
 
@@ -476,7 +474,6 @@ export const pageQuery = graphql`
   query ContactPage {
     markdownRemark (frontmatter: { templateKey: { eq: "contact-page" } }) {
       frontmatter {
-        title
         heading
         description
       }
