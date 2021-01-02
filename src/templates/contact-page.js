@@ -176,13 +176,12 @@ export const ContactPageTemplate = ({
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
-    const formValues = Object.values(values)
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        ...formValues,
+        ...values,
       }),
     })
       .then(() => navigate(form.getAttribute('action')))
@@ -444,7 +443,7 @@ export const ContactPageTemplate = ({
 
 ContactPageTemplate.propTypes = {
   heading: PropTypes.string,
-  description: PropTypes.object,
+  description: PropTypes.string,
 }
 
 const ContactPage = ({ data }) => {
