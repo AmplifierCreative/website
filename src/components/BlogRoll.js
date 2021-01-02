@@ -9,11 +9,6 @@ class BlogRoll extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
-    const orangeStyle = {
-      color: '#BA5930',
-      fontFamily: 'VisbyCF-Regular',
-    }
-
     const blackStyle = {
       color: '#2D2C2C',
       marginTop: 0,
@@ -40,12 +35,12 @@ class BlogRoll extends React.Component {
                         />
                       </div>
                     ) : null} */}
-                    <span className="is-block is-uppercase" style={orangeStyle}>
-                      {post.frontmatter.date}
+                    <span className="is-block is-uppercase orange-text">
+                      {post.frontmatter.date} x {post.fields.readingTime.text}
                     </span>
                     <h1 className="post-meta mt-0">
                       <Link
-                        className="title is-size-4"
+                        className="title is-size-3"
                         to={post.fields.slug}
                         style={blackStyle}
                       >
@@ -94,6 +89,9 @@ export default () => (
               id
               fields {
                 slug
+                readingTime {
+                  text
+                }
               }
               frontmatter {
                 title
