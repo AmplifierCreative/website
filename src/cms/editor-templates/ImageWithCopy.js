@@ -26,7 +26,7 @@ const ImageWithCopy = {
     },
   ],
   // Pattern to identify a block as being an instance of this component
-  pattern: /^{{< ImageWithCopy rightAlignCopy=(.*) image=(.*) text=(.*) >}}$/,
+  pattern: /^< ImageWithCopy rightAlignCopy=(.*) image=(.*) text=(.*) >$/,
   // Function to extract data elements from the regexp match
   fromBlock: (match) =>
     match && {
@@ -36,7 +36,7 @@ const ImageWithCopy = {
     },
   // Function to create a text block from an instance of this component markdown page
   toBlock: function (obj) {
-    return `{{< ImageWithCopy rightAlignCopy=${obj.rightAlignCopy} image=${obj.image} text=${obj.text} >}}`
+    return `< ImageWithCopy rightAlignCopy=${obj.rightAlignCopy} image=${obj.image} text=${obj.text} >`
   },
   // Preview output for this component. Can either be a string or a React component
   toPreview: function (obj) {

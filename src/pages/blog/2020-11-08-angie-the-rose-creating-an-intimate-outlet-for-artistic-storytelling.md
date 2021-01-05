@@ -1,14 +1,17 @@
 ---
 templateKey: blog-post
-title: "Angie the Rose: creating an intimate outlet for artistic storytelling"
+title: 'Angie the Rose: creating an intimate outlet for artistic storytelling'
 date: 2020-11-08T20:25:43.431Z
 description: >+
-  
+
   When you walk into the studio of Angie the Rose at the 205 Collaborative, the first thing you notice is the warm smell of incense hanging in the air. Turning the corner, natural light pours in through rusted windows and the concrete space comes to life as her paintings come into view.
 
 featuredpost: true
 featuredimage: /img/placeholder.jpg
 ---
+
+{{< Video url=undefined control=true loop=false autoplay=false muted=true height=200 width=300 poster=/img/404-cropped.jpg >}}
+
 She charmingly describes her room being similar to Harry Potter’s space beneath the stairs, but the limited space does not limit what she accomplishes. Set in the middle of the arrangement of painted canvases is a black-and-white photograph from the ‘40s of a young woman with short dark hair and warm eyes wearing a nurse’s uniform. This woman is Angie’s grandmother, who was a strong supporter of Angie’s pursuit of art and showed her how to see the world differently. “I like to keep her in here while I’m working so I can channel her strength,” she says. “She really pushed me.”
 
 Fine Arts in Graphic Design from Appalachian State University where she was also the head of the art committee and the editor of The Peel Literature & Arts Review. After graduating and moving to the Triad, Angie felt fortunate to have a practical degree lead her to jobs in web design but soon found herself needing a greater outlet for her creativity.
@@ -18,7 +21,7 @@ Angie the Rose finds energy in art that others might find in a high adrenaline s
 
 In this way, she is very similar to two of her inspirational icons, Lee Krasner and Georgia O’Keefe. She communicates her feelings through art, developing her tools and techniques to meet her needs, an approach that leads to very different visuals across her body of work. Krasner was often criticized for not having personally identifiable characteristics in her work, but she argued that the meaning of art transcended these traditional expectations. Telling personal stories through the arts requires a high level of courage and dedication for an artist, both of which are characteristics O’Keefe celebrated.
 
-![](/img/placeholder-2.jpg)
+![](/img/placeholder-2.jpg#box-shadow=2px 2px 6px 0px;float=right;foo=bar)
 
 Angie believes that “the art is already there, but you have to make it \[and] commit to it,” which is her approach to a new canvas. In her college years, she mainly focused on ink drawings that were direct, dark and moody. Later after moving to Greensboro, she did a series of watercolor-based paintings of dreamlike mountain scenes in a reflection of her homesickness. With the next series, the colors shifted to black and blue and a more abstract theme to represent a kind of bruising as Angie worked through a personally challenging year.
 
