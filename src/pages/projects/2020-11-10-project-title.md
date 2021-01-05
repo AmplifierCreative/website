@@ -35,6 +35,8 @@ statistics:
     blurb: increase in sales lorem ipsum
 ---
 
+youtube: K4TOrB7at0Y
+
 ## Side by Side Images
 
 ![Alt Text](/img/404-cropped.jpg#width=49%" 'Test')
