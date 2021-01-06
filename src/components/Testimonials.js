@@ -7,11 +7,14 @@ const Testimonials = ({ testimonials }) => (
     {testimonials.map((testimonial) => (
       <article key={v4()} className="message">
         <div className="message-body">
-          {testimonial.quote}
+          <h3> {testimonial.quote}</h3>
           <br />
           <cite>
             {' '}
-            – {testimonial.author} <br /> {testimonial.authorBio}
+            <span className="cite-name">– {testimonial.author} </span>
+            <span className="cite-credentials orange-text">
+              {testimonial.authorBio}
+            </span>
           </cite>
         </div>
       </article>

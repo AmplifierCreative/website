@@ -41,6 +41,9 @@ h1
     color: $AC-black
     border: 2px solid $AC-black
 
+.content h3
+  line-height: 1.47
+
 .content .taglist
   list-style: none
   margin-bottom: 0
@@ -72,6 +75,61 @@ h1
 .content .overview p
   font-family: $family-sans-serif-bold
   font-size: 2em
+  margin-bottom: 2em
+
+.content .message
+  position: relative
+  z-index: 1
+  padding-left: 20px
+  margin-bottom: 10px
+  background-color: transparent !important
+  margin-left: 30%
+  margin-right: 10%
+
+.content .message:after
+  display: block
+  content: ' '
+  background-image: url('../img/orange-double-line.svg')
+  background-size: 55px 55px
+  height: 55px
+  width: 55px
+  position: absolute
+  z-index: -1
+  top: 18px
+  left: -20px
+
+.content .message-body
+  border: 0px solid #fff
+  color: $AC-black
+  padding: 2em
+
+.content .message-body span
+  text-align: right
+  display: block
+
+.content .message-body .cite-name
+  font-size: 2em
+  font-family: $family-sans-serif
+  font-style: normal
+  font-weight: 400
+
+.content .message:nth-child(even)
+  margin-right: 30%
+  margin-left: 10%
+
+.content .message:nth-child(even):after
+  transform: scaleX(-1)
+  left: auto
+  right: -25px
+
+.content .message:nth-child(even) h3
+  text-align: right
+
+.content .message:nth-child(even) span
+  text-align: left
+
+.statistic-wrapper
+  margin-top: 2em
   margin-bottom: 2em
 // Helper Classes
 .full-width-image-container
@@ -119,6 +177,7 @@ h1
   letter-spacing: 2px
   font-size: 1em !important
   text-transform: uppercase
+  font-style: normal
 
 .margin-top-0
   margin-top: 0 !important

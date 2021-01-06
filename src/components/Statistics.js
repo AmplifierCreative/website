@@ -26,7 +26,7 @@ const blurbText = {
 }
 
 const Statistics = ({ statistics }) => (
-  <div className="columns">
+  <div className="columns statistic-wrapper">
     {statistics.map((statistic) => (
       <div className="column">
         <article key={v4()} className="statistic">

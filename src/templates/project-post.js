@@ -72,11 +72,11 @@ export const ProjectPostTemplate = ({
               <PostContent content={content} />
               <h2 className="orange-text">The Result</h2>
               <p>{result}</p>
-              {testimonials && testimonials.length ? (
-                <Testimonials testimonials={testimonials} />
-              ) : null}
               {statistics && statistics.length ? (
                 <Statistics statistics={statistics} />
+              ) : null}
+              {testimonials && testimonials.length ? (
+                <Testimonials testimonials={testimonials} />
               ) : null}
             </div>
           </div>
