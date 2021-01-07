@@ -197,7 +197,7 @@ export const IndexPageTemplate = ({
     config3
   )
 
-  //const [hideOnScroll, setHideOnScroll] = useState(true)
+  const [hideOnScroll, setHideOnScroll] = useState(true)
 
   useScrollPosition(({ prevPos, currPos }) => {
     const isShow = currPos.y > prevPos.y
