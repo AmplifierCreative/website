@@ -1,10 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import PropTypes, { nominalTypeHack } from 'prop-types'
 import { graphql } from 'gatsby'
 import { useSpring, animated } from 'react-spring'
 
 import Layout from '../components/Layout'
 import Carousel from '../components/Carousel'
+import { useScrollPosition } from '../components/Utilities'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
@@ -131,6 +132,14 @@ const clientsTitle = {
   marginBottom: '1em',
 }
 
+const hideElement = {
+  display: 'none',
+}
+
+const showElement = {
+  display: 'block',
+}
+
 export const IndexPageTemplate = ({
   image,
   title,
@@ -188,29 +197,40 @@ export const IndexPageTemplate = ({
     config3
   )
 
+  //const [hideOnScroll, setHideOnScroll] = useState(true)
+
+  useScrollPosition(({ prevPos, currPos }) => {
+    const isShow = currPos.y > prevPos.y
+    if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+  }, [hideOnScroll])
+
   return (
     <div>
       <section style={headerStyle} className="hero is-medium">
         <div className="hero-body">
           <div className="container is-max-widescreen">
-            <animated.div style={props}>
-              <h1 className="title" style={titleText}>
-                {hero.heading}
-              </h1>
-            </animated.div>
+            <div  style={hideOnScroll ? hideElement : showElement}>
+              <animated.div style={props}>
+                <h1 className="title" style={titleText}>
+                  {hero.heading}
+                </h1>
+              </animated.div>
+            </div>
             <div className="header-arrow-container" style={arrowContainer}>
               <animated.div style={props2}>
                 <div style={arrowDown}></div>
               </animated.div>
             </div>
-            <animated.div style={props3}>
-              <h2 className="subtitle" style={subTitleTextA}>
-                {hero.subheading}
-              </h2>
-              <h2 className="subtitle" style={subTitleTextB}>
-                {hero.description}
-              </h2>
-            </animated.div>
+            <div  style={hideOnScroll ? hideElement : showElement}>
+              <animated.div style={props3}>
+                <h2 className="subtitle" style={subTitleTextA}>
+                  {hero.subheading}
+                </h2>
+                <h2 className="subtitle" style={subTitleTextB}>
+                  {hero.description}
+                </h2>
+              </animated.div>
+            </div>
           </div>
         </div>
       </section>

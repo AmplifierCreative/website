@@ -26,7 +26,7 @@ export const ProjectPostTemplate = ({
   statistics,
 }) => {
   const PostContent = contentComponent || Content
-
+  console.log(PostContent)
   return (
     <div>
       <section className="hero is-small">

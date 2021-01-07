@@ -405,6 +405,23 @@ h1
   padding-right: 2rem
   padding-left: 2rem
   padding-bottom: 10em
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-template-rows: 1fr 1fr
+
+.about-section-text-right
+  grid-column-start: 2
+  padding: 0.75em
+.about-section-text-left
+  grid-row-start: 2
+  align-self: end
+  padding: 0.75em
+.about-section-image-left
+  grid-column-start: 1
+  grid-row-start: 1
+.about-section-image-right
+  grid-row-start: 2
+  align-self: end
 
 @media screen and (max-width: 768px)
   .about-img-container

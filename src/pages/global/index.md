@@ -3,7 +3,7 @@ templateKey: global-page
 nav:
   - text: About
     local: true
-    path: /about1
+    path: /about
   - text: Portfolio
     local: true
     path: /projects

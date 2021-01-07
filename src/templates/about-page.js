@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { graphql } from 'gatsby'
+import {useTrail, animated, a} from 'react-spring'
+
 
 const heroContainer = {
     backgroundColor: '#2D2C2C',
@@ -24,23 +26,8 @@ const sectionContainer = {
     paddingLeft: '2rem',
 }
 
-const fillerStyle = {
-  borderRight: '2px solid #BA5930',
-  height: '300px',
-  marginTop: '3em',
-  marginBottom: '3em',
-}
-
-const imageTopContainer = {
-    height: '550px',
-}
-
-const imageBottomContainer = {
-  height: '650px',
-}
-
 const imageBottom = {
-  paddingTop: "10em",
+  paddingTop: "5em",
   width: '100%'
 }
 
@@ -56,6 +43,30 @@ const paragraphText = {
     marginBottom: '9px',
 }
 
+function Trail({ open, children, ...props }) {
+  const items = React.Children.toArray(children)
+  const trail = useTrail(items.length, {
+    config: { mass: 5, tension: 2000, friction: 200 },
+    opacity: open ? 1 : 0,
+    x: open ? 0 : 20,
+    from: { opacity: 0, x: 20 },
+  })
+  return (
+    <div className="trails-main" {...props}>
+      <div>
+        {trail.map(({ x, height, ...rest }, index) => (
+          <a.div
+            key={items[index]}
+            className="trails-text"
+            style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
+            <a.div style={{ height }}>{items[index]}</a.div>
+          </a.div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 
 export const AboutPageTemplate = ({
     image,
@@ -63,81 +74,62 @@ export const AboutPageTemplate = ({
     topSection,
     bottomSection,
 }) => {
-  return (
-    <React.Fragment>
-        <div
-        className="has-text-left"
-        style={heroContainer}
-        >
-        <div class="container is-max-widescreen">
-            <h1 className="line-header" style={lineHeader}>{title}</h1>
-        </div>
-        </div>
-        <section className="about-section-container">
-        <div className="container is-max-widescreen">
-            <div className="columns services-reverse-column is-vcentered">
-            <div className="column is-half about-border">
-                    <div className="columns about-img-container" style={imageTopContainer}>
-                        {topSection.image ? (
-                          <figure style={imageTop}>
-                            <PreviewCompatibleImage
-                              imageInfo={{
-                                image: topSection.image,
-                                }}
-                            />
-                          </figure>
-                        ) : null}
-                    </div>
-                    <div className="columns">
-                        <div className="column has-text-right about-column-mobile">
-                            <p style={paragraphText}>
-                                {bottomSection.description1}
-                            </p>
-                            <p style={paragraphText}>
-                                {bottomSection.description2}
-                            </p>
-                            <p style={paragraphText}>
-                                {bottomSection.description3}
-                            </p>
-                        </div>
-                    </div>
-            </div>
-            <div className="section services-filler-mobile-only" style={sectionContainer}>
-                <div className="container is-max-widescreen">
-                <div className="columns is-vcentered is-mobile">
-                    <div className="column is-half" style={fillerStyle}></div>
-                </div>
-                </div>
-            </div>
-            <div className="column is-half" >
-                <div className="columns">
-                    <div className="column">
-                        <p className="letter-stroke-dk" style={paragraphText}>
-                            {topSection.description1}
-                        </p>
-                        <p style={paragraphText}>
-                            {topSection.description2}
-                        </p>
-                    </div>
-                </div>
-                <div className="columns about-img-container" style={imageBottomContainer}>
-                    {bottomSection.image ? (
-                          <figure style={imageBottom}>
-                            <PreviewCompatibleImage
-                              imageInfo={{
-                                image: bottomSection.image,
-                        
-                              }}
-                            />
-                          </figure>
-                        ) : null}
+  const [open, set] = useState(true)
 
-                </div>
-            </div>
-            </div>
+  return (
+    <div style={sectionContainer}>
+      <div class="container is-max-widescreen" style={heroContainer}>
+          <h1 className="line-header" style={lineHeader}>{title}</h1>
+      </div>
+      <section className="about-section-container container is-max-widescreen">
+        <div className="about-section-text-right">
+          <Trail open={open} onClick={() => set((state) => !state)}>
+            <p className="letter-stroke-dk" style={paragraphText}>
+                {topSection.description1}
+            </p>
+            <p style={paragraphText}>
+                {topSection.description2}
+            </p>
+          </Trail>
         </div>
-        </section>
-    </React.Fragment>
+        <div className="about-border about-section-image-left">
+          {topSection.image ? (
+            <figure style={imageTop}>
+              <PreviewCompatibleImage
+                imageInfo={{
+                  image: topSection.image,
+                  }}
+              />
+            </figure>
+          ) : null}
+        </div>
+        <div className="about-border about-section-text-left">
+          <Trail open={open} onClick={() => set((state) => !state)}>
+            <p style={paragraphText}>
+                {bottomSection.description1}
+            </p>
+            <p style={paragraphText}>
+                {bottomSection.description2}
+            </p>
+            <p style={paragraphText}>
+                {bottomSection.description3}
+            </p>
+          </Trail>
+        </div>
+        <div className="about-section-image-right">
+          {bottomSection.image ? (
+                <figure style={imageBottom}>
+                  <PreviewCompatibleImage
+                    imageInfo={{
+                      image: bottomSection.image,
+              
+                    }}
+                  />
+                </figure>
+              ) : null}
+        </div>
+      </section>
+    </div>
 )}
 
 AboutPageTemplate.propTypes = {
