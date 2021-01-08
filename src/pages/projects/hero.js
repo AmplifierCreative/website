@@ -9,7 +9,7 @@ const ProjectsHero = () => (
       backgroundColor: '#2D2C2C',
     }}
   >
-    <div class="container is-max-widescreen">
+    <div className="container is-max-widescreen">
       <h1 className="line-header">portfolio</h1>
       <h2
         style={{

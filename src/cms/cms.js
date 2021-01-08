@@ -11,7 +11,6 @@ import ServicesPagePreview from './preview-templates/ServicesPagePreview'
 import GlobalPagePreview from './preview-templates/GlobalPagePreview'
 import NotFoundPagePreview from './preview-templates/NotFoundPagePreview'
 
-import Video from './editor-templates/Video'
 import ImageWithCopy from './editor-templates/ImageWithCopy'
 import Quote from './editor-templates/Quote'
 
@@ -26,7 +25,6 @@ CMS.registerPreviewTemplate('services', ServicesPagePreview)
 CMS.registerPreviewTemplate('global', GlobalPagePreview)
 CMS.registerPreviewTemplate('notFound', NotFoundPagePreview)
 
-CMS.registerEditorComponent(Video)
 CMS.registerEditorComponent(ImageWithCopy)
 CMS.registerEditorComponent(Quote)
 CMS.registerEditorComponent({

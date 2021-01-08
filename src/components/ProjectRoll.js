@@ -19,9 +19,9 @@ class ProjectRoll extends React.Component {
         {posts &&
           posts.map(({ node: post }) => (
             <div className="columns mb-2 is-vcentered" key={v4()}>
-              <div class="column has-text-centered">
-                <h4 class="vertical-text">{post.frontmatter.tags}</h4>
-                <div class="project-container">
+              <div className="column has-text-centered">
+                <h4 className="vertical-text">{post.frontmatter.tags}</h4>
+                <div className="project-container">
                   <span className="is-block is-uppercase orange-text">
                     {/* {post.frontmatter.date} */}
                     Client Name

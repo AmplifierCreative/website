@@ -16,7 +16,6 @@ const nav = {
 const navBarContainer = {
   maxWidth: '1240px',
   margin: 'auto',
-
 }
 
 const navBarContainerMobile = {
@@ -125,28 +124,20 @@ const NavLinksMenu = ({ links }) => {
     if (local) {
       return (
         <li>
-          <Link
-          to={link.path}
-          className="navbar-item"
-          style={navItem}
-          >
+          <Link to={link.path} className="navbar-item" style={navItem}>
             {link.text}
           </Link>
         </li>
       )
-    } 
+    }
 
     if (!local) {
       return (
-      <li>
-        <a
-        href={path}
-        className="footer-item"
-        style={navItem}
-        >
-          {text}
-        </a>
-      </li>
+        <li>
+          <a href={path} className="footer-item" style={navItem}>
+            {text}
+          </a>
+        </li>
       )
     }
     return null
@@ -159,21 +150,21 @@ class Navbar extends React.Component {
       active: false,
       navBarActiveClass: '',
       isMobile: '',
-    };
-    this.updateSize = this.updateSize.bind(this);
+    }
+    this.updateSize = this.updateSize.bind(this)
   }
 
   componentDidMount() {
-    this.updateSize();
-    window.addEventListener("resize", this.updateSize);
+    this.updateSize()
+    window.addEventListener('resize', this.updateSize)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateSize);
+    window.removeEventListener('resize', this.updateSize)
   }
 
   updateSize() {
-    this.setState({ isMobile: window.innerWidth < 769 });
+    this.setState({ isMobile: window.innerWidth < 769 })
   }
 
   toggleHamburger = () => {
@@ -195,7 +186,7 @@ class Navbar extends React.Component {
 
   render() {
     const isMobile = this.state.isMobile
-    
+
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
@@ -206,7 +197,10 @@ class Navbar extends React.Component {
         ariaLabel="main-navigation"
         style={nav}
       >
-        <div className="column" style={isMobile ? navBarContainerMobile : navBarContainer}>
+        <div
+          className="column"
+          style={isMobile ? navBarContainerMobile : navBarContainer}
+        >
           <div className="columns is-vcentered is-mobile">
             <div
               className="column is-one-third nav-logo"
@@ -251,7 +245,7 @@ class Navbar extends React.Component {
                   style={navMenu}
                 >
                   <div>
-                    <ul class="menu-list has-text-right">
+                    <ul className="menu-list has-text-right">
                       <NavLinksMenu links={posts[0].node.frontmatter.nav} />
                     </ul>
                   </div>
@@ -261,7 +255,10 @@ class Navbar extends React.Component {
           </div>
         </div>
         {this.state.active ? (
-          <div className="nav-menu-container" style={isMobile ? navMenuContainerMobile : navMenuContainer}></div>
+          <div
+            className="nav-menu-container"
+            style={isMobile ? navMenuContainerMobile : navMenuContainer}
+          ></div>
         ) : null}
       </nav>
     )
@@ -281,11 +278,7 @@ export default () => (
     query={graphql`
       query NavbarQuery {
         allMarkdownRemark(
-          filter: {
-            frontmatter: {
-              templateKey: { eq: "global-page" }
-            }
-          }
+          filter: { frontmatter: { templateKey: { eq: "global-page" } } }
         ) {
           edges {
             node {
@@ -297,11 +290,11 @@ export default () => (
                   local
                 }
               }
-              }
             }
           }
-        }  
-      `}
+        }
+      }
+    `}
     render={(data) => <Navbar data={data} />}
   />
 )
