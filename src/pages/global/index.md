@@ -3,36 +3,36 @@ templateKey: global-page
 nav:
   - text: About
     local: true
-    path: /about
+    path: about
   - text: Portfolio
     local: true
-    path: /projects
+    path: projects
   - local: true
     text: Services
-    path: /services
+    path: services
   - local: true
     text: Blog
-    path: /blog
+    path: blog
   - local: true
     text: Contact
-    path: /contact
+    path: contact
 footer:
   menu:
     - text: About
       local: true
-      path: /about
+      path: about
     - text: Services
       local: true
-      path: /services
+      path: services
     - local: true
       text: Portfolio
-      path: /projects
+      path: projects
     - local: true
       text: Blog
-      path: /blog
+      path: blog
     - local: true
       text: Contact
-      path: /contact
+      path: contact
   social:
     twitter: https://www.facebook.com
     ig: https://www.instagram.com

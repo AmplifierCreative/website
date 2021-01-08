@@ -124,7 +124,7 @@ const NavLinksMenu = ({ links }) => {
     if (local) {
       return (
         <li>
-          <Link to={link.path} className="navbar-item" style={navItem}>
+          <Link to={`/${link.path}`} className="navbar-item" style={navItem}>
             {link.text}
           </Link>
         </li>
