@@ -28,8 +28,8 @@ const blurbText = {
 const Statistics = ({ statistics }) => (
   <div className="columns statistic-wrapper">
     {statistics.map((statistic) => (
-      <div className="column">
-        <article key={v4()} className="statistic">
+      <div key={v4()} className="column">
+        <article className="statistic">
           <div
             className="statistic-body circle has-text-centered"
             style={circle}

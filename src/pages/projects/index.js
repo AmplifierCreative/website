@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import ProjectRoll from '../../components/ProjectRoll'
-import { kebabCase } from 'lodash'
 import ProjectsFilter from './filter'
 import ProjectsHero from './hero'
 

@@ -21,7 +21,7 @@ const ProjectsHero = () => (
       </h2>
       <br />
       <Link to="/contact">
-        <button class="button is-uppercase">Let's Chat</button>
+        <button className="button is-uppercase">Let's Chat</button>
       </Link>
     </div>
   </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
-
+import { v4 } from 'uuid'
 
 class ProjectRoll extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class ProjectRoll extends React.Component {
       <div className="project">
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="columns mb-2 is-vcentered">
+            <div className="columns mb-2 is-vcentered" key={v4()}>
               <div class="column has-text-centered">
                 <h4 class="vertical-text">{post.frontmatter.tags}</h4>
                 <div class="project-container">

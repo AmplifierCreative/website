@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
-import PreviewCompatibleImage from './PreviewCompatibleImage'
 import { Helmet } from 'react-helmet'
 
 class BlogRoll extends React.Component {
@@ -21,8 +20,8 @@ class BlogRoll extends React.Component {
         </Helmet>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="columns mb-2">
-              <div className="column is-8 is-offset-2" key={post.id}>
+            <div className="columns mb-2" key={post.id}>
+              <div className="column is-8 is-offset-2">
                 <article>
                   <header>
                     {/* {post.frontmatter.featuredimage ? (

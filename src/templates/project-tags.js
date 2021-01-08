@@ -35,7 +35,7 @@ class ProjectTagRoute extends React.Component {
                 <ul className="taglist">{postLinks}</ul>
                 <p>
                   <Link to="/projects/tags/">
-                    <button class="button">Browse all tags</button>
+                    <button className="button">Browse all tags</button>
                   </Link>
                 </p>
               </div>

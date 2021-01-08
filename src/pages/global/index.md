@@ -20,7 +20,7 @@ footer:
   menu:
     - text: About
       local: true
-      path: /about2
+      path: /about
     - text: Services
       local: true
       path: /services

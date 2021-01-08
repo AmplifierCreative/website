@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import PropTypes, { nominalTypeHack } from 'prop-types'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useSpring, animated } from 'react-spring'
 
@@ -199,17 +199,20 @@ export const IndexPageTemplate = ({
 
   const [hideOnScroll, setHideOnScroll] = useState(true)
 
-  useScrollPosition(({ prevPos, currPos }) => {
-    const isShow = currPos.y > prevPos.y
-    if (isShow !== hideOnScroll) setHideOnScroll(isShow)
-  }, [hideOnScroll])
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      const isShow = currPos.y > prevPos.y
+      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+    },
+    [hideOnScroll]
+  )
 
   return (
     <div>
       <section style={headerStyle} className="hero is-medium">
         <div className="hero-body">
           <div className="container is-max-widescreen">
-            <div  style={hideOnScroll ? hideElement : showElement}>
+            <div style={hideOnScroll ? hideElement : showElement}>
               <animated.div style={props}>
                 <h1 className="title" style={titleText}>
                   {hero.heading}
@@ -221,7 +224,7 @@ export const IndexPageTemplate = ({
                 <div style={arrowDown}></div>
               </animated.div>
             </div>
-            <div  style={hideOnScroll ? hideElement : showElement}>
+            <div style={hideOnScroll ? hideElement : showElement}>
               <animated.div style={props3}>
                 <h2 className="subtitle" style={subTitleTextA}>
                   {hero.subheading}
