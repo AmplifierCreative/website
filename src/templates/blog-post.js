@@ -17,7 +17,7 @@ export const BlogPostTemplate = ({
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section">
+    <section className="section blog">
       <div className="container is-max-widescreen">
         {helmet || ''}
         <div className="container content">

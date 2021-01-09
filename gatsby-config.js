@@ -108,17 +108,18 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images-medium-zoom',
             // options: { background: '#000' },
+            excludeSelector: 'data-external-link',
           },
           'gatsby-remark-reading-time',
         ],
       },
     },
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-netlify-cms',
+    //   options: {
+    //     modulePath: `${__dirname}/src/cms/cms.js`,
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
@@ -129,6 +130,7 @@ module.exports = {
           'quote',
           'right-align-true',
           'right-align-false',
+          'gatsby-resp-image-image',
         ],
         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
         printRejected: true,

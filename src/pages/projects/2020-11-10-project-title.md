@@ -37,8 +37,12 @@ statistics:
 
 ## Side by Side Images
 
-![Alt Text](/img/404-cropped.jpg#width=49%;float=left;" 'Test')
+![Alt Text](/img/404-cropped.jpg#width=49%;float=left;" 'Test')(http://google.com)
 ![Alt Text](/img/404-cropped.jpg#width=49%;float=left;margin-left=1%;" 'Test')
+
+## Image Link
+
+[![Alt Text](/img/404-cropped.jpg#external-link=external-link;width=100%;'Test')](http://google.com/)
 
 ## Full width Image
 
