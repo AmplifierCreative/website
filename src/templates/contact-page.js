@@ -121,21 +121,6 @@ const arrowDown = {
   zIndex: '2',
 }
 
-const arrowUp = {
-  position: 'absolute',
-  right: '29px',
-  top: '50px',
-  width: '33.53px',
-  height: '33.53px',
-  border: 'solid #2D2C2C',
-  borderWidth: '0 2px 2px 0',
-  display: 'inline-block',
-  color: '#F8F3F1',
-  transform: 'rotate(-135deg)',
-  webkitTtransform: 'rotate(-135deg)',
-  zIndex: '2',
-}
-
 const contactFormTextArea = {
   paddingTop: '16%',
   boxShadow: 'none',

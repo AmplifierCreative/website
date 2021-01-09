@@ -186,6 +186,14 @@ class Navbar extends React.Component {
     )
   }
 
+  _handleKeyUp = (e) => {
+    if (e.key === 'Enter') {
+      this.toggleHamburger()
+    }
+    return null
+  }
+
+
   render() {
     const isMobile = this.state.isMobile
 
@@ -221,10 +229,11 @@ class Navbar extends React.Component {
               <div style={burgerContainer}>
                 <div
                   onClick={() => this.toggleHamburger()}
+                  onKeyUp={(event) => this._handleKeyUp(event)}
                   style={burger}
                   className={'burger'}
                   role="button"
-                  tabIndex="1"
+                  tabIndex={0}
                 >
                   <span
                     className={`burger-line ${this.state.navBarActiveClass}`}

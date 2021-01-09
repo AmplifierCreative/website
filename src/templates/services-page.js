@@ -119,7 +119,7 @@ export const ServicesPageTemplate = ({
           <div className="columns is-vcentered">
             <div className="column is-half has-text-right services-column-mobile">
               <figure>
-                <img src={copywrite} style={copywriteImage} />
+                <img alt="Design Illustration of hands" src={copywrite} style={copywriteImage} />
               </figure>
             </div>
             <div className="column is-half services-column-mobile">

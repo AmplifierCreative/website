@@ -266,12 +266,12 @@ class Footer extends React.Component {
                   >
                     <div style={resultsTextContainer}>
                       <h5>
-                        {this.state.res.result == 'error' ? ':/ ' : 'Woot! '}
+                        {this.state.res.result === 'error' ? ':/ ' : 'Woot! '}
                       </h5>
                       <p style={resText}>{this.state.res.msg}</p>
                     </div>
                     <button className="reset-btn" onClick={this.resetForm}>
-                      {this.state.res.result == 'error'
+                      {this.state.res.result === 'error'
                         ? 'Try again'
                         : 'Add another'}
                     </button>

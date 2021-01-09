@@ -32,11 +32,11 @@ class ProjectRoll extends React.Component {
 
     return (
       <div className="project">
-      <button onClick={this.toggleVisible}>Click</button>
+      {/* <button onClick={this.toggleVisible}>Click</button> */}
         {posts &&
           posts.map(({ node: post }) => (
             <div className="columns mb-2 is-vcentered" key={v4()}>
-            <Trail from={{transform: 'translate3d(0,-40px,0)'}} to={{transform: 'translate3d(0,0px,0)'}}>
+            {/* <Trail from={{transform: 'translate3d(0,-40px,0)'}} to={{transform: 'translate3d(0,0px,0)'}}> */}
               <div className="column has-text-centered">
                 <h4 className="vertical-text">{post.frontmatter.tags}</h4>
                 <div className="project-container">
@@ -76,7 +76,7 @@ class ProjectRoll extends React.Component {
                 ) : null}
               </div>
               <br />
-              </Trail>
+              {/* </Trail> */}
             </div>
           ))}
       </div>
