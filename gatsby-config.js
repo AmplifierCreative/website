@@ -7,6 +7,8 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -29,8 +31,6 @@ module.exports = {
         name: 'images',
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
@@ -54,9 +54,9 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-relative-images',
+            resolve: 'gatsby-plugin-netlify-cms-paths',
             options: {
-              name: 'uploads',
+              cmsConfig: '/static/admin/config.yml',
             },
           },
           {
@@ -66,6 +66,14 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 2048,
+              linkImagesToOriginal: false,
+              backgroundColor: 'transparent',
+            },
+          },
+          {
+            resolve: 'gatsby-remark-relative-images',
+            options: {
+              name: 'uploads',
             },
           },
           {
@@ -94,12 +102,14 @@ module.exports = {
               //   aren't styleAttributes, will be
               //   added as data-* attributes to the
               //   image.
-              dataAttributes: false,
+              dataAttributes: true,
             },
           },
           {
-            resolve: 'gatsby-remark-reading-time',
+            resolve: 'gatsby-remark-images-medium-zoom',
+            // options: { background: '#000' },
           },
+          'gatsby-remark-reading-time',
         ],
       },
     },
