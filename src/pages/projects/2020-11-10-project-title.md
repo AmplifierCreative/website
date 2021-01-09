@@ -36,10 +36,11 @@ statistics:
 
 ## Side by Side Images
 
-![Alt Text](/img/404-cropped.jpg#width=49%" 'Test')
-![Alt Text](/img/404-cropped.jpg#width=49%" 'Test')
+![Alt Text](/img/404-cropped.jpg#width=49%" "Test")
+![Alt Text](/img/404-cropped.jpg#width=49%" "Test")
 
 ## Full width Image
 
-![Alt Text](/img/404-cropped.jpg 'Test')
-Description goes here and may be long, so let’s have body copy. Daniel White Show
+![Alt Text](/img/404-cropped.jpg "Test")
+
+With extensive research into the High Brew Coffee brand, we first pinpointed the best differentiators to reference in the advertisement. Then, we created a positioning that ensured this information would resonate with the Free Pizza Podcast audience of creators while maintaining the podcast’s voice and tone.

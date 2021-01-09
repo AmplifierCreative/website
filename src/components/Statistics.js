@@ -19,28 +19,30 @@ const numberText = {
 }
 
 const blurbText = {
-  fontSize: '2em',
+  fontSize: '1.8em',
   fontFamily: 'VisbyCF-Regular',
   fontStyle: 'normal',
   fontWeight: 400,
 }
 
 const Statistics = ({ statistics }) => (
-  <div className="columns statistic-wrapper">
-    {statistics.map((statistic) => (
-      <div key={v4()} className="column">
-        <article className="statistic">
-          <div
-            className="statistic-body circle has-text-centered"
-            style={circle}
-          >
-            <h2 style={numberText}> {statistic.number}</h2>
-            <cite style={blurbText}> {statistic.blurb}</cite>
-          </div>
-        </article>
-      </div>
-    ))}
-  </div>
+  <section className="statistic-wrapper">
+    <div className="columns">
+      {statistics.map((statistic) => (
+        <div key={v4()} className="column">
+          <article className="statistic">
+            <div
+              className="statistic-body circle has-text-centered"
+              style={circle}
+            >
+              <h2 style={numberText}> {statistic.number}</h2>
+              <cite style={blurbText}> {statistic.blurb}</cite>
+            </div>
+          </article>
+        </div>
+      ))}
+    </div>
+  </section>
 )
 
 Statistics.propTypes = {
