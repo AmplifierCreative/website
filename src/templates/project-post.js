@@ -104,7 +104,7 @@ export const ProjectPostTemplate = ({
               <div className="columns">
                 <div className="column is-full">
                   <h2 className="orange-text">What We Did</h2>
-                  <div style={projectBody}>
+                  <div style={projectBody} className="project-body">
                     <PostContent content={content} />
                   </div>
                   <h2 className="orange-text">The Result</h2>

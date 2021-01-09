@@ -25,22 +25,23 @@ testimonials:
     author: Dan White
     authorBio: Host and Founder, Free Pizza Podcast
 statistics:
-  - number: "123"
+  - number: '123'
     blurb: increase in sales lorem ipsum
-  - number: "456"
+  - number: '456'
     blurb: increase in sales lorem ipsum
-  - number: "789"
+  - number: '789'
     blurb: increase in sales lorem ipsum
 ---
+
 `video: https://www.youtube.com/embed/5qap5aO4i9A`
 
 ## Side by Side Images
 
-![Alt Text](/img/404-cropped.jpg#width=49%" "Test")
-![Alt Text](/img/404-cropped.jpg#width=49%" "Test")
+![Alt Text](/img/404-cropped.jpg#width=49%;float=left;" 'Test')
+![Alt Text](/img/404-cropped.jpg#width=49%;float=left;margin-left=1%;" 'Test')
 
 ## Full width Image
 
-![Alt Text](/img/404-cropped.jpg "Test")
+![Alt Text](/img/404-cropped.jpg 'Test')
 
 With extensive research into the High Brew Coffee brand, we first pinpointed the best differentiators to reference in the advertisement. Then, we created a positioning that ensured this information would resonate with the Free Pizza Podcast audience of creators while maintaining the podcast’s voice and tone.
