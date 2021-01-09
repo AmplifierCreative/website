@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 
 import Content, { HTMLContent } from '../components/Content'
 import Layout from '../components/Layout'
+import { v4 } from 'uuid'
 
 const parentContainer = {
   paddingTop: '4em',
@@ -39,18 +40,22 @@ export const GlobalPageTemplate = ({
         <div style={tableContainer}>
           <table className="table">
             <thead>
-              <th className="theader">Label</th>
-              <th className="theader">Path</th>
-              <th className="theader">Internal</th>
-            </thead>
-            {nav && nav.map((item) => (
-              <tr className="table-row">
-                <td className="td">{item.text}</td>
-                <td className="td">{item.path}</td>
-                <td className="td">{item.local.toString()}</td>
+              <tr>
+                <th className="theader">Label</th>
+                <th className="theader">Path</th>
+                <th className="theader">Internal</th>
               </tr>
-            )) 
-            }
+            </thead>
+            <tbody>
+              {nav && nav.map((item) => (
+                <tr key={v4()} className="table-row">
+                  <td className="td">{item.text}</td>
+                  <td className="td">{item.path}</td>
+                  <td className="td">{item.local.toString()}</td>
+                </tr>
+              )) 
+              }
+            </tbody>
           </table>
         </div>
       </div>
@@ -65,18 +70,22 @@ export const GlobalPageTemplate = ({
         <div style={tableContainer}>
           <table className="table">
             <thead>
-              <th className="theader">Label</th>
-              <th className="theader">Path</th>
-              <th className="theader">Internal</th>
-            </thead>
-            {footer.menu && footer.menu.map((item) => (
-              <tr className="table-row">
-                <td className="td">{item.text}</td>
-                <td className="td">{item.path}</td>
-                <td className="td">{item.local.toString()}</td>
+              <tr>
+                <th className="theader">Label</th>
+                <th className="theader">Path</th>
+                <th className="theader">Internal</th>
               </tr>
-            )) 
-            }
+            </thead>
+            <tbody>
+              {footer.menu && footer.menu.map((item) => (
+                <tr key={v4()} className="table-row">
+                  <td className="td">{item.text}</td>
+                  <td className="td">{item.path}</td>
+                  <td className="td">{item.local.toString()}</td>
+                </tr>
+              )) 
+              }
+            </tbody>
           </table>
         </div>
       </div>
@@ -87,9 +96,12 @@ export const GlobalPageTemplate = ({
         <div style={tableContainer}>
           <table className="table">
             <thead>
-              <th className="theader">Icon</th>
-              <th className="theader">Path</th>
+              <tr>
+                <th className="theader">Icon</th>
+                <th className="theader">Path</th>
+              </tr>
             </thead>
+            <tbody>
               <tr className="table-row">
                 <td className="td">Twitter</td>
                 <td className="td">{footer.social.twitter}</td>
@@ -102,10 +114,11 @@ export const GlobalPageTemplate = ({
                 <td className="td">Linkedin</td>
                 <td className="td">{footer.social.linkedin}</td>
               </tr> 
+            </tbody>
           </table>
         </div>
         </div>
-        <div className="">
+        <div>
           <div>
             <h4>Copyright:</h4>
           </div>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import { Helmet } from 'react-helmet'
-import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
@@ -9,32 +8,11 @@ import Content, { HTMLContent } from '../components/Content'
 
 import _404 from '../img/404.gif'
 
-const container = {
-  width: '100%',
-  padding: '0',
-  margin: '0',
-  marginBottom: '-7px',
-  paddingBottom: '10em',
-  backgroundColor: '#2D2C2C',
-}
-
-const textContainer = {
-  maxWidth: '818px',
-  position: 'relative',
-  padding: '2rem',
-}
-
-const text = {
-  color: '#F8F3F1',
-  fontSize: '2.25em',
-  position: 'relative',
-}
-
 export const NotFoundPageTemplate = ({ title, image, content, contentComponent, useImage }) => {
   const PageContent = contentComponent || Content
   console.log(image)
   return (
-    <div style={container}>
+    <div className="notfound-container" >
       <Helmet>
           <body className="menu-color-2" />
       </Helmet>
@@ -46,7 +24,7 @@ export const NotFoundPageTemplate = ({ title, image, content, contentComponent, 
           }}
       /> : 
         <img alt="Page not found image" src={_404} />}
-      <div className="container not-found-page" style={textContainer}>
+      <div className="container not-found-page notFound-text">
         <PageContent className="container not-found-page" content={content} />
       </div>
     </div>

@@ -165,7 +165,6 @@ export const ContactPageTemplate = ({
   description,
 }) => {
 
-  const [ active, setActive ] = useState(false)
   const [ values, setValues ] = useState([])
 
   const handleChange = (e) => {
@@ -188,9 +187,6 @@ export const ContactPageTemplate = ({
       .catch((error) => alert(error))
   }
 
-  const toggleArrow = () => {
-    setActive(!active)
-  }
 
   return (
     <React.Fragment>
@@ -341,7 +337,6 @@ export const ContactPageTemplate = ({
                       <div
                         className="field"
                         style={fieldContaine100}
-                        onClick={toggleArrow}
                       >
                         <label
                           className="label"
@@ -355,11 +350,7 @@ export const ContactPageTemplate = ({
                             className="form-select"
                             style={selectContainer}
                           >
-                            { active ? (
-                              <div style={arrowUp}></div>
-                            ) : (
-                              <div style={arrowDown}></div>
-                            )}
+                            <div style={arrowDown}></div>
                             <select
                               name={'method'}
                               id={'method'}

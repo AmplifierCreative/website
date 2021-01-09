@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { graphql } from 'gatsby'
-import {useTrail, animated, a} from 'react-spring'
+import { v4 } from 'uuid'
+import {useTrail, a} from 'react-spring'
 
 
 const heroContainer = {
@@ -56,7 +57,7 @@ function Trail({ open, children, ...props }) {
       <div>
         {trail.map(({ x, height, ...rest }, index) => (
           <a.div
-            key={items[index]}
+            key={v4()}
             className="trails-text"
             style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
             <a.div style={{ height }}>{items[index]}</a.div>
@@ -78,7 +79,7 @@ export const AboutPageTemplate = ({
 
   return (
     <div style={sectionContainer}>
-      <div class="container is-max-widescreen" style={heroContainer}>
+      <div className="container is-max-widescreen" style={heroContainer}>
           <h1 className="line-header" style={lineHeader}>{title}</h1>
       </div>
       <section className="about-section-container container is-max-widescreen">
