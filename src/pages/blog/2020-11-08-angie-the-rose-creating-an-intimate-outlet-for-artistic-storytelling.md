@@ -10,7 +10,7 @@ featuredpost: true
 featuredimage: /img/placeholder.jpg
 ---
 
-{{< Video url=undefined control=true loop=false autoplay=false muted=true height=200 width=300 poster=/img/404-cropped.jpg >}}
+`video: https://www.youtube.com/embed/5qap5aO4i9A`
 
 She charmingly describes her room being similar to Harry Potter’s space beneath the stairs, but the limited space does not limit what she accomplishes. Set in the middle of the arrangement of painted canvases is a black-and-white photograph from the ‘40s of a young woman with short dark hair and warm eyes wearing a nurse’s uniform. This woman is Angie’s grandmother, who was a strong supporter of Angie’s pursuit of art and showed her how to see the world differently. “I like to keep her in here while I’m working so I can channel her strength,” she says. “She really pushed me.”
 

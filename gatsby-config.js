@@ -53,8 +53,6 @@ module.exports = {
               noIframerder: true,
             },
           },
-
-          'gatsby-remark-reading-time',
           {
             resolve: 'gatsby-remark-relative-images',
             options: {
@@ -83,28 +81,24 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-transformer-remark`,
+            resolve: `gatsby-remark-image-attributes`,
             options: {
-              plugins: [
-                {
-                  resolve: `gatsby-remark-image-attributes`,
-                  options: {
-                    // ?Boolean=true
-                    //   If true (the default), all CSS
-                    //   property names will be recognized
-                    //   as styleAttribute.
-                    styleAttributes: true,
+              // ?Boolean=true
+              //   If true (the default), all CSS
+              //   property names will be recognized
+              //   as styleAttribute.
+              styleAttributes: true,
 
-                    // ?Boolean=false
-                    //   If true, all attributes that
-                    //   aren't styleAttributes, will be
-                    //   added as data-* attributes to the
-                    //   image.
-                    dataAttributes: false,
-                  },
-                },
-              ],
+              // ?Boolean=false
+              //   If true, all attributes that
+              //   aren't styleAttributes, will be
+              //   added as data-* attributes to the
+              //   image.
+              dataAttributes: false,
             },
+          },
+          {
+            resolve: 'gatsby-remark-reading-time',
           },
         ],
       },

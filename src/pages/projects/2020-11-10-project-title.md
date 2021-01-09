@@ -32,8 +32,7 @@ statistics:
   - number: "789"
     blurb: increase in sales lorem ipsum
 ---
-
-youtube: K4TOrB7at0Y
+`video: https://www.youtube.com/embed/5qap5aO4i9A`
 
 ## Side by Side Images
 
