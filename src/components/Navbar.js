@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
+import { v4 } from 'uuid'
+
 const nav = {
   margin: '0',
   width: '100%',
@@ -123,7 +125,7 @@ const NavLinksMenu = ({ links }) => {
 
     if (local) {
       return (
-        <li>
+        <li key={v4()}>
           <Link to={`/${link.path}`} className="navbar-item" style={navItem}>
             {link.text}
           </Link>
