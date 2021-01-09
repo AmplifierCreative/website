@@ -21,14 +21,21 @@ Angie the Rose finds energy in art that others might find in a high adrenaline s
 
 In this way, she is very similar to two of her inspirational icons, Lee Krasner and Georgia O’Keefe. She communicates her feelings through art, developing her tools and techniques to meet her needs, an approach that leads to very different visuals across her body of work. Krasner was often criticized for not having personally identifiable characteristics in her work, but she argued that the meaning of art transcended these traditional expectations. Telling personal stories through the arts requires a high level of courage and dedication for an artist, both of which are characteristics O’Keefe celebrated.
 
-![](/img/placeholder-2.jpg#box-shadow=2px 2px 6px 0px;float=right;foo=bar)
+![](/img/placeholder-2.jpg#float=right;width=50%;)
 
 Angie believes that “the art is already there, but you have to make it \[and] commit to it,” which is her approach to a new canvas. In her college years, she mainly focused on ink drawings that were direct, dark and moody. Later after moving to Greensboro, she did a series of watercolor-based paintings of dreamlike mountain scenes in a reflection of her homesickness. With the next series, the colors shifted to black and blue and a more abstract theme to represent a kind of bruising as Angie worked through a personally challenging year.
 
+![](/img/placeholder-2.jpg#float=right;width=100%;)
+
 In her newest series, “Molecular,” Angie continues to follow her heart towards the emotive abstract and thinks of this as the defining work of her career thus far. “Molecular” is a drastic turn in style and represents change and growth within our bodies and the world around us. Palette knives and bold acrylics are the primary tools for this series, but she also adds finer details with ink pen to create additional textures and sensations of movement. This series is in some ways a unique juxtaposition of neuroscience and art, but the primary goal is to reflect on life and the changes and responses going on inside of our bodies at all times. These pieces communicate Angie’s dedication to embracing happiness and self-awareness, and she hopes that other people will feel that, too. She identifies this work as the highlight of her career, and it has been very liberating for her and a welcome change.
+
+![](/img/placeholder-2.jpg#float=left;width=50%;padding-right=20px;)
 
 In reflection of her growth as an artist, Angie contemplates what it means to be an artist in today’s society. The loss of art programs and the unrelenting threat of their defunding worry her. She believes that “children shouldn’t be forced to think in one specific pattern” and that they “should be given all the opportunities” to find the path that suits them. Emotion interrupts her when she tries to consider what her life would be like if she could not paint or create—she would not have part of her voice.
 
 “Artists have to make a point to tell the political system” that arts are valuable and meaningful. While it is seemingly less common today, historically, the arts have had “a way of impacting the political spectrum,” and there are still possibilities for using it as a gateway to change.
+
+![](/img/placeholder-2.jpg#float=left;width=49%;)
+![](/img/placeholder-2.jpg#float=right;width=49%;)
 
 Angie the Rose is richly talented, and the feelings and stories she shares are both personal to her and familiar to everyone, creating an intimate connection. Art from the “Molecular” series can be seen at the [Center for Visual Artists](http://google.com) during the Spectrum exhibit until March 17, and at Vivid Interiors. The 205 Collaborative also hosts an open house event known as “Second Saturdays” where guests can visit her studio as well as those of other artists in Greensboro. For more information regarding Angie’s events and new creations, stay up-to-date through her website and on Instagram under @angietherose.
