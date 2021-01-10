@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { animated, useSpring } from 'react-spring'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
@@ -130,6 +131,10 @@ const clientsTitle = {
   marginBottom: '1em',
 }
 
+const calc = (o) => `translateY(${o * 0.1}px)`
+const calc2 = (o) => `translateY(${o * 0.5}px)`
+const calc3 = (o) => `translateY(${o * 1}px)`
+
 export const IndexPageTemplate = ({
   image,
   title,
@@ -138,23 +143,94 @@ export const IndexPageTemplate = ({
   services,
   clients,
 }) => {
+  const ref = useRef()
+  const ref2 = useRef()
+  const ref3 = useRef()
+
+  const [{ offset }, set] = useSpring(() => ({ offset: 0 }))
+  const [{ offset2 }, set2] = useSpring(() => ({ offset2: 20 }))
+  const [{ offset3 }, set3] = useSpring(() => ({ offset3: 40 }))
+
+  const handleScroll = () => {
+    const posY = ref.current.getBoundingClientRect().top
+    const offset = window.pageYOffset - posY
+    set({ offset })
+  }
+
+  const handleScroll2 = () => {
+    const posY = ref2.current.getBoundingClientRect().top
+    const offset2 = window.pageYOffset - posY
+    set2({ offset2 })
+  }
+
+  const handleScroll3 = () => {
+    const posY = ref3.current.getBoundingClientRect().top
+    const offset3 = window.pageYOffset - posY
+    set3({ offset3 })
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll2)
+    window.addEventListener('scroll', handleScroll3)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll2)
+      window.removeEventListener('scroll', handleScroll3)
+    }
+  })
   return (
     <div>
       <section style={headerStyle} className="hero is-medium">
         <div className="hero-body">
           <div className="container is-max-widescreen">
-              <h1 className="title" style={titleText}>
-                {hero.heading}
-              </h1>
+            <animated.h1
+              ref={ref}
+              className="title"
+              style={{
+                color: '#F8F3F1',
+                fontFamily: 'VisbyCF-Bold',
+                fontWeight: '400',
+                fontSize: '4rem',
+                transform: offset.interpolate(calc),
+              }}
+            >
+              {hero.heading}
+            </animated.h1>
             <div className="header-arrow-container" style={arrowContainer}>
               <div style={arrowDown}></div>
             </div>
-              <h2 className="subtitle" style={subTitleTextA}>
-                {hero.subheading}
-              </h2>
-              <h2 className="subtitle" style={subTitleTextB}>
-                {hero.description}
-              </h2>
+            <animated.h2
+              ref={ref2}
+              className="subtitle"
+              style={{
+                color: '#F8F3F1',
+                fontFamily: 'EBGaramond',
+                fontWeight: '400',
+                fontSize: '1.5rem',
+                maxWidth: '760px',
+                marginTop: '2.5rem',
+                transform: offset2.interpolate(calc2),
+              }}
+            >
+              {hero.subheading}
+            </animated.h2>
+            <animated.h2
+              ref={ref3}
+              className="subtitle"
+              style={{
+                color: '#F8F3F1',
+                fontFamily: 'EBGaramond',
+                fontWeight: '400',
+                fontSize: '1.5rem',
+                maxWidth: '760px',
+                marginTop: '2.5rem',
+                transform: offset3.interpolate(calc3),
+              }}
+            >
+              {hero.description}
+            </animated.h2>
           </div>
         </div>
       </section>
