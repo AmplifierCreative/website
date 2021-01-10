@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 import { v4 } from 'uuid'
-import {Trail} from 'react-spring/renderprops'
+import { Trail, animated } from 'react-spring/renderprops'
 
 
 class ProjectRoll extends React.Component {
@@ -11,14 +11,13 @@ class ProjectRoll extends React.Component {
     super(props)
     this.state = {
       active: false,
+      items: [ '1', '2' ],
     }
+    this.toggleVisible = this.toggleVisible.bind(this)
   }
 
   toggleVisible = () => {
-    this.setState(
-      {
-        active: !this.state.active,
-      })
+    this.setState({ active: !this.state.active })
   }
 
   render() {
@@ -30,55 +29,69 @@ class ProjectRoll extends React.Component {
       marginTop: 0,
     }
 
+    const _posts = () => 
+    {posts &&
+      posts.map(({ node: post }) => (
+        <div className="columns mb-2 is-vcentered" key={v4()}>         
+          <div className="column has-text-centered">
+            <h4 className="vertical-text">{post.frontmatter.tags}</h4>
+            <div className="project-container">
+              <span className="is-block is-uppercase orange-text">
+                {/* {post.frontmatter.date} */}
+                Client Name
+              </span>
+              <h1 className="post-meta mt-0">
+                <Link
+                  className="title is-size-2"
+                  to={post.fields.slug}
+                  style={blackStyle}
+                >
+                  {post.frontmatter.title}
+                </Link>
+              </h1>
+              <p>
+                {post.excerpt}
+                <br />
+                <br />
+              </p>
+              <Link className="button" to={post.fields.slug}>
+                View More
+              </Link>
+            </div>
+          </div>             
+          <div className="column" key={post.id}>
+            {post.frontmatter.featuredimage ? (
+              <div className="featured-thumbnail">
+                <PreviewCompatibleImage
+                  imageInfo={{
+                    image: post.frontmatter.featuredimage,
+                    alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                  }}
+                />
+              </div>
+            ) : null}
+          </div>
+          <br /> 
+        </div>
+      ))}
+
     return (
       <div className="project">
-      {/* <button onClick={this.toggleVisible}>Click</button> */}
-        {posts &&
-          posts.map(({ node: post }) => (
-            <div className="columns mb-2 is-vcentered" key={v4()}>
-            {/* <Trail from={{transform: 'translate3d(0,-40px,0)'}} to={{transform: 'translate3d(0,0px,0)'}}> */}
-              <div className="column has-text-centered">
-                <h4 className="vertical-text">{post.frontmatter.tags}</h4>
-                <div className="project-container">
-                  <span className="is-block is-uppercase orange-text">
-                    {/* {post.frontmatter.date} */}
-                    Client Name
-                  </span>
-                  <h1 className="post-meta mt-0">
-                    <Link
-                      className="title is-size-2"
-                      to={post.fields.slug}
-                      style={blackStyle}
-                    >
-                      {post.frontmatter.title}
-                    </Link>
-                  </h1>
-                  <p>
-                    {post.excerpt}
-                    <br />
-                    <br />
-                  </p>
-                  <Link className="button" to={post.fields.slug}>
-                    View More
-                  </Link>
-                </div>
-              </div>
-              <div className="column" key={post.id}>
-                {post.frontmatter.featuredimage ? (
-                  <div className="featured-thumbnail">
-                    <PreviewCompatibleImage
-                      imageInfo={{
-                        image: post.frontmatter.featuredimage,
-                        alt: `featured image thumbnail for post ${post.frontmatter.title}`,
-                      }}
-                    />
-                  </div>
-                ) : null}
-              </div>
-              <br />
-              {/* </Trail> */}
-            </div>
-          ))}
+      <button onClick={this.toggleVisible}>Click</button>
+      <Trail 
+        items={this.state.items} 
+        keys={v4()} 
+        from={{ opacity: 0 }}
+        to={{ 
+          opacity: this.state.active ? 1 : 0, 
+        }}>
+        {item => ({ opacity }) => (
+            <animated.div
+              style={{ opacity }}>
+              <p>hello world</p>
+            </animated.div>
+          )}
+      </Trail>
       </div>
     )
   }

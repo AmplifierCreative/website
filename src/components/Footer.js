@@ -290,7 +290,7 @@ class Footer extends React.Component {
                         placeholder="enter your email address to stay in touch"
                         rows="2"
                         col="20"
-                        emailValue={this.state.emailValue}
+                        emailvalue={this.state.emailValue}
                         onChange={this.handleChange}
                         onFocus={this.showSubmit}
                       />
@@ -300,7 +300,7 @@ class Footer extends React.Component {
                         style={emailInput}
                         type="email"
                         placeholder="enter your email address to stay in touch"
-                        emailValue={this.state.emailValue}
+                        emailvalue={this.state.emailValue}
                         onChange={this.handleChange}
                         onFocus={this.showSubmit}
                       />

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
+import { v4 } from 'uuid'
 
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
-import { v4 } from 'uuid'
 
 const nav = {
   margin: '0',
@@ -193,7 +193,6 @@ class Navbar extends React.Component {
     return null
   }
 
-
   render() {
     const isMobile = this.state.isMobile
 
@@ -204,7 +203,7 @@ class Navbar extends React.Component {
       <nav
         className="columns nav-container"
         role="navigation"
-        ariaLabel="main-navigation"
+        aria-label="main-navigation"
         style={nav}
       >
         <div

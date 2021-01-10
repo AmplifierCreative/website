@@ -318,10 +318,10 @@ export const IndexPageTemplate = ({
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  hero: PropTypes.string,
-  about: PropTypes.string,
-  services: PropTypes.string,
-  clients: PropTypes.string,
+  hero: PropTypes.object,
+  about: PropTypes.object,
+  services: PropTypes.object,
+  clients: PropTypes.object,
 }
 
 const IndexPage = ({ data }) => {
