@@ -2,148 +2,34 @@ import React from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
+import { Keyframes, animated } from 'react-spring/renderprops'
 
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
 
-const nav = {
-  margin: '0',
-  width: '100%',
-  zIndex: '99',
-  position: 'sticky',
-  top: '0',
-}
+const NavMenuSidebar = Keyframes.Spring({
+  peek: { x: 4000, delay: 800 },
+  open: { delay: 0, x: 0 },
+  close: { x: 4000, delay: 800 },
+})
 
-const navBarContainer = {
-  maxWidth: '1240px',
-  margin: 'auto',
-}
-
-const navBarContainerMobile = {
-  paddingRight: '2em',
-  paddingLeft: '2em',
-}
-
-const logoContainer = {
-  backgroundColor: 'transparent',
-  padding: '0',
-  paddingTop: '4rem',
-}
-
-const logoContainerMobile = {
-  backgroundColor: 'transparent',
-  padding: '0',
-  paddingTop: '4rem',
-  width: '51%',
-}
-
-const logoStyle = {
-  marginLeft: '-6px',
-}
-
-const logoDarkStyle = {
-  display: 'none',
-  marginLeft: '-6px',
-}
-
-const toggleContainer = {
-  position: 'relative',
-}
-
-const burgerContainer = {
-  backgroundColor: 'transparent',
-  paddingTop: '4rem',
-  paddingBottom: '.25em',
-}
-
-const burger = {
-  float: 'right',
-  zIndex: '1000',
-  position: 'relative',
-  cursor: 'pointer',
-}
-
-const burgerLineTop = {
-  height: '8px',
-  width: '70px',
-  display: 'block',
-}
-
-const burgerLine = {
-  height: '8px',
-  width: '70px',
-  display: 'block',
-  marginTop: '8px',
-}
-
-const navMenuContainer = {
-  padding: 0,
-  margin: 0,
-  position: 'fixed',
-  top: '0',
-  right: '0',
-  bottom: '0',
-  width: '38%',
-  overflow: 'auto',
-  backgroundColor: '#F8F3F1',
-  zIndex: 100,
-}
-
-const navMenuContainerMobile = {
-  padding: 0,
-  margin: 0,
-  position: 'fixed',
-  top: '0',
-  right: '0',
-  bottom: '0',
-  width: '85%',
-  overflow: 'auto',
-  backgroundColor: '#F8F3F1',
-  zIndex: 100,
-}
-
-const navMenu = {
-  position: 'absolute',
-  right: '13px',
-  zIndex: '999',
-  paddingTop: '3em',
-}
-
-const navItem = {
-  color: '#BA5930',
-  fontSize: '2.5em',
-  fontWeight: '800',
-  padding: '0',
-  lineHeight: '1.5em',
-  letterSpacing: '1px',
-}
+const Menu = Keyframes.Trail({
+  peek: { x: 4000, delay: 700 },
+  open: { delay: 0, x: 0 },
+  close: { x: 4000, delay: 700 },
+})
 
 const NavLinksMenu = ({ links }) => {
-  return links.map((link) => {
-    const { path, text, local } = link
-
-    if (local) {
-      return (
-        <li key={v4()}>
-          <Link to={`/${link.path}`} className="navbar-item" style={navItem}>
-            {link.text}
-          </Link>
-        </li>
-      )
-    }
-
-    if (!local) {
-      return (
-        <li>
-          <a href={path} className="footer-item" style={navItem}>
-            {text}
-          </a>
-        </li>
-      )
-    }
-    return null
+  const items = links.map((link) => {
+    const { path, text } = link
+    return (<li key={v4()}>
+      <Link to={`/${path}`} className="navbar-item">
+        {text}
+      </Link>
+    </li>)
   })
+  return items
 }
 class Navbar extends React.Component {
   constructor(props) {
@@ -151,108 +37,83 @@ class Navbar extends React.Component {
     this.state = {
       active: false,
       navBarActiveClass: '',
-      isMobile: '',
+      open: undefined,
     }
-    this.updateSize = this.updateSize.bind(this)
-  }
-
-  componentDidMount() {
-    this.updateSize()
-    window.addEventListener('resize', this.updateSize)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateSize)
-  }
-
-  updateSize() {
-    this.setState({ isMobile: window.innerWidth < 769 })
   }
 
   toggleHamburger = () => {
     this.setState(
       {
         active: !this.state.active,
+        open: !this.state.open
       },
       () => {
         this.state.active
           ? this.setState({
               navBarActiveClass: 'is-active',
             })
+            
           : this.setState({
               navBarActiveClass: '',
             })
-      }
+      },
     )
-  }
-
+  }   
+  
   _handleKeyUp = (e) => {
     if (e.key === 'Enter') {
       this.toggleHamburger()
     }
     return null
   }
-
+  
   render() {
-    const isMobile = this.state.isMobile
-
+    const state = this.state
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-
+    const items = posts[0].node.frontmatter.nav
+    const _state = 
+      state.open === undefined
+      ? 'peek' 
+      : this.state.open
+      ? 'open'
+      : 'close'
     return (
       <nav
-        className="columns nav-container"
+        className="nav-container"
         role="navigation"
         aria-label="main-navigation"
-        style={nav}
       >
-        <div
-          className="column"
-          style={isMobile ? navBarContainerMobile : navBarContainer}
-        >
+        <div className="column navbar-container" >
           <div className="columns is-vcentered is-mobile">
-            <div
-              className="column is-one-third nav-logo"
-              style={isMobile ? logoContainerMobile : logoContainer}
-            >
+            <div className="column is-one-third nav-logo logo-container" >
               <Link to="/" className="nav-logo-link" title="Logo">
-                <img src={logo} alt="Amplifier Creative" style={logoStyle} />
+                <img src={logo} alt="Amplifier Creative" className="nav-logo"/>
                 <img
                   src={logoDark}
+                  className="nav-logo-dk"
                   alt="Amplifier Creative"
-                  style={logoDarkStyle}
                 />
               </Link>
             </div>
-            <div className="column" style={toggleContainer}>
-              <div style={burgerContainer}>
+            <div className="column is-relative">
+              <div className="burger-container">
                 <div
                   onClick={() => this.toggleHamburger()}
                   onKeyUp={(event) => this._handleKeyUp(event)}
-                  style={burger}
-                  className={'burger'}
+                  className="burger"
                   role="button"
                   tabIndex={0}
                 >
-                  <span
-                    className={`burger-line ${this.state.navBarActiveClass}`}
-                    style={burgerLineTop}
-                  />
-                  <span
-                    className={`burger-line ${this.state.navBarActiveClass}`}
-                    style={burgerLine}
-                  />
-                  <span
-                    className={`burger-line ${this.state.navBarActiveClass}`}
-                    style={burgerLine}
-                  />
+                  <span className={`burger-line-top ${this.state.navBarActiveClass}`} />
+                  <span className={`burger-line ${this.state.navBarActiveClass}`} />
+                  <span className={`burger-line ${this.state.navBarActiveClass}`} />
                 </div>
               </div>
-              {this.state.active ? (
+{/*               {this.state.active ? (
                 <div
                   id="navMenu"
                   className={`navbar-menu ${this.state.navBarActiveClass}`}
-                  style={navMenu}
                 >
                   <div>
                     <ul className="menu-list has-text-right">
@@ -260,16 +121,45 @@ class Navbar extends React.Component {
                     </ul>
                   </div>
                 </div>
-              ) : null}
+              ) : null} */}
+              <div className="navbar-menu">
+                <ul className="menu-list has-text-right">
+                  <Menu
+                  native
+                  items={items}
+                  keys={items.map((_, i) => i)}
+                  /* reverse={!this.state.open} */
+                  state={_state}>
+                  {(item, i) => ({ x, ...props }) => (
+                    <animated.div
+                      style={{
+                        transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
+                        ...props,
+                      }}>
+                      <li>
+                        <Link to={`/${item.path}`} className="navbar-item">
+                          {console.log(item)}
+                          {item.text}
+                        </Link>
+                      </li>
+                    </animated.div>
+                  )}
+                </Menu>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        {this.state.active ? (
-          <div
-            className="nav-menu-container"
-            style={isMobile ? navMenuContainerMobile : navMenuContainer}
-          ></div>
-        ) : null}
+        <NavMenuSidebar native state={_state}>
+          {({ x }) => (
+              <animated.div
+                className="nav-menu-container"
+                style={{
+                  transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
+                }}>
+              </animated.div>
+          )}
+        </NavMenuSidebar>
       </nav>
     )
   }

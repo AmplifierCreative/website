@@ -38,7 +38,6 @@ const Statistics = ({ statistics }) => {
               </animated.svg>
               <div
                 className="statistic-body circle has-text-centered"
-              
               > 
                 <AnimatedValue _number={statistic.number}/>
                 <cite style={blurbText}> {statistic.blurb}</cite>

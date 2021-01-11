@@ -2,6 +2,63 @@
 // navbar
 .nav-container
     background-color: $AC-black
+    margin: 0
+    width: 100%
+    z-index: 99
+    position: sticky
+    top: 0
+    margin-bottom: 0
+
+.navbar-container
+    max-width: 1240px
+    margin: auto
+
+.logo-container
+    background-color: transparent
+    padding: 0
+    padding-top: 4rem
+
+.nav-menu-container
+    padding: 0
+    margin: 0
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    width: 38%
+    overflow: auto
+    background-color: $AC-white !important
+    z-index: 900
+
+.is-relative
+    position: relative
+
+.navbar-item
+    color: $AC-orange !important
+    font-size: 2.5em
+    font-weight: 800
+    padding: 0 !important
+    line-height: 1.5em
+    letter-spacing: 1px
+
+.burger-container
+    background-color: transparent
+    padding-top: 4rem
+    padding-bottom: .25em
+
+.burger
+    float: right
+    z-index: 1000
+    position: relative
+    cursor: pointer
+
+.burger-line-top
+    height: 8px
+    width: 70px
+    display: block
+    background-color: $AC-white
+    &.is-active
+        background-color: $AC-orange !important
 
 .navbar .navbar-menu
     box-shadow: none !important
@@ -9,21 +66,31 @@
 .navbar-item img
     max-height: 4.5rem !important
 
+.nav-logo
+    margin-left: -6px
+
+.nav-logo-dk
+    display: none
+    margin-left: -6px
+
 .burger-line
+    height: 8px
+    width: 70px
+    display: block
+    margin-top: 8px
     background-color: $AC-white
     &.is-active
         background-color: $AC-orange !important
-
-.nav-menu-container
-    background-color: $AC-white
 
 .menu-list li a
     font-family: $family-sans-serif-bold
     &:hover
         color: $AC-peach !important
 
-.nav-logo-link:hover
-    background-color: transparent
+.nav-logo-link
+    margin-left: -6px
+    &:hover
+        background-color: transparent
 
 // overrides
 $navbar-item-hover-background-color: $AC-white
@@ -35,6 +102,10 @@ $navbar-box-shadow-color: $AC-white
 
 .navbar-menu
     box-shadow: 0 0 0 0 !important
+    position: absolute
+    right: 13px
+    z-index: 999
+    padding-top: 3em
 
 //Menu overrides
 $menu-item-color: $AC-white
@@ -55,7 +126,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 
 .menu-color-2 .burger span
     background-color: $AC-black !important
-    &.burger-line.is-active
+    &.burger-line.is-active, &.burger-line-top.is-active
         background-color: $AC-white !important
 
 .menu-color-2 .nav-logo a img:nth-child(1)
@@ -76,3 +147,10 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 @media screen and (max-width: 1023px)
     .menu-color-2 #navMenu
         background-color: $AC-orange
+    .navbar-container
+        padding-right: 2em
+        padding-left: 2em
+    .logo-container
+        width: 51%
+    .nav-menu-container
+        width: 85%
