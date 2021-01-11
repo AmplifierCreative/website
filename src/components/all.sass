@@ -155,6 +155,9 @@ h1
 .statistic-wrapper
   margin-bottom: 100px
 
+.statistic
+  position: relative
+
 // Helper Classes
 .full-width-image-container
   width: 100vw
@@ -211,7 +214,20 @@ h1
   padding: 50px
   height: 390px
   width: 390px
-  overflow:
+  overflow: hidden
+
+.svg-circle
+  fill: none
+  stroke: $AC-peach
+  stroke-width: 2
+
+.svg-circle-container
+  height: 390px
+  width: 390px
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-dasharray: 800
+  position: absolute
 
 // Override for use of svg's from https://simpleicons.org/
 .icon svg

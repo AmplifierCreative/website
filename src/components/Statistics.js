@@ -25,13 +25,7 @@ const AnimatedValue = ({ _number }) => {
 
 const Statistics = ({ statistics }) => {
 
-  const [open, toggle] = useState(false)
-  
-  const {o, color} = useSpring({
-    from: {o: 0, color: '#F8F3F1'},
-    o: 1,
-    color: '#FAB395'
-  })
+  const props = useSpring({ x: 0, from: { x: 1000 } })
 
   return ( 
     <section className="statistic-wrapper">
@@ -39,14 +33,15 @@ const Statistics = ({ statistics }) => {
         {statistics.map((statistic) => (
           <div key={v4()} className="column">
             <article className="statistic">
-              <animated.div
+              <animated.svg viewBox="45 45 215 215" strokeDashoffset={props.x} className="svg-circle-container">               >
+                <circle cx="150" cy="150" r="100" transform="rotate(90 150 150)" className="svg-circle" />
+              </animated.svg>
+              <div
                 className="statistic-body circle has-text-centered"
-                style={{ border: interpolate([o, color], (o, c) => `${o * 2}px solid ${c}`),}}
-                onClick={() => toggle(!open)}
-              >     
+              > 
                 <AnimatedValue _number={statistic.number}/>
                 <cite style={blurbText}> {statistic.blurb}</cite>
-              </animated.div>
+              </div>
             </article>
           </div>
         ))}
