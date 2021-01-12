@@ -1,9 +1,9 @@
 ---
 templateKey: blog-post
-title: 'Angie the Rose: creating an intimate outlet for artistic storytelling'
+title: "Angie the Rose: creating an intimate outlet for artistic storytelling"
 date: 2020-11-08T20:25:43.431Z
 description: >+
-
+  
   When you walk into the studio of Angie the Rose at the 205 Collaborative, the first thing you notice is the warm smell of incense hanging in the air. Turning the corner, natural light pours in through rusted windows and the concrete space comes to life as her paintings come into view.
 
 featuredpost: true
@@ -21,7 +21,7 @@ Angie the Rose finds energy in art that others might find in a high adrenaline s
 
 In this way, she is very similar to two of her inspirational icons, Lee Krasner and Georgia O’Keefe. She communicates her feelings through art, developing her tools and techniques to meet her needs, an approach that leads to very different visuals across her body of work. Krasner was often criticized for not having personally identifiable characteristics in her work, but she argued that the meaning of art transcended these traditional expectations. Telling personal stories through the arts requires a high level of courage and dedication for an artist, both of which are characteristics O’Keefe celebrated.
 
-![](/img/placeholder-2.jpg#float=right;width=50%;lightbox=true;)
+![](/img/placeholder-2.jpg#float=right;width=50%;)
 
 Angie believes that “the art is already there, but you have to make it \[and] commit to it,” which is her approach to a new canvas. In her college years, she mainly focused on ink drawings that were direct, dark and moody. Later after moving to Greensboro, she did a series of watercolor-based paintings of dreamlike mountain scenes in a reflection of her homesickness. With the next series, the colors shifted to black and blue and a more abstract theme to represent a kind of bruising as Angie worked through a personally challenging year.
 
