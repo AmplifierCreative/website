@@ -177,6 +177,16 @@ collections:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Image', name: 'image', widget: 'image' }
           - {
+              label: 'Hero',
+              name: 'hero',
+              widget: 'object',
+              fields:
+                [
+                  { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Subheading', name: 'subheading', widget: 'text' },
+                ],
+            }
+          - {
               label: 'Top Section',
               name: 'topSection',
               widget: 'object',

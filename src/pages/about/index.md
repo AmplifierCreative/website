@@ -2,6 +2,9 @@
 templateKey: about-page
 title: about
 image: /img/placeholder-2.jpg
+hero:
+  heading: about
+  subheading: We’re editors, copywriters, designers, illustrators, art directors, creative directors, project managers, brand strategists, SEO gurus, social media experts… And, yeah. There’s only two of us.
 topSection:
   description1: >
     You may know us from our zine days—and if so, we’re so glad you’ve found

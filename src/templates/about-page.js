@@ -11,8 +11,15 @@ const heroContainer = {
     backgroundColor: '#2D2C2C',
     marginTop: '0',
     marginBottom: '0',
-    height: "300px",
+    height: "400px",
     padding: '5rem 2rem',
+}
+
+const heroText = {
+  fontFamily: 'EBGaramond',
+  fontSize: '1.5em',
+  color: '#F8F3F1',
+  maxWidth: '750px',
 }
 
 const lineHeader = {
@@ -72,6 +79,7 @@ function Trail({ open, children, ...props }) {
 export const AboutPageTemplate = ({
     image,
     title,
+    hero,
     topSection,
     bottomSection,
 }) => {
@@ -80,7 +88,10 @@ export const AboutPageTemplate = ({
   return (
     <div style={sectionContainer}>
       <div className="container is-max-widescreen" style={heroContainer}>
-          <h1 className="line-header" style={lineHeader}>{title}</h1>
+        <Trail open={open} onClick={() => set((state) => !state)}>
+            <h1 className="line-header" style={lineHeader}>{hero.heading}</h1>
+            <p style={heroText}>{hero.subheading}</p>
+        </Trail>
       </div>
       <section className="about-section-container container is-max-widescreen">
         <div className="about-section-text-right">
@@ -136,6 +147,7 @@ export const AboutPageTemplate = ({
 AboutPageTemplate.propTypes = {
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     title: PropTypes.string,
+    hero: PropTypes.object,
     topSection: PropTypes.object,
     bottomSection: PropTypes.object,
   }
@@ -148,6 +160,7 @@ const AboutPage = ({ data }) => {
         <AboutPageTemplate
           image={frontmatter.image}
           title={frontmatter.title}
+          hero={frontmatter.hero}
           topSection={frontmatter.topSection}
           bottomSection={frontmatter.bottomSection}
         />
@@ -166,41 +179,45 @@ const AboutPage = ({ data }) => {
 export default AboutPage
 
 export const pageQuery = graphql`
-  query AboutPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
-      frontmatter {
-        title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
+query AboutPageTemplate {
+  markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
+    frontmatter {
+      title
+      image {
+        childImageSharp {
+          fluid(maxWidth: 2048, quality: 100) {
+            ...GatsbyImageSharpFluid
           }
         }
-        topSection {
-            description1
-            description2
-            image {
-                childImageSharp {
-                    fluid(maxWidth: 2048, quality: 100) {
-                      ...GatsbyImageSharpFluid
-                    }
-                }
+      }
+      hero {
+        heading
+        subheading
+      }
+      topSection {
+          description1
+          description2
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
             }
-        }
-        bottomSection {
-            description1
-            description2
-            description3
-            image {
-                childImageSharp {
-                    fluid(maxWidth: 2048, quality: 100) {
-                      ...GatsbyImageSharpFluid
-                    }
-                }
+          }
+      }
+      bottomSection {
+          description1
+          description2
+          description3
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
             }
-        }
+          }
       }
     }
   }
+}
 `

@@ -11,26 +11,14 @@ import logoDark from '../img/logo-dk.svg'
 const NavMenuSidebar = Keyframes.Spring({
   peek: { x: 4000, delay: 800 },
   open: { delay: 0, x: 0 },
-  close: { x: 4000, delay: 800 },
+  close: { x: 4000, delay: 600 },
 })
 
 const Menu = Keyframes.Trail({
-  peek: { x: 4000, delay: 700 },
-  open: { delay: 0, x: 0 },
-  close: { x: 4000, delay: 700 },
+  peek: { x: 4000, display: 'none' },
+  open: { x: 0, display: 'block' },
+  close: { display: 'none', x: 4000 },
 })
-
-const NavLinksMenu = ({ links }) => {
-  const items = links.map((link) => {
-    const { path, text } = link
-    return (<li key={v4()}>
-      <Link to={`/${path}`} className="navbar-item">
-        {text}
-      </Link>
-    </li>)
-  })
-  return items
-}
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
@@ -38,9 +26,23 @@ class Navbar extends React.Component {
       active: false,
       navBarActiveClass: '',
       open: undefined,
+      isTop: true
     }
+/*     this.myRef = React.createRef()
+    this.checkPosition.bind(this) */
   }
 
+/*   componentDidMount() {
+    const myRef = this.myRef
+    myRef.addEventListener('scroll', this.checkPosition);
+}
+
+  componentWillUnmount() {
+      const myRef = this.myRef
+      myRef.removeEventListener('scroll', this.checkPosition);
+  }
+ */
+ 
   toggleHamburger = () => {
     this.setState(
       {
@@ -66,6 +68,13 @@ class Navbar extends React.Component {
     }
     return null
   }
+
+/*   checkPosition = () => {
+    const scrollY = window.scrollY
+    const scrollTop = this.myRef.current.scrollTop
+    console.log('check position called')
+    console.log(`onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`)
+  } */
   
   render() {
     const state = this.state
@@ -83,6 +92,8 @@ class Navbar extends React.Component {
         className="nav-container"
         role="navigation"
         aria-label="main-navigation"
+/*         ref={this.myRef}
+        onScroll={this.checkPosition()} */
       >
         <div className="column navbar-container" >
           <div className="columns is-vcentered is-mobile">
@@ -110,27 +121,15 @@ class Navbar extends React.Component {
                   <span className={`burger-line ${this.state.navBarActiveClass}`} />
                 </div>
               </div>
-{/*               {this.state.active ? (
-                <div
-                  id="navMenu"
-                  className={`navbar-menu ${this.state.navBarActiveClass}`}
-                >
-                  <div>
-                    <ul className="menu-list has-text-right">
-                      <NavLinksMenu links={posts[0].node.frontmatter.nav} />
-                    </ul>
-                  </div>
-                </div>
-              ) : null} */}
               <div className="navbar-menu">
                 <ul className="menu-list has-text-right">
                   <Menu
                   native
                   items={items}
                   keys={items.map((_, i) => i)}
-                  /* reverse={!this.state.open} */
+                  reverse={!this.state.open}
                   state={_state}>
-                  {(item, i) => ({ x, ...props }) => (
+                  {(item) => ({ x, ...props }) => (
                     <animated.div
                       style={{
                         transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
@@ -138,7 +137,6 @@ class Navbar extends React.Component {
                       }}>
                       <li>
                         <Link to={`/${item.path}`} className="navbar-item">
-                          {console.log(item)}
                           {item.text}
                         </Link>
                       </li>

@@ -4,10 +4,10 @@ title: services
 image: /img/placeholder-2.jpg
 hero:
   heading: services
-  subheading: "Long story short: Our services are tailored to your needs, so
+  subheading: 'Long story short: Our services are tailored to your needs, so
     pricing ranges—but there’s no task too small or too big. Because at the end
     of the day, your success is our passion—and we want to be a part of your
-    journey."
+    journey.'
 section1:
   heading: Copywriting + editing
   description1: Landing and product page copy

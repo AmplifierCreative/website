@@ -112,9 +112,7 @@ const LinksMenu = ({ links, start, end }) => {
           </Link>
         </li>
       )
-    }
-
-    if (!local) {
+    } else {
       return (
         <li key={v4()}>
           <a href={path} className="footer-item" style={menuItemLink}>
@@ -123,7 +121,6 @@ const LinksMenu = ({ links, start, end }) => {
         </li>
       )
     }
-    return null
   })
 }
 
@@ -225,9 +222,16 @@ class Footer extends React.Component {
     event.preventDefault()
     let email = this.state.emailValue
     const response = await addToMailchimp(email)
-    console.log(response)
     this.setState({ res: response })
-    this.setState({ sent: !this.state.sent })
+    this.formStatus()
+  }
+
+  formStatus(res) {
+    if (res === 'error') {
+      this.setState({ sent: !this.state.sent })
+    } else {
+      this.setState({ sent: !this.state.sent })
+    }
   }
 
   resetForm() {

@@ -143,13 +143,13 @@ export const IndexPageTemplate = ({
   services,
   clients,
 }) => {
-  const ref = useRef()
+/*   const ref = useRef()
   const ref2 = useRef()
   const ref3 = useRef()
 
   const [{ offset }, set] = useSpring(() => ({ offset: 0 }))
-  const [{ offset2 }, set2] = useSpring(() => ({ offset2: 20 }))
-  const [{ offset3 }, set3] = useSpring(() => ({ offset3: 40 }))
+  const [{ offset2 }, set2] = useSpring(() => ({ offset2: 10 }))
+  const [{ offset3 }, set3] = useSpring(() => ({ offset3: 20 }))
 
   const handleScroll = () => {
     const posY = ref.current.getBoundingClientRect().top
@@ -169,6 +169,7 @@ export const IndexPageTemplate = ({
     set3({ offset3 })
   }
 
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('scroll', handleScroll2)
@@ -179,13 +180,28 @@ export const IndexPageTemplate = ({
       window.removeEventListener('scroll', handleScroll2)
       window.removeEventListener('scroll', handleScroll3)
     }
-  })
+  }) */
   return (
     <div>
-      <section style={headerStyle} className="hero is-medium">
+      <section
+      style={ image ?
+        {backgroundImage: `url(${
+          !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+        })`} : headerStyle
+      }
+      className="hero is-medium">
         <div className="hero-body">
           <div className="container is-max-widescreen">
-            <animated.h1
+            <h1 style={titleText}>
+              {hero.heading}
+            </h1>
+            <h2 style={subTitleTextA}>
+              {hero.subheading}
+            </h2>
+            <h2 style={subTitleTextB}>
+              {hero.description}
+            </h2>
+            {/* <animated.h1
               ref={ref}
               className="title"
               style={{
@@ -230,7 +246,7 @@ export const IndexPageTemplate = ({
               }}
             >
               {hero.description}
-            </animated.h2>
+            </animated.h2> */}
           </div>
         </div>
       </section>

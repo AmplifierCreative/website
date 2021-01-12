@@ -9,6 +9,7 @@ const AboutPagePreview = ({ entry, getAsset }) => {
     return (
       <AboutPageTemplate
         image={getAsset(data.image)}
+        hero={data.hero}
         title={data.title}
         topSection={data.topSection}
         bottomSection={data.bottomSection}

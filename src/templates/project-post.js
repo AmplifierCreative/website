@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
@@ -6,6 +6,8 @@ import Layout from '../components/Layout'
 import Testimonials from '../components/Testimonials'
 import Statistics from '../components/Statistics'
 import Content, { HTMLContent } from '../components/Content'
+import { v4 } from 'uuid'
+import {useTrail, a} from 'react-spring'
 
 const titleText = {
   fontFamily: 'VisbyCF-Bold',
@@ -42,6 +44,30 @@ const portfolioCTAContainer = {
   marginBottom: '100px',
 }
 
+function Trail({ open, children, ...props }) {
+  const items = React.Children.toArray(children)
+  const trail = useTrail(items.length, {
+    config: { mass: 5, tension: 2000, friction: 200 },
+    opacity: open ? 1 : 0,
+    x: open ? 0 : 20,
+    from: { opacity: 0, x: 20 },
+  })
+  return (
+    <div className="trails-main" {...props}>
+      <div>
+        {trail.map(({ x, height, ...rest }, index) => (
+          <a.div
+            key={v4()}
+            className="trails-text"
+            style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
+            <a.div style={{ height }}>{items[index]}</a.div>
+          </a.div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export const ProjectPostTemplate = ({
   content,
   contentComponent,
@@ -54,25 +80,27 @@ export const ProjectPostTemplate = ({
   statistics,
 }) => {
   const PostContent = contentComponent || Content
-  console.log(PostContent)
+  const [open, set] = useState(true)
   return (
     <div>
-      <section className="hero is-small">
-        <div
-          className="hero-body"
-          style={{ minHeight: '30vh', paddingTop: '10vh' }}
-        >
-          <div className="container is-max-widescreen">
-            <div className="columns">
-              <div className="column is-8 is-offset-2">
-                <h1 className="title" style={titleText}>
-                  {title}
-                </h1>
+      <Trail open={open} onClick={() => set((state) => !state)}>
+        <section className="hero is-small">
+          <div
+            className="hero-body"
+            style={{ minHeight: '30vh', paddingTop: '10vh' }}
+          >
+            <div className="container is-max-widescreen">
+              <div className="columns">
+                <div className="column is-8 is-offset-2">
+                  <h1 className="title" style={titleText}>
+                    {title}
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Trail>
       <section className="section">
         {helmet || ''}
         <div className="container is-max-widescreen content">
@@ -80,22 +108,26 @@ export const ProjectPostTemplate = ({
             <div className="column is-8 is-offset-2">
               <div className="columns">
                 <div className="column is-9 overview">
-                  <h2 className="orange-text">Overview</h2>
-                  <p>{description}</p>
+                  <Trail open={open} onClick={() => set((state) => !state)}>
+                    <h2 className="orange-text">Overview</h2>
+                    <p>{description}</p>
+                  </Trail>
                 </div>
                 <div className="column is-3">
                   {tags && tags.length ? (
                     <div>
-                      <h2 className="orange-text">Services</h2>
-                      <ul className="taglist" style={{ marginTop: 0 }}>
-                        {tags.map((tag) => (
-                          <li key={tag + `tag`}>
-                            {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
-                            <span style={{ fontSize: '1.5em' }}>{tag}</span>
-                            {/* </Link> */}
-                          </li>
-                        ))}
-                      </ul>
+                      <Trail open={open} onClick={() => set((state) => !state)}>
+                        <h2 className="orange-text">Services</h2>
+                        <ul className="taglist" style={{ marginTop: 0 }}>
+                          {tags.map((tag) => (
+                            <li key={tag + `tag`}>
+                              {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
+                              <span style={{ fontSize: '1.5em' }}>{tag}</span>
+                              {/* </Link> */}
+                            </li>
+                          ))}
+                        </ul>
+                      </Trail>
                     </div>
                   ) : null}
                 </div>
@@ -105,10 +137,14 @@ export const ProjectPostTemplate = ({
                 <div className="column is-full">
                   <h2 className="orange-text">What We Did</h2>
                   <div style={projectBody} className="project-body">
-                    <PostContent content={content} />
+                    <Trail open={open} onClick={() => set((state) => !state)}>
+                      <PostContent content={content} />
+                    </Trail>
                   </div>
-                  <h2 className="orange-text">The Result</h2>
-                  <p style={resultText}>{result}</p>
+                  <Trail open={open} onClick={() => set((state) => !state)}>
+                    <h2 className="orange-text">The Result</h2>
+                    <p style={resultText}>{result}</p>
+                  </Trail>
                 </div>
               </div>
             </div>
@@ -117,13 +153,17 @@ export const ProjectPostTemplate = ({
             <div className="columns">
               <div className="column is-full">
                 {statistics && statistics.length ? (
-                  <Statistics statistics={statistics} />
+                  <Trail open={open} onClick={() => set((state) => !state)}>
+                    <Statistics statistics={statistics} />
+                  </Trail>
                 ) : null}
 
                 {testimonials && testimonials.length ? (
                   <div className="columns">
                     <div className="column is-8 is-offset-2">
-                      <Testimonials testimonials={testimonials} />
+                      <Trail open={open} onClick={() => set((state) => !state)}>
+                        <Testimonials testimonials={testimonials} />
+                      </Trail>
                     </div>
                   </div>
                 ) : null}
