@@ -14,7 +14,7 @@ class BlogRoll extends React.Component {
     }
 
     return (
-      <div className="blog">
+      <div className="blog page-padding">
         <Helmet>
           <body className="menu-color-2" />
         </Helmet>
@@ -39,7 +39,7 @@ class BlogRoll extends React.Component {
                     </span>
                     <h1 className="post-meta mt-0">
                       <Link
-                        className="title is-size-3"
+                        className="title is-size-1"
                         to={post.fields.slug}
                         style={blackStyle}
                       >

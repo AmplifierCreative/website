@@ -6,6 +6,15 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
+const sectionPadding = {
+  marginTop: '7em',
+}
+
+const blogHeader = {
+  fontSize: '6rem',
+  marginTop: 0,
+}
+
 export const BlogPostTemplate = ({
   content,
   contentComponent,
@@ -13,17 +22,25 @@ export const BlogPostTemplate = ({
   tags,
   title,
   helmet,
+  date,
+  author,
 }) => {
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section blog">
+    <section className="section blog page-padding" style={sectionPadding}>
       <div className="container is-max-widescreen">
         {helmet || ''}
         <div className="container content">
           <div className="columns">
             <div className="column is-8 is-offset-2">
-              <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
+              <span className="is-block is-uppercase orange-text">
+                {date} x {author}
+              </span>
+              <h1
+                className="title has-text-weight-bold is-bold-light"
+                style={blogHeader}
+              >
                 {title}
               </h1>
               <p>{description}</p>
@@ -54,6 +71,8 @@ BlogPostTemplate.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
   helmet: PropTypes.object,
+  date: PropTypes.string,
+  author: PropTypes.string,
 }
 
 const BlogPost = ({ data }) => {
@@ -75,6 +94,8 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        date={post.frontmatter.date}
+        author={post.frontmatter.author}
       />
     </Layout>
   )
@@ -98,6 +119,7 @@ export const pageQuery = graphql`
         title
         description
         tags
+        author
       }
     }
   }
