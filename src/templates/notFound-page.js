@@ -12,7 +12,7 @@ export const NotFoundPageTemplate = ({ title, image, content, contentComponent, 
   const PageContent = contentComponent || Content
   console.log(image)
   return (
-    <div className="notfound-container" >
+    <div className="notfound-container page-padding" >
       <Helmet>
           <body className="menu-color-2" />
       </Helmet>

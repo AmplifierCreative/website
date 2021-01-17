@@ -28,7 +28,7 @@ class ProjectTagRoute extends React.Component {
         <ProjectFilter />
         <section className="section">
           <Helmet title={`${tag} | ${title}`} />
-          <div className="container is-max-widescreen content">
+          <div className="container is-max-widescreen content page-padding">
             <div className="columns">
               <div className="column" style={{ marginBottom: '6rem' }}>
                 <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>

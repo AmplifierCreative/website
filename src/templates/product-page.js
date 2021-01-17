@@ -18,7 +18,7 @@ export const ProductPageTemplate = ({
   fullImage,
   pricing,
 }) => (
-  <div className="content">
+  <div className="content page-padding">
     <div
       className="full-width-image-container margin-top-0"
       style={{

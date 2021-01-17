@@ -189,7 +189,7 @@ export const IndexPageTemplate = ({
           !!image.childImageSharp ? image.childImageSharp.fluid.src : image
         })`} : headerStyle
       }
-      className="hero is-medium">
+      className="hero is-medium page-padding">
         <div className="hero-body">
           <div className="container is-max-widescreen">
             <h1 style={titleText}>

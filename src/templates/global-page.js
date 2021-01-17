@@ -26,7 +26,7 @@ export const GlobalPageTemplate = ({
 }) => {
   const PageContent = contentComponent || Content
   return (   
-    <div className="container is-max-widescreen" style={parentContainer}>
+    <div className="container is-max-widescreen page-padding"style={parentContainer}>
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>

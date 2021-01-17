@@ -35,7 +35,7 @@ const ThankYouPageTemplate = ({
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>  
-    <section style={thankYouContainer}>
+    <section style={thankYouContainer} className="page-padding">
       <div className="container is-max-widescreen">
         <div className="columns">
           <div className="column" style={thankYou}>              

@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet'
 export const PrivacyPageTemplate = ({ title, mtime, content, contentComponent }) => {
   const PageContent = contentComponent || Content
   return (
-    <section className="section section--gradient">
+    <section className="section section--gradient page-padding">
       <Helmet>
         <body className="menu-color-2" />
       </Helmet>  

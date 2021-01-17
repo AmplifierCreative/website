@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 
 const ProjectsHero = () => (
   <div
-    className="full-width-image-container has-text-left margin-top-0"
+    className="full-width-image-container has-text-left margin-top-0 page-padding"
     style={{
       // backgroundImage: `url('/img/blog-index.jpg')`,
       backgroundColor: '#2D2C2C',

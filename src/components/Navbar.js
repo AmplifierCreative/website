@@ -2,22 +2,22 @@ import React from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
-import { Keyframes, animated } from 'react-spring/renderprops'
+import { Keyframes, animated, config } from 'react-spring/renderprops'
 
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
 
 
 const NavMenuSidebar = Keyframes.Spring({
-  peek: { x: 4000, delay: 800 },
-  open: { delay: 0, x: 0 },
-  close: { x: 4000, delay: 600 },
+  peek: { x: 500 },
+  open: { x: 0, delay: 0 },
+  close: { x: 500, delay: 600 },
 })
 
 const Menu = Keyframes.Trail({
-  peek: { x: 4000, display: 'none' },
+  peek: { x: 500, display: 'none' },
   open: { x: 0, display: 'block' },
-  close: { display: 'none', x: 4000 },
+  close: { x: 500, display: 'none' },
 })
 class Navbar extends React.Component {
   constructor(props) {
@@ -30,18 +30,23 @@ class Navbar extends React.Component {
     }
 /*     this.myRef = React.createRef()
     this.checkPosition.bind(this) */
+    this.wrapperRef = React.createRef();
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-/*   componentDidMount() {
-    const myRef = this.myRef
-    myRef.addEventListener('scroll', this.checkPosition);
+  componentDidMount() {
+/*     const myRef = this.myRef
+    myRef.addEventListener('scroll', this.checkPosition); */
+    document.addEventListener('mousedown', this.handleClickOutside);
 }
 
   componentWillUnmount() {
-      const myRef = this.myRef
-      myRef.removeEventListener('scroll', this.checkPosition);
+      /* const myRef = this.myRef
+      myRef.removeEventListener('scroll', this.checkPosition); */
+      document.removeEventListener('mousedown', this.handleClickOutside);
   }
- */
+
  
   toggleHamburger = () => {
     this.setState(
@@ -61,6 +66,20 @@ class Navbar extends React.Component {
       },
     )
   }   
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+
+  handleClickOutside(event) {
+    if (this.wrapperRef 
+        && !this.wrapperRef.current.contains(event.target) 
+        && this.state.active) 
+        {
+        this.toggleHamburger();
+    }
+}
   
   _handleKeyUp = (e) => {
     if (e.key === 'Enter') {
@@ -92,6 +111,7 @@ class Navbar extends React.Component {
         className="nav-container"
         role="navigation"
         aria-label="main-navigation"
+        ref={this.wrapperRef}
 /*         ref={this.myRef}
         onScroll={this.checkPosition()} */
       >
@@ -122,7 +142,7 @@ class Navbar extends React.Component {
                 </div>
               </div>
               <div className="navbar-menu">
-                <ul className="menu-list has-text-right">
+                <ul className={`menu-list has-text-right ${this.state.navBarActiveClass}`}>
                   <Menu
                   native
                   items={items}
@@ -148,7 +168,7 @@ class Navbar extends React.Component {
             </div>
           </div>
         </div>
-        <NavMenuSidebar native state={_state}>
+        <NavMenuSidebar native state={_state} config={config.default.friction = 20} >
           {({ x }) => (
               <animated.div
                 className="nav-menu-container"

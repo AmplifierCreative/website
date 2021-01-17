@@ -12,7 +12,7 @@ export const _404PageTemplate = ({ title, image, content, contentComponent, useI
   const PageContent = contentComponent || Content
 
   return (
-    <div className="notfound-container">
+    <div className="notfound-container page-padding">
       <Helmet>
           <body className="menu-color-2" />
       </Helmet>

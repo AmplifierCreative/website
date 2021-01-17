@@ -25,7 +25,7 @@ export default class BlogIndexPage extends React.Component {
             Latest Stories
           </h1>
         </div> */}
-        <section className="section">
+        <section className="section page-padding">
           <div className="container is-max-widescreen">
             <div className="content">
               <BlogRoll />

@@ -178,7 +178,7 @@ export const ContactPageTemplate = ({
       <Helmet>
         <body className="menu-color-2" />
       </Helmet>
-      <section style={contactContainer}>
+      <section style={contactContainer} className="page-padding">
         <div className="container is-max-widescreen">
           <div className="columns">
             <div className="column is-half" style={columnStyleLeft}>

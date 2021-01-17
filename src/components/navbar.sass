@@ -5,9 +5,13 @@
     margin: 0
     width: 100%
     z-index: 99
-    position: sticky
+    position: fixed
     top: 0
     margin-bottom: 0
+    display: flex
+    align-items: center
+    min-height: 125px
+    padding: 1rem
 
 .navbar-container
     max-width: 1240px
@@ -16,7 +20,6 @@
 .logo-container
     background-color: transparent
     padding: 0
-    padding-top: 4rem
 
 .nav-menu-container
     padding: 0
@@ -43,7 +46,6 @@
 
 .burger-container
     background-color: transparent
-    padding-top: 4rem
     padding-bottom: .25em
 
 .burger
@@ -51,10 +53,13 @@
     z-index: 1000
     position: relative
     cursor: pointer
+    max-width: 70px
+    width: 10%
+    min-width: 60px
 
 .burger-line-top
     height: 8px
-    width: 70px
+    width: 100%
     display: block
     background-color: $AC-white
     &.is-active
@@ -68,14 +73,18 @@
 
 .nav-logo
     margin-left: -6px
+    position: relative
+    top: 3px
 
 .nav-logo-dk
     display: none
     margin-left: -6px
+    position: relative
+    top: 3px
 
 .burger-line
     height: 8px
-    width: 70px
+    width: 100%
     display: block
     margin-top: 8px
     background-color: $AC-white
@@ -150,6 +159,13 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
         padding-right: 2em
         padding-left: 2em
     .logo-container
-        width: 51%
+        width: 51% !important
     .nav-menu-container
         width: 85%
+    .navbar-menu
+        background-color: $AC-white
+        display: flex
+    .menu-list
+        display: none
+    .menu-list.is-active
+        display: block

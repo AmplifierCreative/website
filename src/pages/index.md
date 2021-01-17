@@ -7,11 +7,10 @@ hero:
   subheading: amplifier creative is a modernized creative agency catered toward
     up-and-coming businesses, driven entrepreneurs, and committed creative
     endeavors of all kinds.
-  description:
-    We’re the next generation of creators and critical thinkers who want
-    success to always be within arm’s reach—with an overarching goal of
-    instilling positivity, inclusivity, and inspiration in each
-    community we serve.
+  description: We’re the next generation of creators and critical thinkers who
+    want success to always be within arm’s reach—with an overarching goal of
+    instilling positivity, inclusivity, and inspiration in each community we
+    serve.
 about:
   title: About Us
   heading: Community-focused.

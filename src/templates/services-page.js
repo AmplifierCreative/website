@@ -134,7 +134,7 @@ export const ServicesPageTemplate = ({
   const [open, set] = useState(true)
 
   return (
-    <div className="services-container">
+    <div className="services-container page-padding">
       <div className="has-text-left" style={heroContainer}>
         <div className="container is-max-widescreen">
           <Trail open={open} onClick={() => set((state) => !state)}>

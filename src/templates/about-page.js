@@ -28,7 +28,6 @@ const lineHeader = {
 
 const sectionContainer = {
     backgroundColor: '#2D2C2C',
-    paddingTop: '0',
     paddingBottom: '0',
     paddingRight: '2rem',
     paddingLeft: '2rem',
@@ -86,7 +85,7 @@ export const AboutPageTemplate = ({
   const [open, set] = useState(true)
 
   return (
-    <div style={sectionContainer}>
+    <div className="page-padding" style={sectionContainer}>
       <div className="container is-max-widescreen" style={heroContainer}>
         <Trail open={open} onClick={() => set((state) => !state)}>
             <h1 className="line-header" style={lineHeader}>{hero.heading}</h1>

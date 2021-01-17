@@ -82,7 +82,7 @@ export const ProjectPostTemplate = ({
   const PostContent = contentComponent || Content
   const [open, set] = useState(true)
   return (
-    <div>
+    <div className="page-padding">
       <Trail open={open} onClick={() => set((state) => !state)}>
         <section className="hero is-small">
           <div
