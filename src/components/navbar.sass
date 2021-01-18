@@ -56,6 +56,9 @@
     max-width: 70px
     width: 10%
     min-width: 60px
+    &:focus
+        border: none
+        outline: none
 
 .burger-line-top
     height: 8px
@@ -93,13 +96,15 @@
 
 .menu-list li a
     font-family: $family-sans-serif-bold
-    &:hover
+    &:hover, &:focus
         color: $AC-peach !important
+        outline: none
 
 .nav-logo-link
     margin-left: -6px
-    &:hover
+    &:hover, &:focus
         background-color: transparent
+        outline: none
 
 // overrides
 $navbar-item-hover-background-color: $AC-white
@@ -127,6 +132,7 @@ $menu-list-link-padding: 0 .75em
 
 a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active
     background-color: $AC-white
+    outline: none
 
 // theming 
 .menu-color-2 nav
@@ -148,9 +154,10 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 
 .menu-color-2 nav div div div div ul div li a
     color: $AC-white !important
-    &:hover
+    &:hover, &:focus
         color: $AC-peach !important
         background-color: $AC-orange !important
+        outline: none
 
 @media screen and (max-width: 1023px)
     .menu-color-2 #navMenu
