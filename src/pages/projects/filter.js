@@ -22,7 +22,10 @@ class ProjectsFilter extends React.Component {
                 {tags &&
                   tags.map((tag) => (
                     <li key={tag.fieldValue}>
-                      <Link to={`/projects/tags/${kebabCase(tag.fieldValue)}/`}>
+                      <Link
+                        to={`/projects/tags/${kebabCase(tag.fieldValue)}/`}
+                        activeStyle={{ textDecoration: 'underline' }}
+                      >
                         {tag.fieldValue}
                       </Link>
                     </li>
