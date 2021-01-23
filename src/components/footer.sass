@@ -1,5 +1,15 @@
 @import "variables"
-// footer 
+
+.footer
+  color: $AC-white
+  background-color: $AC-black
+
+.footer-form
+  width: 100%
+  max-width: 760px
+  height: 80px
+  margin-bottom: 1em
+
 footer input::placeholder, footer textarea::placeholder
   color: $AC-white !important
   font-size: 2rem
@@ -10,16 +20,20 @@ footer input::placeholder, footer textarea::placeholder
   display: flex
   flex-direction: row
 
-.footer-form.is-active, .footer-response
-  box-shadow: 0 0 0 0.125em $AC-peach
+.footer-response
   align-items: center
   justify-content: space-between
 
 .email-input
   min-width: 620px
+  color: $AC-white
+  background-color: $AC-black
+  border: none
+  font-size: 2rem
+  padding-left: 0
 
 .input:focus
-  box-shadow: 0 0.0625em 0.125em $AC-peach
+  box-shadow: none
 
 .submit-btn
   display: none
@@ -83,9 +97,16 @@ footer input::placeholder, footer textarea::placeholder
     background-color: $AC-white
     border-left: 1px solid $AC-peach
 
+.mobile-menu
+  display: none
+
 @media screen and (max-width: 1024px)
   .email-input::placeholder
     font-size: 1.5rem
+  .mobile-menu
+    display: block
+  .desktop-menu
+    display: none
 
 @media screen and (max-width: 410px)
   .email-input

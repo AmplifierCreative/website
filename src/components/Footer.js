@@ -1,45 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
+import { v4 } from 'uuid'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 
 import { HTMLContent } from '../components/Content'
 import instagram from '../img/social/instagram.svg'
 import twitter from '../img/social/twitter.svg'
 import linkedin from '../img/social/linkedin.svg'
-
-import { v4 } from 'uuid'
-
-const footer = {
-  color: '#F8F3F1',
-  backgroundColor: '#2D2C2C',
-}
-
-const formContainer = {
-  width: '100%',
-  maxWidth: '760px',
-  height: '80px',
-  marginBottom: '1em',
-}
-
-const emailInput = {
-  color: '#F8F3F1',
-  backgroundColor: '#2D2C2C',
-  border: 'none',
-  fontSize: '2rem',
-  paddingLeft: '0',
-}
-
-const emailTextArea = {
-  color: '#F8F3F1',
-  backgroundColor: '#2D2C2C',
-  fontSize: '2rem',
-  paddingTop: '2%',
-  paddingLeft: '0',
-  marginBottom: '.75em',
-  textAlign: 'center',
-  width: '100%',
-}
 
 const menuItemLink = {
   fontFamily: 'VisbyCF-Medium',
@@ -128,90 +96,18 @@ LinksMenu.propTypes = {
   links: PropTypes.array,
 }
 
-const MobileMenu = ({ _links }) => {
-  return (
-    <div className="columns is-mobile has-text-centered">
-      <div className="column is-6">
-        <section className="menu">
-          <ul className="footer-list">
-            <LinksMenu links={_links} start={0} end={3} />
-          </ul>
-        </section>
-      </div>
-      <div className="column is-6">
-        <section>
-          <ul className="footer-list">
-            <LinksMenu links={_links} start={3} end={6} />
-          </ul>
-        </section>
-      </div>
-    </div>
-  )
-}
-
-const DesktopMenu = ({ _links }) => {
-  return (
-    <div className="columns">
-      <div className="column is-3">
-        <section className="menu">
-          <ul className="footer-list">
-            <LinksMenu links={_links} start={0} end={2} />
-          </ul>
-        </section>
-      </div>
-      <div className="column is-3">
-        <section>
-          <ul className="footer-list">
-            <LinksMenu links={_links} start={2} end={4} />
-          </ul>
-        </section>
-      </div>
-      <div className="column is-3">
-        <section>
-          <ul className="footer-list">
-            <LinksMenu links={_links} start={4} end={6} />
-          </ul>
-        </section>
-      </div>
-    </div>
-  )
-}
-
-MobileMenu.propTypes = {
-  _links: PropTypes.array,
-}
-
-DesktopMenu.propTypes = {
-  _links: PropTypes.array,
-}
-
 class Footer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       emailValue: '',
-      isMobile: '',
       res: '',
       active: false,
       footerActiveClass: '',
       sent: false,
     }
     this.handleChange = this.handleChange.bind(this)
-    this.updateSize = this.updateSize.bind(this)
     this.resetForm = this.resetForm.bind(this)
-  }
-
-  componentDidMount() {
-    this.updateSize()
-    window.addEventListener('resize', this.updateSize)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateSize)
-  }
-
-  updateSize() {
-    this.setState({ isMobile: window.innerWidth < 769 })
   }
 
   handleChange(event) {
@@ -250,23 +146,20 @@ class Footer extends React.Component {
   }
 
   render() {
-    const isMobile = this.state.isMobile
-
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <footer className="footer" style={footer}>
+      <footer className="footer">
         <div className="container is-max-widescreen">
           <div
-            className={`columns ${this.state.isMobile && 'has-text-centered'}`}
+            className="columns has-text-centered has-text-left-desktop"
           >
             <div className="column is-two-thirds">
               <div>
                 {this.state.sent ? (
                   <div
                     className="footer-form footer-response"
-                    style={formContainer}
                   >
                     <div style={resultsTextContainer}>
                       <h5>
@@ -284,31 +177,15 @@ class Footer extends React.Component {
                   <form
                     className={`footer-form ${this.state.footerActiveClass}`}
                     onSubmit={this.handleSubmit}
-                    style={formContainer}
                   >
-                    {isMobile ? (
-                      <textarea
-                        className="email-input"
-                        style={emailTextArea}
-                        type="email"
-                        placeholder="enter your email address to stay in touch"
-                        rows="2"
-                        col="20"
-                        emailvalue={this.state.emailValue}
-                        onChange={this.handleChange}
-                        onFocus={this.showSubmit}
-                      />
-                    ) : (
-                      <input
+                    <input
                         className="is-medium email-input input"
-                        style={emailInput}
                         type="email"
                         placeholder="enter your email address to stay in touch"
                         emailvalue={this.state.emailValue}
                         onChange={this.handleChange}
                         onFocus={this.showSubmit}
                       />
-                    )}
                     <button
                       onSubmit={this.handleSubmit}
                       className={`submit-btn ${this.state.footerActiveClass}`}
@@ -318,12 +195,49 @@ class Footer extends React.Component {
                   </form>
                 )}
               </div>
-              {isMobile ? (
-                <MobileMenu _links={posts[0].node.frontmatter.footer.menu} />
-              ) : (
-                <DesktopMenu _links={posts[0].node.frontmatter.footer.menu} />
-              )}
+              {/* Mobile Links Menu */}
+              <div className='columns is-mobile has-text-centered mobile-menu'>
+                <div className="column is-6">
+                  <section className="menu">
+                    <ul className="footer-list">
+                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={3} />
+                    </ul>
+                  </section>
+                </div>
+                <div className="column is-6">
+                  <section>
+                    <ul className="footer-list">
+                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={3} end={6} />
+                    </ul>
+                  </section>
+                </div>
+              </div>
+              {/* Desktop Links Menu */}
+              <div className="columns desktop-menu">
+                <div className="column is-3">
+                  <section className="menu">
+                    <ul className="footer-list">
+                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={2} />
+                    </ul>
+                  </section>
+                </div>
+                <div className="column is-3">
+                  <section>
+                    <ul className="footer-list">
+                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={2} end={4} />
+                    </ul>
+                  </section>
+                </div>
+                <div className="column is-3">
+                  <section>
+                    <ul className="footer-list">
+                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={4} end={6} />
+                    </ul>
+                  </section>
+                </div>
+              </div>
             </div>
+            {/* Social Menu */}
             <div className="column is-one-third">
               <div className="columns">
                 <div className="column" style={socialTextContainer}>
@@ -331,10 +245,7 @@ class Footer extends React.Component {
                 </div>
               </div>
               <div
-                className={`columns is-mobile ${
-                  this.state.isMobile && 'is-centered'
-                }`}
-              >
+                className='columns is-mobile is-centered'>
                 <div className="column is-2" style={socialCircle}>
                   <a
                     title="twitter"
@@ -363,7 +274,7 @@ class Footer extends React.Component {
             </div>
           </div>
           <div
-            className={`columns ${this.state.isMobile && 'has-text-centered'}`}
+            className='columns has-text-centered has-text-left-desktop'
           >
             <div className="column " style={footerPolicyContainer}>
               <span style={footerPolicy}>
