@@ -10,12 +10,6 @@
   height: 80px
   margin-bottom: 1em
 
-footer input::placeholder, footer textarea::placeholder
-  color: $AC-white !important
-  font-size: 2rem
-  font-weight: 800
-  font-family: $family-sans-serif-bold
-
 .footer-form
   display: flex
   flex-direction: row
@@ -25,59 +19,45 @@ footer input::placeholder, footer textarea::placeholder
   justify-content: space-between
 
 .email-input
-  min-width: 620px
+  min-width: 655px
   color: $AC-white
   background-color: $AC-black
+  font-family: $family-sans-serif-bold
+  font-size: 2rem
+  font-weight: 800
+  letter-spacing: 1px
+  box-shadow: none
+  outline: none
+  border: none
+  &::placeholder
+    color: $AC-white
+    font-size: 2rem
+    font-weight: 800
+    font-family: $family-sans-serif-bold
+    opacity: .25
+
+.email-input.mobile-input
+  display: none
+
+.submit-btn-alt
+  display: none
   border: none
   font-size: 2rem
-  padding-left: 0
+  background-color: $AC-black
+  opacity: .25
+  color: $AC-white
+  &:hover, &:active
+    opacity: 1
+    & i
+      cursor: pointer
 
-.input:focus
-  box-shadow: none
-
-.submit-btn
-  display: none
-  flex-grow: 2
-  background: $AC-black
-  border: none
-  color: $AC-light-black
-  font-size: 2em
-  text-transform: lowercase
-  font-family: $family-sans-serif-bold
-  border-left: 1px solid $AC-peach
-  height: 100%
-  position: relative
-  right: 9999px
-  &:hover
-    color: $AC-white
-    background-color: $AC-peach
-    cursor: pointer
-  &:active
-    color: $AC-white
-    border: 1px solid $AC-white
-  &::after
-    content: " "
-    background-image: url("../img/return-arrow.svg")
-    background-repeat: no-repeat
-    background-position: center
-    background-size: cover
-    position: absolute
-    top: 20px
-    right: -9984px
-    width: 67%
-    text-align: center
-    height: 62%
-    font-size: 2em
-    line-height: 30.8px
-  &:hover::before
-    background-color: $AC-peach
-    color: $AC-white
-  &:active::before
-    color: $AC-white
-    border: 1px solid $AC-white
-
-.submit-btn.is-active
+.submit-btn.is-active, .submit-btn-alt.is-active
   display: inline-block
+
+.results-container
+  padding-left: 1rem
+.results-text
+  display: inline
 
 .reset-btn
   background: $AC-black
@@ -97,16 +77,72 @@ footer input::placeholder, footer textarea::placeholder
     background-color: $AC-white
     border-left: 1px solid $AC-peach
 
+.desktop-menu
+  display: flex
+
 .mobile-menu
   display: none
 
-@media screen and (max-width: 1024px)
-  .email-input::placeholder
-    font-size: 1.5rem
+.footer-list
+  width: 33.33%
+  & li
+    margin: 1em
+    &, .left-list-item
+      margin-left: 0
+.footer-menu-item
+  font-family: $family-sans-serif-medium
+  letter-spacing: 2px
+  text-transform: uppercase
+  padding-left: 0
+  margin-bottom: .75em
+
+.footer-social-header
+  font-size: 2rem
+  color: $AC-white
+  font-weight: 800
+  padding-top: calc(0.5em - 1px)
+  padding-bottom: calc(0.5em - 1px)
+
+.social-icon-container
+  border: 3px solid $AC-white
+  width: 4rem !important
+  height: 4rem
+  &.add-margin
+    margin-left: 1.25rem
+
+.footer-sm-icon
+  height: auto
+  display: block
+  margin-right: auto
+  margin-left: auto
+
+.footer-policy-container
+  margin-top: 2.75rem
+
+.footer-policy
+  color: $AC-white
+  text-transform: uppercase
+  font-family: $family-sans-serif-medium
+  letter-spacing: 2px
+
+.m-0
+  margin: 0
+
+@media screen and (max-width: 1124px)
+  .email-input.mobile-input
+    display: inline-block
+    min-width: 250px
+  .email-input
+    display: none
+
+@media screen and (max-width: 769px)
   .mobile-menu
-    display: block
+    display: flex
+    justify-content: center
   .desktop-menu
     display: none
+  .is-justify-content-center-mobile, .footer-form
+    justify-content: center
 
 @media screen and (max-width: 410px)
   .email-input
@@ -116,9 +152,6 @@ footer input::placeholder, footer textarea::placeholder
 
 footer.footer
   background-color: $AC-black
-
-.footer-list li
-  margin-top: 20px
 
 .footer-item
   margin-top: 0
@@ -142,5 +175,50 @@ footer.footer
   &:hover
     color: $AC-peach !important
 
-$input-focus-border-color: $AC-peach
-$input-hover-border-color: $AC-peach 
+    $input-focus-border-color: $AC-peach
+    $input-hover-border-color: $AC-peach
+
+/** 
+ Convoluted styling for a button.. not ready to delete
+ 
+ .submit-btn
+ display: none
+ flex-grow: 2
+ background: $AC-black
+ border: none
+ color: $AC-light-black
+ font-size: 2em
+ text-transform: lowercase
+ font-family: $family-sans-serif-bold
+ border-left: 1px solid $AC-peach
+ height: 100%
+ position: relative
+ right: 9999px
+ &:hover
+ color: $AC-white
+ background-color: $AC-peach
+ cursor: pointer
+ &:active
+ color: $AC-white
+ border: 1px solid $AC-white
+ &::after
+ content: " "
+ background-image: url("../img/return-arrow.svg")
+ background-repeat: no-repeat
+ background-position: center
+ background-size: cover
+ position: absolute
+ top: 5px
+ right: -9924px
+ width: 42%
+ text-align: center
+ height: 62%
+ font-size: 2em
+ line-height: 30.8px
+ &:hover::before
+ background-color: $AC-peach
+ color: $AC-white
+ &:active::before
+ color: $AC-white
+ border: 1px solid $AC-white
+ **/

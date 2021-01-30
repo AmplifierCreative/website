@@ -3,70 +3,12 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import { v4 } from 'uuid'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
+import { Helmet } from 'react-helmet'
 
 import { HTMLContent } from '../components/Content'
 import instagram from '../img/social/instagram.svg'
 import twitter from '../img/social/twitter.svg'
 import linkedin from '../img/social/linkedin.svg'
-
-const menuItemLink = {
-  fontFamily: 'VisbyCF-Medium',
-  letterSpacing: '2px',
-  textTransform: 'uppercase',
-  paddingLeft: '0',
-  marginBottom: '.75em',
-}
-
-const footerPolicy = {
-  color: '#F8F3F1',
-  textTransform: 'uppercase',
-  fontFamily: 'VisbyCF-Medium',
-  letterSpacing: '2px',
-}
-
-const footerPolicyContainer = {
-  marginTop: '2.75em',
-}
-
-const socialTextContainer = {
-  paddingLeft: '0',
-}
-
-const socialText = {
-  fontSize: '2rem',
-  color: '#F8F3F1',
-  fontWeight: '700',
-  paddingTop: 'calc(0.5em - 1px)',
-  paddingBottom: 'calc(0.5em - 1px)',
-}
-
-const socialCircle = {
-  border: '3px solid #F4F4F4',
-  width: '4rem',
-  height: '4rem',
-}
-
-const socialCircleB = {
-  border: '3px solid rgb(244, 244, 244)',
-  width: '4rem',
-  height: '4rem',
-  marginLeft: '1.25rem',
-}
-
-const socialSvg = {
-  height: 'auto',
-  display: 'block',
-  marginRight: 'auto',
-  marginLeft: 'auto',
-}
-
-const resultsTextContainer = {
-  paddingLeft: '1em',
-}
-
-const resText = {
-  display: 'inline',
-}
 
 const LinksMenu = ({ links, start, end }) => {
   return links.slice(start, end).map((link) => {
@@ -75,7 +17,7 @@ const LinksMenu = ({ links, start, end }) => {
     if (local) {
       return (
         <li key={v4()}>
-          <Link to={link.path} className="footer-item" style={menuItemLink}>
+          <Link to={link.path} className="footer-item footer-menu-item">
             {link.text}
           </Link>
         </li>
@@ -83,7 +25,7 @@ const LinksMenu = ({ links, start, end }) => {
     } else {
       return (
         <li key={v4()}>
-          <a href={path} className="footer-item" style={menuItemLink}>
+          <a href={path} className="footer-item footer-menu-item">
             {text}
           </a>
         </li>
@@ -151,21 +93,24 @@ class Footer extends React.Component {
 
     return (
       <footer className="footer">
+        <Helmet>
+          <script src="https://kit.fontawesome.com/00e2e73915.js" crossorigin="anonymous"></script>
+        </Helmet>
         <div className="container is-max-widescreen">
           <div
-            className="columns has-text-centered has-text-left-desktop"
+            className="columns has-text-centered-mobile"
           >
-            <div className="column is-two-thirds">
+            <div className="column is-two-thirds-desktop">
               <div>
                 {this.state.sent ? (
                   <div
                     className="footer-form footer-response"
                   >
-                    <div style={resultsTextContainer}>
+                    <div className="results-container">
                       <h5>
                         {this.state.res.result === 'error' ? ':/ ' : 'Woot! '}
                       </h5>
-                      <p style={resText}>{this.state.res.msg}</p>
+                      <p className="results-text">{this.state.res.msg}</p>
                     </div>
                     <button className="reset-btn" onClick={this.resetForm}>
                       {this.state.res.result === 'error'
@@ -179,105 +124,92 @@ class Footer extends React.Component {
                     onSubmit={this.handleSubmit}
                   >
                     <input
-                        className="is-medium email-input input"
+                        className="email-input"
                         type="email"
                         placeholder="enter your email address to stay in touch"
                         emailvalue={this.state.emailValue}
                         onChange={this.handleChange}
                         onFocus={this.showSubmit}
                       />
+                    <input
+                        className="email-input mobile-input has-text-centered-mobile"
+                        type="email"
+                        placeholder="join our email list"
+                        emailvalue={this.state.emailValue}
+                        onChange={this.handleChange}
+                        onFocus={this.showSubmit}
+                      />
                     <button
+                      type="submit"
                       onSubmit={this.handleSubmit}
-                      className={`submit-btn ${this.state.footerActiveClass}`}
+                      className={`submit-btn-alt ${this.state.footerActiveClass}`}
                     >
-                      Submit
+                      <i class="fas fa-arrow-circle-right"></i>
                     </button>
                   </form>
                 )}
               </div>
               {/* Mobile Links Menu */}
-              <div className='columns is-mobile has-text-centered mobile-menu'>
-                <div className="column is-6">
-                  <section className="menu">
-                    <ul className="footer-list">
-                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={3} />
-                    </ul>
-                  </section>
-                </div>
-                <div className="column is-6">
-                  <section>
-                    <ul className="footer-list">
-                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={3} end={6} />
-                    </ul>
-                  </section>
-                </div>
+              <div className='has-text-centered mobile-menu'>
+                <ul className="footer-list">
+                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={3} />
+                </ul>
+                <ul className="footer-list">
+                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={3} end={6} />
+                </ul>
               </div>
               {/* Desktop Links Menu */}
-              <div className="columns desktop-menu">
-                <div className="column is-3">
-                  <section className="menu">
-                    <ul className="footer-list">
-                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={2} />
-                    </ul>
-                  </section>
-                </div>
-                <div className="column is-3">
-                  <section>
-                    <ul className="footer-list">
-                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={2} end={4} />
-                    </ul>
-                  </section>
-                </div>
-                <div className="column is-3">
-                  <section>
-                    <ul className="footer-list">
-                      <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={4} end={6} />
-                    </ul>
-                  </section>
-                </div>
+              <div className="desktop-menu">
+                <ul className="footer-list left-list-item">
+                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={2} />
+                </ul>
+                <ul className="footer-list">
+                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={2} end={4} />
+                </ul>
+                <ul className="footer-list">
+                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={4} end={6} />
+                </ul>
               </div>
             </div>
             {/* Social Menu */}
-            <div className="column is-one-third">
-              <div className="columns">
-                <div className="column" style={socialTextContainer}>
-                  <h5 style={socialText}>Follow us</h5>
-                </div>
+            <div className="column is-one-third-desktop">
+              <div>
+                <h5 className="footer-social-header">Follow us</h5>
               </div>
               <div
-                className='columns is-mobile is-centered'>
-                <div className="column is-2" style={socialCircle}>
+                className='columns is-mobile is-justify-content-center-mobile m-0'>
+                <div className="column is-2 social-icon-container">
                   <a
                     title="twitter"
                     href={posts[0].node.frontmatter.footer.social.twitter}
                   >
-                    <img style={socialSvg} src={twitter} alt="Twitter" />
+                    <img className="footer-sm-icon" src={twitter} alt="Twitter" />
                   </a>
                 </div>
-                <div className="column is-2" style={socialCircleB}>
+                <div className="column is-2 social-icon-container add-margin">
                   <a
                     title="instagram"
                     href={posts[0].node.frontmatter.footer.social.ig}
                   >
-                    <img style={socialSvg} src={instagram} alt="Instagram" />
+                    <img className="footer-sm-icon" src={instagram} alt="Instagram" />
                   </a>
                 </div>
-                <div className="column is-2" style={socialCircleB}>
+                <div className="column is-2 social-icon-container add-margin">
                   <a
                     title="linkedin"
                     href={posts[0].node.frontmatter.footer.social.linkedin}
                   >
-                    <img style={socialSvg} src={linkedin} alt="LinkedIn" />
+                    <img className="footer-sm-icon" src={linkedin} alt="LinkedIn" />
                   </a>
                 </div>
               </div>
             </div>
           </div>
           <div
-            className='columns has-text-centered has-text-left-desktop'
+            className='columns has-text-centered-mobile'
           >
-            <div className="column " style={footerPolicyContainer}>
-              <span style={footerPolicy}>
+            <div className="column footer-policy-container">
+              <span className="footer-policy">
                 <HTMLContent
                   content={posts[0].node.html}
                   className={'link footer-link-hover'}
