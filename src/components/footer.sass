@@ -55,27 +55,38 @@
   display: inline-block
 
 .results-container
-  padding-left: 1rem
-.results-text
+  padding: .25rem
+  padding-left: 0
+.results-text, .results-header
   display: inline
+  font-family: $family-sans-serif-medium
+  letter-spacing: 2px
+  text-transform: uppercase
+  font-size: 1rem
+  > a
+    text-decoration: underline
+    color: $AC-white
+    &:hover
+      color: $AC-peach
+      cursor: pointer
+
+.results-header
+  font-family: $family-sans-serif-bold
+  font-weight: 800
+  text-transform: none
 
 .reset-btn
   background: $AC-black
   border: none
-  color: $AC-light-black
+  color: $AC-white
   font-size: 2em
   text-transform: lowercase
   font-family: $family-sans-serif-bold
-  border-left: 1px solid $AC-peach
   height: 100%
-  &:hover
-    color: $AC-white
-    background-color: $AC-peach
+  opacity: .25
+  &:hover, &:active
     cursor: pointer
-  &:active
-    color: $AC-peach
-    background-color: $AC-white
-    border-left: 1px solid $AC-peach
+    opacity: 1
 
 .desktop-menu
   display: flex

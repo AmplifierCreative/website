@@ -107,10 +107,10 @@ class Footer extends React.Component {
                     className="footer-form footer-response"
                   >
                     <div className="results-container">
-                      <h5>
+                      <h5 className="results-header">
                         {this.state.res.result === 'error' ? ':/ ' : 'Woot! '}
                       </h5>
-                      <p className="results-text">{this.state.res.msg}</p>
+                      <div className="results-text" dangerouslySetInnerHTML={{ __html: this.state.res.msg}} />
                     </div>
                     <button className="reset-btn" onClick={this.resetForm}>
                       {this.state.res.result === 'error'
