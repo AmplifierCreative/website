@@ -12,7 +12,7 @@ export const _404PageTemplate = ({ title, image, content, contentComponent, useI
   const PageContent = contentComponent || Content
 
   return (
-    <div className="notfound-container page-padding">
+    <div className="not-found-container page-padding">
       <Helmet>
           <body className="menu-color-2" />
       </Helmet>
@@ -24,7 +24,7 @@ export const _404PageTemplate = ({ title, image, content, contentComponent, useI
           }}
       /> : 
         <img alt="Page not found image" src={_404} />}
-      <div className="container not-found-page notFound-text">
+      <div className="container not-found-page not-found-text">
         <PageContent className="container not-found-page" content={content} />
       </div>
     </div>

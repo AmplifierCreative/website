@@ -68,8 +68,14 @@
     &.is-active
         background-color: $AC-orange !important
 
-.navbar .navbar-menu
+.navbar
     box-shadow: none !important
+
+.navbar-menu-container
+    position: absolute
+    right: 13px
+    z-index: 999
+    padding-top: 3em
 
 .navbar-item img
     max-height: 4.5rem !important
@@ -108,24 +114,16 @@
 
 // overrides
 $navbar-item-hover-background-color: $AC-white
-$navbar-background-color: $AC-white 
+$navbar-background-color: $AC-white
 $navbar-box-shadow-size: 0 0 0 0
 $navbar-bottom-box-shadow-size: 0 0 0 0
 $navbar-dropdown-boxed-shadow: 0 0 0 0
 $navbar-box-shadow-color: $AC-white
-
-.navbar-menu
-    box-shadow: 0 0 0 0 !important
-    position: absolute
-    right: 13px
-    z-index: 999
-    padding-top: 3em
-
 $menu-item-color: $AC-white
 $menu-item-hover-color: $AC-orange !important
 $menu-item-hover-background-color: $AC-orange
 $menu-item-active-color: $AC-orange
-$menu-item-active-background-color:	$AC-orange
+$menu-item-active-background-color: 	$AC-orange
 $menu-list-border-left: 1px solid $AC-orange
 $menu-label-color: $AC-orange
 $menu-list-link-padding: 0 .75em
@@ -152,7 +150,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 .menu-color-2 div div div nav div.nav-menu-container
     background-color: $AC-orange !important
 
-.menu-color-2 nav div div div div ul div li a
+.menu-color-2 nav div div div div ul li a
     color: $AC-white !important
     &:hover, &:focus
         color: $AC-peach !important
@@ -169,10 +167,3 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
         width: 51% !important
     .nav-menu-container
         width: 85%
-    .navbar-menu
-        background-color: $AC-white
-        display: flex
-    .menu-list
-        display: none
-    .menu-list.is-active
-        display: block

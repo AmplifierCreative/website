@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
-import { v4 } from 'uuid'
+import _, { throttle } from 'lodash'
 import { Keyframes, animated, config } from 'react-spring/renderprops'
 
 import logo from '../img/logo.svg'
@@ -28,22 +28,19 @@ class Navbar extends React.Component {
       open: undefined,
       isTop: true
     }
-/*     this.myRef = React.createRef()
-    this.checkPosition.bind(this) */
+/*     this.checkPosition.bind(this) */
     this.wrapperRef = React.createRef();
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
-/*     const myRef = this.myRef
-    myRef.addEventListener('scroll', this.checkPosition); */
+    document.addEventListener('scroll', _.throttle(this.checkPosition, 100));
     document.addEventListener('mousedown', this.handleClickOutside);
 }
 
   componentWillUnmount() {
-      /* const myRef = this.myRef
-      myRef.removeEventListener('scroll', this.checkPosition); */
+      document.removeEventListener('scroll', _.throttle(this.checkPosition, 100));
       document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
@@ -88,12 +85,11 @@ class Navbar extends React.Component {
     return null
   }
 
-/*   checkPosition = () => {
+  checkPosition = () => {
     const scrollY = window.scrollY
-    const scrollTop = this.myRef.current.scrollTop
-    console.log('check position called')
+    const scrollTop = () => this.wrapperRef.current.scrollTop ?  this.wrapperRef.current.scrollTop : this.wrapperRef.current
     console.log(`onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`)
-  } */
+  }
   
   render() {
     const state = this.state
@@ -112,8 +108,7 @@ class Navbar extends React.Component {
         role="navigation"
         aria-label="main-navigation"
         ref={this.wrapperRef}
-/*         ref={this.myRef}
-        onScroll={this.checkPosition()} */
+        /* onScroll={this.checkPosition()} */
       >
         <div className="column navbar-container" >
           <div className="columns is-vcentered is-mobile">
@@ -141,7 +136,7 @@ class Navbar extends React.Component {
                   <span className={`burger-line ${this.state.navBarActiveClass}`} />
                 </div>
               </div>
-              <div className="navbar-menu">
+              <div className="navbar-menu-container">
                 <ul className={`menu-list has-text-right ${this.state.navBarActiveClass}`}>
                   <Menu
                   native
@@ -150,17 +145,15 @@ class Navbar extends React.Component {
                   reverse={!this.state.open}
                   state={_state}>
                   {(item) => ({ x, ...props }) => (
-                    <animated.div
+                    <animated.li
                       style={{
                         transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
                         ...props,
                       }}>
-                      <li>
-                        <Link to={`/${item.path}`} className="navbar-item">
-                          {item.text}
-                        </Link>
-                      </li>
-                    </animated.div>
+                      <Link to={`/${item.path}`} className="navbar-item">
+                        {item.text}
+                      </Link>
+                    </animated.li>
                   )}
                 </Menu>
                 </ul>
