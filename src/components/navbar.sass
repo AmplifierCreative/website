@@ -1,7 +1,7 @@
 @import "variables"
 // navbar
 .nav-container
-    background-color: $AC-black
+    background-color: transparent
     margin: 0
     width: 100%
     z-index: 99
@@ -12,6 +12,15 @@
     align-items: center
     min-height: 125px
     padding: 1rem
+    &.nav-top
+        background-color: transparent
+.nav-background
+    background-color: $AC-black
+    position: absolute
+    top: 0
+    right: 0
+    z-index: -1
+    width: 100%
 
 .navbar-container
     max-width: 1240px
@@ -156,6 +165,9 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
         color: $AC-peach !important
         background-color: $AC-orange !important
         outline: none
+
+.menu-color-2 nav .nav-background
+    background-color: $AC-white
 
 @media screen and (max-width: 1023px)
     .menu-color-2 #navMenu

@@ -144,7 +144,7 @@ class Footer extends React.Component {
                       onSubmit={this.handleSubmit}
                       className={`submit-btn-alt ${this.state.footerActiveClass}`}
                     >
-                      <i class="fas fa-arrow-circle-right"></i>
+                      <i className="fas fa-arrow-circle-right"></i>
                     </button>
                   </form>
                 )}

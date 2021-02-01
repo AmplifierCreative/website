@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
-import _, { throttle } from 'lodash'
-import { Keyframes, animated, config } from 'react-spring/renderprops'
+import _ from 'lodash'
+import { Keyframes, Spring, animated, config } from 'react-spring/renderprops'
 
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
@@ -28,7 +28,7 @@ class Navbar extends React.Component {
       open: undefined,
       isTop: true
     }
-/*     this.checkPosition.bind(this) */
+    this.checkPosition = this.checkPosition.bind(this)
     this.wrapperRef = React.createRef();
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -86,9 +86,7 @@ class Navbar extends React.Component {
   }
 
   checkPosition = () => {
-    const scrollY = window.scrollY
-    const scrollTop = () => this.wrapperRef.current.scrollTop ?  this.wrapperRef.current.scrollTop : this.wrapperRef.current
-    console.log(`onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`)
+    window.scrollY === 0 ? this.setState({ isTop: true}) : this.setState({ isTop: false })
   }
   
   render() {
@@ -104,11 +102,10 @@ class Navbar extends React.Component {
       : 'close'
     return (
       <nav
-        className="nav-container"
+        className={`nav-container `}
         role="navigation"
         aria-label="main-navigation"
         ref={this.wrapperRef}
-        /* onScroll={this.checkPosition()} */
       >
         <div className="column navbar-container" >
           <div className="columns is-vcentered is-mobile">
@@ -161,6 +158,12 @@ class Navbar extends React.Component {
             </div>
           </div>
         </div>
+        <Spring
+            reverse={this.state.isTop}
+            from={{ height: this.state.isTop && 0  }}
+            to={{ height: 125 }}>
+            {props => <div style={props} className="nav-background"></div>}
+        </Spring>
         <NavMenuSidebar native state={_state} config={config.default.friction = 20} >
           {({ x }) => (
               <animated.div
