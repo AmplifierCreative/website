@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useSpring, animated, interpolate } from 'react-spring'
+import React from 'react'
+import { useSpring, animated, config } from 'react-spring'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
 
@@ -19,13 +19,13 @@ const blurbText = {
 }
 
 const AnimatedValue = ({ _number }) => {
-  const props = useSpring({ number: Number(_number), from: { number: 0 } })
+  const props = useSpring({ number: Number(_number), from: { number: 0 }, config: config.molasses })
   return  <animated.h2 style={numberText}>{props.number.interpolate(number => Math.floor(number))}</animated.h2>
 }
 
 const Statistics = ({ statistics }) => {
 
-  const props = useSpring({ x: 0, from: { x: 1000 } })
+  const props = useSpring({ x: 0, from: { x: 1000 }, config: config.molasses })
 
   return ( 
     <section className="statistic-wrapper">

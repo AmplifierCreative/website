@@ -341,12 +341,12 @@ export const ContactPageTemplate = ({
                               id={'method'}
                               style={select}
                             >
-                              <option style={optionStyle}>
+                              <option style={optionStyle} value="" disabled selected hidden>
                                 Preferred method of contact
                               </option>
-                              <option>Email</option>
-                              <option>Phone</option>
-                              <option>Text</option>
+                              <option value="email">Email</option>
+                              <option value="phone">Phone</option>
+                              <option value="text">Text</option>
                             </select>
                           </div>
                         </div>

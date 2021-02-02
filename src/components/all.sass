@@ -40,6 +40,8 @@ h1
     background-color: $AC-white
     color: $AC-orange
     border: 2px solid $AC-orange
+    &.dk
+      border: none
 
 .page-padding
   padding-top: 125px
@@ -160,6 +162,8 @@ h1
 
 .statistic
   position: relative
+  display: flex
+  justify-content: center
 
 // Helper Classes
 .full-width-image-container
@@ -218,6 +222,7 @@ h1
   height: 390px
   width: 390px
   overflow: hidden
+  padding-top: 20px
 
 .svg-circle
   fill: none
@@ -336,6 +341,9 @@ h1
     bottom: 5%
     background-color: $AC-peach
 
+.tag-link:hover
+  color: $AC-peach
+
 //form styling
 .contact-form-input
   color: $AC-orange
@@ -367,6 +375,14 @@ h1
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
+
+#method > option
+  background-color: $AC-peach
+  color: $AC-black
+  height: 110px
+  border: 2px solid $AC-black
+  width: 100%
+  text-align: center
 
 .full-width-image-container h1,
 .full-width-image-container h2

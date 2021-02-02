@@ -90,6 +90,7 @@ const contactText = {
   fontFamily: 'VisbyCF-Regular',
   fontSize: '2.25em',
   color: '#F8F3F1',
+  paddingBottom: '1.5rem',
 }
 
 const buttonStyle = {
@@ -297,7 +298,7 @@ export const ServicesPageTemplate = ({
             <Trail open={open} onClick={() => set((state) => !state)}>
               <p style={contactText}>{cta.heading}</p>
               <Link to="/contact">
-                <button className="button is-uppercase" style={buttonStyle}>
+                <button className="button dk is-uppercase" style={buttonStyle}>
                   {cta.button}
                 </button>
               </Link>

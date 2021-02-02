@@ -24,7 +24,8 @@ class ProjectsFilter extends React.Component {
                     <li key={tag.fieldValue}>
                       <Link
                         to={`/projects/tags/${kebabCase(tag.fieldValue)}/`}
-                        activeStyle={{ textDecoration: 'underline' }}
+                        activeStyle={{ textDecoration: 'underline', color: '#FAB395' }}
+                        className="tag-link"
                       >
                         {tag.fieldValue}
                       </Link>
