@@ -159,9 +159,10 @@ class Navbar extends React.Component {
           </div>
         </div>
         <Spring
-            reverse={this.state.isTop}
-            from={{ height: this.state.isTop && 0  }}
-            to={{ height: 125 }}>
+            /* reverse={this.state.isTop} */
+            from={{ height: 0  }}
+            to={{ height: this.state.isTop ? 0 : 125 }}
+            >
             {props => <div style={props} className="nav-background"></div>}
         </Spring>
         <NavMenuSidebar native state={_state} config={config.default.friction = 20} >
