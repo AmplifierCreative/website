@@ -252,28 +252,40 @@ h1
 
 // misc pseudo element selectors
 .first-letter-stroke::first-letter
-  font-size: 5em
+  font-size: 5rem
   font-weight: 800
   font-family: $family-sans-serif
-  -webkit-text-stroke: 1px $AC-orange
-  -webkit-text-fill-color: $AC-white
   float: left
-  line-height: 60px
-  padding-right: 8px
+  line-height: 63px
+  padding-right: 10px
   padding-left: 3px
   padding-top: 9px
+  color: $AC-white
+  text-shadow: -1px -1px 0 $AC-orange, 1px -1px 0 $AC-orange, -1px 1px 0 $AC-orange, 1px 1px 0 $AC-orange
 
 .letter-stroke-dk::first-letter
-  font-size: 5em
+  font-size: 5rem
   font-weight: 800
   font-family: $family-sans-serif
   -webkit-text-stroke: 1px $AC-orange
   -webkit-text-fill-color: $AC-black
   float: left
-  line-height: 60px
-  padding-right: 13px
+  line-height: 63px
+  padding-right: 10px
   padding-left: 3px
-  padding-top: 17px
+  padding-top: 9px
+  color: $AC-black
+  text-shadow: -1px -1px 0 $AC-orange, 1px -1px 0 $AC-orange, -1px 1px 0 $AC-orange, 1px 1px 0 $AC-orange
+
+@-moz-document url-prefix()
+  .first-letter-stroke::first-letter
+    text-shadow: none
+    -webkit-text-stroke: 1px $AC-orange
+    -webkit-text-fill-color: $AC-white
+  .letter-stroke-dk::first-letter
+    text-shadow: none
+    -webkit-text-stroke: 1px $AC-orange
+    -webkit-text-fill-color: $AC-black
 
 .container:not(.is-max-desktop)
   max-width: 1240px
