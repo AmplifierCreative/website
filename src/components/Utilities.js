@@ -1,77 +1,57 @@
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React from 'react'
+import { useState, useEffect, useRef } from "react";
+import PropTypes from 'prop-types'
 
-const isBrowser = typeof window !== `undefined`
+export const useIntersect = ({ root = null, rootMargin, threshold = 0 }) => {
+  const [entry, updateEntry] = useState({});
+  const [node, setNode] = useState(null);
 
-function getScrollPosition({ element, useWindow }) {
-  if (!isBrowser) return { x: 0, y: 0 }
+  const observer = useRef(null);
 
-  const target = element ? element.current : document.body
-  const position = target.getBoundingClientRect()
+  useEffect(
+    () => {
+      if (observer.current) observer.current.disconnect();
 
-  return useWindow
-    ? { x: window.scrollX, y: window.scrollY }
-    : { x: position.left, y: position.top }
-}
-
-export function useScrollPosition(effect, deps, element, useWindow, wait) {
-  const position = useRef(getScrollPosition({ useWindow }))
-
-  let throttleTimeout = null
-
-  const callBack = () => {
-    const currPos = getScrollPosition({ element, useWindow })
-    effect({ prevPos: position.current, currPos })
-    position.current = currPos
-    throttleTimeout = null
-  }
-
-  useLayoutEffect(() => {
-    const handleScroll = () => {
-      if (wait) {
-        if (throttleTimeout === null) {
-          throttleTimeout = setTimeout(callBack, wait)
+      observer.current = new window.IntersectionObserver(
+        ([entry]) => updateEntry(entry),
+        {
+          root,
+          rootMargin,
+          threshold
         }
-      } else {
-        callBack()
-      }
-    }
+      );
 
-    window.addEventListener('scroll', handleScroll)
+      const { current: currentObserver } = observer;
 
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, deps)
-}
+      if (node) currentObserver.observe(node);
 
-export function useScroll() {
+      return () => currentObserver.disconnect();
 
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [bodyOffset, setBodyOffset] = useState(
-    typeof window === "undefined" || !window.document ? 0 : document.body.getBoundingClientRect()
+    },
+    [node, root, rootMargin, threshold]
   );
-  const [scrollY, setScrollY] = useState(bodyOffset.top);
-  const [scrollX, setScrollX] = useState(bodyOffset.left);
-  const [scrollDirection, setScrollDirection] = useState();
 
-  const listener = e => {
-    setBodyOffset(typeof window === "undefined" || !window.document ? 0 : document.body.getBoundingClientRect());
-    setScrollY(-bodyOffset.top);
-    setScrollX(bodyOffset.left);
-    setScrollDirection(lastScrollTop > -bodyOffset.top ? "down" : "up");
-    setLastScrollTop(-bodyOffset.top);
-  };
-
-  useEffect(() => {
-    
-    window.addEventListener("scroll", listener);
-    return () => {
-      window.removeEventListener("scroll", listener);
-    };
-  });
-
-  return {
-    scrollY,
-    scrollX,
-    scrollDirection
-  };
+  return [setNode, entry];
 }
+
+export const VisibilityMonitor = children => {
+  const [ref, entry] = useIntersect({ threshold: 1 })
+
+  console.log(entry.isIntersecting)
+
+/*   if (this.props.children instanceof Function) {
+    return this.props.children({
+      isVisible: this.state.isVisible,
+      visibilityRect: this.state.visibilityRect
+    });
+  }
+  return React.Children.only(this.props.children); */
+  
+  return (
+    <div ref={ref} isVisible={entry.isIntersecting}>
+     { children }
+    </div>
+  )
+}
+
 

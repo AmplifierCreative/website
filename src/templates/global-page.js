@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
+import { v4 } from 'uuid'
+import {useSpring, animated} from 'react-spring'
 
 import Content, { HTMLContent } from '../components/Content'
+import { VisibilityMonitor } from '../components/Utilities'
 import Layout from '../components/Layout'
-import { v4 } from 'uuid'
+
 
 const parentContainer = {
   paddingTop: '4em',
@@ -18,6 +21,7 @@ const tableContainer = {
   margin: '1.75em',
   paddingBottom: '1em',
 }
+
 export const GlobalPageTemplate = ({
   footer,
   nav,
@@ -25,6 +29,8 @@ export const GlobalPageTemplate = ({
   contentComponent 
 }) => {
   const PageContent = contentComponent || Content
+  cosnt [ visibible, setVisible ] = useState(null)
+
   return (   
     <div className="container is-max-widescreen page-padding"style={parentContainer}>
     <Helmet>
@@ -60,6 +66,10 @@ export const GlobalPageTemplate = ({
         </div>
       </div>
       <div>
+      <VisibilityMonitor state={} >
+          <h6>Visibility Monitor2:</h6>
+          <p>I am {isVisible ? 'visible' : 'invisible'}</p>
+        </VisibilityMonitor>
         <div className="global-header-container">
           <h3 className="global-header">Footer</h3>
         </div> 
@@ -127,6 +137,9 @@ export const GlobalPageTemplate = ({
               <PageContent content={content} />
             </div>
           </div>
+          <VisibilityMonitor>
+            <p>here is some text</p>
+          </VisibilityMonitor>
         </div>
       </div>
     </div>

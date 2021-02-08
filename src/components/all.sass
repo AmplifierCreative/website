@@ -477,30 +477,61 @@ h1
     padding-bottom: 5em !important
 
 //About Page
-.about-border
-  border-right: 2px solid $AC-orange
+.about-page-container
+  background-color: $AC-black
+  padding-bottom: 0
+  padding-right: 2rem
+  padding-left: 2rem
+.about-hero-container
+  background-color: $AC-black
+  margin-top: 0
+  margin-bottom: 0
+  height: 400px
+  padding: 5rem 0
+.about-hero-text
+  font-family: $family-serif
+  font-size: 1.5rem
+  color: $AC-white
+  max-width: 750px
+.about-line-header
+  color: $AC-white
+
 .about-section-container
   background-color: $AC-black
   padding-right: 2rem
   padding-left: 2rem
   padding-bottom: 10em
-  display: grid
-  grid-template-columns: 1fr 1fr
-  grid-template-rows: 1fr 1fr
-
-.about-section-text-right
-  grid-column-start: 2
-  padding: 0.75em
+  display: flex
+  flex-direction: row
+  min-height: 150vh
+.about-section-right
+  display: flex
+  flex-direction: column-reverse
+  border-right: 2px solid $AC-orange
+.about-section-left
+  display: flex
+  flex-direction: column
+.about-paragraph-text
+  font-family: $family-serif
+  font-size: 1.5rem
+  color: $AC-white
+  line-height: 2.35rem
+  margin-bottom: 1rem
+.about-image-spacer-right
+  height: 10vh
+.about-image-spacer-left
+  height: 60vh
+.about-image-container
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+.about-image
+  width: 100%
 .about-section-text-left
-  grid-row-start: 2
-  align-self: end
-  padding: 0.75em
-.about-section-image-left
-  grid-column-start: 1
-  grid-row-start: 1
-.about-section-image-right
-  grid-row-start: 2
-  align-self: end
+  margin-right: 1rem
+.about-section-text-right
+  margin-left: 1rem
 
 @media screen and (max-width: 768px)
   .about-img-container

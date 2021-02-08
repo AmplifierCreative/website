@@ -6,50 +6,6 @@ import { graphql } from 'gatsby'
 import { v4 } from 'uuid'
 import {useTrail, a} from 'react-spring'
 
-
-const heroContainer = {
-    backgroundColor: '#2D2C2C',
-    marginTop: '0',
-    marginBottom: '0',
-    height: "400px",
-    padding: '5rem 2rem',
-}
-
-const heroText = {
-  fontFamily: 'EBGaramond',
-  fontSize: '1.5em',
-  color: '#F8F3F1',
-  maxWidth: '750px',
-}
-
-const lineHeader = {
-  color: '#F8F3F1',
-}
-
-const sectionContainer = {
-    backgroundColor: '#2D2C2C',
-    paddingBottom: '0',
-    paddingRight: '2rem',
-    paddingLeft: '2rem',
-}
-
-const imageBottom = {
-  paddingTop: "5em",
-  width: '100%'
-}
-
-const imageTop = {
-    width: '100%'
-  }
-
-const paragraphText = {
-    fontFamily: 'EBGaramond',
-    fontSize: '1.5em',
-    color: '#F8F3F1',
-    lineHeight: '1.65em',
-    marginBottom: '9px',
-}
-
 function Trail({ open, children, ...props }) {
   const items = React.Children.toArray(children)
   const trail = useTrail(items.length, {
@@ -74,7 +30,6 @@ function Trail({ open, children, ...props }) {
   )
 }
 
-
 export const AboutPageTemplate = ({
     image,
     title,
@@ -85,59 +40,66 @@ export const AboutPageTemplate = ({
   const [open, set] = useState(true)
 
   return (
-    <div className="page-padding" style={sectionContainer}>
-      <div className="container is-max-widescreen" style={heroContainer}>
+    <div className="page-padding about-page-container">
+      <div className="container is-max-widescreen about-hero-container">
         <Trail open={open} onClick={() => set((state) => !state)}>
-            <h1 className="line-header" style={lineHeader}>{hero.heading}</h1>
-            <p style={heroText}>{hero.subheading}</p>
+            <h1 className="line-header about-line-header">{hero.heading}</h1>
+            <p className="about-hero-text">{hero.subheading}</p>
         </Trail>
       </div>
       <section className="about-section-container container is-max-widescreen">
-        <div className="about-section-text-right">
-          <Trail open={open} onClick={() => set((state) => !state)}>
-            <p className="letter-stroke-dk" style={paragraphText}>
-                {topSection.description1}
-            </p>
-            <p style={paragraphText}>
-                {topSection.description2}
-            </p>
-          </Trail>
-        </div>
-        <div className="about-border about-section-image-left">
-          {topSection.image ? (
-            <figure style={imageTop}>
-              <PreviewCompatibleImage
-                imageInfo={{
-                  image: topSection.image,
-                  }}
-              />
-            </figure>
-          ) : null}
-        </div>
-        <div className="about-border about-section-text-left">
-          <Trail open={open} onClick={() => set((state) => !state)}>
-            <p style={paragraphText}>
-                {bottomSection.description1}
-            </p>
-            <p style={paragraphText}>
-                {bottomSection.description2}
-            </p>
-            <p style={paragraphText}>
-                {bottomSection.description3}
-            </p>
-          </Trail>
-        </div>
-        <div className="about-section-image-right">
-          {bottomSection.image ? (
-                <figure style={imageBottom}>
-                  <PreviewCompatibleImage
-                    imageInfo={{
-                      image: bottomSection.image,
-              
+        <div className="about-section-right">
+          <div className="about-section-text-left">
+            <Trail open={open} onClick={() => set((state) => !state)}>
+              <p className="about-paragraph-text">
+                  {bottomSection.description1}
+              </p>
+              <p className="about-paragraph-text">
+                  {bottomSection.description2}
+              </p>
+              <p className="about-paragraph-text">
+                  {bottomSection.description3}
+              </p>
+            </Trail>
+          </div>
+          
+          <div className="about-image-container">
+            {topSection.image ? (
+              <figure className="about-image">
+                <PreviewCompatibleImage
+                  imageInfo={{
+                    image: topSection.image,
                     }}
-                  />
-                </figure>
-              ) : null}
+                />
+              </figure>
+            ) : null}
+          </div>
+          <div className="about-image-spacer-right"></div>
+        </div>
+        <div className="about-section-left">
+          <div className="about-section-text-right">
+            <Trail open={open} onClick={() => set((state) => !state)}>
+              <p className="letter-stroke-dk about-paragraph-text">
+                  {topSection.description1}
+              </p>
+              <p className="about-paragraph-text">
+                  {topSection.description2}
+              </p>
+            </Trail>
+          </div>
+          <div className="about-image-spacer-left"></div>
+          <div className="about-image-container">
+            {bottomSection.image ? (
+                  <figure className="about-image">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: bottomSection.image,
+                
+                      }}
+                    />
+                  </figure>
+                ) : null}
+          </div>
         </div>
       </section>
     </div>
