@@ -29,7 +29,7 @@ export const GlobalPageTemplate = ({
   contentComponent 
 }) => {
   const PageContent = contentComponent || Content
-  cosnt [ visibible, setVisible ] = useState(null)
+  const [ visibible, setVisible ] = useState(null)
 
   return (   
     <div className="container is-max-widescreen page-padding"style={parentContainer}>
@@ -66,10 +66,10 @@ export const GlobalPageTemplate = ({
         </div>
       </div>
       <div>
-      <VisibilityMonitor state={} >
+{/*       <VisibilityMonitor state={} >
           <h6>Visibility Monitor2:</h6>
           <p>I am {isVisible ? 'visible' : 'invisible'}</p>
-        </VisibilityMonitor>
+        </VisibilityMonitor> */}
         <div className="global-header-container">
           <h3 className="global-header">Footer</h3>
         </div> 

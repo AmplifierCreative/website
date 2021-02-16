@@ -6,6 +6,8 @@ import { graphql } from 'gatsby'
 import { v4 } from 'uuid'
 import {useTrail, a} from 'react-spring'
 
+import { useIntersect } from '../components/Utilities'
+
 function Trail({ open, children, ...props }) {
   const items = React.Children.toArray(children)
   const trail = useTrail(items.length, {
@@ -38,7 +40,8 @@ export const AboutPageTemplate = ({
     bottomSection,
 }) => {
   const [open, set] = useState(true)
-
+  const [ref, entry] = useIntersect({ threshold: 1 })
+  console.log(topSection.image)
   return (
     <div className="page-padding about-page-container">
       <div className="container is-max-widescreen about-hero-container">
@@ -74,7 +77,6 @@ export const AboutPageTemplate = ({
               </figure>
             ) : null}
           </div>
-          <div className="about-image-spacer-right"></div>
         </div>
         <div className="about-section-left">
           <div className="about-section-text-right">
@@ -87,7 +89,6 @@ export const AboutPageTemplate = ({
               </p>
             </Trail>
           </div>
-          <div className="about-image-spacer-left"></div>
           <div className="about-image-container">
             {bottomSection.image ? (
                   <figure className="about-image">
@@ -159,6 +160,7 @@ query AboutPageTemplate {
           description1
           description2
           image {
+            name
             childImageSharp {
               fluid(maxWidth: 2048, quality: 100) {
                 ...GatsbyImageSharpFluid

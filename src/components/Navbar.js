@@ -129,8 +129,8 @@ class Navbar extends React.Component {
                   tabIndex={0}
                 >
                   <span className={`burger-line-top ${this.state.navBarActiveClass}`} />
-                  <span className={`burger-line ${this.state.navBarActiveClass}`} />
-                  <span className={`burger-line ${this.state.navBarActiveClass}`} />
+                  <span className={`burger-line middle ${this.state.navBarActiveClass}`} />
+                  <span className={`burger-line bottom ${this.state.navBarActiveClass}`} />
                 </div>
               </div>
               <div className="navbar-menu-container">
