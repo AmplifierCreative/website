@@ -1,8 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Amplifier Creative',
+    title: 'amplifier creative',
+    titleTemplate: 'Change this***',
     description:
-      'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
+      'amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.',
+    url: 'https://amplifier-dev.netlify.app/',
+    image: 'img/amplifierSH.png',
+    twitterUsername: '@DontDeserveDogs',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

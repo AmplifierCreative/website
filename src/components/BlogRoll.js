@@ -2,16 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import { Helmet } from 'react-helmet'
-
 class BlogRoll extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-
-    const blackStyle = {
-      color: '#2D2C2C',
-      marginTop: 0,
-    }
 
     return (
       <div className="blog page-padding">
@@ -39,9 +33,8 @@ class BlogRoll extends React.Component {
                     </span>
                     <h1 className="post-meta mt-0">
                       <Link
-                        className="title is-size-1"
+                        className="title is-size-1 link-black"
                         to={post.fields.slug}
-                        style={blackStyle}
                       >
                         {post.frontmatter.title}
                       </Link>

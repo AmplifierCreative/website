@@ -3,17 +3,10 @@ import PropTypes from 'prop-types'
 import { kebabCase } from 'lodash'
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
+
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
-
-const sectionPadding = {
-  marginTop: '7em',
-}
-
-const blogHeader = {
-  fontSize: '6rem',
-  marginTop: 0,
-}
+import SEO from '../components/Seo'
 
 export const BlogPostTemplate = ({
   content,
@@ -28,7 +21,8 @@ export const BlogPostTemplate = ({
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section blog page-padding" style={sectionPadding}>
+    <section className="section blog page-padding section-padding">
+      {helmet || ''}
       <div className="container is-max-widescreen">
         {helmet || ''}
         <div className="container content">
@@ -38,8 +32,7 @@ export const BlogPostTemplate = ({
                 {date} x {author}
               </span>
               <h1
-                className="title has-text-weight-bold is-bold-light"
-                style={blogHeader}
+                className="title has-text-weight-bold is-bold-light blog-header"
               >
                 {title}
               </h1>
@@ -79,17 +72,20 @@ const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || 'nothin’'}
+        image={null}
+        pathname={null}
+        article={true}
+      />
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
           <Helmet titleTemplate="%s | Blog">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
+            <body className="menu-color-2" />
           </Helmet>
         }
         tags={post.frontmatter.tags}
