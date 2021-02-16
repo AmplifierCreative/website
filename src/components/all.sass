@@ -503,14 +503,14 @@ h1
   padding-bottom: 10em
   display: flex
   flex-direction: row
-  min-height: 150vh
+  min-height: 125vh
 .about-section-right
+  display: flex
+  flex-direction: column
+.about-section-left
   display: flex
   flex-direction: column-reverse
   border-right: 2px solid $AC-orange
-.about-section-left
-  display: flex
-  flex-direction: column
 .about-paragraph-text
   font-family: $family-serif
   font-size: 1.5rem
@@ -524,20 +524,31 @@ h1
   height: 100%
 .about-image
   width: 100%
-.about-section-text-left
-  margin-right: 1rem
 .about-section-text-right
   margin-left: 1rem
+.about-section-text-left
+  margin-right: 1rem
+.about-section-mobile, .mobile-line
+  display: none
 
 @media screen and (max-width: 768px)
-  .about-img-container
+  .about-section-right, .about-section-left
     display: none
-  .about-column-mobile
-    text-align: left !important
-  .about-border
-    border: none
   .about-section-container
     padding-bottom: 5em
+    flex-direction: column
+    justify-content: center
+  .about-section-mobile
+    display: block
+  .about-section-text-left, .about-section-text-right
+    text-align: center
+  .mobile-line
+    height: 40vh
+    display: block
+    width: 49%
+    margin: 2rem 0
+    border-right: 2px solid $AC-orange
+
 //Shared Classes
   //services-reverse-column
   //services-filler-mobile-only

@@ -51,7 +51,8 @@ export const AboutPageTemplate = ({
         </Trail>
       </div>
       <section className="about-section-container container is-max-widescreen">
-        <div className="about-section-right">
+        {/* Two layouts: one for desktop, another below for mobile */}
+        <div className="about-section-left">
           <div className="about-section-text-left">
             <Trail open={open} onClick={() => set((state) => !state)}>
               <p className="about-paragraph-text">
@@ -65,7 +66,6 @@ export const AboutPageTemplate = ({
               </p>
             </Trail>
           </div>
-          
           <div className="about-image-container">
             {topSection.image ? (
               <figure className="about-image">
@@ -78,7 +78,7 @@ export const AboutPageTemplate = ({
             ) : null}
           </div>
         </div>
-        <div className="about-section-left">
+        <div className="about-section-right">
           <div className="about-section-text-right">
             <Trail open={open} onClick={() => set((state) => !state)}>
               <p className="letter-stroke-dk about-paragraph-text">
@@ -100,6 +100,56 @@ export const AboutPageTemplate = ({
                     />
                   </figure>
                 ) : null}
+          </div>
+        </div>
+        {/* Mobile layout starts here! */}
+        <div className="about-section-mobile">
+        <div className="about-image-container">
+            {topSection.image ? (
+              <figure className="about-image">
+                <PreviewCompatibleImage
+                  imageInfo={{
+                    image: topSection.image,
+                    }}
+                />
+              </figure>
+            ) : null}
+          </div>
+          <div className="about-section-text-right">
+            <Trail open={open} onClick={() => set((state) => !state)}>
+              <p className="letter-stroke-dk about-paragraph-text">
+                  {topSection.description1}
+              </p>
+              <p className="about-paragraph-text">
+                  {topSection.description2}
+              </p>
+            </Trail>
+          </div>
+          <div className="mobile-line"></div>
+          <div className="about-image-container">
+            {bottomSection.image ? (
+                  <figure className="about-image">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: bottomSection.image,
+                
+                      }}
+                    />
+                  </figure>
+                ) : null}
+          </div>
+          <div className="about-section-text-left">
+            <Trail open={open} onClick={() => set((state) => !state)}>
+              <p className="about-paragraph-text">
+                  {bottomSection.description1}
+              </p>
+              <p className="about-paragraph-text">
+                  {bottomSection.description2}
+              </p>
+              <p className="about-paragraph-text">
+                  {bottomSection.description3}
+              </p>
+            </Trail>
           </div>
         </div>
       </section>
