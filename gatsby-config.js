@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
     title: 'amplifier creative',
-    titleTemplate: 'Change this***',
+    titleTemplate: '%s | amplifier creative',
     description:
       'amplifier creative is a modernized creative agency catered toward up-and-coming businesses, driven entrepreneurs, and committed creative endeavors of all kinds.',
     url: 'https://amplifier-dev.netlify.app/',
     image: 'img/amplifierSH.png',
-    twitterUsername: '@DontDeserveDogs',
+    twitterUsername: '@amplifiercreative',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

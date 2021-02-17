@@ -25,12 +25,16 @@ testimonials:
     author: Dan White
     authorBio: Host and Founder, Free Pizza Podcast
 statistics:
-  - number: '123'
+  - number: "123"
     blurb: increase in sales lorem ipsum
-  - number: '456'
+  - number: "456"
     blurb: increase in sales lorem ipsum
-  - number: '789'
+  - number: "789"
     blurb: increase in sales lorem ipsum
+seo:
+  title: Test
+  description: testing testing
+  image: /img/products-grid1.jpg
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`

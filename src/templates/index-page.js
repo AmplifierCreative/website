@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Carousel from '../components/Carousel'
+import SEO from '../components/Seo'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
@@ -136,12 +137,11 @@ const calc2 = (o) => `translateY(${o * 0.5}px)`
 const calc3 = (o) => `translateY(${o * 1}px)`
 
 export const IndexPageTemplate = ({
-  image,
-  title,
   hero,
   about,
   services,
   clients,
+  seo
 }) => {
 /*   const ref = useRef()
   const ref2 = useRef()
@@ -183,10 +183,15 @@ export const IndexPageTemplate = ({
   }) */
   return (
     <div>
+      <SEO 
+        title={seo.title}
+        description={seo.description}
+        image={seo.image.name}
+      />
       <section
-      style={ image ?
+      style={ hero.image ?
         {backgroundImage: `url(${
-          !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+          !!hero.image.childImageSharp ? hero.image.childImageSharp.fluid.src : hero.image
         })`} : headerStyle
       }
       className="hero is-medium page-padding">
@@ -332,12 +337,11 @@ export const IndexPageTemplate = ({
 }
 
 IndexPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
   hero: PropTypes.object,
   about: PropTypes.object,
   services: PropTypes.object,
   clients: PropTypes.object,
+  seo: PropTypes.object,
 }
 
 const IndexPage = ({ data }) => {
@@ -346,12 +350,11 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
         hero={frontmatter.hero}
         about={frontmatter.about}
         services={frontmatter.services}
         clients={frontmatter.clients}
+        seo={frontmatter.seo}
       />
     </Layout>
   )
@@ -371,18 +374,17 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
         hero {
           heading
           subheading
           description
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
         about {
           heading
@@ -401,6 +403,13 @@ export const pageQuery = graphql`
         clients {
           title
           heading
+        }
+        seo {
+          title
+          description
+          image {
+            name
+          }
         }
       }
     }

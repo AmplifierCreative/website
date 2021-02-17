@@ -1,10 +1,9 @@
 ---
 templateKey: about-page
-title: about
-image: /img/placeholder-2.jpg
 hero:
   heading: about
-  subheading: We’re editors, copywriters, designers, illustrators, art directors,
+  subheading:
+    We’re editors, copywriters, designers, illustrators, art directors,
     creative directors, project managers, brand strategists, SEO gurus, social
     media experts… And, yeah. There’s only two of us.
 topSection:
@@ -34,4 +33,8 @@ bottomSection:
     Now, it’s our turn to call the shots—and do it in a more meaningful way than
     before
   image: /img/jen-bio.png
+seo:
+  title: homepage-amplifier
+  description: test test test
+  image: /img/chemex.jpg
 ---

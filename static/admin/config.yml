@@ -57,6 +57,38 @@ collections:
               { label: Blurb, name: blurb, widget: string },
             ],
         }
+      - {
+          label: 'SEO',
+          name: 'seo',
+          widget: 'object',
+          fields:
+            [
+              {
+                label: 'Title',
+                name: 'title',
+                required: false,
+                widget: 'string',
+              },
+              {
+                label: 'Description',
+                name: 'description',
+                required: false,
+                widget: 'text',
+              },
+              {
+                label: 'Image',
+                name: 'image',
+                required: false,
+                widget: 'image',
+              },
+              {
+                label: 'Slug',
+                name: 'slug',
+                required: false,
+                widget: 'string',
+              },
+            ],
+        }
 
   - name: 'blog'
     label: 'Blog'
@@ -78,6 +110,38 @@ collections:
       - { label: 'Featured Image', name: 'featuredimage', widget: image }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
+      - {
+          label: 'SEO',
+          name: 'seo',
+          widget: 'object',
+          fields:
+            [
+              {
+                label: 'Title',
+                name: 'title',
+                required: false,
+                widget: 'string',
+              },
+              {
+                label: 'Description',
+                name: 'description',
+                required: false,
+                widget: 'text',
+              },
+              {
+                label: 'Image',
+                name: 'image',
+                required: false,
+                widget: 'image',
+              },
+              {
+                label: 'Slug',
+                name: 'slug',
+                required: false,
+                widget: 'string',
+              },
+            ],
+        }
 
   - name: 'pages'
     label: 'Pages'
@@ -92,8 +156,6 @@ collections:
               widget: 'hidden',
               default: 'index-page',
             }
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Image', name: 'image', widget: 'image' }
           - {
               label: 'Hero',
               name: 'hero',
@@ -103,6 +165,12 @@ collections:
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   { label: 'Subheading', name: 'subheading', widget: 'text' },
                   { label: 'Description', name: 'description', widget: 'text' },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
                 ],
             }
           - {
@@ -163,6 +231,32 @@ collections:
                 [
                   { label: 'Title', name: 'title', widget: 'string' },
                   { label: 'Heading', name: 'heading', widget: 'string' },
+                ],
+            }
+          - {
+              label: 'SEO',
+              name: 'seo',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
                 ],
             }
       - file: 'src/pages/about/index.md'
@@ -228,6 +322,32 @@ collections:
                     widget: 'text',
                   },
                   { label: 'Image', name: 'image', widget: 'image' },
+                ],
+            }
+          - {
+              label: 'SEO',
+              name: 'seo',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
                 ],
             }
       - file: 'src/pages/services/index.md'
@@ -462,6 +582,32 @@ collections:
                   { label: 'Button', name: 'button', widget: 'string' },
                 ],
             }
+          - {
+              label: 'SEO',
+              name: 'seo',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
+                ],
+            }
       - file: 'src/pages/contact/index.md'
         label: 'Contact'
         name: 'contact'
@@ -496,6 +642,32 @@ collections:
                   },
                 ],
             }
+          - {
+              label: 'SEO',
+              name: 'seo',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
+                ],
+            }
       - file: 'src/pages/privacy/index.md'
         label: 'Privacy'
         name: 'Privacy'
@@ -508,6 +680,32 @@ collections:
             }
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Body', name: 'body', widget: 'markdown' }
+          - {
+              label: 'SEO',
+              name: 'seo',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
+                ],
+            }
       - file: 'src/pages/products/index.md'
         label: 'Products Page'
         name: 'products'

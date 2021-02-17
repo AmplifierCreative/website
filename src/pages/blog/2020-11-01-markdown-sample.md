@@ -1,11 +1,16 @@
 ---
 templateKey: blog-post
+author: jordy
 title: Markdown Sample
 date: 2020-11-01T21:01:02.889Z
 description: Markdown sample description
 featuredpost: true
 featuredimage: /img/products-grid1.jpg
 tags: []
+seo:
+  title: Test123
+  description: testing testing
+  image: /img/products-grid3.jpg
 ---
 leftimage Test
 

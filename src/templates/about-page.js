@@ -7,6 +7,7 @@ import { v4 } from 'uuid'
 import {useTrail, a} from 'react-spring'
 
 import { useIntersect } from '../components/Utilities'
+import SEO from '../components/Seo'
 
 function Trail({ open, children, ...props }) {
   const items = React.Children.toArray(children)
@@ -33,17 +34,21 @@ function Trail({ open, children, ...props }) {
 }
 
 export const AboutPageTemplate = ({
-    image,
-    title,
     hero,
     topSection,
     bottomSection,
+    seo
 }) => {
   const [open, set] = useState(true)
   const [ref, entry] = useIntersect({ threshold: 1 })
   console.log(topSection.image)
   return (
     <div className="page-padding about-page-container">
+      <SEO 
+        title={seo.title}
+        description={seo.description}
+        image={seo.image.name}
+      />
       <div className="container is-max-widescreen about-hero-container">
         <Trail open={open} onClick={() => set((state) => !state)}>
             <h1 className="line-header about-line-header">{hero.heading}</h1>
@@ -157,11 +162,10 @@ export const AboutPageTemplate = ({
 )}
 
 AboutPageTemplate.propTypes = {
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    title: PropTypes.string,
     hero: PropTypes.object,
     topSection: PropTypes.object,
     bottomSection: PropTypes.object,
+    seo: PropTypes.object,
   }
 
 const AboutPage = ({ data }) => {
@@ -170,11 +174,10 @@ const AboutPage = ({ data }) => {
     return (
       <Layout>
         <AboutPageTemplate
-          image={frontmatter.image}
-          title={frontmatter.title}
           hero={frontmatter.hero}
           topSection={frontmatter.topSection}
           bottomSection={frontmatter.bottomSection}
+          seo={frontmatter.seo}
         />
       </Layout>
     )
@@ -194,14 +197,6 @@ export const pageQuery = graphql`
 query AboutPageTemplate {
   markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
     frontmatter {
-      title
-      image {
-        childImageSharp {
-          fluid(maxWidth: 2048, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
       hero {
         heading
         subheading
@@ -229,6 +224,13 @@ query AboutPageTemplate {
               }
             }
           }
+      }
+      seo {
+        title
+        description
+        image {
+          name
+        }
       }
     }
   }
