@@ -9,6 +9,11 @@ description: >+
 featuredpost: true
 featuredimage: /img/placeholder.jpg
 author: Jenny Don't Be Hasty
+seo:
+  title: Test123
+  description: testing testing
+  image: /img/products-grid3.jpg
+  slug: ''
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`

@@ -24,7 +24,6 @@ export const BlogPostTemplate = ({
     <section className="section blog page-padding section-padding">
       {helmet || ''}
       <div className="container is-max-widescreen">
-        {helmet || ''}
         <div className="container content">
           <div className="columns">
             <div className="column is-8 is-offset-2">
@@ -73,10 +72,10 @@ const BlogPost = ({ data }) => {
   return (
     <Layout>
       <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || 'nothin’'}
-        image={null}
-        pathname={null}
+        title={post.frontmatter.seo.title}
+        description={post.frontmatter.seo.description || 'Blog'}
+        image={post.frontmatter.seo.image.name || null}
+        pathname={post.frontmatter.seo.slug || null}
         article={true}
       />
       <BlogPostTemplate
@@ -84,7 +83,7 @@ const BlogPost = ({ data }) => {
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
-          <Helmet titleTemplate="%s | Blog">
+          <Helmet>
             <body className="menu-color-2" />
           </Helmet>
         }
@@ -116,6 +115,13 @@ export const pageQuery = graphql`
         description
         tags
         author
+        seo {
+          title
+          description
+          image {
+            name
+          }
+        }
       }
     }
   }

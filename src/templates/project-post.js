@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
+import { v4 } from 'uuid'
+import {useTrail, a} from 'react-spring'
+
 import Layout from '../components/Layout'
 import Testimonials from '../components/Testimonials'
 import Statistics from '../components/Statistics'
 import Content, { HTMLContent } from '../components/Content'
-import { v4 } from 'uuid'
-import {useTrail, a} from 'react-spring'
+import SEO from '../components/Seo'
+
 
 const titleText = {
   fontFamily: 'VisbyCF-Bold',
@@ -191,17 +194,19 @@ const ProjectPost = ({ data }) => {
 
   return (
     <Layout>
+      <SEO
+        title={post.frontmatter.seo.title}
+        description={post.frontmatter.seo.description || 'Blog'}
+        image={post.frontmatter.seo.image.name || null}
+        pathname={post.frontmatter.seo.slug || null}
+        article={true}
+      />
       <ProjectPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
-          <Helmet titleTemplate="%s | Project">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
+          <Helmet>
             <body className="menu-color-2" />
           </Helmet>
         }
@@ -261,6 +266,13 @@ export const pageQuery = graphql`
         statistics {
           number
           blurb
+        }
+        seo {
+          title
+          description
+          image {
+            name
+          }
         }
       }
     }

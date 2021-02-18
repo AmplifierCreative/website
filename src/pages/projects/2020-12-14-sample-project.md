@@ -8,5 +8,11 @@ clientlogo: /img/aa_audpop_stacked_color.png
 featuredimage: /img/products-grid2.jpg
 tags:
   - Clients
+seo:
+  title: Test123
+  description: testing testing
+  image: /img/products-grid3.jpg
+  slug: ''
 ---
+
 Using this to complete the carousel

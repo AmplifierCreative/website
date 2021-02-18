@@ -55,4 +55,8 @@ section4:
 cta:
   heading: See something you like? Let’s chat over coffee. (We’re buying.)
   button: contact us
+seo:
+  title: homepage-amplifier
+  description: test test test
+  image: /img/chemex.jpg
 ---

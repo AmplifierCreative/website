@@ -5,6 +5,7 @@ import {useTrail, a} from 'react-spring'
 import { v4 } from 'uuid'
 
 import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 
 import social from '../img/social.gif'
 import copywrite from '../img/copywrite.gif'
@@ -131,11 +132,17 @@ export const ServicesPageTemplate = ({
   section3,
   section4,
   cta,
+  seo
 }) => {
   const [open, set] = useState(true)
 
   return (
     <div className="services-container page-padding">
+      <SEO 
+        title={seo.title}
+        description={seo.description}
+        image={seo.image.name}
+      />
       <div className="has-text-left" style={heroContainer}>
         <div className="container is-max-widescreen">
           <Trail open={open} onClick={() => set((state) => !state)}>
@@ -319,6 +326,7 @@ ServicesPageTemplate.propTypes = {
   section3: PropTypes.object,
   section4: PropTypes.object,
   cta: PropTypes.object,
+  seo: PropTypes.object,
 }
 
 const ServicesPage = ({ data }) => {
@@ -335,6 +343,7 @@ const ServicesPage = ({ data }) => {
         section3={frontmatter.section3}
         section4={frontmatter.section4}
         cta={frontmatter.cta}
+        seo={frontmatter.seo}
       />
     </Layout>
   )
@@ -413,6 +422,13 @@ export const pageQuery = graphql`
         cta {
           heading
           button
+        }
+        seo {
+          title
+          description
+          image {
+            name
+          }
         }
       }
     }
