@@ -1,13 +1,5 @@
 ---
 templateKey: services-page
-title: services
-image: /img/placeholder-2.jpg
-hero:
-  heading: services
-  subheading: 'Long story short: Our services are tailored to your needs, so
-    pricing ranges—but there’s no task too small or too big. Because at the end
-    of the day, your success is our passion—and we want to be a part of your
-    journey.'
 section1:
   heading: Copywriting + editing
   description1: Landing and product page copy
@@ -55,8 +47,16 @@ section4:
 cta:
   heading: See something you like? Let’s chat over coffee. (We’re buying.)
   button: contact us
+title: services
+hero:
+  heading: services
+  subheading: "Long story short: Our services are tailored to your needs, so
+    pricing ranges—but there’s no task too small or too big. Because at the end
+    of the day, your success is our passion—and we want to be a part of your
+    journey."
+image: /img/placeholder-2.jpg
 seo:
-  title: homepage-amplifier
+  title: services-page-amplifier | okurrr
   description: test test test
   image: /img/chemex.jpg
 ---

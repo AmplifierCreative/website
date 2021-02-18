@@ -124,8 +124,6 @@ function Trail({ open, children, ...props }) {
 }
 
 export const ServicesPageTemplate = ({
-  image,
-  title,
   hero,
   section1,
   section2,
@@ -335,8 +333,6 @@ const ServicesPage = ({ data }) => {
   return (
     <Layout>
       <ServicesPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
         hero={frontmatter.hero}
         section1={frontmatter.section1}
         section2={frontmatter.section2}
@@ -363,14 +359,6 @@ export const pageQuery = graphql`
   query ServicesPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "services-page" } }) {
       frontmatter {
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        title
         hero {
           heading
           subheading

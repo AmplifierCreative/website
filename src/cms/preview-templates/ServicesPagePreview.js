@@ -2,14 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { ServicesPageTemplate } from '../../templates/services-page'
 
-const ServicesPagePreview = ({ entry, getAsset }) => {
+const ServicesPagePreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
 
   if (data) {
     return (
       <ServicesPageTemplate
-        image={getAsset(data.image)}
-        title={data.title}
         hero={data.hero}
         section1={data.section1}
         section2={data.section2}

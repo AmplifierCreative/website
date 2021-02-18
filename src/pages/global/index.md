@@ -37,6 +37,14 @@ footer:
     twitter: https://www.facebook.com
     ig: https://www.instagram.com
     linkedin: https://www.instagram.com
+blog:
+  title: homepage-amplifier | blog roll
+  description: test test test
+  image: /img/chemex.jpg
+projects:
+  title: homepage-amplifier | projects
+  description: test test test
+  image: /img/chemex.jpg
 ---
 
 © Amplifier Creative 2020 view our [Terms of Use](/terms) and [Privacy Policy](/privacy).

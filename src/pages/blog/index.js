@@ -1,30 +1,21 @@
 import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
+import PropTypes from 'prop-types'
 
 import Layout from '../../components/Layout'
 import BlogRoll from '../../components/BlogRoll'
+import SEO from '../../components/Seo'
 
-export default class BlogIndexPage extends React.Component {
-  render() {
-    return (
+const BlogIndexPage = ({ data }) => {
+  const { edges: posts } = data.allMarkdownRemark
+  console.log(posts)
+  return (
       <Layout>
-        {/* <div
-          className="full-width-image-container margin-top-0"
-          style={{
-            backgroundImage: `url('/img/blog-index.jpg')`,
-          }}
-        >
-          <h1
-            className="has-text-weight-bold is-size-1"
-            style={{
-              boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
-              backgroundColor: '#f40',
-              color: 'white',
-              padding: '1rem',
-            }}
-          >
-            Latest Stories
-          </h1>
-        </div> */}
+        <SEO 
+          title={posts[0].node.frontmatter.blog.title}
+          description={posts[0].node.frontmatter.blog.description}
+          image={posts[0].node.frontmatter.blog.image.name}
+        />
         <section className="section page-padding">
           <div className="container is-max-widescreen">
             <div className="content">
@@ -33,6 +24,41 @@ export default class BlogIndexPage extends React.Component {
           </div>
         </section>
       </Layout>
-    )
-  }
+  )
 }
+
+BlogIndexPage.propTypes = {
+  data: PropTypes.shape({
+    allMarkdownRemark: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }),
+}
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      query BlogIndexPageQuery {
+        allMarkdownRemark(
+          filter: { frontmatter: { templateKey: { eq: "global-page" } } }
+        ) {
+          edges {
+            node {
+              frontmatter {
+                templateKey
+                blog {
+                  title
+                  description
+                  image {
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+  render={(data) => <BlogIndexPage data={data} />}
+  />
+)

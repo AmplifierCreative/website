@@ -269,8 +269,6 @@ collections:
               widget: 'hidden',
               default: 'about-page',
             }
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Image', name: 'image', widget: 'image' }
           - {
               label: 'Hero',
               name: 'hero',
@@ -360,8 +358,6 @@ collections:
               widget: 'hidden',
               default: 'services-page',
             }
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Image', name: 'image', widget: 'image' }
           - {
               label: 'Hero',
               name: 'hero',
@@ -888,6 +884,58 @@ collections:
                 ],
             }
           - { label: 'Copyright', name: 'body', widget: 'markdown' }
+          - {
+              label: 'Blog-SEO',
+              name: 'blog',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
+                ],
+            }
+          - {
+              label: 'Projects-SEO',
+              name: 'projects',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
+                ],
+            }
       - file: 'src/pages/notFound/index.md'
         label: '404 Page'
         name: 'notFound-page'

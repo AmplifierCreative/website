@@ -2,8 +2,7 @@
 templateKey: about-page
 hero:
   heading: about
-  subheading:
-    We’re editors, copywriters, designers, illustrators, art directors,
+  subheading: We’re editors, copywriters, designers, illustrators, art directors,
     creative directors, project managers, brand strategists, SEO gurus, social
     media experts… And, yeah. There’s only two of us.
 topSection:
@@ -34,7 +33,7 @@ bottomSection:
     before
   image: /img/jen-bio.png
 seo:
-  title: homepage-amplifier
+  title: about-page-amplifier | yerrppp
   description: test test test
   image: /img/chemex.jpg
 ---

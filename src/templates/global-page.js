@@ -10,18 +10,6 @@ import { VisibilityMonitor } from '../components/Utilities'
 import Layout from '../components/Layout'
 
 
-const parentContainer = {
-  paddingTop: '4em',
-  paddingBottom: '8em',
-  paddingLeft: '1em',
-  paddingRight: '1em',
-}
-
-const tableContainer = {
-  margin: '1.75em',
-  paddingBottom: '1em',
-}
-
 export const GlobalPageTemplate = ({
   footer,
   nav,
@@ -32,7 +20,7 @@ export const GlobalPageTemplate = ({
   const [ visibible, setVisible ] = useState(null)
 
   return (   
-    <div className="container is-max-widescreen page-padding"style={parentContainer}>
+    <div className="container is-max-widescreen global-container">
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>
@@ -43,7 +31,7 @@ export const GlobalPageTemplate = ({
         <div className="">
           <h4>Menu:</h4>
         </div>
-        <div style={tableContainer}>
+        <div className="global-table-container">
           <table className="table">
             <thead>
               <tr>
@@ -77,7 +65,7 @@ export const GlobalPageTemplate = ({
         <div className="">
           <h4>Menu:</h4>
         </div>
-        <div style={tableContainer}>
+        <div className="global-table-container">
           <table className="table">
             <thead>
               <tr>
@@ -103,7 +91,7 @@ export const GlobalPageTemplate = ({
         <div>
           <h4>Social Paths:</h4>
         </div>
-        <div style={tableContainer}>
+        <div className="global-table-container">
           <table className="table">
             <thead>
               <tr>
@@ -132,14 +120,11 @@ export const GlobalPageTemplate = ({
           <div>
             <h4>Copyright:</h4>
           </div>
-          <div style={tableContainer}>
+          <div className="global-table-container">
             <div>
               <PageContent content={content} />
             </div>
           </div>
-          <VisibilityMonitor>
-            <p>here is some text</p>
-          </VisibilityMonitor>
         </div>
       </div>
     </div>
