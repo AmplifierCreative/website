@@ -2,6 +2,10 @@
 templateKey: privacy-page
 path: /privacy
 title: Privacy Policy
+seo:
+  title: homepage-amplifier
+  description: test test test
+  image: /img/chemex.jpg
 ---
 
 This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.

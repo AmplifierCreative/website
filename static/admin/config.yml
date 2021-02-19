@@ -702,6 +702,44 @@ collections:
                   },
                 ],
             }
+      - file: 'src/pages/terms/index.md'
+        label: 'Terms'
+        name: 'Terms'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'terms-page',
+            }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }
+          - {
+              label: 'SEO',
+              name: 'seo',
+              widget: 'object',
+              fields:
+                [
+                  {
+                    label: 'Title',
+                    name: 'title',
+                    required: false,
+                    widget: 'string',
+                  },
+                  {
+                    label: 'Description',
+                    name: 'description',
+                    required: false,
+                    widget: 'text',
+                  },
+                  {
+                    label: 'Image',
+                    name: 'image',
+                    required: false,
+                    widget: 'image',
+                  },
+                ],
+            }
       - file: 'src/pages/products/index.md'
         label: 'Products Page'
         name: 'products'

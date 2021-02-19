@@ -2,6 +2,10 @@
 templateKey: terms-page
 path: /terms
 title: Terms and Conditions
+seo:
+  title: homepage-amplifier
+  description: test test test
+  image: /img/chemex.jpg
 ---
 
 Please read these terms and conditions carefully before using Our Service.

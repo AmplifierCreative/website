@@ -11,4 +11,8 @@ thanks:
     text: 'this cool stuff.'
     local: true
     path: ../../projects
+seo:
+  title: homepage-amplifier
+  description: test test test
+  image: /img/chemex.jpg
 ---

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
 import { navigate } from 'gatsby-link'
 import { Helmet } from 'react-helmet'
+
+import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 
 const columnStyleLeft = {
   paddingTop: '2rem',
@@ -148,6 +150,7 @@ function encode(data) {
 export const ContactPageTemplate = ({ 
   heading, 
   description,
+  seo,
 }) => {
 
   const [ values, setValues ] = useState([])
@@ -178,6 +181,11 @@ export const ContactPageTemplate = ({
       <Helmet>
         <body className="menu-color-2" />
       </Helmet>
+      <SEO 
+        title={seo.title}
+        description={seo.description}
+        image={seo.image.name}
+      />
       <section style={contactContainer} className="page-padding">
         <div className="container is-max-widescreen">
           <div className="columns">
@@ -420,6 +428,7 @@ export const ContactPageTemplate = ({
 ContactPageTemplate.propTypes = {
   heading: PropTypes.string,
   description: PropTypes.string,
+  seo: PropTypes.object,
 }
 
 const ContactPage = ({ data }) => {
@@ -430,6 +439,7 @@ const ContactPage = ({ data }) => {
       <ContactPageTemplate
         heading={frontmatter.heading}
         description={frontmatter.description}
+        seo={frontmatter.seo}
       />
     </Layout>
   )
@@ -451,6 +461,13 @@ export const pageQuery = graphql`
       frontmatter {
         heading
         description
+        seo {
+          title
+          description
+          image {
+            name
+          }
+        }
       }
     }
   }

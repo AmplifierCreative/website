@@ -1,6 +1,7 @@
 import CMS from 'netlify-cms-app'
 
 import PrivacyPagePreview from './preview-templates/PrivacyPagePreview'
+import TermsPagePreview from './preview-templates/TermsPagePreview'
 import BlogPostPreview from './preview-templates/BlogPostPreview'
 import ProductPagePreview from './preview-templates/ProductPagePreview'
 import IndexPagePreview from './preview-templates/IndexPagePreview'
@@ -16,6 +17,7 @@ import Quote from './editor-templates/Quote'
 
 CMS.registerPreviewTemplate('index', IndexPagePreview)
 CMS.registerPreviewTemplate('privacy', PrivacyPagePreview)
+CMS.registerPreviewTemplate('terms', TermsPagePreview)
 CMS.registerPreviewTemplate('products', ProductPagePreview)
 CMS.registerPreviewTemplate('blog', BlogPostPreview)
 CMS.registerPreviewTemplate('projects', ProjectPostPreview)
