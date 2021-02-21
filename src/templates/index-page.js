@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import { animated, useSpring } from 'react-spring'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
@@ -11,131 +10,6 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-const titleText = {
-  color: '#F8F3F1',
-  fontFamily: 'VisbyCF-Bold',
-  fontWeight: '400',
-  fontSize: '4rem',
-}
-
-const arrowContainer = {
-  width: '100%',
-  textAlign: 'center',
-  marginTop: '6em',
-  marginBottom: '6em',
-}
-
-const arrowDown = {
-  marginRight: 'auto',
-  marginLeft: 'auto',
-  width: '33.53px',
-  height: '33.53px',
-  border: 'solid #F8F3F1',
-  borderWidth: '0 2px 2px 0',
-  color: '#2D2C2C',
-  transform: 'rotate(45deg)',
-  webkitTtransform: 'rotate(45deg)',
-  zIndex: '2',
-}
-
-const subTitleTextA = {
-  color: '#F8F3F1',
-  fontFamily: 'EBGaramond',
-  fontWeight: '400',
-  fontSize: '1.5rem',
-  maxWidth: '760px',
-  marginTop: '2.5rem',
-}
-
-const subTitleTextB = {
-  color: '#F8F3F1',
-  fontFamily: 'EBGaramond',
-  fontWeight: '400',
-  fontSize: '1.5rem',
-  maxWidth: '760px',
-}
-
-const sectionTitleA = {
-  fontSize: '1em',
-  fontWeight: '500',
-  fontFamily: 'VisbyCF-Medium',
-  transform: 'rotate(270deg)',
-  textTransform: 'uppercase',
-  position: 'absolute',
-  width: '90px',
-  letterSpacing: '2px',
-}
-
-const sectionTitleB = {
-  fontSize: '1em',
-  fontWeight: '500',
-  fontFamily: 'VisbyCF-Medium',
-  transform: 'rotate(270deg)',
-  textTransform: 'uppercase',
-  position: 'absolute',
-  width: '90px',
-  letterSpacing: '2px',
-}
-
-const sectionContainer = {
-  position: 'relative',
-}
-
-const sectionTitle = {
-  fontSize: '1em',
-  fontWeight: '500',
-  fontFamily: 'VisbyCF-Medium',
-  transform: 'rotate(270deg)',
-  textTransform: 'uppercase',
-  position: 'absolute',
-  bottom: '230px',
-  width: '90px',
-  letterSpacing: '2px',
-}
-
-const sectionSubhead = {
-  fontSize: '1.9em',
-  fontFamily: 'VisbyCF-Regular',
-  fontWeight: '400',
-}
-
-const aboutTitle = {
-  fontSize: '2.5em',
-}
-
-const aboutText = {
-  fontSize: '1.5em',
-}
-
-const aboutText2 = {
-  fontSize: '1.5em',
-  marginTop: '1em',
-}
-
-const orangeHeaderText = {
-  color: '#BA5930',
-  fontSize: '1em',
-  textTransform: 'uppercase',
-  fontWeight: '500',
-  fontFamily: 'VisbyCF-Medium',
-  paddingBottom: '1em',
-  letterSpacing: '2px',
-}
-
-const servicesText = {
-  fontSize: '2.5em',
-  lineHeight: '1.75em',
-}
-
-const clientsTitle = {
-  fontSize: '2.5em',
-  marginBottom: '1em',
-}
-
-const calc = (o) => `translateY(${o * 0.1}px)`
-const calc2 = (o) => `translateY(${o * 0.5}px)`
-const calc3 = (o) => `translateY(${o * 1}px)`
-
 export const IndexPageTemplate = ({
   hero,
   about,
@@ -143,44 +17,6 @@ export const IndexPageTemplate = ({
   clients,
   seo
 }) => {
-/*   const ref = useRef()
-  const ref2 = useRef()
-  const ref3 = useRef()
-
-  const [{ offset }, set] = useSpring(() => ({ offset: 0 }))
-  const [{ offset2 }, set2] = useSpring(() => ({ offset2: 10 }))
-  const [{ offset3 }, set3] = useSpring(() => ({ offset3: 20 }))
-
-  const handleScroll = () => {
-    const posY = ref.current.getBoundingClientRect().top
-    const offset = window.pageYOffset - posY
-    set({ offset })
-  }
-
-  const handleScroll2 = () => {
-    const posY = ref2.current.getBoundingClientRect().top
-    const offset2 = window.pageYOffset - posY
-    set2({ offset2 })
-  }
-
-  const handleScroll3 = () => {
-    const posY = ref3.current.getBoundingClientRect().top
-    const offset3 = window.pageYOffset - posY
-    set3({ offset3 })
-  }
-
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('scroll', handleScroll2)
-    window.addEventListener('scroll', handleScroll3)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('scroll', handleScroll2)
-      window.removeEventListener('scroll', handleScroll3)
-    }
-  }) */
   return (
     <div>
       <SEO 
@@ -197,68 +33,21 @@ export const IndexPageTemplate = ({
       className="hero is-medium page-padding">
         <div className="hero-body">
           <div className="container is-max-widescreen">
-            <h1 style={titleText}>
+            <h1 className="home-header-text">
               {hero.heading}
             </h1>
-            <h2 style={subTitleTextA}>
+            <h2 className="hero-subheading-a">
               {hero.subheading}
             </h2>
-            <h2 style={subTitleTextB}>
+            <h2 className="hero-subheading-a">
               {hero.description}
             </h2>
-            {/* <animated.h1
-              ref={ref}
-              className="title"
-              style={{
-                color: '#F8F3F1',
-                fontFamily: 'VisbyCF-Bold',
-                fontWeight: '400',
-                fontSize: '4rem',
-                transform: offset.interpolate(calc),
-              }}
-            >
-              {hero.heading}
-            </animated.h1>
-            <div className="header-arrow-container" style={arrowContainer}>
-              <div style={arrowDown}></div>
-            </div>
-            <animated.h2
-              ref={ref2}
-              className="subtitle"
-              style={{
-                color: '#F8F3F1',
-                fontFamily: 'EBGaramond',
-                fontWeight: '400',
-                fontSize: '1.5rem',
-                maxWidth: '760px',
-                marginTop: '2.5rem',
-                transform: offset2.interpolate(calc2),
-              }}
-            >
-              {hero.subheading}
-            </animated.h2>
-            <animated.h2
-              ref={ref3}
-              className="subtitle"
-              style={{
-                color: '#F8F3F1',
-                fontFamily: 'EBGaramond',
-                fontWeight: '400',
-                fontSize: '1.5rem',
-                maxWidth: '760px',
-                marginTop: '2.5rem',
-                transform: offset3.interpolate(calc3),
-              }}
-            >
-              {hero.description}
-            </animated.h2> */}
           </div>
         </div>
       </section>
-      <div className="container is-max-widescreen">
+      <div className="container home-page-container is-max-widescreen">
         <section
-          className="section--gradient home-about-section"
-          style={sectionContainer}
+          className="section--gradient home-about-section home-section-container"
         >
           <div className="section">
             <div className="columns is-vcentered">
@@ -266,48 +55,46 @@ export const IndexPageTemplate = ({
                 <div className="columns is-mobile">
                   <div className="column is-2">
                     <h4
-                      className="home-sideways-title-about"
-                      style={sectionTitleA}
+                      className="home-sideways-title about"
                     >
                       {about.title}
                     </h4>
                   </div>
                   <div className="column is-9">
-                    <h6 style={orangeHeaderText}>xx</h6>
-                    <h2 style={aboutTitle}>{about.heading}</h2>
-                    <h3 style={sectionSubhead}>{about.subheading}</h3>
+                    <h6 className='home-orange-header' >xx</h6>
+                    <h2 className="home-about-heading">{about.heading}</h2>
+                    <h3 className="home-section-subheading" >{about.subheading}</h3>
                   </div>
                 </div>
               </div>
               <div className="column is-6">
-                <p className="first-letter-stroke" style={aboutText}>
+                <p className="first-letter-stroke home-about-description" >
                   {about.description1}
                 </p>
-                <p style={aboutText2}>{about.description2}</p>
+                <p className="home-about-description home-about-margin" >{about.description2}</p>
               </div>
             </div>
           </div>
         </section>
-        <section className="home-section" style={sectionContainer}>
+        <section className="home-section home-section-container">
           <div className="section">
             <div className="columns is-vcentered">
               <div className="column is-12 has-text-centered home-section-mobile-padding">
                 <div className="columns is-mobile">
                   <div className="column is-2">
                     <h4
-                      className="home-sideways-title-services"
-                      style={sectionTitleB}
+                      className="home-sideways-title services"
                     >
                       {services.title}
                     </h4>
                   </div>
                   <div className="column is-9">
-                    <h6 style={orangeHeaderText}>xx</h6>
-                    <h3 style={sectionSubhead}>{services.heading}</h3>
-                    <h3 style={servicesText}>{services.subheading1}</h3>
-                    <h3 style={servicesText}>{services.subheading2}</h3>
-                    <h3 style={servicesText}>{services.subheading3}</h3>
-                    <h3 style={servicesText}>{services.subheading4}</h3>
+                    <h6 className="home-orange-header">xx</h6>
+                    <h3 className="home-section-subheading" >{services.heading}</h3>
+                    <h3 className="home-services-description">{services.subheading1}</h3>
+                    <h3 className="home-services-description">{services.subheading2}</h3>
+                    <h3 className="home-services-description">{services.subheading3}</h3>
+                    <h3 className="home-services-description">{services.subheading4}</h3>
                   </div>
                 </div>
               </div>
@@ -315,18 +102,17 @@ export const IndexPageTemplate = ({
           </div>
         </section>
         <section
-          className="home-section home-client-section"
-          style={sectionContainer}
+          className="home-section home-client-section home-section-container"
         >
           <div className="columns is-mobile is-vcentered">
             <div className="column is-2 has-text-centered home-section-mobile-padding">
-              <h4 className="home-sideways-title-clients" style={sectionTitle}>
+              <h4 className="home-sideways-title clients">
                 {clients.title}
               </h4>
             </div>
             <div className="column is-9 has-text-centered">
-              <h6 style={orangeHeaderText}>xx</h6>
-              <h5 style={clientsTitle}>{clients.heading}</h5>
+              <h6 className="home-orange-header">xx</h6>
+              <h5 className="home-client-heading">{clients.heading}</h5>
               <Carousel />
             </div>
           </div>
@@ -387,6 +173,7 @@ export const pageQuery = graphql`
           }
         }
         about {
+          title
           heading
           subheading
           description1

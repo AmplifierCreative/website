@@ -179,6 +179,7 @@ collections:
               widget: 'object',
               fields:
                 [
+                  { label: 'Title', name: 'title', widget: 'string' },
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   { label: 'Subeading', name: 'subheading', widget: 'string' },
                   {

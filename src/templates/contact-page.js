@@ -336,7 +336,7 @@ export const ContactPageTemplate = ({
                           htmlFor={'method'}
                           style={visuallyHidden}
                         >
-                          Preferred contact method
+                          Do you prefer:
                         </label>
                         <div style={inputContainer}>
                           <div
@@ -350,7 +350,7 @@ export const ContactPageTemplate = ({
                               style={select}
                             >
                               <option style={optionStyle} value="" disabled selected hidden>
-                                Preferred method of contact
+                                Do you prefer:
                               </option>
                               <option value="email">Email</option>
                               <option value="phone">Phone</option>
