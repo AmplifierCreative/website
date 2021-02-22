@@ -34,22 +34,22 @@ export const useIntersect = ({ root = null, rootMargin, threshold = 0 }) => {
   return [setNode, entry];
 }
 
-export const VisibilityMonitor = children => {
+export const VisibilityMonitor = ({ isVisible, children }) => {
   const [ref, entry] = useIntersect({ threshold: 1 })
 
   console.log(entry.isIntersecting)
 
-/*   if (this.props.children instanceof Function) {
-    return this.props.children({
-      isVisible: this.state.isVisible,
-      visibilityRect: this.state.visibilityRect
+/*   if (props.children instanceof Function) {
+    return props.children({
+      isVisible: entry.isIntersecting,
+      visibilityRect: entry.visibilityRect
     });
   }
-  return React.Children.only(this.props.children); */
+  return React.Children.only(children); */
   
   return (
-    <div ref={ref} isVisible={entry.isIntersecting}>
-     { children }
+    <div ref={ref} onClick={() => isVisible(entry.isIntersecting)}>
+      {entry.isIntersecting ? children : null }
     </div>
   )
 }

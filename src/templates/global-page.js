@@ -8,6 +8,7 @@ import {useSpring, animated} from 'react-spring'
 import Content, { HTMLContent } from '../components/Content'
 import { VisibilityMonitor } from '../components/Utilities'
 import Layout from '../components/Layout'
+import { set } from 'lodash'
 
 
 export const GlobalPageTemplate = ({
@@ -17,7 +18,12 @@ export const GlobalPageTemplate = ({
   contentComponent 
 }) => {
   const PageContent = contentComponent || Content
-  const [ visibible, setVisible ] = useState(null)
+  const [ visible, setVisible ] = useState(null)
+  const isVisible = (index) => {
+    console.log(index)
+    setVisible(visible)
+  }
+  const props = useSpring({to: {opacity: visible ? 1 : 0 }})
 
   return (   
     <div className="container is-max-widescreen global-container">
@@ -54,10 +60,6 @@ export const GlobalPageTemplate = ({
         </div>
       </div>
       <div>
-{/*       <VisibilityMonitor state={} >
-          <h6>Visibility Monitor2:</h6>
-          <p>I am {isVisible ? 'visible' : 'invisible'}</p>
-        </VisibilityMonitor> */}
         <div className="global-header-container">
           <h3 className="global-header">Footer</h3>
         </div> 
@@ -125,6 +127,11 @@ export const GlobalPageTemplate = ({
               <PageContent content={content} />
             </div>
           </div>
+          
+          <VisibilityMonitor isVisible={isVisible}>
+          <h2>random</h2>
+          <animated.div style={props}>I will fade in and out</animated.div>
+          </VisibilityMonitor> 
         </div>
       </div>
     </div>
