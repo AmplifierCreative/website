@@ -33,7 +33,7 @@ class Carousel extends React.Component {
     const settings = {
       dots: true,
       infinite: true,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 2000,
       speed: 500,
       arrows: false,

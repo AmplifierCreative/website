@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { v4 } from 'uuid'
-import {useSpring, animated} from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 
 import Content, { HTMLContent } from '../components/Content'
-import { VisibilityMonitor } from '../components/Utilities'
+import { VisibilityMonitor, FadeIn } from '../components/Utilities'
 import Layout from '../components/Layout'
 import { set } from 'lodash'
 
@@ -30,7 +30,7 @@ export const GlobalPageTemplate = ({
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>
-      <div className="">
+      <FadeIn>
         <div className="global-header-container">
             <h3 className="global-header">Navigation</h3>
         </div>
@@ -58,12 +58,12 @@ export const GlobalPageTemplate = ({
             </tbody>
           </table>
         </div>
-      </div>
+      </FadeIn>
       <div>
         <div className="global-header-container">
           <h3 className="global-header">Footer</h3>
         </div> 
-      <div className="">
+      <FadeIn>
         <div className="">
           <h4>Menu:</h4>
         </div>
@@ -88,51 +88,54 @@ export const GlobalPageTemplate = ({
             </tbody>
           </table>
         </div>
-      </div>
+      </FadeIn>
       <div className="">
-        <div>
+        <FadeIn>
           <h4>Social Paths:</h4>
-        </div>
-        <div className="global-table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th className="theader">Icon</th>
-                <th className="theader">Path</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="table-row">
-                <td className="td">Twitter</td>
-                <td className="td">{footer.social.twitter}</td>
-              </tr> 
-              <tr className="table-row">
-                <td className="td">Instagram</td>
-                <td className="td">{footer.social.ig}</td>
-              </tr> 
-              <tr className="table-row">
-                <td className="td">Linkedin</td>
-                <td className="td">{footer.social.linkedin}</td>
-              </tr> 
-            </tbody>
-          </table>
-        </div>
-        </div>
-        <div>
-          <div>
-            <h4>Copyright:</h4>
-          </div>
+        </FadeIn>
+        <FadeIn>
           <div className="global-table-container">
-            <div>
-              <PageContent content={content} />
-            </div>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th className="theader">Icon</th>
+                  <th className="theader">Path</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="table-row">
+                  <td className="td">Twitter</td>
+                  <td className="td">{footer.social.twitter}</td>
+                </tr> 
+                <tr className="table-row">
+                  <td className="td">Instagram</td>
+                  <td className="td">{footer.social.ig}</td>
+                </tr> 
+                <tr className="table-row">
+                  <td className="td">Linkedin</td>
+                  <td className="td">{footer.social.linkedin}</td>
+                </tr> 
+              </tbody>
+            </table>
           </div>
-          
-          <VisibilityMonitor isVisible={isVisible}>
-          <h2>random</h2>
-          <animated.div style={props}>I will fade in and out</animated.div>
-          </VisibilityMonitor> 
+        </FadeIn>
         </div>
+        <FadeIn>
+          <div>
+            <div>
+              <h4>Copyright:</h4>
+            </div>
+            <div className="global-table-container">
+              <div>
+                <PageContent content={content} />
+              </div>
+            </div>
+            <VisibilityMonitor isVisible={isVisible}>
+              <h2>random</h2>
+              <animated.div style={props}>I will fade in and out</animated.div>
+            </VisibilityMonitor> 
+          </div>
+        </FadeIn>
       </div>
     </div>
 )}
