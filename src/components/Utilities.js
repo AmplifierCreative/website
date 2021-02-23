@@ -48,7 +48,7 @@ export const VisibilityMonitor = ({ isVisible, children }) => {
 }
 
 export const FadeIn = ({ configuration, delayStart, children }) => {
-  const [ref, entry] = useIntersect({ threshold: 0.1 }) 
+  const [ref, entry] = useIntersect({ threshold: 0.5 }) 
   const [view, setView] = useState(false)
 
   const props = useSpring({

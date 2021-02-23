@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { graphql } from 'gatsby'
-import { v4 } from 'uuid'
 
 import { FadeIn } from '../components/Utilities'
 import SEO from '../components/Seo'
@@ -29,7 +28,7 @@ export const AboutPageTemplate = ({
           <h1 className="line-header about-line-header">{hero.heading}</h1>
         </FadeIn>
         <FadeIn configuration={config} delayStart={100}>
-          <p className="about-hero-text">{hero.subheading}</p>
+          <p className="hero-text">{hero.subheading}</p>
         </FadeIn>
       </div>
       <section className="about-section-container container is-max-widescreen">
