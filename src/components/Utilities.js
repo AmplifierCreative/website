@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from "react";
-import { useSpring, animated, config, onRest } from 'react-spring'
+import { useSpring, animated, config } from 'react-spring'
 import PropTypes from 'prop-types'
 
 export const useIntersect = ({ root = null, rootMargin, threshold = 0 }) => {
@@ -49,26 +49,16 @@ export const VisibilityMonitor = ({ isVisible, children }) => {
 
 export const FadeIn = ({ children }) => {
   const [ref, entry] = useIntersect({ threshold: 1 })
-  const [complete, setComplete] = useState(false)
 
   const props = useSpring({
-    to: { opacity: (entry.isIntersecting && complete) ? 1 : 0, 
-          /* transform: (entry.isIntersecting && !complete) ? 'translate3d(0,0,0)' : 'translate3d(0,40px,0)'  */
+    to: { opacity: entry.isIntersecting ? 1 : 0, 
+          transform: entry.isIntersecting? 'translate3d(0,0,0)' : 'translate3d(0,40px,0)' 
         },
     config: config.slow,
   })
 
-  const _handleChange = () => {
-    console.log("outside works")
-    if(!complete){
-      console.log("inside works")
-      setComplete(complete => !complete)
-    }
-    return null
-  }
-
   return (
-    <animated.div ref={ref} style={props} onScroll={_handleChange()}>
+    <animated.div ref={ref} style={props}>
       {children}
     </animated.div>
   )
