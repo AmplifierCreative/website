@@ -4,34 +4,11 @@ import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { graphql } from 'gatsby'
 import { v4 } from 'uuid'
-import {useTrail, a} from 'react-spring'
 
-import { useIntersect } from '../components/Utilities'
+import { FadeIn } from '../components/Utilities'
 import SEO from '../components/Seo'
 
-function Trail({ open, children, ...props }) {
-  const items = React.Children.toArray(children)
-  const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200 },
-    opacity: open ? 1 : 0,
-    x: open ? 0 : 20,
-    from: { opacity: 0, x: 20 },
-  })
-  return (
-    <div className="trails-main" {...props}>
-      <div>
-        {trail.map(({ x, height, ...rest }, index) => (
-          <a.div
-            key={v4()}
-            className="trails-text"
-            style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
-            <a.div style={{ height }}>{items[index]}</a.div>
-          </a.div>
-        ))}
-      </div>
-    </div>
-  )
-}
+const config = { mass: 5, tension: 2000, friction: 200 }
 
 export const AboutPageTemplate = ({
     hero,
@@ -39,9 +16,7 @@ export const AboutPageTemplate = ({
     bottomSection,
     seo
 }) => {
-  const [open, set] = useState(true)
-  const [ref, entry] = useIntersect({ threshold: 1 })
-  console.log(topSection.image)
+
   return (
     <div className="page-padding about-page-container">
       <SEO 
@@ -50,16 +25,18 @@ export const AboutPageTemplate = ({
         image={seo.image.name}
       />
       <div className="container is-max-widescreen about-hero-container">
-        <Trail open={open} onClick={() => set((state) => !state)}>
-            <h1 className="line-header about-line-header">{hero.heading}</h1>
-            <p className="about-hero-text">{hero.subheading}</p>
-        </Trail>
+        <FadeIn configuration={config}>
+          <h1 className="line-header about-line-header">{hero.heading}</h1>
+        </FadeIn>
+        <FadeIn configuration={config} delayStart={100}>
+          <p className="about-hero-text">{hero.subheading}</p>
+        </FadeIn>
       </div>
       <section className="about-section-container container is-max-widescreen">
         {/* Two layouts: one for desktop, another below for mobile */}
         <div className="about-section-left">
           <div className="about-section-text-left">
-            <Trail open={open} onClick={() => set((state) => !state)}>
+            <FadeIn configuration={config} delayStart={500}>
               <p className="about-paragraph-text">
                   {bottomSection.description1}
               </p>
@@ -69,7 +46,7 @@ export const AboutPageTemplate = ({
               <p className="about-paragraph-text">
                   {bottomSection.description3}
               </p>
-            </Trail>
+            </FadeIn>
           </div>
           <div className="about-image-container">
             {topSection.image ? (
@@ -85,14 +62,14 @@ export const AboutPageTemplate = ({
         </div>
         <div className="about-section-right">
           <div className="about-section-text-right">
-            <Trail open={open} onClick={() => set((state) => !state)}>
+            <FadeIn configuration={config}>
               <p className="letter-stroke-dk about-paragraph-text">
                   {topSection.description1}
               </p>
               <p className="about-paragraph-text">
                   {topSection.description2}
               </p>
-            </Trail>
+            </FadeIn>
           </div>
           <div className="about-image-container">
             {bottomSection.image ? (
@@ -121,14 +98,14 @@ export const AboutPageTemplate = ({
             ) : null}
           </div>
           <div className="about-section-text-right">
-            <Trail open={open} onClick={() => set((state) => !state)}>
+            <FadeIn configuration={config}>
               <p className="letter-stroke-dk about-paragraph-text">
                   {topSection.description1}
               </p>
               <p className="about-paragraph-text">
                   {topSection.description2}
               </p>
-            </Trail>
+            </FadeIn>
           </div>
           <div className="mobile-line"></div>
           <div className="about-image-container">
@@ -144,7 +121,7 @@ export const AboutPageTemplate = ({
                 ) : null}
           </div>
           <div className="about-section-text-left">
-            <Trail open={open} onClick={() => set((state) => !state)}>
+            <FadeIn configuration={config}>
               <p className="about-paragraph-text">
                   {bottomSection.description1}
               </p>
@@ -154,7 +131,7 @@ export const AboutPageTemplate = ({
               <p className="about-paragraph-text">
                   {bottomSection.description3}
               </p>
-            </Trail>
+            </FadeIn>
           </div>
         </div>
       </section>

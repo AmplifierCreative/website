@@ -47,15 +47,24 @@ export const VisibilityMonitor = ({ isVisible, children }) => {
   )
 }
 
-export const FadeIn = ({ children }) => {
-  const [ref, entry] = useIntersect({ threshold: 1 })
+export const FadeIn = ({ configuration, delayStart, children }) => {
+  const [ref, entry] = useIntersect({ threshold: 0.1 }) 
+  const [view, setView] = useState(false)
 
   const props = useSpring({
-    to: { opacity: entry.isIntersecting ? 1 : 0, 
-          transform: entry.isIntersecting? 'translate3d(0,0,0)' : 'translate3d(0,40px,0)' 
+    to: { opacity: view ? 1 : 0, 
+          transform: view ? 'translate3d(0,0,0)' : 'translate3d(0,60px,0)' 
         },
-    config: config.slow,
+    config: configuration || config.slow,
+    delay: delayStart || null,
   })
+
+  useEffect(
+    () => {
+      if (entry.isIntersecting) setView(true)
+    },
+    [entry.isIntersecting]
+  );
 
   return (
     <animated.div ref={ref} style={props}>

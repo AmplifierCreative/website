@@ -6,7 +6,7 @@ import { v4 } from 'uuid'
 import { useSpring, animated } from 'react-spring'
 
 import Content, { HTMLContent } from '../components/Content'
-import { VisibilityMonitor, FadeIn } from '../components/Utilities'
+import { VisibilityMonitor } from '../components/Utilities'
 import Layout from '../components/Layout'
 import { set } from 'lodash'
 
@@ -30,7 +30,6 @@ export const GlobalPageTemplate = ({
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>
-      <FadeIn>
         <div className="global-header-container">
             <h3 className="global-header">Navigation</h3>
         </div>
@@ -58,12 +57,10 @@ export const GlobalPageTemplate = ({
             </tbody>
           </table>
         </div>
-      </FadeIn>
       <div>
         <div className="global-header-container">
           <h3 className="global-header">Footer</h3>
         </div> 
-      <FadeIn>
         <div className="">
           <h4>Menu:</h4>
         </div>
@@ -88,12 +85,8 @@ export const GlobalPageTemplate = ({
             </tbody>
           </table>
         </div>
-      </FadeIn>
       <div className="">
-        <FadeIn>
           <h4>Social Paths:</h4>
-        </FadeIn>
-        <FadeIn>
           <div className="global-table-container">
             <table className="table">
               <thead>
@@ -118,9 +111,7 @@ export const GlobalPageTemplate = ({
               </tbody>
             </table>
           </div>
-        </FadeIn>
         </div>
-        <FadeIn>
           <div>
             <div>
               <h4>Copyright:</h4>
@@ -135,7 +126,6 @@ export const GlobalPageTemplate = ({
               <animated.div style={props}>I will fade in and out</animated.div>
             </VisibilityMonitor> 
           </div>
-        </FadeIn>
       </div>
     </div>
 )}
