@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import { v4 } from 'uuid'
-import {useTrail, a} from 'react-spring'
+
 
 import Layout from '../components/Layout'
 import Testimonials from '../components/Testimonials'
 import Statistics from '../components/Statistics'
 import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/Seo'
+import { FadeIn } from '../components/Utilities'
 
 
 const titleText = {
@@ -47,29 +48,9 @@ const portfolioCTAContainer = {
   marginBottom: '100px',
 }
 
-function Trail({ open, children, ...props }) {
-  const items = React.Children.toArray(children)
-  const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200 },
-    opacity: open ? 1 : 0,
-    x: open ? 0 : 20,
-    from: { opacity: 0, x: 20 },
-  })
-  return (
-    <div className="trails-main" {...props}>
-      <div>
-        {trail.map(({ x, height, ...rest }, index) => (
-          <a.div
-            key={v4()}
-            className="trails-text"
-            style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
-            <a.div style={{ height }}>{items[index]}</a.div>
-          </a.div>
-        ))}
-      </div>
-    </div>
-  )
-}
+const config = { mass: 5, tension: 2000, friction: 200 }
+
+
 
 export const ProjectPostTemplate = ({
   content,
@@ -83,10 +64,9 @@ export const ProjectPostTemplate = ({
   statistics,
 }) => {
   const PostContent = contentComponent || Content
-  const [open, set] = useState(true)
   return (
     <div className="page-padding">
-      <Trail open={open} onClick={() => set((state) => !state)}>
+      <FadeIn configuration={config}>
         <section className="hero is-small">
           <div
             className="hero-body"
@@ -103,7 +83,7 @@ export const ProjectPostTemplate = ({
             </div>
           </div>
         </section>
-      </Trail>
+      </FadeIn>
       <section className="section">
         {helmet || ''}
         <div className="container is-max-widescreen content">
@@ -111,15 +91,15 @@ export const ProjectPostTemplate = ({
             <div className="column is-8 is-offset-2">
               <div className="columns">
                 <div className="column is-9 overview">
-                  <Trail open={open} onClick={() => set((state) => !state)}>
+                  <FadeIn configuration={config}>
                     <h2 className="orange-text">Overview</h2>
                     <p>{description}</p>
-                  </Trail>
+                  </FadeIn>
                 </div>
                 <div className="column is-3">
                   {tags && tags.length ? (
                     <div>
-                      <Trail open={open} onClick={() => set((state) => !state)}>
+                      <FadeIn configuration={config}>
                         <h2 className="orange-text">Services</h2>
                         <ul className="taglist" style={{ marginTop: 0 }}>
                           {tags.map((tag) => (
@@ -130,7 +110,7 @@ export const ProjectPostTemplate = ({
                             </li>
                           ))}
                         </ul>
-                      </Trail>
+                      </FadeIn>
                     </div>
                   ) : null}
                 </div>
@@ -140,14 +120,14 @@ export const ProjectPostTemplate = ({
                 <div className="column is-full">
                   <h2 className="orange-text">What We Did</h2>
                   <div style={projectBody} className="project-body">
-                    <Trail open={open} onClick={() => set((state) => !state)}>
+                    <FadeIn configuration={config}>
                       <PostContent content={content} />
-                    </Trail>
+                    </FadeIn>
                   </div>
-                  <Trail open={open} onClick={() => set((state) => !state)}>
+                  <FadeIn configuration={config}>
                     <h2 className="orange-text">The Result</h2>
                     <p style={resultText}>{result}</p>
-                  </Trail>
+                  </FadeIn>
                 </div>
               </div>
             </div>
@@ -156,17 +136,17 @@ export const ProjectPostTemplate = ({
             <div className="columns">
               <div className="column is-full">
                 {statistics && statistics.length ? (
-                  <Trail open={open} onClick={() => set((state) => !state)}>
+                  <FadeIn configuration={config}>
                     <Statistics statistics={statistics} />
-                  </Trail>
+                  </FadeIn>
                 ) : null}
 
                 {testimonials && testimonials.length ? (
                   <div className="columns">
                     <div className="column is-8 is-offset-2">
-                      <Trail open={open} onClick={() => set((state) => !state)}>
+                      <FadeIn configuration={config}>
                         <Testimonials testimonials={testimonials} />
-                      </Trail>
+                      </FadeIn>
                     </div>
                   </div>
                 ) : null}
