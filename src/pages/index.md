@@ -9,7 +9,7 @@ hero:
     want success to always be within arm’s reach—with an overarching goal of
     instilling positivity, inclusivity, and inspiration in each community we
     serve.
-  image: /img/products-full-width.jpg
+  image: ""
 about:
   title: About Us
   heading: Community-focused.

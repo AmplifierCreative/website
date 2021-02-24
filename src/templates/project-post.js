@@ -12,45 +12,7 @@ import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/Seo'
 import { FadeIn } from '../components/Utilities'
 
-
-const titleText = {
-  fontFamily: 'VisbyCF-Bold',
-  fontWeight: '400',
-  fontSize: '6rem',
-}
-
-const buttonStyle = {
-  width: '244px',
-  height: '51px',
-}
-
-const contactText = {
-  fontFamily: 'VisbyCF-Regular',
-  fontSize: '2.25em',
-}
-
-const contactHeader = {
-  marginBottom: 0,
-}
-
-const projectBody = {
-  marginBottom: '100px',
-}
-
-const resultText = {
-  marginBottom: '100px',
-  fontFamily: 'VisbyCF-Bold',
-  fontWeight: '400',
-  fontSize: '2.25em',
-}
-
-const portfolioCTAContainer = {
-  marginBottom: '100px',
-}
-
 const config = { mass: 5, tension: 2000, friction: 200 }
-
-
 
 export const ProjectPostTemplate = ({
   content,
@@ -75,7 +37,7 @@ export const ProjectPostTemplate = ({
             <div className="container is-max-widescreen">
               <div className="columns">
                 <div className="column is-8 is-offset-2">
-                  <h1 className="title" style={titleText}>
+                  <h1 className="title project-title-text">
                     {title}
                   </h1>
                 </div>
@@ -119,14 +81,14 @@ export const ProjectPostTemplate = ({
               <div className="columns">
                 <div className="column is-full">
                   <h2 className="orange-text">What We Did</h2>
-                  <div style={projectBody} className="project-body">
+                  <div className="project-body">
                     <FadeIn configuration={config}>
                       <PostContent content={content} />
                     </FadeIn>
                   </div>
                   <FadeIn configuration={config}>
                     <h2 className="orange-text">The Result</h2>
-                    <p style={resultText}>{result}</p>
+                    <p className="project-result-text">{result}</p>
                   </FadeIn>
                 </div>
               </div>
@@ -197,18 +159,17 @@ const ProjectPost = ({ data }) => {
         statistics={post.frontmatter.statistics}
       />
       <section
-        className="section portfolio-cta-container"
-        style={portfolioCTAContainer}
+        className="section portfolio-cta-container project-cta-container"
       >
         <div className="container is-max-widescreen">
           <div className="content">
-            <h2 style={contactHeader}>Like What You See?</h2>
-            <p style={contactText}>
+            <h2 className="project-contact-header">Like What You See?</h2>
+            <p className="project-contact-text">
               {' '}
               We can do something like this for you, too. Let's chat.
             </p>
             <Link to="/contact">
-              <button className="button is-uppercase" style={buttonStyle}>
+              <button className="button is-uppercase project-button-style">
                 Contact Us
               </button>
             </Link>

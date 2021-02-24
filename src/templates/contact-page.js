@@ -7,140 +7,6 @@ import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 
-const columnStyleLeft = {
-  paddingTop: '2rem',
-  paddingRight: '2rem',
-}
-
-const contactContainer = {
-  marginTop: '7em',
-  padding: '2rem',
-}
-
-const contactInfoText = {
-  fontSize: '2.5em',
-  fontFamily: 'VisbyCF-Bold',
-  lineHeight: '1.5em',
-}
-
-const contactInfoSmallText = {
-  fontSize: '2em',
-  fontFamily: 'VisbyCF-Regular',
-  lineHeight: '1.5em',
-  paddingTop: '1em',
-}
-
-const formContainer = {
-  border: '2px solid #2D2C2C',
-}
-
-const visuallyHidden = {
-  border: '0',
-  clip: 'rect(0 0 0 0)',
-  height: '1px',
-  margin: '-1px',
-  overflow: 'hidden',
-  padding: '0',
-  position: 'absolute',
-  width: '1px',
-}
-
-const formRow = {
-  display: 'flex',
-  borderBottom: '2px solid #2D2C2C',
-  height: '7em',
-}
-
-const formRowTextArea = {
-  display: 'flex',
-  borderBottom: '2px solid #2D2C2C',
-  height: '14em',
-}
-
-const formRowBottom = {
-  display: 'flex',
-  height: '7em',
-}
-
-const fieldContainer50 = {
-  width: '50%',
-  margin: '0',
-}
-
-const fieldContaine100 = {
-  width: '100%',
-  margin: '0',
-}
-
-const inputContainerRight = {
-  width: '100%',
-  height: '100%',
-  margin: '0',
-  borderRight: '2px solid #2D2C2C',
-}
-
-const inputContainer = {
-  width: '100%',
-  height: '100%',
-  margin: '0',
-}
-
-const input = {
-  boxShadow: 'none',
-  border: 'none',
-  backgroundColor: '#F8F3F1',
-  height: '100%',
-}
-
-const selectContainer = {
-  position: 'relative',
-}
-
-const select = {
-  position: 'relative',
-  width: '100%',
-  height: '110px',
-  backgroundColor: 'transparent',
-  zIndex: '3',
-}
-
-const optionStyle = {
-  textAlign: 'center',
-}
-
-const arrowDown = {
-  position: 'absolute',
-  right: '29px',
-  top: '29px',
-  width: '33.53px',
-  height: '33.53px',
-  border: 'solid #2D2C2C',
-  borderWidth: '0 2px 2px 0',
-  display: 'inline-block',
-  color: '#F8F3F1',
-  transform: 'rotate(45deg)',
-  webkitTtransform: 'rotate(45deg)',
-  zIndex: '2',
-}
-
-const contactFormTextArea = {
-  paddingTop: '16%',
-  boxShadow: 'none',
-  border: 'none',
-  backgroundColor: '#F8F3F1',
-  height: '100%',
-}
-
-const buttonContainer = {
-  marginTop: '4em',
-  marginBottom: '9em',
-}
-
-const buttonStyle = {
-  width: '244px',
-  height: '51px',
-}
-
 function encode(data) {
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -186,12 +52,12 @@ export const ContactPageTemplate = ({
         description={seo.description}
         image={seo.image.name}
       />
-      <section style={contactContainer} className="page-padding">
+      <section className="contact-container page-padding">
         <div className="container is-max-widescreen">
           <div className="columns">
-            <div className="column is-half" style={columnStyleLeft}>
-              <p style={contactInfoText}>{heading}</p>
-              <p style={contactInfoSmallText}>{description}</p>
+            <div className="column is-half contact-column-left">
+              <p className="contact-info-text">{heading}</p>
+              <p className="contact-info-text--small">{description}</p>
             </div>
             <div className="column is-half contact-form-container">
               <div className="content">
@@ -203,7 +69,7 @@ export const ContactPageTemplate = ({
                   data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
                 >
-                  <div style={formContainer}>
+                  <div className="contact-page-form">
                     {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
                     <input type="hidden" name="form-name" value="contact" />
                     <div hidden>
@@ -215,18 +81,16 @@ export const ContactPageTemplate = ({
                         />
                       </label>
                     </div>
-                    <div style={formRow}>
-                      <div className="field" style={fieldContainer50}>
+                    <div className="contact-form-row">
+                      <div className="field contact-field-container-half right">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'name'}
-                          style={visuallyHidden}
                         >
                           Your name
                         </label>
-                        <div className="control" style={inputContainerRight}>
+                        <div className="control contact-input-container ">
                           <input
-                            style={input}
                             className="input contact-form-input"
                             type={'text'}
                             name={'name'}
@@ -237,17 +101,15 @@ export const ContactPageTemplate = ({
                           />
                         </div>
                       </div>
-                      <div className="field" style={fieldContainer50}>
+                      <div className="field contact-field-container-half">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'business'}
-                          style={visuallyHidden}
                         >
                           Business
                         </label>
-                        <div className="control" style={inputContainer}>
+                        <div className="control contact-input-container" >
                           <input
-                            style={input}
                             className="input contact-form-input"
                             type={'text'}
                             name={'business'}
@@ -259,18 +121,16 @@ export const ContactPageTemplate = ({
                         </div>
                       </div>
                     </div>
-                    <div style={formRow}>
-                      <div className="field" style={fieldContaine100}>
+                    <div className="contact-form-row">
+                      <div className="field contact-field-container-full">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'email'}
-                          style={visuallyHidden}
                         >
                           Email
                         </label>
-                        <div className="control" style={inputContainer}>
+                        <div className="control contact-input-container">
                           <input
-                            style={input}
                             className="input contact-form-input"
                             type={'email'}
                             name={'email'}
@@ -282,18 +142,16 @@ export const ContactPageTemplate = ({
                         </div>
                       </div>
                     </div>
-                    <div style={formRow}>
-                      <div className="field" style={fieldContainer50}>
+                    <div className="contact-form-row">
+                      <div className="field contact-field-container-half right">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'phone'}
-                          style={visuallyHidden}
                         >
                           Phone
                         </label>
-                        <div className="control" style={inputContainerRight}>
+                        <div className="control contact-input-container">
                           <input
-                            style={input}
                             className="input contact-form-input"
                             type={'tel'}
                             name={'phone'}
@@ -304,17 +162,15 @@ export const ContactPageTemplate = ({
                           />
                         </div>
                       </div>
-                      <div className="field" style={fieldContainer50}>
+                      <div className="field contact-field-container-half">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'location'}
-                          style={visuallyHidden}
                         >
                           City and State
                         </label>
-                        <div className="control" style={inputContainer}>
+                        <div className="control contact-input-container">
                           <input
-                            style={input}
                             className="input contact-form-input"
                             type={'text'}
                             name={'location'}
@@ -326,30 +182,22 @@ export const ContactPageTemplate = ({
                         </div>
                       </div>
                     </div>
-                    <div style={formRow}>
-                      <div
-                        className="field"
-                        style={fieldContaine100}
-                      >
+                    <div className="contact-form-row">
+                      <div className="field contact-field-container-full">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'method'}
-                          style={visuallyHidden}
                         >
                           Do you prefer:
                         </label>
-                        <div style={inputContainer}>
-                          <div
-                            className="form-select"
-                            style={selectContainer}
-                          >
-                            <div style={arrowDown}></div>
+                        <div className="contact-input-container">
+                          <div className="form-select contact-select-container">
                             <select
+                              className="contact-select"
                               name={'method'}
                               id={'method'}
-                              style={select}
                             >
-                              <option style={optionStyle} value="" disabled selected hidden>
+                              <option className="contact-option" value="" disabled selected hidden>
                                 Do you prefer:
                               </option>
                               <option value="email">Email</option>
@@ -360,19 +208,17 @@ export const ContactPageTemplate = ({
                         </div>
                       </div>
                     </div>
-                    <div style={formRowTextArea}>
-                      <div className="field" style={fieldContaine100}>
+                    <div className="contact-form-text-area">
+                      <div className="field contact-field-container-full">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'message'}
-                          style={visuallyHidden}
                         >
                           Message
                         </label>
-                        <div className="control" style={inputContainer}>
+                        <div className="control contact-input-container\">
                           <textarea
-                            style={contactFormTextArea}
-                            className="textarea contact-form-input"
+                            className="textarea contact-form-input contact-text-area"
                             name={'message'}
                             onChange={handleChange}
                             id={'message'}
@@ -382,18 +228,16 @@ export const ContactPageTemplate = ({
                         </div>
                       </div>
                     </div>
-                    <div style={formRowBottom}>
-                      <div className="field" style={fieldContaine100}>
+                    <div className="contact-form-row--bottom">
+                      <div className="field contact-field-container-full">
                         <label
-                          className="label"
+                          className="label contact-hidden-label"
                           htmlFor={'dog'}
-                          style={visuallyHidden}
                         >
                           Your dog’s name
                         </label>
-                        <div className="control" style={inputContainer}>
+                        <div className="control contact-input-container">
                           <input
-                            style={input}
                             className="input contact-form-input"
                             type={'text'}
                             name={'dog'}
@@ -406,11 +250,10 @@ export const ContactPageTemplate = ({
                       </div>
                     </div>
                   </div>
-                  <div className="field" style={buttonContainer}>
+                  <div className="field contact-button-container">
                     <button
-                      className="button"
+                      className="button contact-button"
                       type="submit"
-                      style={buttonStyle}
                     >
                       Submit
                     </button>

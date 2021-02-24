@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { graphql } from 'gatsby'
 
-import { FadeIn } from '../components/Utilities'
+import { FadeIn, TrailsWrapper } from '../components/Utilities'
 import SEO from '../components/Seo'
 
 const config = { mass: 5, tension: 2000, friction: 200 }
@@ -32,7 +32,7 @@ export const AboutPageTemplate = ({
         </FadeIn>
       </div>
       <section className="about-section-container container is-max-widescreen">
-        {/* Two layouts: one for desktop, another below for mobile */}
+        {/* Two layouts: this is desktop */}
         <div className="about-section-left">
           <div className="about-section-text-left">
             <FadeIn configuration={config} delayStart={500}>

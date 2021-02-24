@@ -5,27 +5,6 @@ import Layout from '../../components/Layout'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-const thankYouContainer = {
-  marginTop: '7em',
-  marginBottom: '7em',
-  padding: '2rem',
-}
-
-const thankYou = {
-  maxWidth: '844px',
-  margin: 'auto',
-}
-
-const aboutTitle = {
-  color: '#BA5930',
-  fontSize: '3em',
-}
-
-const aboutText = {
-  fontSize: '1.65em',
-}
-
-
 const ThankYouPageTemplate = ({
   heading,
   subheading,
@@ -35,14 +14,14 @@ const ThankYouPageTemplate = ({
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>  
-    <section style={thankYouContainer} className="page-padding">
+    <section className="page-padding thankyou-container">
       <div className="container is-max-widescreen">
         <div className="columns">
-          <div className="column" style={thankYou}>              
-          <h2 className="title" style={aboutTitle}>
+          <div className="column thankyou">              
+          <h2 className="title thankyou-about-title">
             {heading}
           </h2>
-          <p style={aboutText}>
+          <p className="thankyou-about-text">
             {subheading}
             <span>
               { 

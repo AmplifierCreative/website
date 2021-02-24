@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { Helmet } from 'react-helmet'
+import { useChain, useSpring, useTrail, config, animated } from 'react-spring'
+
 
 import Layout from '../components/Layout'
+import { FadeIn } from '../components/Utilities'
 import Carousel from '../components/Carousel'
 import SEO from '../components/Seo'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
+}
+
+function Trail({ trailProps, children }) {
+  const items = React.Children.toArray(children)
+  return (
+      <React.Fragment>
+        {trailProps.map(({ x, ...rest }, index) => (
+          <animated.div
+            key={items[index]}
+            className="trails-text"
+            style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
+            {items[index]}
+          </animated.div>
+        ))}
+      </React.Fragment>
+  )
 }
 
 export const IndexPageTemplate = ({
@@ -17,6 +37,44 @@ export const IndexPageTemplate = ({
   clients,
   seo
 }) => {
+  const headerRef = useRef()
+  const heroRef = useRef()
+  const trailRef = useRef()
+  const arrowRef = useRef()
+
+  const heroContainerProps = useSpring({ 
+    to: {height: '90vh'}, 
+    from: {height: '100vh'}, 
+    config: config.molasses, 
+    ref: heroRef 
+  })
+
+  const heroHeaderProps = useSpring({ 
+    to: {opacity: 1}, 
+    from: {opacity: 0}, 
+    config: config.molasses, 
+    ref: headerRef 
+  })
+
+  const trail = useTrail(2, {
+    config: config.molasses,
+    opacity: 1,
+    x: 20,
+    from: { opacity: 0, x: 20 },
+    ref: trailRef,
+  })
+
+  const arrowProps = useSpring({ 
+    to: async (next, cancel) => {
+      await next({opacity: 1})
+    },
+    from: {opacity: 0}, 
+    config: config.stiff, 
+    ref: arrowRef 
+  })
+
+  useChain([headerRef, trailRef, heroRef, arrowRef])
+
   return (
     <div>
       <SEO 
@@ -24,28 +82,37 @@ export const IndexPageTemplate = ({
         description={seo.description}
         image={seo.image.name}
       />
-      <section
+      <Helmet>
+        <body className="index-intro-animation" />
+      </Helmet>
+      <animated.section
       style={ hero.image ?
         {backgroundImage: `url(${
           !!hero.image.childImageSharp ? hero.image.childImageSharp.fluid.src : hero.image
-        })`} : headerStyle
+        })`} : Object.assign(heroContainerProps, headerStyle)
       }
       className="hero is-medium page-padding">
         <div className="hero-body">
           <div className="container is-max-widescreen">
-            <h1 className="home-header-text">
+            <animated.h1 className="home-header-text" style={heroHeaderProps}>
               {hero.heading}
-            </h1>
-            <h2 className="hero-subheading-a">
-              {hero.subheading}
-            </h2>
-            <h2 className="hero-subheading-a">
-              {hero.description}
-            </h2>
+            </animated.h1>
+            <Trail trailProps={trail}>
+              <h2 className="hero-subheading-a">
+                {hero.subheading}
+              </h2>
+              <h2 className="hero-subheading-a">
+                {hero.description}
+              </h2>
+            </Trail>
           </div>
-        </div>
-      </section>
+          <div className="arrow-container">
+            <animated.div style={arrowProps} className="arrow"></animated.div>
+          </div>  
+        </div> 
+      </animated.section>
       <div className="container home-page-container is-max-widescreen">
+        <FadeIn>
         <section
           className="section--gradient home-about-section home-section-container"
         >
@@ -76,6 +143,8 @@ export const IndexPageTemplate = ({
             </div>
           </div>
         </section>
+        </FadeIn>
+        <FadeIn>
         <section className="home-section home-section-container">
           <div className="section">
             <div className="columns is-vcentered">
@@ -101,6 +170,8 @@ export const IndexPageTemplate = ({
             </div>
           </div>
         </section>
+        </FadeIn>
+        <FadeIn>
         <section
           className="home-section home-client-section home-section-container"
         >
@@ -117,6 +188,7 @@ export const IndexPageTemplate = ({
             </div>
           </div>
         </section>
+        </FadeIn>
       </div>
     </div>
   )
@@ -164,13 +236,7 @@ export const pageQuery = graphql`
           heading
           subheading
           description
-          image {
-            childImageSharp {
-              fluid(maxWidth: 2048, quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
+          
         }
         about {
           title
