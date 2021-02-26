@@ -24,18 +24,16 @@ export const AboutPageTemplate = ({
         image={seo.image.name}
       />
       <div className="container is-max-widescreen about-hero-container">
-        <FadeIn configuration={config}>
+        <TrailsWrapper>
           <h1 className="line-header about-line-header">{hero.heading}</h1>
-        </FadeIn>
-        <FadeIn configuration={config} delayStart={100}>
           <p className="hero-text">{hero.subheading}</p>
-        </FadeIn>
+        </TrailsWrapper>
       </div>
       <section className="about-section-container container is-max-widescreen">
         {/* Two layouts: this is desktop */}
         <div className="about-section-left">
           <div className="about-section-text-left">
-            <FadeIn configuration={config} delayStart={500}>
+            <FadeIn configuration={config} >
               <p className="about-paragraph-text">
                   {bottomSection.description1}
               </p>

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSpring, useTrail, animated, config } from 'react-spring'
 import PropTypes, { element } from 'prop-types'
 import { v4 } from 'uuid'
+import { rest } from 'lodash';
 
 /* Custom hook to check if element has entered the viewport  */
 
@@ -38,12 +39,10 @@ export const useIntersect = ({ root = null, rootMargin, threshold = 0 }) => {
   return [setNode, entry];
 }
 
-/* This function lifts state up to let parent component know when an element has entered the viewport */
+/* Lifts state up to let parent component know when an element has entered the viewport */
 
 export const VisibilityMonitor = ({ isVisible, children }) => {
   const [ref, entry] = useIntersect({ threshold: 1, rootMargin: '200px' })
-
-  console.log(entry.isIntersecting)
   
   return (
     <div ref={ref} onClick={() => isVisible(entry.isIntersecting)}>
@@ -52,7 +51,7 @@ export const VisibilityMonitor = ({ isVisible, children }) => {
   )
 }
 
-/* This function wraps any element(s) and applies a React spring animation to fade in and translate up */
+/* Wraps any element(s) and applies a React spring animation to fade in and translate up */
 
 export const FadeIn = ({ configuration, delayStart, children }) => {
   const [ref, entry] = useIntersect({ threshold: 0.5 }) 
@@ -68,6 +67,7 @@ export const FadeIn = ({ configuration, delayStart, children }) => {
 
   useEffect(
     () => {
+      if (view) return
       if (entry.isIntersecting) setView(true)
     },
     [entry.isIntersecting]
@@ -80,7 +80,7 @@ export const FadeIn = ({ configuration, delayStart, children }) => {
   )
 }
 
-/* This function iterates through react children to apply trails animation [ WIP ] */
+/* This function iterates through react children to apply trails animation */
 
 export const TrailsWrapper = ({ configuration, delayStart, children }) => {
 
@@ -90,7 +90,7 @@ export const TrailsWrapper = ({ configuration, delayStart, children }) => {
   const items = React.Children.toArray(children)
 
   const trail = useTrail(items.length, {
-    config: configuration || { mass: 5, tension: 2000, friction: 200 },
+    config: configuration || config.molasses,
     opacity: view ? 1 : 0,
     y: view ? 0 : 20,
     delay: delayStart || null,
@@ -98,15 +98,18 @@ export const TrailsWrapper = ({ configuration, delayStart, children }) => {
 
     useEffect(
       () => {
+        if (view) return
         if (entry.isIntersecting) setView(true)
       },
       [entry.isIntersecting]
     );
 
     return (
-        <Trail trailProps={trail} ref={ref}>
-          {children}
-        </Trail>
+        <div ref={ref}>
+          <Trail trailProps={trail} >
+            {children}
+          </Trail>
+        </div>
     )
 }
 
@@ -116,10 +119,10 @@ function Trail({ trailProps, children }) {
   const items = React.Children.toArray(children)
   return (
       <React.Fragment>
-        {trailProps.map(({ y }, index) => (
+        {trailProps.map(({ y, ...rest }, index) => (
           <animated.div
             key={v4()}
-            style={{ transform: y.interpolate((y) => `translate3d(0,${y}px,0)`) }}>
+            style={{...rest, transform: y.interpolate((y) => `translate3d(0,${y}px,0)`) }}>
             {items[index]}
           </animated.div>
         ))}

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
-import { FadeIn } from '../components/Utilities'
+import { FadeIn, TrailsWrapper } from '../components/Utilities'
 
 import social from '../img/social.gif'
 import copywrite from '../img/copywrite.gif'
@@ -52,7 +52,7 @@ export const ServicesPageTemplate = ({
               </FadeIn>
             </div>
             <div className="column is-half services-column-mobile">
-              <FadeIn configuration={config}>
+              <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section1.heading}</h2>
                 <p className="services-paragraph-text">{section1.description1}</p>
                 <p className="services-paragraph-text">{section1.description2}</p>
@@ -62,7 +62,7 @@ export const ServicesPageTemplate = ({
                 <p className="services-paragraph-text">{section1.description6}</p>
                 <p className="services-paragraph-text">{section1.description7}</p>
                 <p className="services-paragraph-text">{section1.description8}</p>
-              </FadeIn>
+              </TrailsWrapper>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export const ServicesPageTemplate = ({
         <div className="container">
           <div className="columns is-vcentered services-reverse-column">
             <div className="column is-half has-text-right services-column-mobile">
-              <FadeIn configuration={config}>
+              <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section2.heading}</h2>
                 <p className="services-paragraph-text">{section2.description1}</p>
                 <p className="services-paragraph-text">{section2.description2}</p>
@@ -87,7 +87,7 @@ export const ServicesPageTemplate = ({
                 <p className="services-paragraph-text">{section2.description5}</p>
                 <p className="services-paragraph-text">{section2.description6}</p>
                 <p className="services-paragraph-text">{section2.description7}</p>
-              </FadeIn>
+              </TrailsWrapper>
             </div>
             <div className="column is-half services-column-mobile">
               <FadeIn configuration={config}>
@@ -125,14 +125,14 @@ export const ServicesPageTemplate = ({
               </FadeIn>
             </div>
             <div className="column is-half services-column-mobile">
-              <FadeIn configuration={config}>
+              <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section3.heading}</h2>
                 <p className="services-paragraph-text">{section3.description1}</p>
                 <p className="services-paragraph-text">{section3.description2}</p>
                 <p className="services-paragraph-text">{section3.description3}</p>
                 <p className="services-paragraph-text">{section3.description4}</p>
                 <p className="services-paragraph-text">{section3.description5}</p>
-              </FadeIn>
+              </TrailsWrapper>
             </div>
           </div>
         </div>
@@ -150,14 +150,14 @@ export const ServicesPageTemplate = ({
         <div className="container ">
           <div className="columns is-vcentered services-reverse-column">
             <div className="column is-half has-text-right services-column-mobile">
-              <FadeIn configuration={config}>
+              <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section4.heading}</h2>
                 <p className="services-paragraph-text">{section4.description1}</p>
                 <p className="services-paragraph-text">{section4.description2}</p>
                 <p className="services-paragraph-text">{section4.description3}</p>
                 <p className="services-paragraph-text">{section4.description4}</p>
                 <p className="services-paragraph-text">{section4.description5}</p>
-              </FadeIn>
+              </TrailsWrapper>
             </div>
             <div className="column is-half services-column-mobile">
               <FadeIn configuration={config}>
