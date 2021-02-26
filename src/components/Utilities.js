@@ -7,7 +7,7 @@ import { rest } from 'lodash';
 
 /* Custom hook to check if element has entered the viewport  */
 
-export const useIntersect = ({ root = null, rootMargin, threshold = 0 }) => {
+export const useIntersect = ({ root = null, rootMargin, threshold }) => {
   const [entry, updateEntry] = useState({});
   const [node, setNode] = useState(null);
 
@@ -53,8 +53,8 @@ export const VisibilityMonitor = ({ isVisible, children }) => {
 
 /* Wraps any element(s) and applies a React spring animation to fade in and translate up */
 
-export const FadeIn = ({ configuration, delayStart, children }) => {
-  const [ref, entry] = useIntersect({ threshold: 0.5 }) 
+export const FadeIn = ({ configuration, gate, delayStart, children }) => {
+  const [ref, entry] = useIntersect({ threshold: gate || 0.5 }) 
   const [view, setView] = useState(false)
 
   const props = useSpring({
@@ -82,9 +82,9 @@ export const FadeIn = ({ configuration, delayStart, children }) => {
 
 /* This function iterates through react children to apply trails animation */
 
-export const TrailsWrapper = ({ configuration, delayStart, children }) => {
+export const TrailsWrapper = ({ configuration, gate, delayStart, children }) => {
 
-  const [ref, entry] = useIntersect({ threshold: 0.5 }) 
+  const [ref, entry] = useIntersect({ threshold: gate || 0.5 }) 
   const [view, setView] = useState(false)
 
   const items = React.Children.toArray(children)

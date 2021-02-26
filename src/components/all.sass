@@ -74,8 +74,6 @@ h1
   list-style: none
   margin-bottom: 0
   margin-left: 0
-  margin-right: 1.5rem
-  margin-top: 1.5rem
   display: flex
   flex-wrap: wrap
   justify-content: left
@@ -549,12 +547,12 @@ h1
 //Services Page
 .services-hero-container
   background-color: $AC-black
-  margin: 0 0
+  margin: 0
   padding: 5rem 3rem
-  height: 400px
+  min-height: 400px
 .services-section-container
   background-color: $AC-black
-  padding-top: 0
+  padding-top: 2rem
   &.contact
     padding-bottom: 10rem
 .services-image-copywrite
@@ -599,6 +597,9 @@ h1
   height: 51px
 
 @media screen and (max-width: 768px)
+  .services-hero-container
+    padding: 0
+    padding-top: 1rem
   .services-container
     background-color: $AC-black
     padding-left: 2rem
@@ -632,8 +633,6 @@ h1
 
 .about-section-container
   background-color: $AC-black
-  padding-right: 2rem
-  padding-left: 2rem
   padding-bottom: 10em
   display: flex
   flex-direction: row
@@ -812,11 +811,15 @@ h1
   .contact-form-container
     padding-left: 0
 
+@media screen and (max-width: 420px)
+  .contact-text-area
+    padding-top: 26%
+
 //Thank you page
 .thankyou-container
-  margin-top: 7rem
-  margin-bottom: 7rem
+  margin: 7rem 0
   padding: 5rem
+  min-height: 400px
 
 .thankyou
   max-width: 844px
@@ -828,6 +831,10 @@ h1
 
 .thankyou-about-text
   font-size: 1.65rem
+
+@media screen and (max-width: 768px)
+  .thankyou-container
+    margin: 6rem 0
 
 //404 Page
 .not-found-page > h3

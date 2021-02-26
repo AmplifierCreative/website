@@ -34,9 +34,9 @@ footer:
       text: Contact
       path: contact
   social:
-    twitter: https://www.facebook.com
+    twitter: https://www.twitter.com/amplifiercreative
     ig: https://www.instagram.com
-    linkedin: https://www.instagram.com
+    linkedin: www.linked.com/company/amplifiercreative
 blog:
   title: homepage-amplifier | blog roll
   description: test test test

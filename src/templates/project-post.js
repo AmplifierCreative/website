@@ -10,7 +10,7 @@ import Testimonials from '../components/Testimonials'
 import Statistics from '../components/Statistics'
 import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/Seo'
-import { FadeIn } from '../components/Utilities'
+import { FadeIn, TrailsWrapper } from '../components/Utilities'
 
 const config = { mass: 5, tension: 2000, friction: 200 }
 
@@ -28,7 +28,7 @@ export const ProjectPostTemplate = ({
   const PostContent = contentComponent || Content
   return (
     <div className="page-padding">
-      <FadeIn configuration={config}>
+      <FadeIn>
         <section className="hero is-small">
           <div
             className="hero-body"
@@ -53,7 +53,7 @@ export const ProjectPostTemplate = ({
             <div className="column is-8 is-offset-2">
               <div className="columns">
                 <div className="column is-9 overview">
-                  <FadeIn configuration={config}>
+                  <FadeIn>
                     <h2 className="orange-text">Overview</h2>
                     <p>{description}</p>
                   </FadeIn>
@@ -61,18 +61,20 @@ export const ProjectPostTemplate = ({
                 <div className="column is-3">
                   {tags && tags.length ? (
                     <div>
-                      <FadeIn configuration={config}>
+                      <FadeIn >
                         <h2 className="orange-text">Services</h2>
-                        <ul className="taglist" style={{ marginTop: 0 }}>
-                          {tags.map((tag) => (
-                            <li key={tag + `tag`}>
+                      </FadeIn>
+                      <ul className="taglist" style={{ marginTop: 0 }}>
+                        {tags.map((tag) => (
+                          <li key={tag + `tag`}>
+                            <FadeIn>
                               {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
                               <span style={{ fontSize: '1.5em' }}>{tag}</span>
                               {/* </Link> */}
-                            </li>
-                          ))}
-                        </ul>
-                      </FadeIn>
+                            </FadeIn>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ) : null}
                 </div>
@@ -82,11 +84,9 @@ export const ProjectPostTemplate = ({
                 <div className="column is-full">
                   <h2 className="orange-text">What We Did</h2>
                   <div className="project-body">
-                    <FadeIn configuration={config}>
-                      <PostContent content={content} />
-                    </FadeIn>
+                    <PostContent content={content} />
                   </div>
-                  <FadeIn configuration={config}>
+                  <FadeIn>
                     <h2 className="orange-text">The Result</h2>
                     <p className="project-result-text">{result}</p>
                   </FadeIn>
@@ -98,15 +98,13 @@ export const ProjectPostTemplate = ({
             <div className="columns">
               <div className="column is-full">
                 {statistics && statistics.length ? (
-                  <FadeIn configuration={config}>
                     <Statistics statistics={statistics} />
-                  </FadeIn>
                 ) : null}
 
                 {testimonials && testimonials.length ? (
                   <div className="columns">
                     <div className="column is-8 is-offset-2">
-                      <FadeIn configuration={config}>
+                      <FadeIn>
                         <Testimonials testimonials={testimonials} />
                       </FadeIn>
                     </div>
