@@ -43,7 +43,6 @@ const Statistics = ({ statistics }) => {
   useEffect(
     () => {
       if (view) return 
-      console.log("stats called")
       if (entry.isIntersecting) setView(true)
     },
     [entry.isIntersecting]

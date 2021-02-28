@@ -1,16 +1,16 @@
-# Gatsby + Netlify CMS Starter
+![](C:\Users\Jordan Booker\Desktop\Programming\Amplifier\website\src\img\logo-dk.svg)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b654c94e-08a6-4b79-b443-7837581b1d8d/deploy-status)](https://app.netlify.com/sites/gatsby-starter-netlify-cms-ci/deploys)
+---
 
-**Note:** This starter uses [Gatsby v2](https://www.gatsbyjs.org/blog/2018-09-17-gatsby-v2/).
-
-This repo contains an example business website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org): **[Demo Link](https://gatsby-netlify-cms.netlify.com/)**.
+This repo contains amplifier creative's business website and is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org).
 
 It follows the [JAMstack architecture](https://jamstack.org) by using Git as a single source of truth, and [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
 
+---
+
 ## Features
 
-- A simple landing page with blog functionality built with Netlify CMS
+- Animation wrapper functions powered by [react-spring](https://www.react-spring.io/)
 - Editable Pages: Landing, About, Product, Blog-Collection and Contact page with Netlify Form support
 - Create Blog posts from Netlify CMS
 - Tags: Separate page for posts under each tag
@@ -20,15 +20,8 @@ It follows the [JAMstack architecture](https://jamstack.org) by using Git as a s
 - Uses `gatsby-image` with Netlify-CMS preview support
 - Separate components for everything
 - Netlify deploy configuration
-- Netlify function support, see `lambda` folder
-- Perfect score on Lighthouse for SEO, Accessibility and Performance (wip:PWA)
+- Perfect score on Lighthouse for SEO (wip: Accessibility and Performance PWA)
 - ..and more
-
-## Prerequisites
-
-- Node (I recommend using v8.2.0 or higher)
-- [Gatsby CLI](https://www.gatsbyjs.org/docs/)
-- [Netlify CLI](https://github.com/netlify/cli)
 
 ## Getting Started (Recommended)
 
@@ -56,42 +49,6 @@ To test the CMS locally, you'll need to run a production build of the site:
 ```
 $ npm run build
 $ netlify dev # or ntl dev
-```
-
-### Media Libraries (installed, but optional)
-
-Media Libraries have been included in this starter as a default. If you are not planning to use `Uploadcare` or `Cloudinary` in your project, you **can** remove them from module import and registration in `src/cms/cms.js`. Here is an example of the lines to comment or remove them your project.
-
-```javascript
-import CMS from 'netlify-cms-app'
-// import uploadcare from 'netlify-cms-media-library-uploadcare'
-// import cloudinary from 'netlify-cms-media-library-cloudinary'
-
-import AboutPagePreview from './preview-templates/AboutPagePreview'
-import BlogPostPreview from './preview-templates/BlogPostPreview'
-import ProductPagePreview from './preview-templates/ProductPagePreview'
-import IndexPagePreview from './preview-templates/IndexPagePreview'
-
-// CMS.registerMediaLibrary(uploadcare);
-// CMS.registerMediaLibrary(cloudinary);
-
-CMS.registerPreviewTemplate('index', IndexPagePreview)
-CMS.registerPreviewTemplate('about', AboutPagePreview)
-CMS.registerPreviewTemplate('products', ProductPagePreview)
-CMS.registerPreviewTemplate('blog', BlogPostPreview)
-```
-
-Note: Don't forget to also remove them from `package.json` and `yarn.lock` / `package-lock.json` using `yarn` or `npm`. During the build netlify-cms-app will bundle the media libraries as well, having them removed will save you build time.
-Example:
-
-```
-yarn remove netlify-cms-media-library-uploadcare
-```
-
-OR
-
-```
-yarn remove netlify-cms-media-library-cloudinary
 ```
 
 ## Getting Started (Without Netlify)
@@ -125,12 +82,23 @@ MacOS users might also encounter some errors, for more info check [node-gyp](htt
 
 This plugin uses [gatsby-plugin-purgecss](https://www.gatsbyjs.org/packages/gatsby-plugin-purgecss/) and [bulma](https://bulma.io/). The bulma builds are usually ~170K but reduced 90% by purgecss.
 
-# CONTRIBUTING
+# Animation wrappers
 
-Contributions are always welcome, no matter how large or small. Before contributing,
-please read the [code of conduct](CODE_OF_CONDUCT.md).
+```javascript
+import { FadeIn, TrailsWrapper } from '/Utilities'
+```
 
-# RUN CMS LOCALLY
+Both TrailsWrapper and FadeIn use react-spring in conjunction with the Intersection Observer api to trigger animations when the wrapper enters the viewport.
+
+```
+<TrailsWrapper gate={0.5} configuration={config}>
+ /*Any number of elements*/
+</TrailsWrapper>
+```
+
+The gate prop sets the threshold for the intersection observer hook. A `gate={1}` will make the animation trigger upon 100% of the wrapped element entering the viewport. A `gate={0}` will make the animation trigger upon the 1st pixel entering the viewport.
+
+# Run CMS locally
 
 https://www.netlifycms.org/docs/beta-features/
 \$ npx netlify-cms-proxy-server
@@ -151,3 +119,7 @@ https://www.netlifycms.org/docs/beta-features/
 `twitch: https://player.twitch.tv/?autoplay=false&video=v273436948`
 `twitch: 273436948`
 `twitchLive: dakotaz`
+
+# CONTRIBUTING
+
+Contributions are always welcome. We're working on a code of conduct.
