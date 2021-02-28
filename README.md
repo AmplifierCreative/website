@@ -1,4 +1,4 @@
-![](C:\Users\Jordan Booker\Desktop\Programming\Amplifier\website\src\img\logo-dk.svg)
+ ![amplifier creative logo](./src/img/logo.svg)
 
 ---
 
