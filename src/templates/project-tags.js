@@ -4,9 +4,6 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import ProjectHero from '../pages/projects/hero'
 import ProjectFilter from '../pages/projects/filter'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
-
-
 class ProjectTagRoute extends React.Component {
   render() {
     const posts = this.props.data.allMarkdownRemark.edges
@@ -23,12 +20,7 @@ class ProjectTagRoute extends React.Component {
       const tagHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
      } tagged with “${tag}”`
-    const blackStyle = {
-      color: '#2D2C2C',
-      marginTop: 0,
-    }
-    const items = posts
-
+     
     return (
       <Layout>
         <ProjectHero />

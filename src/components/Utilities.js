@@ -1,9 +1,8 @@
 import React from 'react'
 import { useState, useEffect, useRef } from "react";
 import { useSpring, useTrail, animated, config } from 'react-spring'
-import PropTypes, { element } from 'prop-types'
+import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
-import { rest } from 'lodash';
 
 /* Custom hook to check if element has entered the viewport  */
 
@@ -45,7 +44,7 @@ export const VisibilityMonitor = ({ isVisible, children }) => {
   const [ref, entry] = useIntersect({ threshold: 1, rootMargin: '200px' })
   
   return (
-    <div ref={ref} onClick={() => isVisible(entry.isIntersecting)}>
+    <div ref={ref}>
       {entry.isIntersecting ? children : null }
     </div>
   )
@@ -70,7 +69,7 @@ export const FadeIn = ({ configuration, gate, delayStart, children }) => {
       if (view) return
       if (entry.isIntersecting) setView(true)
     },
-    [entry.isIntersecting]
+    [view, entry.isIntersecting]
   );
 
   return (
@@ -78,6 +77,16 @@ export const FadeIn = ({ configuration, gate, delayStart, children }) => {
       {children}
     </animated.div>
   )
+}
+
+FadeIn.propTypes = {
+  FadeIn: PropTypes.arrayOf(
+    PropTypes.shape({
+      configuration: PropTypes.object, 
+      gate: PropTypes.number,
+      delayStart: PropTypes.number,
+    })
+  ),
 }
 
 /* This function iterates through react children to apply trails animation */
@@ -101,7 +110,7 @@ export const TrailsWrapper = ({ configuration, gate, delayStart, children }) => 
         if (view) return
         if (entry.isIntersecting) setView(true)
       },
-      [entry.isIntersecting]
+      [view, entry.isIntersecting]
     );
 
     return (
@@ -111,6 +120,16 @@ export const TrailsWrapper = ({ configuration, gate, delayStart, children }) => 
           </Trail>
         </div>
     )
+}
+
+TrailsWrapper.propTypes = {
+  TrailsWrapper: PropTypes.arrayOf(
+    PropTypes.shape({
+      configuration: PropTypes.object, 
+      gate: PropTypes.number,
+      delayStart: PropTypes.number,
+    })
+  ),
 }
 
 /* Helper function for above component */

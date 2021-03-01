@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { v4 } from 'uuid'
-import { useSpring, animated } from 'react-spring'
 
 import Content, { HTMLContent } from '../components/Content'
-import { VisibilityMonitor } from '../components/Utilities'
 import Layout from '../components/Layout'
-import { set } from 'lodash'
 
 
 export const GlobalPageTemplate = ({
@@ -18,12 +15,6 @@ export const GlobalPageTemplate = ({
   contentComponent 
 }) => {
   const PageContent = contentComponent || Content
-  const [ visible, setVisible ] = useState(null)
-  const isVisible = (index) => {
-    console.log(index)
-    setVisible(visible)
-  }
-  const props = useSpring({to: {opacity: visible ? 1 : 0 }})
 
   return (   
     <div className="container is-max-widescreen global-container">
@@ -121,10 +112,6 @@ export const GlobalPageTemplate = ({
                 <PageContent content={content} />
               </div>
             </div>
-            <VisibilityMonitor isVisible={isVisible}>
-              <h2>random</h2>
-              <animated.div style={props}>I will fade in and out</animated.div>
-            </VisibilityMonitor> 
           </div>
       </div>
     </div>

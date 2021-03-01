@@ -2,17 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
-import { v4 } from 'uuid'
-
 
 import Layout from '../components/Layout'
 import Testimonials from '../components/Testimonials'
 import Statistics from '../components/Statistics'
 import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/Seo'
-import { FadeIn, TrailsWrapper } from '../components/Utilities'
-
-const config = { mass: 5, tension: 2000, friction: 200 }
+import { FadeIn } from '../components/Utilities'
 
 export const ProjectPostTemplate = ({
   content,

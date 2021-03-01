@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSpring, animated, config } from 'react-spring'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
@@ -19,8 +19,7 @@ const AnimatedValue =  ({ _number }) => {
       if (view) return
       console.log(_number)
       if (entry.isIntersecting) setView(true)
-    },
-    [entry.isIntersecting]
+    }, [view, _number, entry.isIntersecting]
   );
 
   return (
@@ -45,7 +44,7 @@ const Statistics = ({ statistics }) => {
       if (view) return 
       if (entry.isIntersecting) setView(true)
     },
-    [entry.isIntersecting]
+    [view, entry.isIntersecting]
   );
 
   return ( 
