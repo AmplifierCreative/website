@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+/* import PreviewCompatibleImage from '../components/PreviewCompatibleImage' */
 import { graphql } from 'gatsby'
 
 import { FadeIn, TrailsWrapper } from '../components/Utilities'
 import SEO from '../components/Seo'
+
+import Hollie from '../img/Hollie-Bio.gif'
+import Jen from '../img/Jen-Bio.gif'
 
 const config = { mass: 5, tension: 2000, friction: 200 }
 
@@ -46,7 +49,10 @@ export const AboutPageTemplate = ({
             </FadeIn>
           </div>
           <div className="about-image-container">
-            {topSection.image ? (
+          <FadeIn configuration={config} >
+            <img src={Hollie} className="about-image" alt="Hollie!"/>
+          </FadeIn>
+{/*             {topSection.image ? (
               <figure className="about-image">
                 <PreviewCompatibleImage
                   imageInfo={{
@@ -54,7 +60,7 @@ export const AboutPageTemplate = ({
                     }}
                 />
               </figure>
-            ) : null}
+            ) : null} */}
           </div>
         </div>
         <div className="about-section-right">
@@ -69,7 +75,10 @@ export const AboutPageTemplate = ({
             </FadeIn>
           </div>
           <div className="about-image-container">
-            {bottomSection.image ? (
+          <FadeIn configuration={config} >
+          <img src={Jen} className="about-image" alt="Jen!"/>
+          </FadeIn>
+{/*             {bottomSection.image ? (
                   <figure className="about-image">
                     <PreviewCompatibleImage
                       imageInfo={{
@@ -78,13 +87,16 @@ export const AboutPageTemplate = ({
                       }}
                     />
                   </figure>
-                ) : null}
+                ) : null} */}
           </div>
         </div>
         {/* Mobile layout starts here! */}
         <div className="about-section-mobile">
         <div className="about-image-container">
-            {topSection.image ? (
+        <FadeIn configuration={config} >
+            <img src={Hollie} className="about-image" alt="Hollie!"/>
+          </FadeIn>
+{/*             {topSection.image ? (
               <figure className="about-image">
                 <PreviewCompatibleImage
                   imageInfo={{
@@ -92,7 +104,7 @@ export const AboutPageTemplate = ({
                     }}
                 />
               </figure>
-            ) : null}
+            ) : null} */}
           </div>
           <div className="about-section-text-right">
             <FadeIn configuration={config}>
@@ -106,7 +118,10 @@ export const AboutPageTemplate = ({
           </div>
           <div className="mobile-line"></div>
           <div className="about-image-container">
-            {bottomSection.image ? (
+          <FadeIn configuration={config} >
+          <img src={Jen} className="about-image" alt="Jen!"/>
+          </FadeIn>
+            {/* {bottomSection.image ? (
                   <figure className="about-image">
                     <PreviewCompatibleImage
                       imageInfo={{
@@ -115,7 +130,7 @@ export const AboutPageTemplate = ({
                       }}
                     />
                   </figure>
-                ) : null}
+                ) : null} */}
           </div>
           <div className="about-section-text-left">
             <FadeIn configuration={config}>

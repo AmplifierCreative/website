@@ -23,7 +23,7 @@ export const _404PageTemplate = ({ title, image, content, contentComponent, useI
             alt: `Page not found`,
           }}
       /> : 
-        <img alt="Page not found" src={_404} />}
+        <img alt="Page not found" style={{width: '100%'}} src={_404} />}
       <div className="container not-found-page not-found-text">
         <PageContent className="container not-found-page" content={content} />
       </div>

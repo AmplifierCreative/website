@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import { v4 } from 'uuid'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { Helmet } from 'react-helmet'
+/* import { Helmet } from 'react-helmet' */
 
 import { HTMLContent } from '../components/Content'
 import instagram from '../img/social/instagram.svg'
 import twitter from '../img/social/twitter.svg'
 import linkedin from '../img/social/linkedin.svg'
+import emailSendButton from '../img/EmailSend-01.png'
 
 const LinksMenu = ({ links, start, end }) => {
   return links.slice(start, end).map((link) => {
@@ -93,9 +94,9 @@ class Footer extends React.Component {
 
     return (
       <footer className="footer">
-        <Helmet>
+{/*         <Helmet>
           <script src="https://kit.fontawesome.com/00e2e73915.js" crossorigin="anonymous"></script>
-        </Helmet>
+        </Helmet> */}
         <div className="container is-max-widescreen">
           <div
             className="columns has-text-centered-mobile"
@@ -107,16 +108,17 @@ class Footer extends React.Component {
                     className="footer-form footer-response"
                   >
                     <div className="results-container">
-                      <h5 className="results-header">
-                        {this.state.res.result === 'error' ? ':/ ' : 'Woot! '}
-                      </h5>
-                      <div className="results-text" dangerouslySetInnerHTML={{ __html: this.state.res.msg}} />
+                      <p className="results-text">
+                        Thanks for joining our community.
+                      </p>
                     </div>
-                    <button className="reset-btn" onClick={this.resetForm}>
-                      {this.state.res.result === 'error'
-                        ? 'Try again'
-                        : 'Add another'}
-                    </button>
+                    {this.state.res.result === 'error' &&
+                    <div className="results-container">
+                      <h5 className="results-header">:/</h5>
+                      <div className="results-text" dangerouslySetInnerHTML={{ __html: this.state.res.msg }} />
+                      <button className="reset-btn" onClick={this.resetForm}>Try again</button>
+                    </div>
+                    }
                   </div>
                 ) : (
                   <form
@@ -144,7 +146,8 @@ class Footer extends React.Component {
                       onSubmit={this.handleSubmit}
                       className={`submit-btn-alt ${this.state.footerActiveClass}`}
                     >
-                      <i className="fas fa-arrow-circle-right"></i>
+                      {/* <i className="fas fa-arrow-circle-right"></i> */}
+                      <img src={emailSendButton} alt="send"/>
                     </button>
                   </form>
                 )}

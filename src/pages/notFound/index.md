@@ -1,7 +1,7 @@
 ---
 templateKey: notFound-page
 title: 404 Page
-useImage: true
+useImage: false
 image: /img/404-cropped.jpg
 ---
 
