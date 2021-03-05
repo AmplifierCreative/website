@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { useChain, useSpring, useTrail, config, animated } from 'react-spring'
 
-
 import Layout from '../components/Layout'
 import { FadeIn } from '../components/Utilities'
 import Carousel from '../components/Carousel'
@@ -17,43 +16,48 @@ const headerStyle = {
 function Trail({ trailProps, children }) {
   const items = React.Children.toArray(children)
   return (
-      <React.Fragment>
-        {trailProps.map(({ x, ...rest }, index) => (
-          <animated.div
-            key={items[index]}
-            className="trails-text"
-            style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}>
-            {items[index]}
-          </animated.div>
-        ))}
-      </React.Fragment>
+    <React.Fragment>
+      {trailProps.map(({ x, ...rest }, index) => (
+        <animated.div
+          key={items[index]}
+          className="trails-text"
+          style={{
+            ...rest,
+            transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
+          }}
+        >
+          {items[index]}
+        </animated.div>
+      ))}
+    </React.Fragment>
   )
 }
 
 export const IndexPageTemplate = ({
+  image,
   hero,
   about,
   services,
   clients,
-  seo
+  seo,
 }) => {
   const headerRef = useRef()
   const heroRef = useRef()
   const trailRef = useRef()
   const arrowRef = useRef()
 
-  const heroContainerProps = useSpring({ 
-    to: {height: '90vh'}, 
-    from: {height: '100vh'}, 
-    config: config.molasses, 
-    ref: heroRef 
+  const heroContainerProps = useSpring({
+    to: { height: '90vh' },
+    from: { height: '100vh' },
+    config: config.molasses,
+    ref: heroRef,
   })
 
-  const heroHeaderProps = useSpring({ 
-    to: {opacity: 1}, 
-    from: {opacity: 0}, 
-    config: config.molasses, 
-    ref: headerRef 
+  const heroHeaderProps = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    config: config.molasses,
+    ref: headerRef,
   })
 
   const trail = useTrail(2, {
@@ -64,130 +68,132 @@ export const IndexPageTemplate = ({
     ref: trailRef,
   })
 
-  const arrowProps = useSpring({ 
+  const arrowProps = useSpring({
     to: async (next, cancel) => {
-      await next({opacity: 1})
+      await next({ opacity: 1 })
     },
-    from: {opacity: 0}, 
-    config: config.stiff, 
-    ref: arrowRef 
+    from: { opacity: 0 },
+    config: config.stiff,
+    ref: arrowRef,
   })
 
   useChain([headerRef, trailRef, heroRef, arrowRef])
 
   return (
     <div>
-      <SEO 
-        title={seo.title}
-        description={seo.description}
-        image={seo.image.name}
-      />
       <Helmet>
         <body className="index-intro-animation" />
       </Helmet>
       <animated.section
-      style={ hero.image ?
-        {backgroundImage: `url(${
-          !!hero.image.childImageSharp ? hero.image.childImageSharp.fluid.src : hero.image
-        })`} : Object.assign(heroContainerProps, headerStyle)
-      }
-      className="hero is-medium page-padding">
+        style={
+          image
+            ? {
+                backgroundImage: `url(${
+                  !!image.childImageSharp
+                    ? image.childImageSharp.fluid.src
+                    : image
+                })`,
+              }
+            : Object.assign(heroContainerProps, headerStyle)
+        }
+        className="hero is-medium page-padding"
+      >
         <div className="hero-body">
           <div className="container is-max-widescreen">
             <animated.h1 className="home-header-text" style={heroHeaderProps}>
               {hero.heading}
             </animated.h1>
             <Trail trailProps={trail}>
-              <h2 className="hero-subheading-a">
-                {hero.subheading}
-              </h2>
-              <h2 className="hero-subheading-a">
-                {hero.description}
-              </h2>
+              <h2 className="hero-subheading-a">{hero.subheading}</h2>
+              <h2 className="hero-subheading-a">{hero.description}</h2>
             </Trail>
           </div>
           <div className="arrow-container">
             <animated.div style={arrowProps} className="arrow"></animated.div>
-          </div>  
-        </div> 
+          </div>
+        </div>
       </animated.section>
       <div className="container home-page-container is-max-widescreen">
         <FadeIn>
-        <section
-          className="section--gradient home-about-section home-section-container"
-        >
-          <div className="section">
-            <div className="columns is-vcentered">
-              <div className="column is-6 has-text-centered home-section-mobile-padding">
-                <div className="columns is-mobile">
-                  <div className="column is-2">
-                    <h4
-                      className="home-sideways-title about"
-                    >
-                      {about.title}
-                    </h4>
-                  </div>
-                  <div className="column is-9">
-                    <h6 className='home-orange-header' >xx</h6>
-                    <h2 className="home-about-heading">{about.heading}</h2>
-                    <h3 className="home-section-subheading" >{about.subheading}</h3>
+          <section className="section--gradient home-about-section home-section-container">
+            <div className="section">
+              <div className="columns is-vcentered">
+                <div className="column is-6 has-text-centered home-section-mobile-padding">
+                  <div className="columns is-mobile">
+                    <div className="column is-2">
+                      <h4 className="home-sideways-title about">
+                        {about.title}
+                      </h4>
+                    </div>
+                    <div className="column is-9">
+                      <h6 className="home-orange-header">xx</h6>
+                      <h2 className="home-about-heading">{about.heading}</h2>
+                      <h3 className="home-section-subheading">
+                        {about.subheading}
+                      </h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="column is-6">
-                <p className="first-letter-stroke home-about-description" >
-                  {about.description1}
-                </p>
-                <p className="home-about-description home-about-margin" >{about.description2}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        </FadeIn>
-        <FadeIn>
-        <section className="home-section home-section-container">
-          <div className="section">
-            <div className="columns is-vcentered">
-              <div className="column is-12 has-text-centered home-section-mobile-padding">
-                <div className="columns is-mobile">
-                  <div className="column is-2">
-                    <h4
-                      className="home-sideways-title services"
-                    >
-                      {services.title}
-                    </h4>
-                  </div>
-                  <div className="column is-9">
-                    <h6 className="home-orange-header">xx</h6>
-                    <h3 className="home-section-subheading" >{services.heading}</h3>
-                    <h3 className="home-services-description">{services.subheading1}</h3>
-                    <h3 className="home-services-description">{services.subheading2}</h3>
-                    <h3 className="home-services-description">{services.subheading3}</h3>
-                    <h3 className="home-services-description">{services.subheading4}</h3>
-                  </div>
+                <div className="column is-6">
+                  <p className="first-letter-stroke home-about-description">
+                    {about.description1}
+                  </p>
+                  <p className="home-about-description home-about-margin">
+                    {about.description2}
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         </FadeIn>
         <FadeIn>
-        <section
-          className="home-section home-client-section home-section-container"
-        >
-          <div className="columns is-mobile is-vcentered">
-            <div className="column is-2 has-text-centered home-section-mobile-padding">
-              <h4 className="home-sideways-title clients">
-                {clients.title}
-              </h4>
+          <section className="home-section home-section-container">
+            <div className="section">
+              <div className="columns is-vcentered">
+                <div className="column is-12 has-text-centered home-section-mobile-padding">
+                  <div className="columns is-mobile">
+                    <div className="column is-2">
+                      <h4 className="home-sideways-title services">
+                        {services.title}
+                      </h4>
+                    </div>
+                    <div className="column is-9">
+                      <h6 className="home-orange-header">xx</h6>
+                      <h3 className="home-section-subheading">
+                        {services.heading}
+                      </h3>
+                      <h3 className="home-services-description">
+                        {services.subheading1}
+                      </h3>
+                      <h3 className="home-services-description">
+                        {services.subheading2}
+                      </h3>
+                      <h3 className="home-services-description">
+                        {services.subheading3}
+                      </h3>
+                      <h3 className="home-services-description">
+                        {services.subheading4}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="column is-9 has-text-centered">
-              <h6 className="home-orange-header">xx</h6>
-              <h5 className="home-client-heading">{clients.heading}</h5>
-              <Carousel />
+          </section>
+        </FadeIn>
+        <FadeIn>
+          <section className="home-section home-client-section home-section-container">
+            <div className="columns is-mobile is-vcentered">
+              <div className="column is-2 has-text-centered home-section-mobile-padding">
+                <h4 className="home-sideways-title clients">{clients.title}</h4>
+              </div>
+              <div className="column is-9 has-text-centered">
+                <h6 className="home-orange-header">xx</h6>
+                <h5 className="home-client-heading">{clients.heading}</h5>
+                <Carousel />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
         </FadeIn>
       </div>
     </div>
@@ -195,7 +201,13 @@ export const IndexPageTemplate = ({
 }
 
 IndexPageTemplate.propTypes = {
-  hero: PropTypes.object,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  hero: PropTypes.shape({
+    heading: PropTypes.string,
+    subheading: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  }),
   about: PropTypes.object,
   services: PropTypes.object,
   clients: PropTypes.object,
@@ -208,6 +220,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate
+        image={frontmatter.image}
         hero={frontmatter.hero}
         about={frontmatter.about}
         services={frontmatter.services}
@@ -232,11 +245,12 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        hero {
-          heading
-          subheading
-          description
-          
+        image {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
         about {
           title
@@ -257,11 +271,20 @@ export const pageQuery = graphql`
           title
           heading
         }
+        hero {
+          heading
+          subheading
+          description
+        }
         seo {
           title
           description
           image {
-            name
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }

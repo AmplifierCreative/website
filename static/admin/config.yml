@@ -31,7 +31,7 @@ collections:
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean' }
-      - { label: 'Client Logo', name: 'clientlogo', widget: 'image' }
+      - { label: 'Client Logo', name: 'clientlogo', widget: image }
       - { label: 'Featured Image', name: 'featuredimage', widget: image }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
@@ -75,12 +75,7 @@ collections:
                 required: false,
                 widget: 'text',
               },
-              {
-                label: 'Image',
-                name: 'image',
-                required: false,
-                widget: 'image',
-              },
+              { label: 'Image', name: 'image', required: false, widget: image },
               {
                 label: 'Slug',
                 name: 'slug',
@@ -128,12 +123,7 @@ collections:
                 required: false,
                 widget: 'text',
               },
-              {
-                label: 'Image',
-                name: 'image',
-                required: false,
-                widget: 'image',
-              },
+              { label: 'Image', name: 'image', required: false, widget: image },
               {
                 label: 'Slug',
                 name: 'slug',
@@ -156,6 +146,7 @@ collections:
               widget: 'hidden',
               default: 'index-page',
             }
+          - { label: Image, name: image, required: false, widget: image }
           - {
               label: 'Hero',
               name: 'hero',
@@ -165,12 +156,6 @@ collections:
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   { label: 'Subheading', name: 'subheading', widget: 'text' },
                   { label: 'Description', name: 'description', widget: 'text' },
-                  {
-                    label: 'Image',
-                    name: 'image',
-                    required: false,
-                    widget: 'image',
-                  },
                 ],
             }
           - {
@@ -256,7 +241,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -296,7 +281,7 @@ collections:
                     name: 'description2',
                     widget: 'text',
                   },
-                  { label: 'Image', name: 'image', widget: 'image' },
+                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -320,7 +305,7 @@ collections:
                     name: 'description3',
                     widget: 'text',
                   },
-                  { label: 'Image', name: 'image', widget: 'image' },
+                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -345,7 +330,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -416,7 +401,7 @@ collections:
                     name: 'description8',
                     widget: 'string',
                   },
-                  { label: 'Image', name: 'image', widget: 'image' },
+                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -466,7 +451,7 @@ collections:
                     name: 'description8',
                     widget: 'string',
                   },
-                  { label: 'Image', name: 'image', widget: 'image' },
+                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -516,7 +501,7 @@ collections:
                     name: 'description8',
                     widget: 'string',
                   },
-                  { label: 'Image', name: 'image', widget: 'image' },
+                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -566,7 +551,7 @@ collections:
                     name: 'description8',
                     widget: 'string',
                   },
-                  { label: 'Image', name: 'image', widget: 'image' },
+                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -601,7 +586,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -661,7 +646,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -699,7 +684,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -737,7 +722,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -945,7 +930,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -971,7 +956,7 @@ collections:
                     label: 'Image',
                     name: 'image',
                     required: false,
-                    widget: 'image',
+                    widget: image,
                   },
                 ],
             }
@@ -992,5 +977,5 @@ collections:
               widget: 'boolean',
               default: false,
             }
-          - { label: 'Image', name: 'image', widget: 'image' }
+          - { label: 'Image', name: 'image', widget: image }
           - { label: 'Body', name: 'body', widget: 'markdown' }

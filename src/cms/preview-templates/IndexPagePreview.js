@@ -8,6 +8,7 @@ const IndexPagePreview = ({ entry }) => {
   if (data) {
     return (
       <IndexPageTemplate
+        image={data.image}
         hero={data.hero}
         about={data.about}
         services={data.services}
