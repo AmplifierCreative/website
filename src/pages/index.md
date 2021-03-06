@@ -1,5 +1,6 @@
 ---
 templateKey: index-page
+image: ""
 hero:
   heading: Your new creative team has arrived
   subheading: amplifier creative is a modernized creative agency catered toward
@@ -26,7 +27,7 @@ about:
     and new creative endeavors.
 services:
   title: Services
-  heading: "We’re passionate about:"
+  heading: We’re passionate about
   subheading1: Copywriting + editing
   subheading2: Design
   subheading3: Social
@@ -37,5 +38,5 @@ clients:
 seo:
   title: homepage-amplifier
   description: test test test
-  image: /img/chemex.jpg
+  image: /img/404-cropped.jpg
 ---
