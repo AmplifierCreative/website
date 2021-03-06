@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { navigate } from 'gatsby-link'
 import { Helmet } from 'react-helmet'
+import Select from 'react-select'
 
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
@@ -11,6 +12,58 @@ function encode(data) {
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&')
+}
+
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    border: '1px solid #2D2C2C',
+    borderRight: 'none',
+    borderLeft: 'none',
+    backgroundColor: state.isSelected ? '#BA5930' : '#FAB395',
+    color: '#2D2C2C',
+    padding: 0,
+    paddingTop: 40,
+    height: 110,
+    fontFamily: 'VisbyCF-Regular',
+    textTransform: 'uppercase',
+    fontSize: '1.05rem',
+    fontWeight: '500',
+    letterSpacing: '.15rem',
+    textAlign: 'center'
+
+  }),
+  valueContainer: (provided) => ({
+    ...provided,
+    height: '100%',
+  }),
+  menuList: () => ({
+    padding: 0,
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    width: '100%',
+    textAlign: 'center',
+  }),
+  menu: (provided) => ({
+    ...provided,
+    margin: 0,
+  }),
+  control: () => ({
+    width: '100%',
+    height: 111,
+    color: '#FAB395',
+    fontFamily: 'VisbyCF-Regular',
+    textTransform: 'uppercase',
+    fontSize: '1.05rem',
+    textAlign: 'center'
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    width: '100%',
+    textAlign: 'center',
+    color: '#2D2C2C',
+  }),
 }
 
 export const ContactPageTemplate = ({ 
@@ -40,6 +93,12 @@ export const ContactPageTemplate = ({
       .then(() => navigate(form.getAttribute('action')))
       .catch((error) => alert(error))
   }
+
+  const options = [
+    { value: 'email', label: 'Email' },
+    { value: 'phone', label: 'Phone' },
+    { value: 'text', label: 'Text' }
+  ]
 
 
   return (
@@ -192,7 +251,7 @@ export const ContactPageTemplate = ({
                         </label>
                         <div className="contact-input-container">
                           <div className="form-select contact-select-container">
-                            <select
+                            {/* <select
                               className="contact-select"
                               name={'method'}
                               id={'method'}
@@ -203,7 +262,15 @@ export const ContactPageTemplate = ({
                               <option value="email">Email</option>
                               <option value="phone">Phone</option>
                               <option value="text">Text</option>
-                            </select>
+                            </select> */}
+                            <Select 
+                              options={options} 
+                              label="Do you prefer:"
+                              styles={customStyles}
+                              isSearchable={false}
+                              maxMenuHeight={700}
+                              placeholder={<span className="contact-select-custom">Do you prefer:</span>} 
+                            />
                           </div>
                         </div>
                       </div>

@@ -10,6 +10,7 @@ import SEO from '../components/Seo'
 import Hollie from '../img/Hollie-Bio.gif'
 import Jen from '../img/Jen-Bio.gif'
 
+
 const config = { mass: 5, tension: 2000, friction: 200 }
 
 export const AboutPageTemplate = ({
