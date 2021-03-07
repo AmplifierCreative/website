@@ -33,9 +33,7 @@ export const ProjectPostTemplate = ({
             <div className="container is-max-widescreen">
               <div className="columns">
                 <div className="column is-8 is-offset-2">
-                  <h1 className="title project-title-text">
-                    {title}
-                  </h1>
+                  <h1 className="title project-title-text">{title}</h1>
                 </div>
               </div>
             </div>
@@ -57,7 +55,7 @@ export const ProjectPostTemplate = ({
                 <div className="column is-3">
                   {tags && tags.length ? (
                     <div>
-                      <FadeIn >
+                      <FadeIn>
                         <h2 className="orange-text">Services</h2>
                       </FadeIn>
                       <ul className="taglist" style={{ marginTop: 0 }}>
@@ -94,7 +92,7 @@ export const ProjectPostTemplate = ({
             <div className="columns">
               <div className="column is-full">
                 {statistics && statistics.length ? (
-                    <Statistics statistics={statistics} />
+                  <Statistics statistics={statistics} />
                 ) : null}
 
                 {testimonials && testimonials.length ? (
@@ -152,9 +150,7 @@ const ProjectPost = ({ data }) => {
         testimonials={post.frontmatter.testimonials}
         statistics={post.frontmatter.statistics}
       />
-      <section
-        className="section portfolio-cta-container project-cta-container"
-      >
+      <section className="section portfolio-cta-container project-cta-container">
         <div className="container is-max-widescreen">
           <div className="content">
             <h2 className="project-contact-header">Like What You See?</h2>
