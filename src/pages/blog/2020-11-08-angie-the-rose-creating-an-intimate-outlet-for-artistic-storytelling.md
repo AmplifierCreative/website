@@ -1,19 +1,19 @@
 ---
 templateKey: blog-post
-title: 'Angie the Rose: creating an intimate outlet for artistic storytelling'
+author: Jenny Don't Be Hasty
+title: "Angie the Rose: creating an intimate outlet for artistic storytelling"
 date: 2020-11-08T20:25:43.431Z
 description: >+
-
+  
   When you walk into the studio of Angie the Rose at the 205 Collaborative, the first thing you notice is the warm smell of incense hanging in the air. Turning the corner, natural light pours in through rusted windows and the concrete space comes to life as her paintings come into view.
 
 featuredpost: true
 featuredimage: /img/placeholder.jpg
-author: Jenny Don't Be Hasty
 seo:
   title: Test123
   description: testing testing
   image: /img/products-grid3.jpg
-  slug: ''
+  slug: ""
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`
@@ -39,7 +39,7 @@ In her newest series, “Molecular,” Angie continues to follow her heart towar
 
 In reflection of her growth as an artist, Angie contemplates what it means to be an artist in today’s society. The loss of art programs and the unrelenting threat of their defunding worry her. She believes that “children shouldn’t be forced to think in one specific pattern” and that they “should be given all the opportunities” to find the path that suits them. Emotion interrupts her when she tries to consider what her life would be like if she could not paint or create—she would not have part of her voice.
 
-“Artists have to make a point to tell the political system” that arts are valuable and meaningful. While it is seemingly less common today, historically, the arts have had “a way of impacting the political spectrum,” and there are still possibilities for using it as a gateway to change.
+> “Artists have to make a point to tell the political system” that arts are valuable and meaningful. While it is seemingly less common today, historically, the arts have had “a way of impacting the political spectrum,” and there are still possibilities for using it as a gateway to change.
 
 ![](/img/placeholder-2.jpg#float=left;width=49%;)
 ![](/img/placeholder-2.jpg#float=right;width=49%;)

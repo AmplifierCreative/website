@@ -36,6 +36,7 @@ collections:
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Result', name: 'result', widget: 'text' }
+      - { label: 'WhatWeDid', name: 'whatWeDid', widget: 'text' }
       - {
           label: Testimonials,
           name: testimonials,

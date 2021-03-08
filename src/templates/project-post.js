@@ -20,6 +20,7 @@ export const ProjectPostTemplate = ({
   result,
   testimonials,
   statistics,
+  whatWeDid,
 }) => {
   const PostContent = contentComponent || Content
   return (
@@ -78,6 +79,10 @@ export const ProjectPostTemplate = ({
                 <div className="column is-full">
                   <h2 className="orange-text">What We Did</h2>
                   <div className="project-body">
+                    <p>{whatWeDid}</p>
+                  </div>
+                  <h2 className="orange-text">The Creative</h2>
+                  <div className="project-body">
                     <PostContent content={content} />
                   </div>
                   <FadeIn>
@@ -119,6 +124,7 @@ ProjectPostTemplate.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
   result: PropTypes.string,
+  whatWeDid: PropTypes.string,
   helmet: PropTypes.object,
   testimonials: PropTypes.array,
 }
@@ -139,6 +145,7 @@ const ProjectPost = ({ data }) => {
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
+        whatWeDid={post.frontmatter.whatWeDid}
         helmet={
           <Helmet>
             <body className="menu-color-2" />
@@ -189,6 +196,7 @@ export const pageQuery = graphql`
         description
         tags
         result
+        whatWeDid
         testimonials {
           author
           quote

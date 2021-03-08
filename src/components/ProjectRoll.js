@@ -5,7 +5,6 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 import { Trail, animated } from 'react-spring/renderprops'
 
 class ProjectRoll extends React.Component {
-
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
@@ -16,59 +15,61 @@ class ProjectRoll extends React.Component {
     }
     return (
       <div className="project">
-        <Trail 
+        <Trail
           native
-          items={items} 
-          keys={items.map((_, i) => i)} 
+          items={items}
+          keys={items.map((_, i) => i)}
           from={{ opacity: 0, y: 100 }}
-          to={{ opacity: 1 , y: 0  }}>
-           {item => ({ y, opacity }) => (
-              <animated.div 
-                style={{
-                  opacity,
-                  transform: y.interpolate(y => `translate3d(0,${y}%,0)`),
-                }} 
-                className="columns mb-2 is-vcentered">         
-                <div className="column has-text-centered">
-                  <h4 className="vertical-text">{item.node.frontmatter.tags}</h4>
-                  <div className="project-container">
-                    <span className="is-block is-uppercase orange-text">
-                      {/* {post.frontmatter.date} */}
-                      Client Name
-                    </span>
-                    <h1 className="post-meta mt-0">
-                      <Link
-                        className="title is-size-2"
-                        to={item.node.fields.slug}
-                        style={blackStyle}
-                      >
-                        {item.node.frontmatter.title}
-                      </Link>
-                    </h1>
-                    <p>
-                      {item.node.excerpt}
-                      <br />
-                      <br />
-                    </p>
-                    <Link className="button" to={item.node.fields.slug}>
-                      View More
+          to={{ opacity: 1, y: 0 }}
+        >
+          {(item) => ({ y, opacity }) => (
+            <animated.div
+              style={{
+                opacity,
+                transform: y.interpolate((y) => `translate3d(0,${y}%,0)`),
+              }}
+              className="columns mb-2 is-vcentered"
+            >
+              <div className="column has-text-centered">
+                <h4 className="vertical-text">{item.node.frontmatter.tags}</h4>
+                <div className="project-container">
+                  <span className="is-block is-uppercase orange-text">
+                    {/* {post.frontmatter.date} */}
+                    Client Name
+                  </span>
+                  <h1 className="post-meta mt-0">
+                    <Link
+                      className="title is-size-2"
+                      to={item.node.fields.slug}
+                      style={blackStyle}
+                    >
+                      {item.node.frontmatter.title}
                     </Link>
-                  </div>
-                </div>             
-                <div className="column" key={item.node.id}>
-                  {item.node.frontmatter.featuredimage ? (
-                    <div className="featured-thumbnail">
-                      <PreviewCompatibleImage
-                        imageInfo={{
-                          image: item.node.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${item.node.frontmatter.title}`,
-                        }}
-                      />
-                    </div>
-                  ) : null}
+                  </h1>
+                  <p>
+                    {item.node.frontmatter.seo.description}
+                    <br />
+                    <br />
+                  </p>
+                  <Link className="button" to={item.node.fields.slug}>
+                    View More
+                  </Link>
                 </div>
-              </animated.div>
-            )}
+              </div>
+              <div className="column" key={item.node.id}>
+                {item.node.frontmatter.featuredimage ? (
+                  <div className="featured-thumbnail">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: item.node.frontmatter.featuredimage,
+                        alt: `featured image thumbnail for post ${item.node.frontmatter.title}`,
+                      }}
+                    />
+                  </div>
+                ) : null}
+              </div>
+            </animated.div>
+          )}
         </Trail>
       </div>
     )
@@ -108,6 +109,13 @@ export default () => (
                     fluid(maxWidth: 650, quality: 100) {
                       ...GatsbyImageSharpFluid
                     }
+                  }
+                }
+                seo {
+                  title
+                  description
+                  image {
+                    name
                   }
                 }
               }
