@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { useChain, useSpring, useTrail, config, animated } from 'react-spring'
+import { useSpring, useTrail, config, animated } from 'react-spring'
 
 import Layout from '../components/Layout'
 import { FadeIn } from '../components/Utilities'
@@ -11,6 +11,23 @@ import SEO from '../components/Seo'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
+}
+
+const fixedBackground = {
+  position: 'absolute',
+  top: '0',
+  left: '0',
+  width: '100%',
+  height: '100vh',
+  zIndex: '9',
+}
+
+const slide = {
+  position: 'relative',
+  zIndex: '10',
+  height: '0',
+  width: '100%',
+  transition: 'height .1s ease-in',
 }
 
 function Trail({ trailProps, children }) {
@@ -33,6 +50,8 @@ function Trail({ trailProps, children }) {
   )
 }
 
+const scrollConfig = {behavior: "smooth", block: "start", inline: "nearest"}
+
 export const IndexPageTemplate = ({
   image,
   hero,
@@ -41,23 +60,25 @@ export const IndexPageTemplate = ({
   clients,
   seo,
 }) => {
-  const headerRef = useRef()
-  const heroRef = useRef()
-  const trailRef = useRef()
-  const arrowRef = useRef()
+
+  const [index, setIndex] = useState(0);
+  const [show, setShow] = useState(false)
+
+  const firstRef = useRef();
+  const secondRef = useRef();
+  const thirdRef = useRef();
+  const fourthRef = useRef();
 
   const heroContainerProps = useSpring({
     to: { height: '90vh' },
     from: { height: '100vh' },
     config: config.molasses,
-    ref: heroRef,
   })
 
   const heroHeaderProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
     config: config.molasses,
-    ref: headerRef,
   })
 
   const trail = useTrail(2, {
@@ -65,26 +86,64 @@ export const IndexPageTemplate = ({
     opacity: 1,
     x: 20,
     from: { opacity: 0, x: 20 },
-    ref: trailRef,
   })
 
-  const arrowProps = useSpring({
-    to: async (next, cancel) => {
-      await next({ opacity: 1 })
-    },
-    from: { opacity: 0 },
-    config: config.stiff,
-    ref: arrowRef,
-  })
+  useEffect(() => {
+		
+    let timer = setTimeout(() => setShow(true), 500);
+    const _onScroll = e => { 
+      if (!show) return 
+      setShow(false)
+      if (e.deltaY < 0) {
+        if (index === 0) return 
+        setIndex(index => index - 1)  
+      }     
+      if (e.deltaY > 0) {
+        if (index === 3) return
+        setIndex(index => index + 1)
+      }  
+    }
+    showSlide();
+    window.addEventListener("wheel", _onScroll);
+    
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("wheel", _onScroll)
+    };
+  }, [ index, show ]);
 
-  useChain([headerRef, trailRef, heroRef, arrowRef])
+  const showSlide = () => {    
+    switch (index) {
+    case 0:
+      firstRef.current.scrollIntoView(scrollConfig)
+      break;
+    case 1:
+      secondRef.current.scrollIntoView(scrollConfig) 
+      break;
+    case 2:
+      thirdRef.current.scrollIntoView(scrollConfig) 
+      break;
+    case 3:
+      fourthRef.current.scrollIntoView(scrollConfig) 
+      break;
+    default:
+      return
+}
+  }
 
   return (
     <div>
       <Helmet>
-        <body className="index-intro-animation" />
+        <html lang="eng" className="index-intro-animation" />
       </Helmet>
-      <animated.section
+      <SEO
+        title={seo.title}
+        description={seo.description}
+        image={seo.image.name}
+      />
+      <div style={fixedBackground}></div>
+      <section
+        ref={firstRef}
         style={
           image
             ? {
@@ -94,7 +153,7 @@ export const IndexPageTemplate = ({
                     : image
                 })`,
               }
-            : Object.assign(heroContainerProps, headerStyle)
+            : Object.assign(heroContainerProps, slide, headerStyle)
         }
         className="hero is-medium page-padding"
       >
@@ -109,13 +168,13 @@ export const IndexPageTemplate = ({
             </Trail>
           </div>
           <div className="arrow-container">
-            <animated.div style={arrowProps} className="arrow"></animated.div>
+            <div className="arrow"></div>
           </div>
         </div>
-      </animated.section>
+      </section>
       <div className="container home-page-container is-max-widescreen">
         <FadeIn>
-          <section className="section--gradient home-about-section home-section-container">
+          <section className="section--gradient home-about-section home-section-container" ref={secondRef}>
             <div className="section">
               <div className="columns is-vcentered">
                 <div className="column is-6 has-text-centered home-section-mobile-padding">
@@ -147,7 +206,7 @@ export const IndexPageTemplate = ({
           </section>
         </FadeIn>
         <FadeIn>
-          <section className="home-section home-section-container">
+          <section className="home-section home-section-container" ref={thirdRef}>
             <div className="section">
               <div className="columns is-vcentered">
                 <div className="column is-12 has-text-centered home-section-mobile-padding">
@@ -182,7 +241,7 @@ export const IndexPageTemplate = ({
           </section>
         </FadeIn>
         <FadeIn>
-          <section className="home-section home-client-section home-section-container">
+          <section className="home-section home-client-section home-section-container" ref={fourthRef}>
             <div className="columns is-mobile is-vcentered">
               <div className="column is-2 has-text-centered home-section-mobile-padding">
                 <h4 className="home-sideways-title clients">{clients.title}</h4>
