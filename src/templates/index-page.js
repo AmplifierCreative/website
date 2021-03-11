@@ -9,8 +9,6 @@ import { FadeIn } from '../components/Utilities'
 import Carousel from '../components/Carousel'
 import SEO from '../components/Seo'
 
-import circle from '../img/homeCircle.png'
-
 const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
@@ -128,6 +126,18 @@ export const IndexPageTemplate = ({
     };
   }, [ index, show ]);
 
+  const getClass = () => {
+    switch (index) {
+      case 1:
+        return "circle-img"
+      case 2:
+        return "line"
+      case 3:
+        return "arrow-img" 
+      default:
+        return null
+      }
+  }
 
   return (
     <div>
@@ -142,7 +152,7 @@ export const IndexPageTemplate = ({
         image={seo.image.name}
       />
       <div style={fixedBackground}>
-        { index === 1 && <img src={circle} alt="circle" className="home-fixed-element"/>}
+        <div className={`home-fixed ${getClass()}`}></div>
       </div>
       <section
         ref={firstRef}

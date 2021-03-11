@@ -463,14 +463,35 @@ h1
   font-size: 1.5rem
   max-width: 760px
 
-.home-fixed-element
+.home-fixed
   position: fixed
-  top: 375px
-  left: 551px
-  width: 262px
   z-index: 0
-  transform: rotate(236deg)
   opacity: .25
+  background-position: center
+  background-repeat: repeat
+  background-size: cover
+  transition: all .5s ease
+  &.circle-img
+    background-image: url('../img/homeCircle.png')
+    top: 375px
+    left: 551px
+    width: 262px
+    height: 251px
+    transform: rotate(236deg)
+  &.line
+    background-image: url('../img/homeLine.png')
+    top: 200px
+    left: 882px
+    width: 320px
+    height: 320px
+    transform: rotate(50deg)
+  &.arrow-img
+    background-image: url('../img/homeArrow.png')
+    top: 113px
+    left: 1066px
+    width: 343px
+    height: 343px
+    transform: scaleX(-1) rotate(20deg)
 
 .home-page-container
   padding: .25rem
