@@ -9,25 +9,19 @@ import { FadeIn } from '../components/Utilities'
 import Carousel from '../components/Carousel'
 import SEO from '../components/Seo'
 
+import circle from '../img/homeCircle.png'
+
 const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
 const fixedBackground = {
-  position: 'absolute',
+  position: 'fixed',
   top: '0',
   left: '0',
   width: '100%',
   height: '100vh',
-  zIndex: '9',
-}
-
-const slide = {
-  position: 'relative',
-  zIndex: '10',
-  height: '0',
-  width: '100%',
-  transition: 'height .1s ease-in',
+  zIndex: '0',
 }
 
 function Trail({ trailProps, children }) {
@@ -88,9 +82,11 @@ export const IndexPageTemplate = ({
     from: { opacity: 0, x: 20 },
   })
 
+
   useEffect(() => {
 		
     let timer = setTimeout(() => setShow(true), 500);
+
     const _onScroll = e => { 
       if (!show) return 
       setShow(false)
@@ -103,6 +99,26 @@ export const IndexPageTemplate = ({
         setIndex(index => index + 1)
       }  
     }
+
+    const showSlide = () => {    
+      switch (index) {
+      case 0:
+        firstRef.current.scrollIntoView(scrollConfig)
+        break;
+      case 1:
+        secondRef.current.scrollIntoView(scrollConfig)
+        break;
+      case 2:
+        thirdRef.current.scrollIntoView(scrollConfig) 
+        break;
+      case 3:
+        fourthRef.current.scrollIntoView(scrollConfig) 
+        break;
+      default:
+        return
+      }
+    }
+
     showSlide();
     window.addEventListener("wheel", _onScroll);
     
@@ -112,36 +128,22 @@ export const IndexPageTemplate = ({
     };
   }, [ index, show ]);
 
-  const showSlide = () => {    
-    switch (index) {
-    case 0:
-      firstRef.current.scrollIntoView(scrollConfig)
-      break;
-    case 1:
-      secondRef.current.scrollIntoView(scrollConfig) 
-      break;
-    case 2:
-      thirdRef.current.scrollIntoView(scrollConfig) 
-      break;
-    case 3:
-      fourthRef.current.scrollIntoView(scrollConfig) 
-      break;
-    default:
-      return
-}
-  }
 
   return (
     <div>
-      <Helmet>
-        <html lang="eng" className="index-intro-animation" />
-      </Helmet>
+      { index < 3 &&
+        <Helmet>
+          <html lang="en" className="index-intro-animation" />
+        </Helmet>
+      }
       <SEO
         title={seo.title}
         description={seo.description}
         image={seo.image.name}
       />
-      <div style={fixedBackground}></div>
+      <div style={fixedBackground}>
+        { index === 1 && <img src={circle} alt="circle" className="home-fixed-element"/>}
+      </div>
       <section
         ref={firstRef}
         style={
@@ -153,9 +155,9 @@ export const IndexPageTemplate = ({
                     : image
                 })`,
               }
-            : Object.assign(heroContainerProps, slide, headerStyle)
+            : Object.assign(heroContainerProps, headerStyle)
         }
-        className="hero is-medium page-padding"
+        className={`hero is-medium page-padding hero-slide active`}
       >
         <div className="hero-body">
           <div className="container is-max-widescreen">

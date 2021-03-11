@@ -419,6 +419,15 @@ h1
 .index-intro-animation
   overflow: hidden
 
+.hero-slide
+  position: relative
+  z-index: 10
+  height: 0
+  width: 100%
+  transition: height .9s ease-in
+  &.active
+    height: 100%
+
 .hero-body
   padding-top: 8rem
 
@@ -453,6 +462,15 @@ h1
   font-weight: 400
   font-size: 1.5rem
   max-width: 760px
+
+.home-fixed-element
+  position: fixed
+  top: 375px
+  left: 551px
+  width: 262px
+  z-index: 0
+  transform: rotate(236deg)
+  opacity: .25
 
 .home-page-container
   padding: .25rem
