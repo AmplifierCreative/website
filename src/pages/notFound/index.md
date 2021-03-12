@@ -4,5 +4,4 @@ title: 404 Page
 useImage: false
 image: /img/404-cropped.jpg
 ---
-
-### No one’s home—because they’re <br /> all hanging out over [here](/)
+### <center>No one’s home—because they’re all hanging out over [here](/).</center>
