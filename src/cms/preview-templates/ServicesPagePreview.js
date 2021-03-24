@@ -14,6 +14,7 @@ const ServicesPagePreview = ({ entry }) => {
         section3={data.section3}
         section4={data.section4}
         cta={data.cta}
+        seo={data.seo}
       />
     )
   } else {

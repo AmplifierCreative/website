@@ -10,6 +10,7 @@ const ContactPagePreview = ({ entry }) => {
       <ContactPageTemplate
         heading={data.heading}
         description={data.description}
+        seo={data.seo}
       />
     )
   } else {

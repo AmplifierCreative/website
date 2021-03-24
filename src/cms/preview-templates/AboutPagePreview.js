@@ -12,6 +12,7 @@ const AboutPagePreview = ({ entry }) => {
         title={data.title}
         topSection={data.topSection}
         bottomSection={data.bottomSection}
+        seo={data.seo}
       />
     )
   } else {

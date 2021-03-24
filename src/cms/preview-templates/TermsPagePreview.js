@@ -6,6 +6,7 @@ const TermsPagePreview = ({ entry, widgetFor }) => (
   <TermsPageTemplate
     title={entry.getIn(['data', 'title'])}
     content={widgetFor('body')}
+    seo={entry.getIn(['data', 'seo'])}
   />
 )
 

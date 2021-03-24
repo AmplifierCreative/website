@@ -435,7 +435,8 @@ h1
   color: $AC-white
   font-family: $family-sans-serif-bold
   font-weight: 400
-  font-size: 4rem
+  font-size: 50px
+  line-height: 67px
 
 .arrow-container
   width: 100%
@@ -461,7 +462,9 @@ h1
   font-family: $family-serif
   font-weight: 400
   font-size: 1.5rem
+  font-size: clamp(20px, 1.5vw, 25px)
   max-width: 760px
+  line-height: 37.5px
 
 .home-fixed
   position: fixed
@@ -515,7 +518,7 @@ h1
 
 .home-section-container
   position: relative
-  height: 100vh
+  min-height: 100vh
   padding-top: 24vh
 
 .home-section-subheading
@@ -570,8 +573,10 @@ h1
     display: none
   .hero-body
     min-height: 60vh
-    padding-top: 5rem
+    padding-top: 3rem
     padding-bottom: 5rem
+  .home-header-text
+    font-size: 60px
   .home-about-section
     padding-left: 2rem
     padding-right: 2rem
@@ -587,6 +592,8 @@ h1
   .home-sideways-title-clients
     left: 1px
     bottom: 322px !important
+  .hero-subheading-a, .hero-subheading-b
+    line-height: 30px
 
 //Services Page
 .services-hero-container

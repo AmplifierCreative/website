@@ -85,6 +85,21 @@ export const IndexPageTemplate = ({
 		
     let timer = setTimeout(() => setShow(true), 500);
 
+    const _onKeyUp = e => {
+      console.log(e.key)
+      if (!e.key === 'ArrowDown' || !e.key ===  'ArrowUp'|| !e.key ===  'PageUp' || !e.key ===  'PageDown') return
+      if (!show) return 
+      setShow(false)
+      if (e.key === 'ArrowUp' || e.key ===  'PageUp') {
+        if (index === 0) return 
+        setIndex(index => index - 1)
+      }
+      if (e.key === 'ArrowDown' || e.key ===  'PageDown') {
+        if (index === 3) return 
+        setIndex(index => index + 1)
+      }
+    }
+
     const _onScroll = e => { 
       if (!show) return 
       setShow(false)
@@ -98,7 +113,8 @@ export const IndexPageTemplate = ({
       }  
     }
 
-    const showSlide = () => {    
+    const showSlide = () => {  
+      console.log(index)  
       switch (index) {
       case 0:
         firstRef.current.scrollIntoView(scrollConfig)
@@ -119,10 +135,13 @@ export const IndexPageTemplate = ({
 
     showSlide();
     window.addEventListener("wheel", _onScroll);
+    window.addEventListener("keyup", _onKeyUp);
     
     return () => {
       clearTimeout(timer)
       window.removeEventListener("wheel", _onScroll)
+      window.removeEventListener("keyup", _onKeyUp)
+      
     };
   }, [ index, show ]);
 
@@ -322,6 +341,7 @@ export const pageQuery = graphql`
               ...GatsbyImageSharpFluid
             }
           }
+          publicURL
         }
         about {
           title

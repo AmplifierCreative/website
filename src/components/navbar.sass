@@ -48,6 +48,7 @@
 .navbar-item
     color: $AC-orange !important
     font-size: 2.5em
+    font-size: clamp(40px, 3vw, 50px)
     font-weight: 800
     padding: 0 !important
     line-height: 1.5em
@@ -84,7 +85,9 @@
         width: 50%
 
 .burger-line-top
-    height: 8px
+    height: 1vw
+    min-height: 6px
+    max-height: 8px
     width: 100%
     display: block
     background-color: $AC-white
@@ -110,10 +113,12 @@
 .nav-logo-dk
     display: none
     position: relative
-    top: 3px
+    top: -14px
 
 .burger-line
-    height: 8px
+    height: 1vw
+    min-height: 6px
+    max-height: 8px
     width: 100%
     display: block
     margin-top: 8px
@@ -184,10 +189,12 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 @media screen and (max-width: 1023px)
     .menu-color-2 #navMenu
         background-color: $AC-orange
+    .nav-logo
+        left: -4px
     .navbar-container
         padding-right: 2em
         padding-left: 2em
     .logo-container
-        width: 51% !important
+        width: 58% !important
     .nav-menu-container
         width: 300px

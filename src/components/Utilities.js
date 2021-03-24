@@ -1,8 +1,24 @@
 import React from 'react'
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useSpring, useTrail, animated, config } from 'react-spring'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
+
+
+/* Custom hook to check for resize events */
+
+export const useWindowSize = () => {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
 
 /* Custom hook to check if element has entered the viewport  */
 

@@ -9,38 +9,17 @@ module.exports = {
     twitterUsername: '@amplifiercreative',
   },
   plugins: [
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-remark',
+    'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/static/img`,
         name: 'uploads',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-mailchimp',
-      options: {
-        endpoint:
-          'https://amplifiercreative.us2.list-manage.com/subscribe/post?u=e07e8e01225fa7bdd539e21ae&amp;id=71d00af653',
-        timeout: 3500,
       },
     },
     {
@@ -116,6 +95,28 @@ module.exports = {
           },
           'gatsby-remark-reading-time',
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/img`,
+        name: 'images',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint:
+          'https://amplifiercreative.us2.list-manage.com/subscribe/post?u=e07e8e01225fa7bdd539e21ae&amp;id=71d00af653',
+        timeout: 3500,
       },
     },
     {
