@@ -62,6 +62,7 @@ class Footer extends React.Component {
     let email = this.state.emailValue
     const response = await addToMailchimp(email)
     this.setState({ res: response })
+    console.log(this.state.res)
     this.formStatus()
   }
 
@@ -91,12 +92,8 @@ class Footer extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-
     return (
       <footer className="footer">
-{/*         <Helmet>
-          <script src="https://kit.fontawesome.com/00e2e73915.js" crossorigin="anonymous"></script>
-        </Helmet> */}
         <div className="container is-max-widescreen">
           <div
             className="columns has-text-centered-mobile"
@@ -107,17 +104,18 @@ class Footer extends React.Component {
                   <div
                     className="footer-form footer-response"
                   >
-                    <div className="results-container">
-                      <p className="results-text">
-                        Thanks for joining our community.
-                      </p>
-                    </div>
-                    {this.state.res.result === 'error' &&
-                    <div className="results-container">
-                      <h5 className="results-header">:/</h5>
-                      <div className="results-text" dangerouslySetInnerHTML={{ __html: this.state.res.msg }} />
-                      <button className="reset-btn" onClick={this.resetForm}>Try again</button>
-                    </div>
+                    {this.state.res.result === 'error' ?
+                      <div className="results-container">
+                        {/* <div className="results-text" dangerouslySetInnerHTML={{ __html: this.state.res.msg }} /> */}
+                        <p className="results-text">Oops! Looks like you've already subscribed.</p>
+                        <button className="reset-btn" onClick={this.resetForm}>Try again.</button>
+                      </div>
+                      :
+                      <div className="results-container">
+                        <p className="results-text">
+                          Thanks for joining our community.
+                        </p>
+                      </div>
                     }
                   </div>
                 ) : (
@@ -146,8 +144,7 @@ class Footer extends React.Component {
                       onSubmit={this.handleSubmit}
                       className={`submit-btn-alt ${this.state.footerActiveClass}`}
                     >
-                      {/* <i className="fas fa-arrow-circle-right"></i> */}
-                      <img src={emailSendButton} alt="send"/>
+                      <img src={emailSendButton} className="send-icon" alt="send"/>
                     </button>
                   </form>
                 )}

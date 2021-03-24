@@ -54,6 +54,10 @@
 .submit-btn.is-active, .submit-btn-alt.is-active
   display: inline-block
 
+.send-icon
+  width: 26px
+  margin-left: 16px
+
 .results-container
   padding: .25rem
   padding-left: 0
@@ -79,8 +83,9 @@
   background: $AC-black
   border: none
   color: $AC-white
-  font-size: 2em
-  text-transform: lowercase
+  font-size: 1em
+  letter-spacing: 2px
+  text-transform: uppercase
   font-family: $family-sans-serif-bold
   height: 100%
   opacity: .25
@@ -142,7 +147,7 @@
 @media screen and (max-width: 1124px)
   .email-input.mobile-input
     display: inline-block
-    min-width: 250px
+    min-width: 200px
   .email-input
     display: none
 

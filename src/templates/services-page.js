@@ -59,7 +59,6 @@ export const ServicesPageTemplate = ({
                 <p className="services-paragraph-text">{section1.description5}</p>
                 <p className="services-paragraph-text">{section1.description6}</p>
                 <p className="services-paragraph-text">{section1.description7}</p>
-                <p className="services-paragraph-text">{section1.description8}</p>
               </TrailsWrapper>
             </div>
           </div>

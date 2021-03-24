@@ -300,6 +300,8 @@ h1
   z-index: 1
   padding-left: 20px
   margin-bottom: 10px
+  font-size: 2rem
+  font-size: clamp(60px, 7vw, 97px)
   color: $AC-white
 
 .line-header:after
@@ -411,6 +413,8 @@ h1
 .hero-text
   font-family: $family-serif
   font-size: 1.5rem
+  font-size: clamp(20px, 2.5vw, 25px)
+  line-height: clamp(30px, 3vw,37.5px)
   color: $AC-white
   max-width: 750px
 
@@ -926,13 +930,19 @@ h1
   display: block
   content: ' '
   background-image: url('../img/orange-line.svg')
-  background-size: 55px 55px
+  background-size: contain
+  background-repeat: no-repeat
   height: 55px
-  width: 55px
+  height: clamp(40px, 6vw, 75px)
   position: absolute
   z-index: -1
-  top: 18px
-  left: -10px
+  top: 22%
+  left: 0.25%
+
+@media screen and (max-width: 768px)
+  .line-header:after
+    left: 1.25%
+    top: 34%
 
 //Project-post
 .project-title-text
