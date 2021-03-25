@@ -8,11 +8,6 @@ import SEO from '../components/Seo'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { FadeIn, TrailsWrapper } from '../components/Utilities'
 
-import social from '../img/social.gif'
-import copywrite from '../img/copywrite.gif'
-import design from '../img/design.gif'
-import strategy from '../img/strategy.gif'
-
 const config = { mass: 5, tension: 2000, friction: 200 }
 
 export const ServicesPageTemplate = ({
