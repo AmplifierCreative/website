@@ -363,46 +363,25 @@ collections:
                 [
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   {
-                    label: 'Description 1',
-                    name: 'description1',
-                    widget: 'string',
+                    label: 'Subheadings',
+                    name: 'subheadings',
+                    widget: 'list',
+                    allow-add: true,
+                    min: 1,
+                    collapsed: true,
+                    label_singular: 'Subheading line',
+                    fields: [{ label: 'Text', name: 'text', widget: 'string' }],
                   },
                   {
-                    label: 'Description 2',
-                    name: 'description2',
-                    widget: 'string',
+                    label: 'Image',
+                    name: 'image',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Image', name: 'image', widget: 'image' },
+                        { label: 'Alt Text', name: 'alt', widget: 'string' },
+                      ],
                   },
-                  {
-                    label: 'Description 3',
-                    name: 'description3',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 4',
-                    name: 'description4',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 5',
-                    name: 'description5',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 6',
-                    name: 'description6',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 7',
-                    name: 'description7',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 8',
-                    name: 'description8',
-                    widget: 'string',
-                  },
-                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -413,46 +392,25 @@ collections:
                 [
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   {
-                    label: 'Description 1',
-                    name: 'description1',
-                    widget: 'string',
+                    label: 'Subheadings',
+                    name: 'subheadings',
+                    widget: 'list',
+                    allow-add: true,
+                    min: 1,
+                    collapsed: true,
+                    label_singular: 'Subheading line',
+                    fields: [{ label: 'Text', name: 'text', widget: 'string' }],
                   },
                   {
-                    label: 'Description 2',
-                    name: 'description2',
-                    widget: 'string',
+                    label: 'Image',
+                    name: 'image',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Image', name: 'image', widget: 'image' },
+                        { label: 'Alt Text', name: 'alt', widget: 'string' },
+                      ],
                   },
-                  {
-                    label: 'Description 3',
-                    name: 'description3',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 4',
-                    name: 'description4',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 5',
-                    name: 'description5',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 6',
-                    name: 'description6',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 7',
-                    name: 'description7',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 8',
-                    name: 'description8',
-                    widget: 'string',
-                  },
-                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -463,46 +421,25 @@ collections:
                 [
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   {
-                    label: 'Description 1',
-                    name: 'description1',
-                    widget: 'string',
+                    label: 'Subheadings',
+                    name: 'subheadings',
+                    widget: 'list',
+                    allow-add: true,
+                    min: 1,
+                    collapsed: true,
+                    label_singular: 'Subheading line',
+                    fields: [{ label: 'Text', name: 'text', widget: 'string' }],
                   },
                   {
-                    label: 'Description 2',
-                    name: 'description2',
-                    widget: 'string',
+                    label: 'Image',
+                    name: 'image',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Image', name: 'image', widget: 'image' },
+                        { label: 'Alt Text', name: 'alt', widget: 'string' },
+                      ],
                   },
-                  {
-                    label: 'Description 3',
-                    name: 'description3',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 4',
-                    name: 'description4',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 5',
-                    name: 'description5',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 6',
-                    name: 'description6',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 7',
-                    name: 'description7',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 8',
-                    name: 'description8',
-                    widget: 'string',
-                  },
-                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -513,46 +450,25 @@ collections:
                 [
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   {
-                    label: 'Description 1',
-                    name: 'description1',
-                    widget: 'string',
+                    label: 'Subheadings',
+                    name: 'subheadings',
+                    widget: 'list',
+                    allow-add: true,
+                    min: 1,
+                    collapsed: true,
+                    label_singular: 'Subheading line',
+                    fields: [{ label: 'Text', name: 'text', widget: 'string' }],
                   },
                   {
-                    label: 'Description 2',
-                    name: 'description2',
-                    widget: 'string',
+                    label: 'Image',
+                    name: 'image',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Image', name: 'image', widget: 'image' },
+                        { label: 'Alt Text', name: 'alt', widget: 'string' },
+                      ],
                   },
-                  {
-                    label: 'Description 3',
-                    name: 'description3',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 4',
-                    name: 'description4',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 5',
-                    name: 'description5',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 6',
-                    name: 'description6',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 7',
-                    name: 'description7',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Description 8',
-                    name: 'description8',
-                    widget: 'string',
-                  },
-                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -562,6 +478,7 @@ collections:
               fields:
                 [
                   { label: 'Heading', name: 'heading', widget: 'string' },
+                  { label: 'Subheading', name: 'subheading', widget: 'string' },
                   { label: 'Button', name: 'button', widget: 'string' },
                 ],
             }

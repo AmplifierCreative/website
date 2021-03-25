@@ -48,6 +48,7 @@ class Footer extends React.Component {
       active: false,
       footerActiveClass: '',
       sent: false,
+      formEmpty: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.resetForm = this.resetForm.bind(this)
@@ -60,6 +61,11 @@ class Footer extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault()
     let email = this.state.emailValue
+    if (email === "") { 
+      this.setState({ formEmpty : true })
+      return;
+    }
+    this.setState({ formEmpty: false })
     const response = await addToMailchimp(email)
     this.setState({ res: response })
     console.log(this.state.res)
@@ -99,6 +105,7 @@ class Footer extends React.Component {
             className="columns has-text-centered-mobile"
           >
             <div className="column is-two-thirds-desktop">
+              {this.state.formEmpty && <div className=""><p className="footer-form-empty-text">Please enter a valid email</p></div>}
               <div>
                 {this.state.sent ? (
                   <div

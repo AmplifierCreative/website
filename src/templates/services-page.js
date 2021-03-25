@@ -1,9 +1,11 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import PropTypes from 'prop-types'
+import { v4 } from 'uuid'
 
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import { FadeIn, TrailsWrapper } from '../components/Utilities'
 
 import social from '../img/social.gif'
@@ -44,21 +46,26 @@ export const ServicesPageTemplate = ({
           <div className="columns is-vcentered">
             <div className="column is-half has-text-right services-column-mobile">
               <FadeIn configuration={config}>
-                <figure>
-                  <img alt="Design Illustration of hands" className="services-image-copywrite" src={copywrite}/>
-                </figure>
+                {!!section1.image && !!section1.image.childImageSharp 
+                ? <figure className="services-image-copywrite">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: section1.image.image,
+                        }}
+                    />
+                  </figure>
+                : <figure>
+                  <img alt={section1.image.alt} className="services-image-copywrite" src={section1.image.image.publicURL}/>
+                </figure>}
               </FadeIn>
             </div>
             <div className="column is-half services-column-mobile">
               <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section1.heading}</h2>
-                <p className="services-paragraph-text">{section1.description1}</p>
-                <p className="services-paragraph-text">{section1.description2}</p>
-                <p className="services-paragraph-text">{section1.description3}</p>
-                <p className="services-paragraph-text">{section1.description4}</p>
-                <p className="services-paragraph-text">{section1.description5}</p>
-                <p className="services-paragraph-text">{section1.description6}</p>
-                <p className="services-paragraph-text">{section1.description7}</p>
+                {section1.subheadings && section1.subheadings.map((item) => (
+                <p key={v4()} className="services-paragraph-text">{item.text}</p>
+              )) 
+              }
               </TrailsWrapper>
             </div>
           </div>
@@ -77,24 +84,25 @@ export const ServicesPageTemplate = ({
             <div className="column is-half has-text-right services-column-mobile">
               <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section2.heading}</h2>
-                <p className="services-paragraph-text">{section2.description1}</p>
-                <p className="services-paragraph-text">{section2.description2}</p>
-                <p className="services-paragraph-text">{section2.description3}</p>
-                <p className="services-paragraph-text">{section2.description4}</p>
-                <p className="services-paragraph-text">{section2.description5}</p>
-                <p className="services-paragraph-text">{section2.description6}</p>
-                <p className="services-paragraph-text">{section2.description7}</p>
+                {section2.subheadings && section2.subheadings.map((item) => (
+                <p key={v4()} className="services-paragraph-text">{item.text}</p>
+              )) 
+              }
               </TrailsWrapper>
             </div>
             <div className="column is-half services-column-mobile">
               <FadeIn configuration={config}>
-                <figure>
-                  <img
-                    alt="An illustration of hands weaving chakra"
-                    className="services-image-design"
-                    src={design}
-                  />
-                </figure>
+              {!!section2.image && !!section2.image.childImageSharp 
+                ? <figure className="services-image-design">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: section2.image.image,
+                        }}
+                    />
+                  </figure>
+                : <figure>
+                  <img alt={section2.image.alt} className="services-image-design" src={section2.image.image.publicURL}/>
+                </figure>}
               </FadeIn>
             </div>
           </div>
@@ -112,23 +120,26 @@ export const ServicesPageTemplate = ({
           <div className="columns is-vcentered">
             <div className="column is-half has-text-right services-column-mobile">
               <FadeIn configuration={config}>
-                <figure>
-                  <img
-                    alt="An animated illustration of hands using a phone"
-                    className="services-image-social"
-                    src={social}
-                  />
-                </figure>
+              {!!section3.image.image && !!section3.image.image.childImageSharp 
+                ? <figure className="services-image-social">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: section3.image.image,
+                        }}
+                    />
+                  </figure>
+                : <figure>
+                  <img alt={section3.image.alt} className="services-image-social" src={section3.image.image.publicURL}/>
+                </figure>}
               </FadeIn>
             </div>
             <div className="column is-half services-column-mobile">
               <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section3.heading}</h2>
-                <p className="services-paragraph-text">{section3.description1}</p>
-                <p className="services-paragraph-text">{section3.description2}</p>
-                <p className="services-paragraph-text">{section3.description3}</p>
-                <p className="services-paragraph-text">{section3.description4}</p>
-                <p className="services-paragraph-text">{section3.description5}</p>
+                {section3.subheadings && section3.subheadings.map((item) => (
+                <p key={v4()} className="services-paragraph-text">{item.text}</p>
+              )) 
+              }
               </TrailsWrapper>
             </div>
           </div>
@@ -149,22 +160,25 @@ export const ServicesPageTemplate = ({
             <div className="column is-half has-text-right services-column-mobile">
               <TrailsWrapper configuration={config}>
                 <h2 className="services-title-text">{section4.heading}</h2>
-                <p className="services-paragraph-text">{section4.description1}</p>
-                <p className="services-paragraph-text">{section4.description2}</p>
-                <p className="services-paragraph-text">{section4.description3}</p>
-                <p className="services-paragraph-text">{section4.description4}</p>
-                <p className="services-paragraph-text">{section4.description5}</p>
+                {section4.subheadings && section4.subheadings.map((item) => (
+                <p key={v4()} className="services-paragraph-text">{item.text}</p>
+              )) 
+              }
               </TrailsWrapper>
             </div>
             <div className="column is-half services-column-mobile">
               <FadeIn configuration={config}>
-                <figure>
-                  <img
-                    alt="An animated illustration of hands pointing at a chart"
-                    className="services-image-strategy"
-                    src={strategy}
-                  />
-                </figure>
+              {!!section4.image.image && !!section4.image.image.childImageSharp 
+                ? <figure className="services-image-strategy">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: section4.image.image,
+                        }}
+                    />
+                  </figure>
+                : <figure>
+                  <img alt={section4.image.alt} className="services-image-strategy" src={section4.image.image.publicURL}/>
+                </figure>}
               </FadeIn>
             </div>
           </div>
@@ -183,16 +197,15 @@ export const ServicesPageTemplate = ({
         className="section services-cta-container services-section-container contact"
       >
         <div className="container is-max-widescreen">
-          <div className="content">
-            <FadeIn configuration={config}>
-              <p className="services-contact-button">{cta.heading}</p>
-              <Link to="/contact">
-                <button className="button dk is-uppercase services-button">
-                  {cta.button}
-                </button>
-              </Link>
-            </FadeIn>
-          </div>
+          <FadeIn configuration={config}>
+            <h2 className="services-contact-heading">{cta.heading}</h2>
+            <p className="services-contact-subheading">{cta.subheading}</p>
+            <Link to="/contact">
+              <button className="button dk is-uppercase services-button">
+                {cta.button}
+              </button>
+            </Link>
+          </FadeIn>
         </div>
       </section>
     </div>
@@ -249,50 +262,75 @@ export const pageQuery = graphql`
         }
         section1 {
           heading
-          description1
-          description2
-          description3
-          description4
-          description5
-          description6
-          description7
-          description8
+          subheadings {
+            text
+          }
+          image {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+              publicURL
+            }
+            alt
+          }
         }
         section2 {
           heading
-          description1
-          description2
-          description3
-          description4
-          description5
-          description6
-          description7
-          description8
+          subheadings {
+            text
+          }
+          image {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+              publicURL
+            }
+            alt
+          }
         }
         section3 {
           heading
-          description1
-          description2
-          description3
-          description4
-          description5
-          description6
-          description7
-          description8
+          subheadings {
+            text
+          }
+          image {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+              publicURL
+            }
+            alt
+          }
         }
         section4 {
           heading
-          description1
-          description2
-          description3
-          description4
-          description5
-          description6
-          description7
-          description8
+          subheadings {
+            text
+          }
+          image {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+              publicURL
+            }
+            alt
+          }
         }
         cta {
           heading
+          subheading
           button
         }
         seo {
