@@ -181,7 +181,7 @@ class Footer extends React.Component {
             {/* Social Menu */}
             <div className="column is-one-third-desktop">
               <div>
-                <h5 className="footer-social-header">Follow us</h5>
+                <span className="footer-social-header">Follow us</span>
               </div>
               <div
                 className='columns is-mobile is-justify-content-center-mobile m-0'>

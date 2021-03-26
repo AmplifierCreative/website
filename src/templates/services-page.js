@@ -20,7 +20,7 @@ export const ServicesPageTemplate = ({
   seo
 }) => {
   return (
-    <div className="services-container page-padding">
+    <main className="services-container page-padding">
       <SEO 
         title={seo.title}
         description={seo.description}
@@ -203,7 +203,7 @@ export const ServicesPageTemplate = ({
           </FadeIn>
         </div>
       </section>
-    </div>
+    </main>
   )
 }
 

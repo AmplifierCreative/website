@@ -126,6 +126,8 @@ class Navbar extends React.Component {
                   onKeyUp={(event) => this._handleKeyUp(event)}
                   className="burger"
                   role="button"
+                  aria-label="button"
+                  aria-pressed="false"
                   tabIndex={0}
                 >
                   <span className={`burger-line-top ${this.state.navBarActiveClass}`} />

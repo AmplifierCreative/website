@@ -159,7 +159,7 @@ export const IndexPageTemplate = ({
   }
 
   return (
-    <div>
+    <main>
       { index < 3 &&
         <Helmet>
           <html lang="en" className="index-intro-animation" />
@@ -211,16 +211,16 @@ export const IndexPageTemplate = ({
                 <div className="column is-6 has-text-centered home-section-mobile-padding">
                   <div className="columns is-mobile">
                     <div className="column is-2">
-                      <h4 className="home-sideways-title about">
+                      <span className="home-sideways-title about">
                         {about.title}
-                      </h4>
+                      </span>
                     </div>
                     <div className="column is-9">
-                      <h6 className="home-orange-header">xx</h6>
-                      <h2 className="home-about-heading">{about.heading}</h2>
-                      <h3 className="home-section-subheading">
+                      <span className="home-orange-header">xx</span>
+                      <h3 className="home-about-heading">{about.heading}</h3>
+                      <p className="home-section-subheading">
                         {about.subheading}
-                      </h3>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -243,27 +243,27 @@ export const IndexPageTemplate = ({
                 <div className="column is-12 has-text-centered home-section-mobile-padding">
                   <div className="columns is-mobile">
                     <div className="column is-2">
-                      <h4 className="home-sideways-title services">
+                      <span className="home-sideways-title services">
                         {services.title}
-                      </h4>
+                      </span>
                     </div>
                     <div className="column is-9">
-                      <h6 className="home-orange-header">xx</h6>
+                      <span className="home-orange-header">xx</span>
                       <h3 className="home-section-subheading">
                         {services.heading}
                       </h3>
-                      <h3 className="home-services-description">
+                      <p className="home-services-description">
                         {services.subheading1}
-                      </h3>
-                      <h3 className="home-services-description">
+                      </p>
+                      <p className="home-services-description">
                         {services.subheading2}
-                      </h3>
-                      <h3 className="home-services-description">
+                      </p>
+                      <p className="home-services-description">
                         {services.subheading3}
-                      </h3>
-                      <h3 className="home-services-description">
+                      </p>
+                      <p className="home-services-description">
                         {services.subheading4}
-                      </h3>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -275,18 +275,18 @@ export const IndexPageTemplate = ({
           <section className="home-section home-client-section home-section-container" ref={fourthRef}>
             <div className="columns is-mobile is-vcentered">
               <div className="column is-2 has-text-centered home-section-mobile-padding">
-                <h4 className="home-sideways-title clients">{clients.title}</h4>
+                <span className="home-sideways-title clients">{clients.title}</span>
               </div>
               <div className="column is-9 has-text-centered">
-                <h6 className="home-orange-header">xx</h6>
-                <h5 className="home-client-heading">{clients.heading}</h5>
+                <span className="home-orange-header">xx</span>
+                <h3 className="home-client-heading">{clients.heading}</h3>
                 <Carousel />
               </div>
             </div>
           </section>
         </FadeIn>
       </div>
-    </div>
+    </main>
   )
 }
 

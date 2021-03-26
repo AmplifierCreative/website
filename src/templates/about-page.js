@@ -1,15 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
-/* import PreviewCompatibleImage from '../components/PreviewCompatibleImage' */
 import { graphql } from 'gatsby'
+import { v4 } from 'uuid'
 
-import { FadeIn, TrailsWrapper } from '../components/Utilities'
+import { FadeIn } from '../components/Utilities'
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import SEO from '../components/Seo'
-
-import Hollie from '../img/Hollie-Bio.gif'
-import Jen from '../img/Jen-Bio.gif'
-
 
 const config = { mass: 5, tension: 2000, friction: 200 }
 
@@ -28,122 +25,120 @@ export const AboutPageTemplate = ({
         image={seo.image.name}
       />
       <div className="container is-max-widescreen about-hero-container">
-        <TrailsWrapper>
+        <FadeIn configuration={config}>
           <h1 className="line-header about-line-header">{hero.heading}</h1>
           <p className="hero-text">{hero.subheading}</p>
-        </TrailsWrapper>
+        </FadeIn>
       </div>
       <section className="about-section-container container is-max-widescreen">
-        {/* Two layouts: this is desktop */}
+        {/* Two layouts: this is desktop --- bottom left paragraph comes first*/}
         <div className="about-section-left">
           <div className="about-section-text-left">
             <FadeIn configuration={config} >
-              <p className="about-paragraph-text">
-                  {bottomSection.description1}
-              </p>
-              <p className="about-paragraph-text">
-                  {bottomSection.description2}
-              </p>
-              <p className="about-paragraph-text">
-                  {bottomSection.description3}
-              </p>
+              {bottomSection.subheadings && bottomSection.subheadings.map((item) => (
+                <p key={v4()} className="about-paragraph-text">{item.paragraph}</p>
+              )) 
+              }
             </FadeIn>
           </div>
-          <div className="about-image-container">
+        <div className="about-image-container">
           <FadeIn configuration={config} >
-            <img src={Hollie} className="about-image" alt="Hollie!"/>
+            {!!topSection.image.image && !!topSection.image.image.childImageSharp 
+                ? <figure className="about-image">
+                    <PreviewCompatibleImage
+                      imageInfo={{
+                        image: topSection.image.image,
+                        alt: topSection.image.alt
+                        }}
+                    />
+                  </figure>
+                : <figure>
+                  <img alt={topSection.image.alt} className="about-image" src={topSection.image.publicURL}/>
+                </figure>}
           </FadeIn>
-{/*             {topSection.image ? (
-              <figure className="about-image">
-                <PreviewCompatibleImage
-                  imageInfo={{
-                    image: topSection.image,
-                    }}
-                />
-              </figure>
-            ) : null} */}
           </div>
         </div>
         <div className="about-section-right">
           <div className="about-section-text-right">
             <FadeIn configuration={config}>
-              <p className="letter-stroke-dk about-paragraph-text">
-                  {topSection.description1}
+              <p className="about-paragraph-text letter-stroke-dk">
+                  {topSection.subheading1}
               </p>
-              <p className="about-paragraph-text">
-                  {topSection.description2}
-              </p>
+              {topSection.subheadings && topSection.subheadings.map((item) => (
+                <p key={v4()} className="about-paragraph-text">{item.paragraph}</p>
+              )) 
+              }
             </FadeIn>
           </div>
           <div className="about-image-container">
           <FadeIn configuration={config} >
-          <img src={Jen} className="about-image" alt="Jen!"/>
+            {!!bottomSection.image.image && !!bottomSection.image.image.childImageSharp 
+                    ? <figure className="about-image">
+                        <PreviewCompatibleImage
+                          imageInfo={{
+                            image: bottomSection.image.image,
+                            alt: bottomSection.image.alt
+                            }}
+                        />
+                      </figure>
+                    : <figure>
+                      <img alt={bottomSection.image.alt} className="about-image" src={bottomSection.image.publicURL}/>
+                    </figure>}
           </FadeIn>
-{/*             {bottomSection.image ? (
-                  <figure className="about-image">
-                    <PreviewCompatibleImage
-                      imageInfo={{
-                        image: bottomSection.image,
-                
-                      }}
-                    />
-                  </figure>
-                ) : null} */}
           </div>
         </div>
         {/* Mobile layout starts here! */}
         <div className="about-section-mobile">
         <div className="about-image-container">
         <FadeIn configuration={config} >
-            <img src={Hollie} className="about-image" alt="Hollie!"/>
-          </FadeIn>
-{/*             {topSection.image ? (
-              <figure className="about-image">
-                <PreviewCompatibleImage
-                  imageInfo={{
-                    image: topSection.image,
-                    }}
-                />
-              </figure>
-            ) : null} */}
+          {!!topSection.image.image && !!topSection.image.image.childImageSharp 
+                  ? <figure className="about-image">
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: topSection.image.image,
+                          alt: topSection.image.alt
+                          }}
+                      />
+                    </figure>
+                  : <figure>
+                    <img alt={topSection.image.alt} className="about-image" src={topSection.image.publicURL}/>
+                  </figure>}
+        </FadeIn>
           </div>
           <div className="about-section-text-right">
             <FadeIn configuration={config}>
               <p className="letter-stroke-dk about-paragraph-text">
-                  {topSection.description1}
+                  {topSection.subheading1}
               </p>
-              <p className="about-paragraph-text">
-                  {topSection.description2}
-              </p>
+              {topSection.subheadings && topSection.subheadings.map((item) => (
+                <p key={v4()} className="about-paragraph-text">{item.paragraph}</p>
+              )) 
+              }
             </FadeIn>
           </div>
           <div className="mobile-line"></div>
           <div className="about-image-container">
           <FadeIn configuration={config} >
-          <img src={Jen} className="about-image" alt="Jen!"/>
+          {!!bottomSection.image.image && !!bottomSection.image.image.childImageSharp 
+                  ? <figure className="about-image">
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: bottomSection.image.image,
+                          alt: bottomSection.image.alt
+                          }}
+                      />
+                    </figure>
+                  : <figure>
+                    <img alt={bottomSection.image.alt} className="about-image" src={bottomSection.image.publicURL}/>
+                  </figure>}
           </FadeIn>
-            {/* {bottomSection.image ? (
-                  <figure className="about-image">
-                    <PreviewCompatibleImage
-                      imageInfo={{
-                        image: bottomSection.image,
-                
-                      }}
-                    />
-                  </figure>
-                ) : null} */}
           </div>
           <div className="about-section-text-left">
             <FadeIn configuration={config}>
-              <p className="about-paragraph-text">
-                  {bottomSection.description1}
-              </p>
-              <p className="about-paragraph-text">
-                  {bottomSection.description2}
-              </p>
-              <p className="about-paragraph-text">
-                  {bottomSection.description3}
-              </p>
+              {bottomSection.subheadings && bottomSection.subheadings.map((item) => (
+                <p key={v4()} className="about-paragraph-text">{item.paragraph}</p>
+              )) 
+              }
             </FadeIn>
           </div>
         </div>
@@ -192,28 +187,37 @@ query AboutPageTemplate {
         subheading
       }
       topSection {
-          description1
-          description2
+          subheading1
+          subheadings {
+            paragraph
+          }
           image {
-            name
-            childImageSharp {
-              fluid(maxWidth: 2048, quality: 100) {
-                ...GatsbyImageSharpFluid
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2048, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
               }
+              publicURL
             }
+            alt
           }
       }
       bottomSection {
-          description1
-          description2
-          description3
+        subheadings {
+          paragraph
+        }
+        image {
           image {
             childImageSharp {
               fluid(maxWidth: 2048, quality: 100) {
                 ...GatsbyImageSharpFluid
               }
             }
+            publicURL
           }
+          alt
+        }
       }
       seo {
         title

@@ -1,62 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+
+import Content, { HTMLContent } from '../../components/Content'
 import Layout from '../../components/Layout'
-import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 const ThankYouPageTemplate = ({
   heading,
-  subheading,
-  link,
-}) => (
+  content,
+  contentComponent,
+}) => {
+
+  const PostContent = contentComponent || Content
+
+  return (
   <React.Fragment>
     <Helmet>
       <body className="menu-color-2" />
     </Helmet>  
-    <section className="page-padding thankyou-container">
+    <main className="page-padding thankyou-container">
       <div className="container is-max-widescreen">
         <div className="columns">
           <div className="column thankyou">              
           <h2 className="title thankyou-about-title">
             {heading}
           </h2>
-          <p className="thankyou-about-text">
-            {subheading}
-            <span>
-              { 
-                link.local ?
-                  <Link to={link.path} className="link-underline">
-                    {link.text}
-                  </Link> :
-                  <a href={link.path} className="link-underline">
-                    {link.text}
-                  </a>
-              }
-            </span>
-          </p>
+          <div className="thankyou-about-text">
+            <PostContent content={content} />
+          </div>
           </div>
         </div>
       </div>
-    </section>
+    </main>
   </React.Fragment>
-)
+)}
 
 ThankYouPageTemplate.propTypes = {
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  link: PropTypes.object,
+  content: PropTypes.node.isRequired,
+  contentComponent: PropTypes.func,
+  title: PropTypes.string,
 }
 
 const ThankYouPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+  const { frontmatter, html } = data.markdownRemark
 
 return (
   <Layout>
     <ThankYouPageTemplate
       heading={frontmatter.thanks.heading}
-      subheading={frontmatter.thanks.subheading}
-      link={frontmatter.thanks.link}
+      contentComponent={HTMLContent}
+      content={html}
     />
   </Layout>
   )
@@ -65,6 +59,7 @@ return (
 ThankYouPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
+      html: PropTypes.object,
       frontmatter: PropTypes.object,
     }),
   }),
@@ -75,15 +70,10 @@ export default ThankYouPage
 export const pageQuery = graphql`
   query ThankYouPage {
     markdownRemark (frontmatter: { templateKey: { eq: "contact-page" } }) {
+      html
       frontmatter {
         thanks {
           heading
-          subheading
-          link {
-            text
-            local
-            path
-          }
         }
       }
     }

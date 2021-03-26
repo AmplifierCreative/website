@@ -6,14 +6,11 @@ import { graphql } from 'gatsby'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import Content, { HTMLContent } from '../components/Content'
 
-import _404 from '../img/404.gif'
-
 export const _404PageTemplate = ({
   title,
   image,
   content,
   contentComponent,
-  useImage,
 }) => {
   const PageContent = contentComponent || Content
 
@@ -22,16 +19,19 @@ export const _404PageTemplate = ({
       <Helmet>
         <body className="menu-color-2" />
       </Helmet>
-      {useImage ? (
-        <PreviewCompatibleImage
-          imageInfo={{
-            image: image,
-            alt: `Page not found`,
-          }}
-        />
-      ) : (
-        <img alt="Page not found" style={{ width: '100%' }} src={_404} />
-      )}
+      {!!image && !!image.childImageSharp 
+        ? <figure className="not-found-image">
+            <PreviewCompatibleImage
+              imageInfo={{
+                image: image,
+                alt: `Page not found`
+                }}
+            />
+          </figure>
+        : <figure>
+            <img alt="Page not found" className="not-found-image" src={image.publicURL}/>
+          </figure>
+        }
       <div className="container not-found-page not-found-text">
         <PageContent className="container not-found-page" content={content} />
       </div>
@@ -56,7 +56,6 @@ const _404Page = ({ data }) => {
         title={post.frontmatter.title}
         content={post.html}
         contentComponent={HTMLContent}
-        useImage={post.frontmatter.useImage}
       />
     </Layout>
   )
@@ -74,13 +73,13 @@ export const _404PageQuery = graphql`
       html
       frontmatter {
         title
-        useImage
         image {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
+          publicURL
         }
       }
     }

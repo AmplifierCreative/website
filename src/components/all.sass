@@ -36,6 +36,7 @@ h1
   line-height: 1
   text-transform: uppercase
   font-family: $family-sans-serif-medium
+  transition: color .6s, background-color .6s
   &:hover
     background-color: $AC-white
     color: $AC-orange
@@ -318,7 +319,7 @@ h1
   color: $AC-orange
 
 //link style
-.link-underline, .blog p a
+.link-underline, .blog p a, .thankyou-about-text > div > p > a
   position: relative
   display: inline-block
   z-index: 4
@@ -724,7 +725,7 @@ h1
   justify-content: center
   align-items: center
   height: 100%
-.about-image
+.about-image, .about-image-container > div
   width: 100%
 .about-section-text-right
   margin-left: 1rem
@@ -827,6 +828,7 @@ h1
   display: flex
   border-bottom: 2px solid $AC-black
   height: 14rem
+  resize: none
 
 .contact-form-row--bottom
   display: flex
@@ -875,6 +877,7 @@ h1
   border: none
   background-color: $AC-white
   height: 100%
+  resize: none !important
 
 .contact-button-container
   margin-top: 4rem
@@ -900,26 +903,32 @@ h1
 
 .thankyou
   max-width: 844px
+  padding-top: 100px
   margin: auto
 
 .thankyou-about-title
   color: $AC-orange
   font-size: 3rem
+  font-size: clamp (40px, 3vw, 50px)
 
-.thankyou-about-text
+.thankyou-about-text > div > p
   font-size: 1.65rem
+  font-size: clamp(20px, 2vw, 25px)
 
 @media screen and (max-width: 768px)
   .thankyou-container
     margin: 6rem 0
-
+  .thankyou
+    padding-top: 0
 //404 Page
-.not-found-page > h3
+.not-found-image
+  width: 100%
+.not-found-page > p
   color: $AC-white
   font-size: 2.25em
   position: relative
 
-.not-found-page > h3 > a
+.not-found-page > p > a
   position: relative
   display: inline-block
   z-index: 4
@@ -938,6 +947,9 @@ h1
     left: -2%
     bottom: 5%
     background-color: $AC-peach
+@media screen and (max-width: 768px)
+  .not-found-container
+    padding-bottom: 2em
 
 // projects
 .line-header:after
@@ -947,7 +959,7 @@ h1
   background-size: contain
   background-repeat: no-repeat
   height: 55px
-  height: clamp(40px, 6vw, 75px)
+  height: clamp(52px, 6vw, 75px)
   position: absolute
   z-index: -1
   top: 22%
@@ -956,7 +968,6 @@ h1
 @media screen and (max-width: 768px)
   .line-header:after
     left: 1.25%
-    top: 34%
 
 //Project-post
 .project-title-text

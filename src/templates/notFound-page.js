@@ -6,9 +6,8 @@ import { graphql } from 'gatsby'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import Content, { HTMLContent } from '../components/Content'
 
-import _404 from '../img/404.gif'
 
-export const NotFoundPageTemplate = ({ title, image, content, contentComponent, useImage }) => {
+export const NotFoundPageTemplate = ({ title, image, content, contentComponent }) => {
   const PageContent = contentComponent || Content
   console.log(image)
   return (
@@ -16,14 +15,19 @@ export const NotFoundPageTemplate = ({ title, image, content, contentComponent, 
       <Helmet>
           <body className="menu-color-2" />
       </Helmet>
-      { useImage ? 
-        <PreviewCompatibleImage
-          imageInfo={{
-            image: image,
-            alt: `Page not found`,
-          }}
-      /> : 
-        <img alt="Page not found" src={_404} />}
+      {!!image && !!image.childImageSharp 
+        ? <figure className="not-found-image">
+            <PreviewCompatibleImage
+              imageInfo={{
+                image: image,
+                alt: `Page not found`
+                }}
+            />
+          </figure>
+        : <figure>
+            <img alt="Page not found" className="not-found-image" src={image.publicURL}/>
+          </figure>
+        }
       <div className="container not-found-page notFound-text">
         <PageContent className="container not-found-page" content={content} />
       </div>
@@ -49,7 +53,6 @@ const NotFoundPage = ({ data }) => {
         title={post.frontmatter.title}
         content={post.html}
         contentComponent={HTMLContent}
-        useImage={post.frontmatter.useImage}
       />
     </Layout>
   )
@@ -67,13 +70,13 @@ export const notFoundPageQuery = graphql`
       html
       frontmatter {
         title
-        useImage
         image {
           childImageSharp {
               fluid(maxWidth: 2048, quality: 100) {
                 ...GatsbyImageSharpFluid
               }
           }
+          publicURL
       }
       }
     }

@@ -272,17 +272,33 @@ collections:
               widget: 'object',
               fields:
                 [
+                  { label: 'Subheading1', name: 'subheading1', widget: 'text' },
                   {
-                    label: 'Description 1',
-                    name: 'description1',
-                    widget: 'text',
+                    label: 'Subheadings',
+                    name: 'subheadings',
+                    widget: 'list',
+                    allow-add: true,
+                    collapsed: true,
+                    label_singular: 'Paragraph',
+                    fields:
+                      [
+                        {
+                          label: 'Paragraph',
+                          name: 'paragraph',
+                          widget: 'text',
+                        },
+                      ],
                   },
                   {
-                    label: 'Description 2',
-                    name: 'description2',
-                    widget: 'text',
+                    label: 'Image',
+                    name: 'image',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Image', name: 'image', widget: 'image' },
+                        { label: 'Alt Text', name: 'alt', widget: 'string' },
+                      ],
                   },
-                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -292,21 +308,31 @@ collections:
               fields:
                 [
                   {
-                    label: 'Description 1',
-                    name: 'description1',
-                    widget: 'text',
+                    label: 'Subheadings',
+                    name: 'subheadings',
+                    widget: 'list',
+                    allow-add: true,
+                    collapsed: true,
+                    label_singular: 'New Paragraph',
+                    fields:
+                      [
+                        {
+                          label: 'Paragraph',
+                          name: 'paragraph',
+                          widget: 'text',
+                        },
+                      ],
                   },
                   {
-                    label: 'Description 2',
-                    name: 'description2',
-                    widget: 'text',
+                    label: 'Image',
+                    name: 'image',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Image', name: 'image', widget: 'image' },
+                        { label: 'Alt Text', name: 'alt', widget: 'string' },
+                      ],
                   },
-                  {
-                    label: 'Description 3',
-                    name: 'description3',
-                    widget: 'text',
-                  },
-                  { label: 'Image', name: 'image', widget: image },
                 ],
             }
           - {
@@ -528,18 +554,7 @@ collections:
               fields:
                 [
                   { label: 'Heading', name: 'heading', widget: 'string' },
-                  { label: 'Subheading', name: 'subheading', widget: 'text' },
-                  {
-                    label: 'Link',
-                    name: 'link',
-                    widget: 'object',
-                    fields:
-                      [
-                        { label: 'Text', name: 'text', widget: 'string' },
-                        { label: 'Local', name: 'local', widget: 'boolean' },
-                        { label: 'Path', name: 'path', widget: 'string' },
-                      ],
-                  },
+                  { label: 'Body', name: 'body', widget: 'markdown' },
                 ],
             }
           - {
@@ -889,11 +904,5 @@ collections:
               default: 'notFound-page',
             }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - {
-              label: 'Use Image',
-              name: 'useImage',
-              widget: 'boolean',
-              default: false,
-            }
           - { label: 'Image', name: 'image', widget: image }
           - { label: 'Body', name: 'body', widget: 'markdown' }
