@@ -53,7 +53,7 @@ export const AboutPageTemplate = ({
                     />
                   </figure>
                 : <figure>
-                  <img alt={topSection.image.alt} className="about-image" src={topSection.image.publicURL}/>
+                  <img alt={topSection.image.alt} className="about-image" src={topSection.image.image.publicURL}/>
                 </figure>}
           </FadeIn>
           </div>
@@ -82,7 +82,7 @@ export const AboutPageTemplate = ({
                         />
                       </figure>
                     : <figure>
-                      <img alt={bottomSection.image.alt} className="about-image" src={bottomSection.image.publicURL}/>
+                      <img alt={bottomSection.image.alt} className="about-image" src={bottomSection.image.image.publicURL}/>
                     </figure>}
           </FadeIn>
           </div>
@@ -101,7 +101,7 @@ export const AboutPageTemplate = ({
                       />
                     </figure>
                   : <figure>
-                    <img alt={topSection.image.alt} className="about-image" src={topSection.image.publicURL}/>
+                    <img alt={topSection.image.alt} className="about-image" src={topSection.image.image.publicURL}/>
                   </figure>}
         </FadeIn>
           </div>
@@ -129,7 +129,7 @@ export const AboutPageTemplate = ({
                       />
                     </figure>
                   : <figure>
-                    <img alt={bottomSection.image.alt} className="about-image" src={bottomSection.image.publicURL}/>
+                    <img alt={bottomSection.image.alt} className="about-image" src={bottomSection.image.image.publicURL}/>
                   </figure>}
           </FadeIn>
           </div>
