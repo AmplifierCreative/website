@@ -102,7 +102,7 @@ export const ContactPageTemplate = ({
 
 
   return (
-    <React.Fragment>
+    <main>
       <Helmet>
         <body className="menu-color-2" />
       </Helmet>
@@ -331,7 +331,7 @@ export const ContactPageTemplate = ({
           </div>
         </div>
       </section>
-    </React.Fragment>                        
+    </main>                        
   )
 }
 

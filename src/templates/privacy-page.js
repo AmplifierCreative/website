@@ -10,7 +10,7 @@ import SEO from '../components/Seo'
 export const PrivacyPageTemplate = ({ title, seo, mtime, content, contentComponent }) => {
   const PageContent = contentComponent || Content
   return (
-    <section className="section section--gradient page-padding">
+    <main className="section section--gradient page-padding">
       <Helmet>
         <body className="menu-color-2" />
       </Helmet>
@@ -32,7 +32,7 @@ export const PrivacyPageTemplate = ({ title, seo, mtime, content, contentCompone
           </div>
         </div>
       </div>
-    </section>
+    </main>
   )
 }
 

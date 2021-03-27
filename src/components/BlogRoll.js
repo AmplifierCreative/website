@@ -6,7 +6,6 @@ class BlogRoll extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-
     return (
       <div className="blog page-padding">
         <Helmet>
@@ -42,7 +41,7 @@ class BlogRoll extends React.Component {
                     </h1>
                   </header>
                   <p>
-                    {post.excerpt}
+                    {post.frontmatter.description}
                     <br />
                     <br />
                     {/* <Link className="button" to={post.fields.slug}>
@@ -90,6 +89,7 @@ export default () => (
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
                 featuredpost
+                description
                 featuredimage {
                   childImageSharp {
                     fluid(maxWidth: 120, quality: 100) {

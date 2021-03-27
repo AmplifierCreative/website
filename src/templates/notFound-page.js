@@ -11,7 +11,7 @@ export const NotFoundPageTemplate = ({ title, image, content, contentComponent }
   const PageContent = contentComponent || Content
   console.log(image)
   return (
-    <div className="notfound-container page-padding" >
+    <main className="notfound-container page-padding" >
       <Helmet>
           <body className="menu-color-2" />
       </Helmet>
@@ -31,7 +31,7 @@ export const NotFoundPageTemplate = ({ title, image, content, contentComponent }
       <div className="container not-found-page notFound-text">
         <PageContent className="container not-found-page" content={content} />
       </div>
-    </div>
+    </main>
   )
 } 
 

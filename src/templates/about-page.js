@@ -18,7 +18,7 @@ export const AboutPageTemplate = ({
 }) => {
 
   return (
-    <div className="page-padding about-page-container">
+    <main className="page-padding about-page-container">
       <SEO 
         title={seo.title}
         description={seo.description}
@@ -143,7 +143,7 @@ export const AboutPageTemplate = ({
           </div>
         </div>
       </section>
-    </div>
+    </main>
 )}
 
 AboutPageTemplate.propTypes = {
