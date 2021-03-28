@@ -4,7 +4,7 @@ nav:
   - text: About
     local: true
     path: about
-  - text: projects
+  - text: Projects
     local: true
     path: projects
   - local: true
@@ -25,7 +25,7 @@ footer:
       local: true
       path: services
     - local: true
-      text: projects
+      text: Projects
       path: projects
     - local: true
       text: Blog
