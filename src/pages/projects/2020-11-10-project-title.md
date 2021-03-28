@@ -45,7 +45,7 @@ seo:
     with High Brew Coffee to create sponsored ads that highlight High Brew
     Coffee's major differentiators while aligning to the podcast's demographic.
   image: /img/products-grid1.jpg
-  slug: ''
+  slug: '/projects/example-slug-one'
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`

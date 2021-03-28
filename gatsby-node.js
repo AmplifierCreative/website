@@ -18,6 +18,9 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               tags
               templateKey
+              seo {
+                slug
+              }
             }
           }
         }
@@ -33,8 +36,19 @@ exports.createPages = ({ actions, graphql }) => {
 
     posts.forEach((edge) => {
       const id = edge.node.id
+
+      let slug = edge.node.fields.slug
+
+      if (edge.node.frontmatter.seo && edge.node.frontmatter.seo.slug) {
+        slug =
+          edge.node.frontmatter.seo.slug !== ''
+            ? edge.node.frontmatter.seo.slug
+            : edge.node.fields.slug
+        console.log(slug)
+      }
+
       createPage({
-        path: edge.node.fields.slug,
+        path: slug,
         tags: edge.node.frontmatter.tags,
         component: path.resolve(
           `src/templates/${String(edge.node.frontmatter.templateKey)}.js`

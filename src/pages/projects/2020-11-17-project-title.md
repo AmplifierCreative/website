@@ -20,7 +20,7 @@ seo:
   title: Test123
   description: testing testing
   image: /img/products-grid3.jpg
-  slug: ""
+  slug: '/projects/example-slug-four'
 ---
 
 Description goes here and may be long, so let’s have body copy. The Free Pizza Podcast

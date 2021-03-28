@@ -12,6 +12,7 @@ class ProjectRoll extends React.Component {
       color: '#2D2C2C',
       marginTop: 0,
     }
+
     return (
       <div className='project'>
         {posts &&
@@ -39,7 +40,14 @@ class ProjectRoll extends React.Component {
                       <br />
                       <br />
                     </p>
-                    <Link className='button' to={post.fields.slug}>
+                    <Link
+                      className='button'
+                      to={
+                        !!post.frontmatter.seo.slug
+                          ? post.frontmatter.seo.slug
+                          : post.fields.slug
+                      }
+                    >
                       View More
                     </Link>
                   </div>
@@ -109,6 +117,7 @@ export default () => (
                   image {
                     name
                   }
+                  slug
                 }
               }
             }
