@@ -3,7 +3,8 @@ templateKey: project-post
 title: The Free Pizza Podcast
 client: The Free Pizza Podcast
 date: 2020-11-10T02:55:34.791Z
-blurb: The Free Pizza Podcast (along with the Daniel White Show) partnered with High Brew Coffee
+blurb: The Free Pizza Podcast (along with the Daniel White Show) partnered with
+  High Brew Coffee
 description: The Free Pizza Podcast (along with the Daniel White Show) partnered
   with High Brew Coffee to create sponsored ads that highlight High Brew
   Coffee's major differentiators while aligning to the podcast's demographic.
