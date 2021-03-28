@@ -7,14 +7,14 @@ class BlogRoll extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
     return (
-      <div className="blog page-padding">
+      <div className='blog page-padding'>
         <Helmet>
-          <body className="menu-color-2" />
+          <body className='menu-color-2' />
         </Helmet>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="columns mb-2" key={post.id}>
-              <div className="column is-8 is-offset-2">
+            <div className='columns mb-2' key={post.id}>
+              <div className='column is-8 is-offset-2'>
                 <article>
                   <header>
                     {/* {post.frontmatter.featuredimage ? (
@@ -27,17 +27,16 @@ class BlogRoll extends React.Component {
                         />
                       </div>
                     ) : null} */}
-                    <span className="is-block is-uppercase orange-text">
+                    <span className='is-block is-uppercase orange-text'>
                       {post.frontmatter.date} x {post.fields.readingTime.text}
                     </span>
-                    <h1 className="post-meta mt-0">
+                    <h1 className='post-meta mt-0'>
                       <Link
-                        className="title is-size-1 link-black"
+                        className='title is-size-1 link-black'
                         to={post.fields.slug}
                       >
                         {post.frontmatter.title}
                       </Link>
-                      <span> &bull; </span>
                     </h1>
                   </header>
                   <p>
