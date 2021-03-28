@@ -12,20 +12,20 @@ const ProjectsIndexPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark
   return (
     <Layout>
-      <SEO 
-        title={posts[0].node.frontmatter.projects.title}
-        description={posts[0].node.frontmatter.projects.description}
-        image={posts[0].node.frontmatter.projects.image.name}
+      <SEO
+        title={posts[0].node.frontmatter.projects.seo.title}
+        description={posts[0].node.frontmatter.projects.seo.description}
+        image={posts[0].node.frontmatter.projects.seo.image.name}
       />
       <ProjectsHero />
       <ProjectsFilter />
-      <section className="section">
-        <div className="container is-max-widescreen">
-          <div className="content">
+      <main className='section'>
+        <div className='container is-max-widescreen'>
+          <div className='content'>
             <ProjectRoll />
           </div>
         </div>
-      </section>
+      </main>
     </Layout>
   )
 }
@@ -50,10 +50,12 @@ export default () => (
               frontmatter {
                 templateKey
                 projects {
-                  title
-                  description
-                  image {
-                    name
+                  seo {
+                    title
+                    description
+                    image {
+                      name
+                    }
                   }
                 }
               }
@@ -62,6 +64,6 @@ export default () => (
         }
       }
     `}
-  render={(data) => <ProjectsIndexPage data={data} />}
+    render={(data) => <ProjectsIndexPage data={data} />}
   />
 )

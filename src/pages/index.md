@@ -1,6 +1,5 @@
 ---
 templateKey: index-page
-image: /img/products-full-width.jpg
 hero:
   heading: Your new creative team has arrived
   subheading: amplifier creative is a modernized creative agency catered toward
@@ -10,7 +9,8 @@ hero:
     want success to always be within arm’s reach—with an overarching goal of
     instilling positivity, inclusivity, and inspiration in each community we
     serve.
-  image: ""
+  useImage: false
+  image: /img/products-full-width.jpg
 about:
   title: About Us
   heading: Community-focused.

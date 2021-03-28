@@ -45,7 +45,6 @@ function Trail({ trailProps, children }) {
 const scrollConfig = {behavior: "smooth", block: "start", inline: "nearest"}
 
 export const IndexPageTemplate = ({
-  image,
   hero,
   about,
   services,
@@ -60,12 +59,6 @@ export const IndexPageTemplate = ({
   const secondRef = useRef();
   const thirdRef = useRef();
   const fourthRef = useRef();
-
-  const heroContainerProps = useSpring({
-    to: { height: '90vh' },
-    from: { height: '100vh' },
-    config: config.molasses,
-  })
 
   const heroHeaderProps = useSpring({
     to: { opacity: 1 },
@@ -176,15 +169,13 @@ export const IndexPageTemplate = ({
       <section
         ref={firstRef}
         style={
-          image
+          hero.useImage
             ? {
                 backgroundImage: `url(${
-                  !!image.childImageSharp
-                    ? image.childImageSharp.fluid.src
-                    : image
+                  hero.image.publicURL
                 })`,
               }
-            : Object.assign(heroContainerProps, headerStyle)
+            : headerStyle
         }
         className={`hero is-medium page-padding hero-slide active`}
       >
@@ -291,12 +282,12 @@ export const IndexPageTemplate = ({
 }
 
 IndexPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   hero: PropTypes.shape({
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    useImage: PropTypes.string,
+    image: PropTypes.object,
   }),
   about: PropTypes.object,
   services: PropTypes.object,
@@ -310,7 +301,6 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
         hero={frontmatter.hero}
         about={frontmatter.about}
         services={frontmatter.services}
@@ -335,13 +325,14 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
+        hero {
+          heading
+          subheading
+          description
+          useImage
+          image {
+            publicURL
           }
-          publicURL
         }
         about {
           title
@@ -362,20 +353,11 @@ export const pageQuery = graphql`
           title
           heading
         }
-        hero {
-          heading
-          subheading
-          description
-        }
         seo {
           title
           description
           image {
-            childImageSharp {
-              fluid(maxWidth: 2048, quality: 100) {
-                ...GatsbyImageSharpFluid
-              }
-            }
+            name
           }
         }
       }

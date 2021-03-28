@@ -1,7 +1,9 @@
 ---
 templateKey: project-post
 title: The Free Pizza Podcast
+client: The Free Pizza Podcast
 date: 2020-11-10T02:55:34.791Z
+blurb: The Free Pizza Podcast (along with the Daniel White Show) partnered with High Brew Coffee
 description: The Free Pizza Podcast (along with the Daniel White Show) partnered
   with High Brew Coffee to create sponsored ads that highlight High Brew
   Coffee's major differentiators while aligning to the podcast's demographic.
@@ -30,19 +32,20 @@ testimonials:
     author: Dan White
     authorBio: Host and Founder, Free Pizza Podcast
 statistics:
-  - number: "123"
+  - number: '123'
     blurb: increase in sales lorem ipsum
-  - number: "456"
+  - number: '456'
     blurb: increase in sales lorem ipsum
-  - number: "789"
+  - number: '789'
     blurb: increase in sales lorem ipsum
 seo:
   title: blog Test 1
-  description: The Free Pizza Podcast (along with the Daniel White Show) partnered
+  description:
+    The Free Pizza Podcast (along with the Daniel White Show) partnered
     with High Brew Coffee to create sponsored ads that highlight High Brew
     Coffee's major differentiators while aligning to the podcast's demographic.
   image: /img/products-grid1.jpg
-  slug: ""
+  slug: ''
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`
@@ -59,3 +62,11 @@ seo:
 ## Full width Image
 
 ![Alt Text](/img/404-cropped.jpg 'Test')
+
+## Image Link (open in new window)
+
+<a target="blank" href="/">
+
+![this should go to a new tab](/img/products-grid2.jpg)
+
+</a>

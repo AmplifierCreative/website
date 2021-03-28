@@ -4,6 +4,12 @@
 .project .columns
   position: relative
 
+.project > .columns
+  margin-bottom: 3rem !important
+
+.featured-thumbnail > div
+  max-height: 324px
+
 .project .vertical-text
   font-size: 1em !important
   font-weight: 500
@@ -41,5 +47,7 @@
     padding: 0 20%
 
 @media screen and (max-width: 1023px)
+  .vertical-text
+    display: none
   .project .columns
     margin-bottom: 4em !important

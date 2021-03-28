@@ -2,75 +2,65 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
-import { Trail, animated } from 'react-spring/renderprops'
+import { FadeIn } from './Utilities'
 
 class ProjectRoll extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-    const items = posts
     const blackStyle = {
       color: '#2D2C2C',
       marginTop: 0,
     }
     return (
-      <div className="project">
-        <Trail
-          native
-          items={items}
-          keys={items.map((_, i) => i)}
-          from={{ opacity: 0, y: 100 }}
-          to={{ opacity: 1, y: 0 }}
-        >
-          {(item) => ({ y, opacity }) => (
-            <animated.div
-              style={{
-                opacity,
-                transform: y.interpolate((y) => `translate3d(0,${y}%,0)`),
-              }}
-              className="columns mb-2 is-vcentered"
-            >
-              <div className="column has-text-centered">
-                <h4 className="vertical-text">{item.node.frontmatter.tags}</h4>
-                <div className="project-container">
-                  <span className="is-block is-uppercase orange-text">
-                    {/* {post.frontmatter.date} */}
-                    Client Name
-                  </span>
-                  <h1 className="post-meta mt-0">
-                    <Link
-                      className="title is-size-2"
-                      to={item.node.fields.slug}
-                      style={blackStyle}
-                    >
-                      {item.node.frontmatter.title}
+      <div className='project'>
+        {posts &&
+          posts.map(({ node: post }) => (
+            <div className='columns mb-4 is-vcentered' key={post.id}>
+              <div className='column has-text-centered'>
+                <FadeIn>
+                  <h4 className='vertical-text'>{post.frontmatter.tags}</h4>
+                  <div className='project-container'>
+                    <span className='is-block is-uppercase orange-text'>
+                      {/* {post.frontmatter.date} */}
+                      {post.frontmatter.client}
+                    </span>
+                    <h1 className='post-meta mt-0'>
+                      <Link
+                        className='title is-size-2'
+                        to={post.fields.slug}
+                        style={blackStyle}
+                      >
+                        {post.frontmatter.title}
+                      </Link>
+                    </h1>
+                    <p>
+                      {post.frontmatter.blurb}
+                      <br />
+                      <br />
+                    </p>
+                    <Link className='button' to={post.fields.slug}>
+                      View More
                     </Link>
-                  </h1>
-                  <p>
-                    {item.node.frontmatter.seo.description}
-                    <br />
-                    <br />
-                  </p>
-                  <Link className="button" to={item.node.fields.slug}>
-                    View More
-                  </Link>
-                </div>
-              </div>
-              <div className="column" key={item.node.id}>
-                {item.node.frontmatter.featuredimage ? (
-                  <div className="featured-thumbnail">
-                    <PreviewCompatibleImage
-                      imageInfo={{
-                        image: item.node.frontmatter.featuredimage,
-                        alt: `featured image thumbnail for post ${item.node.frontmatter.title}`,
-                      }}
-                    />
                   </div>
-                ) : null}
+                </FadeIn>
               </div>
-            </animated.div>
-          )}
-        </Trail>
+              <div className='column' key={post.id}>
+                <FadeIn>
+                  {post.frontmatter.featuredimage ? (
+                    <div className='featured-thumbnail'>
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: post.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                        }}
+                      />
+                    </div>
+                  ) : null}
+                </FadeIn>
+              </div>
+            </div>
+          ))}
       </div>
     )
   }
@@ -101,12 +91,14 @@ export default () => (
               }
               frontmatter {
                 title
+                blurb
+                client
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
                 tags
                 featuredimage {
                   childImageSharp {
-                    fluid(maxWidth: 650, quality: 100) {
+                    fluid(maxWidth: 324, quality: 100) {
                       ...GatsbyImageSharpFluid
                     }
                   }

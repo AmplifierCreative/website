@@ -4,7 +4,7 @@ nav:
   - text: About
     local: true
     path: about
-  - text: Portfolio
+  - text: Projects
     local: true
     path: projects
   - local: true
@@ -25,7 +25,7 @@ footer:
       local: true
       path: services
     - local: true
-      text: Portfolio
+      text: Projects
       path: projects
     - local: true
       text: Blog
@@ -42,9 +42,15 @@ blog:
   description: test test test
   image: /img/chemex.jpg
 projects:
-  title: homepage-amplifier | projects
-  description: test test test
-  image: /img/chemex.jpg
+  hero:
+    heading: projects
+    subheading: |
+      Want to join the list? Let's make something you love.
+    cta: let's chat
+  seo:
+    title: project-page-amplifier | yerrppp
+    description: A bunch of cool projects we made whatsup
+    image: /img/chemex.jpg
 ---
 
 © Amplifier Creative 2020 view our [Terms of Use](/terms) and [Privacy Policy](/privacy).

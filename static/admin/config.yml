@@ -28,14 +28,16 @@ collections:
           default: 'project-post',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Client Name', name: 'client', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Blurb', name: 'blurb', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean' }
       - { label: 'Client Logo', name: 'clientlogo', widget: image }
       - { label: 'Featured Image', name: 'featuredimage', widget: image }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
-      - { label: 'Result', name: 'result', widget: 'text' }
+      - { label: 'Result', name: 'result', required: false, widget: 'text' }
       - { label: 'WhatWeDid', name: 'whatWeDid', widget: 'text' }
       - {
           label: Testimonials,
@@ -147,7 +149,6 @@ collections:
               widget: 'hidden',
               default: 'index-page',
             }
-          - { label: Image, name: image, required: false, widget: image }
           - {
               label: 'Hero',
               name: 'hero',
@@ -157,6 +158,13 @@ collections:
                   { label: 'Heading', name: 'heading', widget: 'string' },
                   { label: 'Subheading', name: 'subheading', widget: 'text' },
                   { label: 'Description', name: 'description', widget: 'text' },
+                  {
+                    label: 'useImage',
+                    name: 'Use image',
+                    widget: 'boolean',
+                    default: false,
+                  },
+                  { label: Image, name: image, required: false, widget: image },
                 ],
             }
           - {
@@ -868,28 +876,51 @@ collections:
                 ],
             }
           - {
-              label: 'Projects-SEO',
+              label: 'Projects Page',
               name: 'projects',
               widget: 'object',
               fields:
                 [
                   {
-                    label: 'Title',
-                    name: 'title',
-                    required: false,
-                    widget: 'string',
+                    label: 'Hero',
+                    name: 'hero',
+                    widget: 'object',
+                    fields:
+                      [
+                        { label: 'Heading', name: 'heading', widget: 'string' },
+                        {
+                          label: 'Subheading',
+                          name: 'subheading',
+                          widget: 'text',
+                        },
+                        { label: 'CTA', name: 'cta', widget: 'text' },
+                      ],
                   },
                   {
-                    label: 'Description',
-                    name: 'description',
-                    required: false,
-                    widget: 'text',
-                  },
-                  {
-                    label: 'Image',
-                    name: 'image',
-                    required: false,
-                    widget: image,
+                    label: 'SEO',
+                    name: 'seo',
+                    widget: 'object',
+                    fields:
+                      [
+                        {
+                          label: 'Title',
+                          name: 'title',
+                          required: false,
+                          widget: 'string',
+                        },
+                        {
+                          label: 'Description',
+                          name: 'description',
+                          required: false,
+                          widget: 'text',
+                        },
+                        {
+                          label: 'Image',
+                          name: 'image',
+                          required: false,
+                          widget: image,
+                        },
+                      ],
                   },
                 ],
             }
@@ -906,3 +937,13 @@ collections:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Image', name: 'image', widget: image }
           - { label: 'Body', name: 'body', widget: 'markdown' }
+      - file: 'src/pages/projects/hero.md'
+        label: 'Projects Page'
+        name: 'projects'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'projects-page',
+            }
