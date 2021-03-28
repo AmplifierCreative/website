@@ -43,7 +43,7 @@ blog:
   image: /img/chemex.jpg
 projects:
   hero:
-    heading: projects
+    heading: portfolio
     subheading: |
       Want to join the list? Let's make something you love.
     cta: let's chat
