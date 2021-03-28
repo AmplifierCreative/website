@@ -25,8 +25,8 @@ footer:
       local: true
       path: services
     - local: true
-      text: Projects
-      path: projects
+      text: Portfolio
+      path: portfolio
     - local: true
       text: Blog
       path: blog
