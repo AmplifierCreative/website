@@ -4,9 +4,9 @@ nav:
   - text: About
     local: true
     path: about
-  - text: Projects
+  - text: Portfolio
     local: true
-    path: projects
+    path: portfolio
   - local: true
     text: Services
     path: services
