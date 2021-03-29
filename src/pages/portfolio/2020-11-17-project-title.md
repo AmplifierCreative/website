@@ -1,16 +1,16 @@
 ---
-templateKey: project-post
+templateKey: portfolio-post
 title: Project Title
 client: The Free Pizza Podcast
-date: 2020-11-10T02:16:14.029Z
-blurb: The Free Pizza Podcast (along with the Daniel White Show) partnered with High Brew Coffee
-description: Test 2
+date: 2020-11-17T00:40:15.427Z
+blurb: The Free Pizza Podcast (along with the Daniel White Show) partnered with
+  High Brew Coffee
+description: Test
 featuredpost: true
-clientlogo: /img/aa_audpop_stacked_color.png
-featuredimage: /img/placeholder-2.jpg
+clientlogo: /img/fpp_podstack_color.png
+featuredimage: /img/products-grid3.jpg
 tags:
-  - Design
-result: '100'
+  - Social
 whatWeDid: With extensive research into the High Brew Coffee brand, we first
   pinpointed the best differentiators to reference in the advertisement. Then,
   we created a positioning that ensured this information would resonate with the
@@ -20,13 +20,7 @@ seo:
   title: Test123
   description: testing testing
   image: /img/products-grid3.jpg
-  slug: '/projects/example-slug-two'
+  slug: '/portfolio/example-slug-four'
 ---
 
-Description goes here and may be long, so let’s have body copy. Aud pop
-
-<a target="blank" href="/">
-
-![this should go to a new tab](/img/products-grid2.jpg)
-
-</a>
+Description goes here and may be long, so let’s have body copy. The Free Pizza Podcast

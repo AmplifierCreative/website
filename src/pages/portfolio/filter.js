@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import { kebabCase } from 'lodash'
 
-class ProjectsFilter extends React.Component {
+class PortfolioFilter extends React.Component {
   render() {
     const { data } = this.props
     console.log(data)
@@ -10,22 +10,25 @@ class ProjectsFilter extends React.Component {
     const { group: tags } = data.allMarkdownRemark
 
     return (
-      <section className="section filter" style={{ marginBottom: '0' }}>
-        <div className="container content">
-          <div className="columns">
-            <div className="column is-10 is-offset-1 has-text-centered">
-              <h1 className="title">Filter By: </h1>
-              <ul className="taglist">
+      <section className='section filter' style={{ marginBottom: '0' }}>
+        <div className='container content'>
+          <div className='columns'>
+            <div className='column is-10 is-offset-1 has-text-centered'>
+              <h1 className='title'>Filter by: </h1>
+              <ul className='taglist'>
                 <li>
-                  <Link to="/projects">All</Link>
+                  <Link to='/projects'>All</Link>
                 </li>
                 {tags &&
                   tags.map((tag) => (
                     <li key={tag.fieldValue}>
                       <Link
                         to={`/projects/tags/${kebabCase(tag.fieldValue)}/`}
-                        activeStyle={{ textDecoration: 'underline', color: '#FAB395' }}
-                        className="tag-link"
+                        activeStyle={{
+                          textDecoration: 'underline',
+                          color: '#FAB395',
+                        }}
+                        className='tag-link'
                       >
                         {tag.fieldValue}
                       </Link>
@@ -57,6 +60,6 @@ export default () => (
         }
       }
     `}
-    render={(data) => <ProjectsFilter data={data} />}
+    render={(data) => <PortfolioFilter data={data} />}
   />
 )

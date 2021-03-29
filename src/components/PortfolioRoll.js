@@ -4,7 +4,7 @@ import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 import { FadeIn } from './Utilities'
 
-class ProjectRoll extends React.Component {
+class PortfolioRoll extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
@@ -40,6 +40,21 @@ class ProjectRoll extends React.Component {
                       <br />
                       <br />
                     </p>
+                    <div
+                      className='column portfolio-mobile-image'
+                      key={post.id}
+                    >
+                      {post.frontmatter.featuredimage ? (
+                        <div className='featured-thumbnail'>
+                          <PreviewCompatibleImage
+                            imageInfo={{
+                              image: post.frontmatter.featuredimage,
+                              alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                            }}
+                          />
+                        </div>
+                      ) : null}
+                    </div>
                     <Link
                       className='button'
                       to={
@@ -53,7 +68,7 @@ class ProjectRoll extends React.Component {
                   </div>
                 </FadeIn>
               </div>
-              <div className='column' key={post.id}>
+              <div className='column portfolio-desktop-image' key={post.id}>
                 <FadeIn>
                   {post.frontmatter.featuredimage ? (
                     <div className='featured-thumbnail'>
@@ -74,7 +89,7 @@ class ProjectRoll extends React.Component {
   }
 }
 
-ProjectRoll.propTypes = {
+PortfolioRoll.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.array,
@@ -85,10 +100,10 @@ ProjectRoll.propTypes = {
 export default () => (
   <StaticQuery
     query={graphql`
-      query ProjectRollQuery {
+      query PortfolioRollQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { templateKey: { eq: "project-post" } } }
+          filter: { frontmatter: { templateKey: { eq: "portfolio-post" } } }
         ) {
           edges {
             node {
@@ -125,6 +140,6 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <ProjectRoll data={data} count={count} />}
+    render={(data, count) => <PortfolioRoll data={data} count={count} />}
   />
 )

@@ -3,26 +3,26 @@ import { graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 
 import Layout from '../../components/Layout'
-import ProjectRoll from '../../components/ProjectRoll'
+import PortfolioRoll from '../../components/PortfolioRoll'
 import SEO from '../../components/Seo'
-import ProjectsFilter from './filter'
-import ProjectsHero from './hero'
+import PortfolioFilter from './filter'
+import PortfolioHero from './hero'
 
-const ProjectsIndexPage = ({ data }) => {
+const PortfolioIndexPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark
   return (
     <Layout>
       <SEO
-        title={posts[0].node.frontmatter.projects.seo.title}
-        description={posts[0].node.frontmatter.projects.seo.description}
-        image={posts[0].node.frontmatter.projects.seo.image.name}
+        title={posts[0].node.frontmatter.portfolio.seo.title}
+        description={posts[0].node.frontmatter.portfolio.seo.description}
+        image={posts[0].node.frontmatter.portfolio.seo.image.name}
       />
-      <ProjectsHero />
-      <ProjectsFilter />
+      <PortfolioHero />
+      <PortfolioFilter />
       <main className='section'>
         <div className='container is-max-widescreen'>
           <div className='content'>
-            <ProjectRoll />
+            <PortfolioRoll />
           </div>
         </div>
       </main>
@@ -30,7 +30,7 @@ const ProjectsIndexPage = ({ data }) => {
   )
 }
 
-ProjectsIndexPage.propTypes = {
+PortfolioIndexPage.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.array,
@@ -41,7 +41,7 @@ ProjectsIndexPage.propTypes = {
 export default () => (
   <StaticQuery
     query={graphql`
-      query ProjectsIndexPageQuery {
+      query PortfolioIndexPageQuery {
         allMarkdownRemark(
           filter: { frontmatter: { templateKey: { eq: "global-page" } } }
         ) {
@@ -49,7 +49,7 @@ export default () => (
             node {
               frontmatter {
                 templateKey
-                projects {
+                portfolio {
                   seo {
                     title
                     description
@@ -64,6 +64,6 @@ export default () => (
         }
       }
     `}
-    render={(data) => <ProjectsIndexPage data={data} />}
+    render={(data) => <PortfolioIndexPage data={data} />}
   />
 )

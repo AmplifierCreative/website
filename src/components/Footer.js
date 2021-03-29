@@ -18,7 +18,7 @@ const LinksMenu = ({ links, start, end }) => {
     if (local) {
       return (
         <li key={v4()}>
-          <Link to={link.path} className="footer-item footer-menu-item">
+          <Link to={link.path} className='footer-item footer-menu-item'>
             {link.text}
           </Link>
         </li>
@@ -26,7 +26,11 @@ const LinksMenu = ({ links, start, end }) => {
     } else {
       return (
         <li key={v4()}>
-          <a href={path} className="footer-item footer-menu-item">
+          <a
+            href={path}
+            target='blank'
+            className='footer-item footer-menu-item'
+          >
             {text}
           </a>
         </li>
@@ -61,9 +65,9 @@ class Footer extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault()
     let email = this.state.emailValue
-    if (email === "") { 
-      this.setState({ formEmpty : true })
-      return;
+    if (email === '') {
+      this.setState({ formEmpty: true })
+      return
     }
     this.setState({ formEmpty: false })
     const response = await addToMailchimp(email)
@@ -99,31 +103,37 @@ class Footer extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
     return (
-      <footer className="footer">
-        <div className="container is-max-widescreen">
-          <div
-            className="columns has-text-centered-mobile"
-          >
-            <div className="column is-two-thirds-desktop">
-              {this.state.formEmpty && <div className=""><p className="footer-form-empty-text">Please enter a valid email</p></div>}
+      <footer className='footer'>
+        <div className='container is-max-widescreen'>
+          <div className='columns has-text-centered-mobile'>
+            <div className='column is-two-thirds-desktop'>
+              {this.state.formEmpty && (
+                <div className=''>
+                  <p className='footer-form-empty-text'>
+                    Please enter a valid email
+                  </p>
+                </div>
+              )}
               <div>
                 {this.state.sent ? (
-                  <div
-                    className="footer-form footer-response"
-                  >
-                    {this.state.res.result === 'error' ?
-                      <div className="results-container">
+                  <div className='footer-form footer-response'>
+                    {this.state.res.result === 'error' ? (
+                      <div className='results-container'>
                         {/* <div className="results-text" dangerouslySetInnerHTML={{ __html: this.state.res.msg }} /> */}
-                        <p className="results-text">Oops! Looks like you've already subscribed.</p>
-                        <button className="reset-btn" onClick={this.resetForm}>Try again.</button>
+                        <p className='results-text'>
+                          Oops! Looks like you've already subscribed.
+                        </p>
+                        <button className='reset-btn' onClick={this.resetForm}>
+                          Try again.
+                        </button>
                       </div>
-                      :
-                      <div className="results-container">
-                        <p className="results-text">
+                    ) : (
+                      <div className='results-container'>
+                        <p className='results-text'>
                           Thanks for joining our community.
                         </p>
                       </div>
-                    }
+                    )}
                   </div>
                 ) : (
                   <form
@@ -131,92 +141,128 @@ class Footer extends React.Component {
                     onSubmit={this.handleSubmit}
                   >
                     <input
-                        className="email-input"
-                        type="email"
-                        placeholder="enter your email address to stay in touch"
-                        emailvalue={this.state.emailValue}
-                        onChange={this.handleChange}
-                        onFocus={this.showSubmit}
-                      />
+                      className='email-input'
+                      type='email'
+                      placeholder='enter your email address to stay in touch'
+                      emailvalue={this.state.emailValue}
+                      onChange={this.handleChange}
+                      onFocus={this.showSubmit}
+                    />
                     <input
-                        className="email-input mobile-input has-text-centered-mobile"
-                        type="email"
-                        placeholder="join our email list"
-                        emailvalue={this.state.emailValue}
-                        onChange={this.handleChange}
-                        onFocus={this.showSubmit}
-                      />
+                      className='email-input mobile-input has-text-centered-mobile'
+                      type='email'
+                      placeholder='join our email list'
+                      emailvalue={this.state.emailValue}
+                      onChange={this.handleChange}
+                      onFocus={this.showSubmit}
+                    />
                     <button
-                      type="submit"
+                      type='submit'
                       onSubmit={this.handleSubmit}
                       className={`submit-btn-alt ${this.state.footerActiveClass}`}
                     >
-                      <img src={emailSendButton} className="send-icon" alt="send"/>
+                      <img
+                        src={emailSendButton}
+                        className='send-icon'
+                        alt='send'
+                      />
                     </button>
                   </form>
                 )}
               </div>
               {/* Mobile Links Menu */}
               <div className='has-text-centered mobile-menu'>
-                <ul className="footer-list">
-                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={3} />
+                <ul className='footer-list'>
+                  <LinksMenu
+                    links={posts[0].node.frontmatter.footer.menu}
+                    start={0}
+                    end={3}
+                  />
                 </ul>
-                <ul className="footer-list">
-                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={3} end={6} />
+                <ul className='footer-list'>
+                  <LinksMenu
+                    links={posts[0].node.frontmatter.footer.menu}
+                    start={3}
+                    end={6}
+                  />
                 </ul>
               </div>
               {/* Desktop Links Menu */}
-              <div className="desktop-menu">
-                <ul className="footer-list left-list-item">
-                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={0} end={2} />
+              <div className='desktop-menu'>
+                <ul className='footer-list left-list-item'>
+                  <LinksMenu
+                    links={posts[0].node.frontmatter.footer.menu}
+                    start={0}
+                    end={2}
+                  />
                 </ul>
-                <ul className="footer-list">
-                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={2} end={4} />
+                <ul className='footer-list'>
+                  <LinksMenu
+                    links={posts[0].node.frontmatter.footer.menu}
+                    start={2}
+                    end={4}
+                  />
                 </ul>
-                <ul className="footer-list">
-                  <LinksMenu links={posts[0].node.frontmatter.footer.menu} start={4} end={6} />
+                <ul className='footer-list'>
+                  <LinksMenu
+                    links={posts[0].node.frontmatter.footer.menu}
+                    start={4}
+                    end={6}
+                  />
                 </ul>
               </div>
             </div>
             {/* Social Menu */}
-            <div className="column is-one-third-desktop">
+            <div className='column is-one-third-desktop'>
               <div>
-                <span className="footer-social-header">Follow us</span>
+                <span className='footer-social-header'>Follow us</span>
               </div>
-              <div
-                className='columns is-mobile is-justify-content-center-mobile m-0'>
-                <div className="column is-2 social-icon-container">
+              <div className='columns is-mobile is-justify-content-center-mobile m-0'>
+                <div className='column is-2 social-icon-container'>
                   <a
-                    title="twitter"
+                    title='twitter'
+                    target='blank'
                     href={posts[0].node.frontmatter.footer.social.twitter}
                   >
-                    <img className="footer-sm-icon" src={twitter} alt="Twitter" />
+                    <img
+                      className='footer-sm-icon'
+                      src={twitter}
+                      alt='Twitter'
+                    />
                   </a>
                 </div>
-                <div className="column is-2 social-icon-container add-margin">
+                <div className='column is-2 social-icon-container add-margin'>
                   <a
-                    title="instagram"
+                    title='instagram'
+                    target='blank'
                     href={posts[0].node.frontmatter.footer.social.ig}
                   >
-                    <img className="footer-sm-icon" src={instagram} alt="Instagram" />
+                    <img
+                      className='footer-sm-icon'
+                      src={instagram}
+                      alt='Instagram'
+                    />
                   </a>
                 </div>
-                <div className="column is-2 social-icon-container add-margin">
+                <div className='column is-2 social-icon-container add-margin'>
                   <a
-                    title="linkedin"
+                    title='linkedin'
+                    target='blank'
                     href={posts[0].node.frontmatter.footer.social.linkedin}
                   >
-                    <img className="footer-sm-icon" src={linkedin} alt="LinkedIn" />
+                    <img
+                      className='footer-sm-icon'
+                      src={linkedin}
+                      alt='LinkedIn'
+                    />
                   </a>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className='columns has-text-centered-mobile'
-          >
-            <div className="column footer-policy-container">
-              <span className="footer-policy">
+          <div className='columns has-text-centered-mobile'>
+            <div className='column footer-policy-container'>
+              <span className='footer-policy'>
                 <HTMLContent
                   content={posts[0].node.html}
                   className={'link footer-link-hover'}

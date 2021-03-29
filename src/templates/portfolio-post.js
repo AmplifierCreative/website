@@ -10,7 +10,7 @@ import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/Seo'
 import { FadeIn } from '../components/Utilities'
 
-export const ProjectPostTemplate = ({
+export const PortfolioPostTemplate = ({
   content,
   contentComponent,
   description,
@@ -24,42 +24,42 @@ export const ProjectPostTemplate = ({
 }) => {
   const PostContent = contentComponent || Content
   return (
-    <div className="page-padding">
+    <div className='page-padding'>
       <FadeIn>
-        <section className="hero is-small">
+        <section className='hero is-small'>
           <div
-            className="hero-body"
+            className='hero-body'
             style={{ minHeight: '30vh', paddingTop: '10vh' }}
           >
-            <div className="container is-max-widescreen">
-              <div className="columns">
-                <div className="column is-8 is-offset-2">
-                  <h1 className="title project-title-text">{title}</h1>
+            <div className='container is-max-widescreen'>
+              <div className='columns'>
+                <div className='column is-8 is-offset-2'>
+                  <h1 className='title project-title-text'>{title}</h1>
                 </div>
               </div>
             </div>
           </div>
         </section>
       </FadeIn>
-      <section className="section">
+      <section className='section'>
         {helmet || ''}
-        <div className="container is-max-widescreen content">
-          <div className="columns">
-            <div className="column is-8 is-offset-2">
-              <div className="columns">
-                <div className="column is-9 overview">
+        <div className='container is-max-widescreen content'>
+          <div className='columns'>
+            <div className='column is-8 is-offset-2'>
+              <div className='columns'>
+                <div className='column is-9 overview'>
                   <FadeIn>
-                    <h2 className="orange-text">Overview</h2>
+                    <h2 className='orange-text'>Overview</h2>
                     <p>{description}</p>
                   </FadeIn>
                 </div>
-                <div className="column is-3">
+                <div className='column is-3'>
                   {tags && tags.length ? (
                     <div>
                       <FadeIn>
-                        <h2 className="orange-text">Services</h2>
+                        <h2 className='orange-text'>Services</h2>
                       </FadeIn>
-                      <ul className="taglist" style={{ marginTop: 0 }}>
+                      <ul className='taglist' style={{ marginTop: 0 }}>
                         {tags.map((tag) => (
                           <li key={tag + `tag`}>
                             <FadeIn>
@@ -75,34 +75,34 @@ export const ProjectPostTemplate = ({
                 </div>
               </div>
 
-              <div className="columns">
-                <div className="column is-full">
-                  <h2 className="orange-text">What We Did</h2>
-                  <div className="project-body">
+              <div className='columns'>
+                <div className='column is-full'>
+                  <h2 className='orange-text'>What We Did</h2>
+                  <div className='project-body'>
                     <p>{whatWeDid}</p>
                   </div>
-                  <h2 className="orange-text">The Creative</h2>
-                  <div className="project-body">
+                  <h2 className='orange-text'>The Creative</h2>
+                  <div className='project-body'>
                     <PostContent content={content} />
                   </div>
                   <FadeIn>
-                    <h2 className="orange-text">The Result</h2>
-                    <p className="project-result-text">{result}</p>
+                    <h2 className='orange-text'>The Result</h2>
+                    <p className='project-result-text'>{result}</p>
                   </FadeIn>
                 </div>
               </div>
             </div>
           </div>
-          <div class="container is-max-widescreen content">
-            <div className="columns">
-              <div className="column is-full">
+          <div class='container is-max-widescreen content'>
+            <div className='columns'>
+              <div className='column is-full'>
                 {statistics && statistics.length ? (
                   <Statistics statistics={statistics} />
                 ) : null}
 
                 {testimonials && testimonials.length ? (
-                  <div className="columns">
-                    <div className="column is-8 is-offset-2">
+                  <div className='columns'>
+                    <div className='column is-8 is-offset-2'>
                       <FadeIn>
                         <Testimonials testimonials={testimonials} />
                       </FadeIn>
@@ -118,7 +118,7 @@ export const ProjectPostTemplate = ({
   )
 }
 
-ProjectPostTemplate.propTypes = {
+PortfolioPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
@@ -129,7 +129,7 @@ ProjectPostTemplate.propTypes = {
   testimonials: PropTypes.array,
 }
 
-const ProjectPost = ({ data }) => {
+const PortfolioPost = ({ data }) => {
   const { markdownRemark: post } = data
 
   return (
@@ -141,14 +141,14 @@ const ProjectPost = ({ data }) => {
         pathname={post.frontmatter.seo.slug || null}
         article={true}
       />
-      <ProjectPostTemplate
+      <PortfolioPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         whatWeDid={post.frontmatter.whatWeDid}
         helmet={
           <Helmet>
-            <body className="menu-color-2" />
+            <body className='menu-color-2' />
           </Helmet>
         }
         tags={post.frontmatter.tags}
@@ -157,16 +157,16 @@ const ProjectPost = ({ data }) => {
         testimonials={post.frontmatter.testimonials}
         statistics={post.frontmatter.statistics}
       />
-      <section className="section portfolio-cta-container project-cta-container">
-        <div className="container is-max-widescreen">
-          <div className="content">
-            <h2 className="project-contact-header">Like What You See?</h2>
-            <p className="project-contact-text">
+      <section className='section portfolio-cta-container project-cta-container'>
+        <div className='container is-max-widescreen'>
+          <div className='content'>
+            <h2 className='project-contact-header'>Like What You See?</h2>
+            <p className='project-contact-text'>
               {' '}
               We can do something like this for you, too. Let's chat.
             </p>
-            <Link to="/contact">
-              <button className="button is-uppercase project-button-style">
+            <Link to='/contact'>
+              <button className='button is-uppercase project-button-style'>
                 Contact Us
               </button>
             </Link>
@@ -177,16 +177,16 @@ const ProjectPost = ({ data }) => {
   )
 }
 
-ProjectPost.propTypes = {
+PortfolioPost.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object,
   }),
 }
 
-export default ProjectPost
+export default PortfolioPost
 
 export const pageQuery = graphql`
-  query ProjectPostByID($id: String!) {
+  query PortfolioPostByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html

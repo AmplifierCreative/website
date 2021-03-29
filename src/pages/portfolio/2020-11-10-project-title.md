@@ -1,5 +1,5 @@
 ---
-templateKey: project-post
+templateKey: portfolio-post
 title: The Free Pizza Podcast
 client: The Free Pizza Podcast
 date: 2020-11-10T02:55:34.791Z
@@ -46,7 +46,7 @@ seo:
     with High Brew Coffee to create sponsored ads that highlight High Brew
     Coffee's major differentiators while aligning to the podcast's demographic.
   image: /img/products-grid1.jpg
-  slug: '/projects/example-slug-one'
+  slug: '/portfolio/example-slug-one'
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`

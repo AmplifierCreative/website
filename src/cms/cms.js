@@ -5,7 +5,7 @@ import TermsPagePreview from './preview-templates/TermsPagePreview'
 import BlogPostPreview from './preview-templates/BlogPostPreview'
 import ProductPagePreview from './preview-templates/ProductPagePreview'
 import IndexPagePreview from './preview-templates/IndexPagePreview'
-import ProjectPostPreview from './preview-templates/ProjectPostPreview'
+import PortfolioPostPreview from './preview-templates/PortfolioPostPreview'
 import ContactPagePreview from './preview-templates/ContactPagePreview'
 import AboutPagePreview from './preview-templates/AboutPagePreview'
 import ServicesPagePreview from './preview-templates/ServicesPagePreview'
@@ -20,7 +20,7 @@ CMS.registerPreviewTemplate('privacy', PrivacyPagePreview)
 CMS.registerPreviewTemplate('terms', TermsPagePreview)
 CMS.registerPreviewTemplate('products', ProductPagePreview)
 CMS.registerPreviewTemplate('blog', BlogPostPreview)
-CMS.registerPreviewTemplate('projects', ProjectPostPreview)
+CMS.registerPreviewTemplate('portfolio', PortfolioPostPreview)
 CMS.registerPreviewTemplate('contact', ContactPagePreview)
 CMS.registerPreviewTemplate('about', AboutPagePreview)
 CMS.registerPreviewTemplate('services', ServicesPagePreview)

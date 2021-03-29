@@ -15,9 +15,9 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'project'
-    label: 'Project'
-    folder: 'src/pages/projects'
+  - name: 'portfolio'
+    label: 'Portfolio'
+    folder: 'src/pages/portfolio'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     fields:
@@ -25,7 +25,7 @@ collections:
           label: 'Template Key',
           name: 'templateKey',
           widget: 'hidden',
-          default: 'project-post',
+          default: 'portfolio-post',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Client Name', name: 'client', widget: 'string' }
@@ -876,8 +876,8 @@ collections:
                 ],
             }
           - {
-              label: 'Projects Page',
-              name: 'projects',
+              label: 'Portfolio Page',
+              name: 'portfolio',
               widget: 'object',
               fields:
                 [
@@ -937,13 +937,13 @@ collections:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Image', name: 'image', widget: image }
           - { label: 'Body', name: 'body', widget: 'markdown' }
-      - file: 'src/pages/projects/hero.md'
-        label: 'Projects Page'
-        name: 'projects'
+      - file: 'src/pages/portfolio/hero.md'
+        label: 'Portfolio Page'
+        name: 'portfolio'
         fields:
           - {
               label: 'Template Key',
               name: 'templateKey',
               widget: 'hidden',
-              default: 'projects-page',
+              default: 'portfolio-page',
             }

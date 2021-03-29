@@ -3,10 +3,10 @@ import { kebabCase } from 'lodash'
 import { Helmet } from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import Layout from '../../components/Layout'
-import ProjectsFilter from './filter'
-import ProjectsHero from './hero'
+import PortfolioFilter from './filter'
+import PortfolioHero from './hero'
 
-const ProjectsTagsPage = ({
+const PortfolioTagsPage = ({
   data: {
     allMarkdownRemark: { group },
     site: {
@@ -15,15 +15,15 @@ const ProjectsTagsPage = ({
   },
 }) => (
   <Layout>
-    <ProjectsHero />
-    <ProjectsFilter />
-    <section className="section">
+    <PortfolioHero />
+    <PortfolioFilter />
+    <section className='section'>
       <Helmet title={`Tags | ${title}`} />
-      <div className="container is-max-widescreen content">
-        <div className="columns">
-          <div className="column" style={{ marginBottom: '6rem' }}>
-            <h1 className="title is-size-2 is-bold-light">Tags</h1>
-            <ul className="taglist">
+      <div className='container is-max-widescreen content'>
+        <div className='columns'>
+          <div className='column' style={{ marginBottom: '6rem' }}>
+            <h1 className='title is-size-2 is-bold-light'>Tags</h1>
+            <ul className='taglist'>
               {group.map((tag) => (
                 <li key={tag.fieldValue}>
                   <Link to={`${kebabCase(tag.fieldValue)}/`}>
@@ -39,10 +39,10 @@ const ProjectsTagsPage = ({
   </Layout>
 )
 
-export default ProjectsTagsPage
+export default PortfolioTagsPage
 
-export const projectsTagPageQuery = graphql`
-  query ProjectsTagsQuery {
+export const portfolioTagPageQuery = graphql`
+  query PortfolioTagsQuery {
     site {
       siteMetadata {
         title

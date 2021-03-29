@@ -33,7 +33,11 @@ class BlogRoll extends React.Component {
                     <h1 className='post-meta mt-0'>
                       <Link
                         className='title is-size-1 link-black'
-                        to={post.fields.slug}
+                        to={
+                          !!post.frontmatter.seo.slug
+                            ? post.frontmatter.seo.slug
+                            : post.fields.slug
+                        }
                       >
                         {post.frontmatter.title}
                       </Link>
@@ -89,6 +93,9 @@ export default () => (
                 date(formatString: "MMMM DD, YYYY")
                 featuredpost
                 description
+                seo {
+                  slug
+                }
                 featuredimage {
                   childImageSharp {
                     fluid(maxWidth: 120, quality: 100) {

@@ -4,9 +4,9 @@ nav:
   - text: About
     local: true
     path: about
-  - text: Projects
+  - text: Portfolio
     local: true
-    path: projects
+    path: portfolio
   - local: true
     text: Services
     path: services
@@ -25,8 +25,8 @@ footer:
       local: true
       path: services
     - local: true
-      text: Projects
-      path: projects
+      text: Portfolio
+      path: portfolio
     - local: true
       text: Blog
       path: blog
@@ -41,7 +41,7 @@ blog:
   title: homepage-amplifier | blog roll
   description: test test test
   image: /img/chemex.jpg
-projects:
+portfolio:
   hero:
     heading: portfolio
     subheading: |

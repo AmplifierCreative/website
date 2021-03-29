@@ -968,9 +968,33 @@ h1
 .projects-btn
   margin: 2rem 0
 
+.portfolio-line-header
+  font-size: clamp(60px, 6vw, 92px) !important
+  color: $AC-white
+
+.portfolio-subheading
+  font-size: 2.5rem
+  line-height: clamp(45px, 3vw, 53px)
+  color: $AC-white
+  max-width: 1029px
+  font-family: $family-sans-serif !important
+  font-size: clamp(30px, 2vw, 35px)
+
+.portfolio-mobile-image
+  display: none
+.portfolio-desktop-image
+  display: block
+
 @media screen and (max-width: 768px)
   .line-header:after
     left: 1.25%
+  .portfolio-mobile-image
+    display: block
+    padding-top: 0
+  .portfolio-desktop-image
+    display: none
+  .project-container > p
+    margin-bottom: 0 !important
 
 //Project-post
 .project-title-text

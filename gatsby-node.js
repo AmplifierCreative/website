@@ -44,7 +44,6 @@ exports.createPages = ({ actions, graphql }) => {
           edge.node.frontmatter.seo.slug !== ''
             ? edge.node.frontmatter.seo.slug
             : edge.node.fields.slug
-        console.log(slug)
       }
 
       createPage({
@@ -73,11 +72,11 @@ exports.createPages = ({ actions, graphql }) => {
 
     // Make tag pages
     tags.forEach((tag) => {
-      const tagPath = `/projects/tags/${_.kebabCase(tag)}/`
+      const tagPath = `/portfolio/tags/${_.kebabCase(tag)}/`
 
       createPage({
         path: tagPath,
-        component: path.resolve(`src/templates/project-tags.js`),
+        component: path.resolve(`src/templates/portfolio-tags.js`),
         context: {
           tag,
         },
