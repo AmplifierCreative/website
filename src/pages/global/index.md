@@ -38,19 +38,20 @@ footer:
     ig: https://www.instagram.com
     linkedin: www.linked.com/company/amplifiercreative
 blog:
-  title: homepage-amplifier | blog roll
-  description: test test test
+  title: "amplifier creative | a full-service creative agency "
+  description: "amplifier creative is a full-service creative agency, specializing
+    in growing businesses, driven entrepreneurs, and committed creative
+    endeavors of all kinds. "
   image: /img/chemex.jpg
 portfolio:
   hero:
     heading: portfolio
     subheading: |
-      Want to join the list? Let's make something you love.
+      Want to join this list? We’d like that, too.
     cta: let's chat
   seo:
-    title: project-page-amplifier | yerrppp
-    description: A bunch of cool projects we made whatsup
+    title: amplifier creative | copy, design, social, and strategy portfolio
+    description: "Our work doesn’t only speak for itself—but our passion, too. "
     image: /img/chemex.jpg
 ---
-
-© Amplifier Creative 2020 view our [Terms of Use](/terms) and [Privacy Policy](/privacy).
+© amplifier Creative 2021. View our [Terms of Use](/terms) and [Privacy Policy](/privacy).
