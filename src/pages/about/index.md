@@ -20,7 +20,7 @@ topSection:
         greater. And, now—we found it.
   image:
     image: /img/hollie-bio.gif
-    alt: Hollie!
+    alt: woman sitting in chair with two dogs and wine
 bottomSection:
   subheadings:
     - paragraph: >
@@ -35,12 +35,12 @@ bottomSection:
         believe in no matter what it takes.
     - paragraph: >
         Now, it’s our turn to call the shots—and do it in a more meaningful way
-        than before
+        than before.
   image:
     image: /img/jen-bio.gif
-    alt: Jen!
+    alt: woman sitting in chair at desk with two dogs
 seo:
-  title: about-page-amplifier | yerrppp
-  description: test test test
+  title: "amplifier creative | about us "
+  description: "We’re a copy + design duo that’s passionate about your success. "
   image: /img/chemex.jpg
 ---
