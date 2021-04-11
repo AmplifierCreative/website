@@ -27,18 +27,28 @@ collections:
           widget: 'hidden',
           default: 'portfolio-post',
         }
-      - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Client Name', name: 'client', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Blurb', name: 'blurb', widget: 'string' }
-      - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean' }
       - { label: 'Client Logo', name: 'clientlogo', widget: image }
       - { label: 'Featured Image', name: 'featuredimage', widget: image }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
-      - { label: 'Result', name: 'result', required: false, widget: 'text' }
       - { label: 'WhatWeDid', name: 'whatWeDid', widget: 'text' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Result', name: 'result', required: false, widget: 'text' }
+      - {
+          label: Statistics,
+          name: statistics,
+          widget: list,
+          fields:
+            [
+              { label: Number, name: number, widget: string },
+              { label: Blurb, name: blurb, widget: string },
+            ],
+        }
       - {
           label: Testimonials,
           name: testimonials,
@@ -51,13 +61,14 @@ collections:
             ],
         }
       - {
-          label: Statistics,
-          name: statistics,
-          widget: list,
+          label: 'CTA',
+          name: 'cta',
+          widget: 'object',
           fields:
             [
-              { label: Number, name: number, widget: string },
-              { label: Blurb, name: blurb, widget: string },
+              { label: 'Heading', name: 'heading', widget: 'string' },
+              { label: 'Subheading', name: 'subheading', widget: 'string' },
+              { label: 'Button', name: 'button', widget: 'string' },
             ],
         }
       - {

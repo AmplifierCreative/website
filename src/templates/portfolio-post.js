@@ -127,6 +127,7 @@ PortfolioPostTemplate.propTypes = {
   whatWeDid: PropTypes.string,
   helmet: PropTypes.object,
   testimonials: PropTypes.array,
+  cta: PropTypes.object,
 }
 
 const PortfolioPost = ({ data }) => {
@@ -160,14 +161,16 @@ const PortfolioPost = ({ data }) => {
       <section className='section portfolio-cta-container project-cta-container'>
         <div className='container is-max-widescreen'>
           <div className='content'>
-            <h2 className='project-contact-header'>Like What You See?</h2>
+            <h2 className='project-contact-header'>
+              {post.frontmatter.cta.heading}
+            </h2>
             <p className='project-contact-text'>
               {' '}
-              We can do something like this for you, too. Let's chat.
+              {post.frontmatter.cta.subheading}
             </p>
             <Link to='/contact'>
               <button className='button is-uppercase project-button-style'>
-                Contact Us
+                {post.frontmatter.cta.button}
               </button>
             </Link>
           </div>
@@ -205,6 +208,11 @@ export const pageQuery = graphql`
         statistics {
           number
           blurb
+        }
+        cta {
+          heading
+          subheading
+          button
         }
         seo {
           title

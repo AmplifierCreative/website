@@ -48,14 +48,14 @@ class Carousel extends React.Component {
     return (
       <div>
         {isMobile ? (
-          <div className="carousel">
+          <div className='carousel'>
             {posts &&
               posts.slice(0, 4).map(({ node: post }) => (
                 <div key={post.id}>
                   <Link to={post.fields.slug}>
-                    <div className="carousel-item-container">
+                    <div className='carousel-item-container'>
                       {post.frontmatter.clientlogo ? (
-                        <div className="featured-thumbnail">
+                        <div className='featured-thumbnail'>
                           <PreviewCompatibleImage
                             imageInfo={{
                               image: post.frontmatter.clientlogo,
@@ -75,9 +75,9 @@ class Carousel extends React.Component {
               posts.map(({ node: post }) => (
                 <div key={post.id}>
                   <Link to={post.fields.slug}>
-                    <div className="carousel-item-container">
+                    <div className='carousel-item-container'>
                       {post.frontmatter.clientlogo ? (
-                        <div className="featured-thumbnail">
+                        <div className='featured-thumbnail'>
                           <PreviewCompatibleImage
                             imageInfo={{
                               image: post.frontmatter.clientlogo,
@@ -113,7 +113,7 @@ export default () => (
           sort: { order: DESC, fields: [frontmatter___date] }
           filter: {
             frontmatter: {
-              templateKey: { eq: "project-post" }
+              templateKey: { eq: "portfolio-post" }
               featuredpost: { eq: true }
             }
           }

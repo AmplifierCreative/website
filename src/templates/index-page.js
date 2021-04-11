@@ -13,15 +13,6 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-const fixedBackground = {
-  position: 'fixed',
-  top: '0',
-  left: '0',
-  width: '100%',
-  height: '100vh',
-  zIndex: '0',
-}
-
 function Trail({ trailProps, children }) {
   const items = React.Children.toArray(children)
   return (
@@ -29,7 +20,7 @@ function Trail({ trailProps, children }) {
       {trailProps.map(({ x, ...rest }, index) => (
         <animated.div
           key={items[index]}
-          className="trails-text"
+          className='trails-text'
           style={{
             ...rest,
             transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
@@ -42,23 +33,32 @@ function Trail({ trailProps, children }) {
   )
 }
 
-const scrollConfig = {behavior: "smooth", block: "start", inline: "nearest"}
+const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
 
-export const IndexPageTemplate = ({
-  hero,
-  about,
-  services,
-  clients,
-  seo,
-}) => {
-
-  const [index, setIndex] = useState(0);
+export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
+  const [index, setIndex] = useState(0)
   const [show, setShow] = useState(false)
 
-  const firstRef = useRef();
-  const secondRef = useRef();
-  const thirdRef = useRef();
-  const fourthRef = useRef();
+  const firstRef = useRef()
+  const secondRef = useRef()
+  const thirdRef = useRef()
+  const fourthRef = useRef()
+
+  //Refs for backgroundPositions
+  const aboutRef = useRef()
+
+  /*   const getTop = () => {
+    console.log(aboutRef)
+  }
+
+  const getLeft = () => {
+    console.log(aboutRef)
+  }
+
+  const lineStyle = {
+    top: getTop(),
+    left: getLeft(),
+  } */
 
   const heroHeaderProps = useSpring({
     to: { opacity: 1 },
@@ -73,153 +73,157 @@ export const IndexPageTemplate = ({
     from: { opacity: 0, x: 20 },
   })
 
-
   useEffect(() => {
-		
-    let timer = setTimeout(() => setShow(true), 500);
+    let timer = setTimeout(() => setShow(true), 500)
 
-    const _onKeyUp = e => {
+    const _onKeyUp = (e) => {
       console.log(e.key)
-      if (!e.key === 'ArrowDown' || !e.key ===  'ArrowUp'|| !e.key ===  'PageUp' || !e.key ===  'PageDown') return
-      if (!show) return 
+      if (
+        !e.key === 'ArrowDown' ||
+        !e.key === 'ArrowUp' ||
+        !e.key === 'PageUp' ||
+        !e.key === 'PageDown'
+      )
+        return
+      if (!show) return
       setShow(false)
-      if (e.key === 'ArrowUp' || e.key ===  'PageUp') {
-        if (index === 0) return 
-        setIndex(index => index - 1)
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        if (index === 0) return
+        setIndex((index) => index - 1)
       }
-      if (e.key === 'ArrowDown' || e.key ===  'PageDown') {
-        if (index === 3) return 
-        setIndex(index => index + 1)
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        if (index === 3) return
+        setIndex((index) => index + 1)
       }
     }
 
-    const _onScroll = e => { 
-      if (!show) return 
+    const _onScroll = (e) => {
+      if (!show) return
       setShow(false)
       if (e.deltaY < 0) {
-        if (index === 0) return 
-        setIndex(index => index - 1)  
-      }     
+        if (index === 0) return
+        setIndex((index) => index - 1)
+      }
       if (e.deltaY > 0) {
         if (index === 3) return
-        setIndex(index => index + 1)
-      }  
-    }
-
-    const showSlide = () => {  
-      console.log(index)  
-      switch (index) {
-      case 0:
-        firstRef.current.scrollIntoView(scrollConfig)
-        break;
-      case 1:
-        secondRef.current.scrollIntoView(scrollConfig)
-        break;
-      case 2:
-        thirdRef.current.scrollIntoView(scrollConfig) 
-        break;
-      case 3:
-        fourthRef.current.scrollIntoView(scrollConfig) 
-        break;
-      default:
-        return
+        setIndex((index) => index + 1)
       }
     }
 
-    showSlide();
-    window.addEventListener("wheel", _onScroll);
-    window.addEventListener("keyup", _onKeyUp);
-    
+    const showSlide = () => {
+      switch (index) {
+        case 0:
+          firstRef.current.scrollIntoView(scrollConfig)
+          break
+        case 1:
+          secondRef.current.scrollIntoView(scrollConfig)
+          break
+        case 2:
+          thirdRef.current.scrollIntoView(scrollConfig)
+          break
+        case 3:
+          fourthRef.current.scrollIntoView(scrollConfig)
+          break
+        default:
+          return
+      }
+    }
+
+    showSlide()
+    if (!show) console.log(index, 'use effect called')
+    window.addEventListener('wheel', _onScroll)
+    window.addEventListener('keyup', _onKeyUp)
+
     return () => {
       clearTimeout(timer)
-      window.removeEventListener("wheel", _onScroll)
-      window.removeEventListener("keyup", _onKeyUp)
-      
-    };
-  }, [ index, show ]);
+      window.removeEventListener('wheel', _onScroll)
+      window.removeEventListener('keyup', _onKeyUp)
+    }
+  }, [index, show])
 
   const getClass = () => {
     switch (index) {
       case 1:
-        return "circle-img"
+        return 'circle-img'
       case 2:
-        return "line"
+        return 'line'
       case 3:
-        return "arrow-img" 
+        return 'arrow-img'
       default:
         return null
-      }
+    }
   }
 
   return (
     <main>
-      { index < 3 &&
+      {index < 3 && (
         <Helmet>
-          <html lang="en" className="index-intro-animation" />
+          <html lang='en' className='index-intro-animation' />
         </Helmet>
-      }
+      )}
       <SEO
         title={seo.title}
         description={seo.description}
         image={seo.image.name}
       />
-      <div style={fixedBackground}>
-        <div className={`home-fixed ${getClass()}`}></div>
-      </div>
+      <div /* style={lineStyle} */ className={`home-fixed ${getClass()}`}></div>
       <section
         ref={firstRef}
         style={
           hero.useImage
             ? {
-                backgroundImage: `url(${
-                  hero.image.publicURL
-                })`,
+                backgroundImage: `url(${hero.image.publicURL})`,
               }
             : headerStyle
         }
         className={`hero is-medium page-padding hero-slide active`}
       >
-        <div className="hero-body">
-          <div className="container is-max-widescreen">
-            <animated.h1 className="home-header-text" style={heroHeaderProps}>
+        <div className='hero-body'>
+          <div className='container is-max-widescreen'>
+            <animated.h1 className='home-header-text' style={heroHeaderProps}>
               {hero.heading}
             </animated.h1>
             <Trail trailProps={trail}>
-              <h2 className="hero-subheading-a">{hero.subheading}</h2>
-              <h2 className="hero-subheading-a">{hero.description}</h2>
+              <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+              <h2 className='hero-subheading-a'>{hero.description}</h2>
             </Trail>
           </div>
-          <div className="arrow-container">
-            <div className="arrow"></div>
+          <div className='arrow-container'>
+            <div className='arrow'></div>
           </div>
         </div>
       </section>
-      <div className="container home-page-container is-max-widescreen">
+      <div className='container home-page-container is-max-widescreen'>
         <FadeIn>
-          <section className="section--gradient home-about-section home-section-container" ref={secondRef}>
-            <div className="section">
-              <div className="columns is-vcentered">
-                <div className="column is-6 has-text-centered home-section-mobile-padding">
-                  <div className="columns is-mobile">
-                    <div className="column is-2">
-                      <span className="home-sideways-title about">
+          <section
+            className='section--gradient home-about-section home-section-container'
+            ref={secondRef}
+          >
+            <div className='section'>
+              <div className='columns is-vcentered'>
+                <div className='column is-6 has-text-centered home-section-mobile-padding'>
+                  <div className='columns is-mobile'>
+                    <div className='column is-2'>
+                      <span className='home-sideways-title about'>
                         {about.title}
                       </span>
                     </div>
-                    <div className="column is-9">
-                      <span className="home-orange-header">xx</span>
-                      <h3 className="home-about-heading">{about.heading}</h3>
-                      <p className="home-section-subheading">
+                    <div className='column is-9'>
+                      <span className='home-orange-header'>xx</span>
+                      <h3 className='home-about-heading' ref={aboutRef}>
+                        {about.heading}
+                      </h3>
+                      <p className='home-section-subheading'>
                         {about.subheading}
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="column is-6">
-                  <p className="first-letter-stroke home-about-description">
+                <div className='column is-6'>
+                  <p className='first-letter-stroke home-about-description'>
                     {about.description1}
                   </p>
-                  <p className="home-about-description home-about-margin">
+                  <p className='home-about-description home-about-margin'>
                     {about.description2}
                   </p>
                 </div>
@@ -228,31 +232,34 @@ export const IndexPageTemplate = ({
           </section>
         </FadeIn>
         <FadeIn>
-          <section className="home-section home-section-container" ref={thirdRef}>
-            <div className="section">
-              <div className="columns is-vcentered">
-                <div className="column is-12 has-text-centered home-section-mobile-padding">
-                  <div className="columns is-mobile">
-                    <div className="column is-2">
-                      <span className="home-sideways-title services">
+          <section
+            className='home-section home-section-container'
+            ref={thirdRef}
+          >
+            <div className='section'>
+              <div className='columns is-vcentered'>
+                <div className='column is-12 has-text-centered home-section-mobile-padding'>
+                  <div className='columns is-mobile'>
+                    <div className='column is-2'>
+                      <span className='home-sideways-title services'>
                         {services.title}
                       </span>
                     </div>
-                    <div className="column is-9">
-                      <span className="home-orange-header">xx</span>
-                      <h3 className="home-section-subheading">
+                    <div className='column is-9'>
+                      <span className='home-orange-header'>xx</span>
+                      <h3 className='home-section-subheading'>
                         {services.heading}
                       </h3>
-                      <p className="home-services-description">
+                      <p className='home-services-description'>
                         {services.subheading1}
                       </p>
-                      <p className="home-services-description">
+                      <p className='home-services-description'>
                         {services.subheading2}
                       </p>
-                      <p className="home-services-description">
+                      <p className='home-services-description'>
                         {services.subheading3}
                       </p>
-                      <p className="home-services-description">
+                      <p className='home-services-description'>
                         {services.subheading4}
                       </p>
                     </div>
@@ -263,14 +270,19 @@ export const IndexPageTemplate = ({
           </section>
         </FadeIn>
         <FadeIn>
-          <section className="home-section home-client-section home-section-container" ref={fourthRef}>
-            <div className="columns is-mobile is-vcentered">
-              <div className="column is-2 has-text-centered home-section-mobile-padding">
-                <span className="home-sideways-title clients">{clients.title}</span>
+          <section
+            className='home-section home-client-section home-section-container'
+            ref={fourthRef}
+          >
+            <div className='columns is-mobile is-vcentered'>
+              <div className='column is-2 has-text-centered home-section-mobile-padding'>
+                <span className='home-sideways-title clients'>
+                  {clients.title}
+                </span>
               </div>
-              <div className="column is-9 has-text-centered">
-                <span className="home-orange-header">xx</span>
-                <h3 className="home-client-heading">{clients.heading}</h3>
+              <div className='column is-9 has-text-centered'>
+                <span className='home-orange-header'>xx</span>
+                <h3 className='home-client-heading'>{clients.heading}</h3>
                 <Carousel />
               </div>
             </div>

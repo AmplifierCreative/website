@@ -29,7 +29,11 @@ class PortfolioRoll extends React.Component {
                     <h1 className='post-meta mt-0'>
                       <Link
                         className='title is-size-2'
-                        to={post.fields.slug}
+                        to={
+                          !!post.frontmatter.seo.slug
+                            ? post.frontmatter.seo.slug
+                            : post.fields.slug
+                        }
                         style={blackStyle}
                       >
                         {post.frontmatter.title}

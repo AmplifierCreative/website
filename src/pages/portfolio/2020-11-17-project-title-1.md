@@ -16,6 +16,10 @@ whatWeDid: With extensive research into the High Brew Coffee brand, we first
   we created a positioning that ensured this information would resonate with the
   Free Pizza Podcast audience of creators while maintaining the podcast’s voice
   and tone.
+cta:
+  heading: See something you like?
+  subheading: "We'll buy the coffee. "
+  button: let's chat
 seo:
   title: Test123
   description: testing testing

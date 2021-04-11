@@ -39,6 +39,10 @@ statistics:
     blurb: increase in sales lorem ipsum
   - number: '789'
     blurb: increase in sales lorem ipsum
+cta:
+  heading: See something you like?
+  subheading: "We'll buy the coffee. "
+  button: let's chat
 seo:
   title: blog Test 1
   description:
