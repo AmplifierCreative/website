@@ -3,10 +3,9 @@ templateKey: blog-post
 author: Jenny Don't Be Hasty
 title: "Angie the Rose: creating an intimate outlet for artistic storytelling"
 date: 2020-11-08T20:25:43.431Z
-description: >+
+description: |
   
-  When you walk into the studio of Angie the Rose at the 205 Collaborative, the first thing you notice is the warm smell of incense hanging in the air. Turning the corner, natural light pours in through rusted windows and the concrete space comes to life as her paintings come into view.
-
+  subhead goes here hi hello hey annyeonghaseyo
 featuredpost: true
 featuredimage: /img/placeholder.jpg
 seo:
