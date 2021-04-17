@@ -74,7 +74,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   })
 
   useEffect(() => {
-    let timer = setTimeout(() => setShow(true), 500)
+    let timer = setTimeout(() => setShow(true), 100)
 
     const _onKeyUp = (e) => {
       console.log(e.key)
@@ -86,6 +86,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       )
         return
       if (!show) return
+      console.log(e.key)
       setShow(false)
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         if (index === 0) return
@@ -129,8 +130,8 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       }
     }
 
-    showSlide()
-    if (!show) console.log(index, 'use effect called')
+    if (!show) showSlide()
+    console.log(index, 'use effect called')
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
 
