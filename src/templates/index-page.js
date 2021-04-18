@@ -37,12 +37,12 @@ const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
 
 export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [index, setIndex] = useState(0)
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
 
+  const zeroRef = useRef()
   const firstRef = useRef()
   const secondRef = useRef()
   const thirdRef = useRef()
-  const fourthRef = useRef()
 
   //Refs for backgroundPositions
   const aboutRef = useRef()
@@ -74,7 +74,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   })
 
   useEffect(() => {
-    let timer = setTimeout(() => setShow(true), 100)
+    let timer = setTimeout(() => setShow(true), 500)
 
     const _onKeyUp = (e) => {
       console.log(e.key)
@@ -111,27 +111,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       }
     }
 
-    const showSlide = () => {
-      switch (index) {
-        case 0:
-          firstRef.current.scrollIntoView(scrollConfig)
-          break
-        case 1:
-          secondRef.current.scrollIntoView(scrollConfig)
-          break
-        case 2:
-          thirdRef.current.scrollIntoView(scrollConfig)
-          break
-        case 3:
-          fourthRef.current.scrollIntoView(scrollConfig)
-          break
-        default:
-          return
-      }
-    }
-
-    if (!show) showSlide()
-    console.log(index, 'use effect called')
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
 
@@ -141,6 +120,25 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       window.removeEventListener('keyup', _onKeyUp)
     }
   }, [index, show])
+
+  useEffect(() => {
+    switch (index) {
+      case 0:
+        zeroRef.current.scrollIntoView(scrollConfig)
+        break
+      case 1:
+        firstRef.current.scrollIntoView(scrollConfig)
+        break
+      case 2:
+        secondRef.current.scrollIntoView(scrollConfig)
+        break
+      case 3:
+        thirdRef.current.scrollIntoView(scrollConfig)
+        break
+      default:
+        return
+    }
+  }, [index])
 
   const getClass = () => {
     switch (index) {
@@ -169,7 +167,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       />
       <div /* style={lineStyle} */ className={`home-fixed ${getClass()}`}></div>
       <section
-        ref={firstRef}
+        ref={zeroRef}
         style={
           hero.useImage
             ? {
@@ -198,7 +196,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         <FadeIn>
           <section
             className='section--gradient home-about-section home-section-container'
-            ref={secondRef}
+            ref={firstRef}
           >
             <div className='section'>
               <div className='columns is-vcentered'>
@@ -235,7 +233,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         <FadeIn>
           <section
             className='home-section home-section-container'
-            ref={thirdRef}
+            ref={secondRef}
           >
             <div className='section'>
               <div className='columns is-vcentered'>
@@ -273,7 +271,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         <FadeIn>
           <section
             className='home-section home-client-section home-section-container'
-            ref={fourthRef}
+            ref={thirdRef}
           >
             <div className='columns is-mobile is-vcentered'>
               <div className='column is-2 has-text-centered home-section-mobile-padding'>
