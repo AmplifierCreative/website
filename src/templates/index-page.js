@@ -127,6 +127,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         zeroRef.current.scrollIntoView(scrollConfig)
         break
       case 1:
+        console.log('1 called')
         firstRef.current.scrollIntoView(scrollConfig)
         break
       case 2:
