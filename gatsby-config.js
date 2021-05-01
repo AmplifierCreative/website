@@ -14,6 +14,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
+    'gatsby-plugin-netlify',
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -140,7 +141,8 @@ module.exports = {
         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
         printRejected: true,
       },
-    }, // must be after other CSS plugins
+    },
+    // must be after other CSS plugins
     'gatsby-plugin-netlify', // make sure to keep it last in the array
   ],
 }

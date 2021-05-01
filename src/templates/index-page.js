@@ -122,16 +122,19 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   }, [index, show])
 
   useEffect(() => {
+    console.log(index, 'useEffect called')
     switch (index) {
       case 0:
         zeroRef.current.scrollIntoView(scrollConfig)
         break
       case 1:
-        console.log('1 called')
         firstRef.current.scrollIntoView(scrollConfig)
         break
       case 2:
-        secondRef.current.scrollIntoView(scrollConfig)
+        // secondRef.current.scrollIntoView(scrollConfig)
+        console.log(secondRef.current.getBoundingClientRect().y)
+        let two = secondRef.current.getBoundingClientRect()
+        window.scrollTo(0, two.y)
         break
       case 3:
         thirdRef.current.scrollIntoView(scrollConfig)
