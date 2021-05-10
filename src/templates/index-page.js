@@ -93,7 +93,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         setIndex((index) => index - 1)
       }
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        if (index === 3) return
+        if (index === 4) return
         setIndex((index) => index + 1)
       }
     }
@@ -106,7 +106,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         setIndex((index) => index - 1)
       }
       if (e.deltaY > 0) {
-        if (index === 3) return
+        if (index === 4) return
         setIndex((index) => index + 1)
       }
     }
@@ -131,13 +131,20 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         firstRef.current.scrollIntoView(scrollConfig)
         break
       case 2:
-        // secondRef.current.scrollIntoView(scrollConfig)
-        console.log(secondRef.current.getBoundingClientRect().y)
-        let two = secondRef.current.getBoundingClientRect()
-        window.scrollTo(0, two.y)
+        let two =
+          secondRef.current.getBoundingClientRect().top +
+          document.documentElement.scrollTop
+
+        var scrollOptions = {
+          left: 0,
+          top: two,
+          behavior: 'smooth',
+        }
+        window.scroll(scrollOptions)
         break
       case 3:
         thirdRef.current.scrollIntoView(scrollConfig)
+        setTimeout(() => thirdRef.current.scrollIntoView(scrollConfig), 500)
         break
       default:
         return
@@ -159,7 +166,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
   return (
     <main>
-      {index < 3 && (
+      {index < 4 && (
         <Helmet>
           <html lang='en' className='index-intro-animation' />
         </Helmet>
