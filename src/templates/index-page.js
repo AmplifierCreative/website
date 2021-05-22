@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { useSpring, useTrail, config, animated } from 'react-spring'
+import { useSpring, useTrail, useChain, config, animated } from 'react-spring'
 
 import Layout from '../components/Layout'
 import { FadeIn } from '../components/Utilities'
@@ -38,7 +38,9 @@ const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
 export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [index, setIndex] = useState(0)
   const [show, setShow] = useState(true)
+  const [welcome, setWelcome] = useState(false)
 
+  //Refs for scroll anchors
   const zeroRef = useRef()
   const firstRef = useRef()
   const secondRef = useRef()
@@ -46,6 +48,11 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
   //Refs for backgroundPositions
   const aboutRef = useRef()
+
+  //Refs for welcome animation
+  const headingRef = useRef()
+  const subheadingRef = useRef()
+  const arrowRef = useRef()
 
   /*   const getTop = () => {
     console.log(aboutRef)
@@ -61,9 +68,10 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   } */
 
   const heroHeaderProps = useSpring({
-    to: { opacity: 1 },
-    from: { opacity: 0 },
+    to: { opacity: 1, fontSize: '50px' },
+    from: { opacity: 0, fontSize: '136px' },
     config: config.molasses,
+    ref: headingRef,
   })
 
   const trail = useTrail(2, {
@@ -71,7 +79,17 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     opacity: 1,
     x: 20,
     from: { opacity: 0, x: 20 },
+    ref: subheadingRef,
   })
+
+  const arrowProps = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    config: config.molasses,
+    ref: arrowRef,
+  })
+
+  useChain([headingRef, subheadingRef, arrowRef])
 
   useEffect(() => {
     let timer = setTimeout(() => setShow(true), 500)
@@ -190,16 +208,24 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       >
         <div className='hero-body'>
           <div className='container is-max-widescreen'>
-            <animated.h1 className='home-header-text' style={heroHeaderProps}>
+            <animated.h1
+              className='home-header-text'
+              style={heroHeaderProps}
+              ref={headingRef}
+            >
               {hero.heading}
             </animated.h1>
-            <Trail trailProps={trail}>
+            <Trail trailProps={trail} ref={subheadingRef}>
               <h2 className='hero-subheading-a'>{hero.subheading}</h2>
               <h2 className='hero-subheading-a'>{hero.description}</h2>
             </Trail>
           </div>
           <div className='arrow-container'>
-            <div className='arrow'></div>
+            <animated.div
+              style={arrowProps}
+              ref={arrowRef}
+              className='arrow'
+            ></animated.div>
           </div>
         </div>
       </section>
