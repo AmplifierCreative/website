@@ -3,6 +3,21 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  if (stage.startsWith('build-javascript')) {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /react-spring/,
+            sideEffects: true,
+          },
+        ],
+      },
+    })
+  }
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 

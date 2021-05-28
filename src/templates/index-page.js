@@ -13,7 +13,7 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-function Trail({ trailProps, children }) {
+/* function Trail({ trailProps, children }) {
   const items = React.Children.toArray(children)
   return (
     <React.Fragment>
@@ -31,12 +31,12 @@ function Trail({ trailProps, children }) {
       ))}
     </React.Fragment>
   )
-}
+} */
 
 const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
 
 export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(-1)
   const [show, setShow] = useState(true)
   const [welcome, setWelcome] = useState(false)
 
@@ -68,28 +68,27 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   } */
 
   const heroHeaderProps = useSpring({
-    to: { opacity: 1, fontSize: '50px' },
-    from: { opacity: 0, fontSize: '136px' },
+    to: { opacity: 1, fontSize: welcome ? '50px' : null },
+    from: { opacity: 0 },
     config: config.molasses,
-    ref: headingRef,
+    //ref: headingRef,
   })
 
   const trail = useTrail(2, {
     config: config.molasses,
-    opacity: 1,
-    x: 20,
+    opacity: welcome ? 1 : 0,
+    x: welcome ? 20 : 0,
     from: { opacity: 0, x: 20 },
-    ref: subheadingRef,
+    //ref: subheadingRef,
   })
 
   const arrowProps = useSpring({
-    to: { opacity: 1 },
-    from: { opacity: 0 },
+    to: { opacity: welcome ? 1 : 0 },
     config: config.molasses,
-    ref: arrowRef,
+    // ref: arrowRef,
   })
 
-  useChain([headingRef, subheadingRef, arrowRef])
+  //useChain([headingRef, subheadingRef, arrowRef])
 
   useEffect(() => {
     let timer = setTimeout(() => setShow(true), 500)
@@ -142,6 +141,9 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   useEffect(() => {
     console.log(index, 'useEffect called')
     switch (index) {
+      case -1:
+        setWelcome(true)
+        break
       case 0:
         zeroRef.current.scrollIntoView(scrollConfig)
         break
@@ -215,10 +217,14 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             >
               {hero.heading}
             </animated.h1>
-            <Trail trailProps={trail} ref={subheadingRef}>
+            <div>
               <h2 className='hero-subheading-a'>{hero.subheading}</h2>
               <h2 className='hero-subheading-a'>{hero.description}</h2>
-            </Trail>
+            </div>
+            {/*             <Trail trailProps={trail} ref={subheadingRef}>
+              <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+              <h2 className='hero-subheading-a'>{hero.description}</h2>
+            </Trail> */}
           </div>
           <div className='arrow-container'>
             <animated.div
