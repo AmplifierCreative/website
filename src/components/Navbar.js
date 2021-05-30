@@ -1,30 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { Spring, useTrail, animated as a } from 'react-spring'
+import { useSpring, useTrail, animated as a } from 'react-spring'
 
 import logo from '../img/logo.svg'
 import logoDark from '../img/logo-dk.svg'
-
-/* const NavMenuSidebar = Keyframes.Spring({
-  peek: { x: 500 },
-  open: { x: 0, delay: 0 },
-  close: { x: 500, delay: 600 },
-})
-
-const Menu = Keyframes.Trail({
-  peek: { x: 500, display: 'none' },
-  open: { x: 0, display: 'block' },
-  close: { x: 500, display: 'none' },
-}) */
 
 const Trail = ({ open, children }) => {
   const items = React.Children.toArray(children)
   const trail = useTrail(items.length, {
     opacity: open ? 1 : 0,
     x: open ? 0 : 1000,
-    from: { opacity: 0, x: 1000 },
+    from: { opacity: open ? 1 : 0, x: 1000 },
+    config: { friction: open ? 24 : 16 },
+    reset: open,
+    reverse: !open,
   })
   return (
     <>
@@ -45,27 +36,38 @@ export const Navbar = ({ data }) => {
 
   const wrapperRef = useRef()
 
+  const toggleHamburger = useCallback(() => {
+    setOpen((o) => !o)
+    setActive((a) => !a)
+    setNavBarActiveClass(active ? '' : 'is-active')
+  }, [active])
+
   useEffect(() => {
-    window.addEventListener('scroll', _.throttle(checkPosition, 100))
+    const handleClickOutside = (event) => {
+      if (wrapperRef && !wrapperRef.current.contains(event.target) && active) {
+        toggleHamburger()
+      }
+    }
+
+    const checkPosition = () => {
+      window.scrollY === 0 ? setIsTop(true) : setIsTop(false)
+    }
+
+    window.addEventListener('scroll', _.throttle(checkPosition, 200))
     window.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      window.removeEventListener('scroll', _.throttle(checkPosition, 100))
+      window.removeEventListener('scroll', _.throttle(checkPosition, 200))
       window.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [])
+  }, [active, toggleHamburger])
 
-  const toggleHamburger = () => {
-    setOpen((open) => !open)
-    setActive((active) => !active)
-    setNavBarActiveClass(active ? 'is-active' : '')
-  }
-
-  const handleClickOutside = (event) => {
-    if (wrapperRef && !wrapperRef.current.contains(event.target) && active) {
-      toggleHamburger()
-    }
-  }
+  const navBackground = useSpring({ height: isTop ? 0 : 125 })
+  const navMenuBackground = useSpring({
+    x: open ? 0 : 1000,
+    config: { friction: open ? 20 : 30, clamp: true },
+    delay: open ? 0 : 600,
+  })
 
   const _handleKeyUp = (e) => {
     if (e.key === 'Enter') {
@@ -74,21 +76,14 @@ export const Navbar = ({ data }) => {
     return
   }
 
-  const checkPosition = () => {
-    window.scrollY === 0 ? setIsTop(true) : setIsTop(false)
-  }
-
   const { edges: posts } = data.allMarkdownRemark
   const items = posts[0].node.frontmatter.nav
-  /*   const _state =
-    state.open === undefined ? 'peek' : this.state.open ? 'open' : 'close' */
 
   return (
     <nav
       className={`nav-container `}
       role='navigation'
       aria-label='main-navigation'
-      ref={wrapperRef}
     >
       <div className='column navbar-container'>
         <div className='columns is-vcentered is-mobile'>
@@ -102,7 +97,7 @@ export const Navbar = ({ data }) => {
               />
             </Link>
           </div>
-          <div className='column is-relative'>
+          <div className='column is-relative' ref={wrapperRef}>
             <div className='burger-container'>
               <div
                 onClick={() => toggleHamburger()}
@@ -129,54 +124,13 @@ export const Navbar = ({ data }) => {
                     </li>
                   ))}
                 </Trail>
-                {/*                   <Menu
-                    native
-                    items={items}
-                    keys={items.map((_, i) => i)}
-                    reverse={!this.state.open}
-                    state={_state}
-                  >
-                    {(item) => ({ x, ...props }) => (
-                      <animated.li
-                        style={{
-                          transform: x.interpolate(
-                            (x) => `translate3d(${x}%,0,0)`
-                          ),
-                          ...props,
-                        }}
-                      >
-                        <Link to={`/${item.path}`} className='navbar-item'>
-                          {item.text}
-                        </Link>
-                      </animated.li>
-                    )}
-                  </Menu> */}
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <Spring
-        /* reverse={this.state.isTop} */
-        from={{ height: 0 }}
-        to={{ height: isTop ? 0 : 125 }}
-      >
-        {(props) => <div style={props} className='nav-background'></div>}
-      </Spring>
-      {/*         <NavMenuSidebar
-          native
-          state={_state}
-          config={(config.default.friction = 20)}
-        >
-          {({ x }) => (
-            <animated.div
-              className='nav-menu-container'
-              style={{
-                transform: x.interpolate((x) => `translate3d(${x}%,0,0)`),
-              }}
-            ></animated.div>
-          )}
-        </NavMenuSidebar> */}
+      <a.div style={navBackground} className='nav-background'></a.div>
+      <a.div style={navMenuBackground} className='nav-menu-container'></a.div>
     </nav>
   )
 }
