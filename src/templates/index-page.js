@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { useSpring, useTrail, useChain, config, animated } from 'react-spring'
+import { useSpring, useTrail, config, animated } from 'react-spring'
 
 import Layout from '../components/Layout'
 import { FadeIn } from '../components/Utilities'
@@ -16,7 +16,7 @@ const headerStyle = {
 /* function Trail({ trailProps, children }) {
   const items = React.Children.toArray(children)
   return (
-    <React.Fragment>
+    <>
       {trailProps.map(({ x, ...rest }, index) => (
         <animated.div
           key={items[index]}
@@ -29,9 +29,16 @@ const headerStyle = {
           {items[index]}
         </animated.div>
       ))}
-    </React.Fragment>
+    </>
   )
 } */
+
+function checkIfScrolledCorrectly(thirdRef, index) {
+  console.log(thirdRef.current.scrollTop, index)
+  const view = thirdRef.current.getBoundingClientRect()
+  const inView = Math.floor(view.top) === 0
+  return inView ? null : thirdRef.current.scrollIntoView(scrollConfig)
+}
 
 const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
 
@@ -164,7 +171,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         break
       case 3:
         thirdRef.current.scrollIntoView(scrollConfig)
-        setTimeout(() => thirdRef.current.scrollIntoView(scrollConfig), 500)
+        setTimeout(() => checkIfScrolledCorrectly(thirdRef, index), 1000)
         break
       default:
         return
