@@ -1,8 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { useSpring, useTrail, config, animated } from 'react-spring'
+import {
+  useSpring,
+  useTrail,
+  useChain,
+  useTransition,
+  config,
+  animated,
+  useSpringRef,
+} from 'react-spring'
 
 import Layout from '../components/Layout'
 import { FadeIn } from '../components/Utilities'
@@ -13,31 +21,75 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-/* function Trail({ trailProps, children }) {
+function Mount() {
+  const [show, set] = useState(false)
+  const transitions = useTransition(show, {
+    from: { scale: 1.15, y: -30, opacity: 0 },
+    enter: { scale: 1, y: 0, opacity: 1 },
+    leave: { scale: 1.15, y: -30, opacity: 0 },
+    delay: 0,
+    config: config.molasses,
+    onRest: () => set(!show),
+  })
+  return transitions(
+    (styles, item) =>
+      item && (
+        <animated.div
+          style={{ transform: 'rotate(45deg)', ...styles }}
+          className='arrow'
+        ></animated.div>
+      )
+  )
+}
+
+const Trail = ({ welcome, ref, children }) => {
   const items = React.Children.toArray(children)
+  const trail = useTrail(items.length, {
+    config: config.molasses,
+    opacity: welcome ? 1 : 0,
+    y: welcome ? 0 : 50,
+    from: { opacity: 0, y: 50 },
+    delay: 1000,
+    ref: ref,
+  })
   return (
     <>
-      {trailProps.map(({ x, ...rest }, index) => (
-        <animated.div
-          key={items[index]}
-          className='trails-text'
-          style={{
-            ...rest,
-            transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
-          }}
-        >
-          {items[index]}
+      {trail.map(({ height, ...style }, index) => (
+        <animated.div key={index} style={style}>
+          <animated.div style={{ height }}>{items[index]}</animated.div>
         </animated.div>
       ))}
     </>
   )
-} */
+}
 
-function checkIfScrolledCorrectly(thirdRef, index) {
-  console.log(thirdRef.current.scrollTop, index)
+function checkIfScrolledCorrectly(thirdRef) {
   const view = thirdRef.current.getBoundingClientRect()
   const inView = Math.floor(view.top) === 0
   return inView ? null : thirdRef.current.scrollIntoView(scrollConfig)
+}
+
+function lineStyle(ref) {
+  let location =
+    ref && ref.current ? ref.current.getBoundingClientRect() : undefined
+  let locationY = location ? location.y : '375'
+  let locationX = location ? location.x : '551'
+
+  const getTop = () => {
+    console.log('top', locationY + 'px')
+    return locationY + 'px'
+  }
+
+  const getLeft = () => {
+    console.log('left', locationX + 'px')
+    return locationX + 'px'
+  }
+
+  const style = {
+    top: getTop(),
+    left: getLeft(),
+  }
+  return style
 }
 
 const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
@@ -57,51 +109,43 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const aboutRef = useRef()
 
   //Refs for welcome animation
-  const headingRef = useRef()
-  const subheadingRef = useRef()
-  const arrowRef = useRef()
-
-  /*   const getTop = () => {
-    console.log(aboutRef)
-  }
-
-  const getLeft = () => {
-    console.log(aboutRef)
-  }
-
-  const lineStyle = {
-    top: getTop(),
-    left: getLeft(),
-  } */
+  const headingRef = useSpringRef()
+  const subheadingRef = useSpringRef()
+  const arrowRef = useSpringRef()
 
   const heroHeaderProps = useSpring({
-    to: { opacity: 1, fontSize: welcome ? '50px' : null },
+    to: {
+      fontSize: welcome ? '50px' : '136px',
+      lineHeight: welcome ? '67px' : '142px',
+      opacity: 1,
+    },
     from: { opacity: 0 },
     config: config.molasses,
-    //ref: headingRef,
+    ref: headingRef,
   })
 
-  const trail = useTrail(2, {
-    config: config.molasses,
-    opacity: welcome ? 1 : 0,
-    x: welcome ? 20 : 0,
-    from: { opacity: 0, x: 20 },
-    //ref: subheadingRef,
-  })
+  //New api for react-spring
+  const [styles] = useSpring(() => ({
+    loop: {
+      reverse: true,
+      to: { scale: 1.15, y: -30, opacity: 1 },
+      from: { scale: 1, y: 0, opacity: 1 },
+      config: { friction: 20, tension: 240, mass: 10 },
+      delay: 300,
+    },
+    from: { opacity: 0, scale: 1, y: 0 },
+    config: { duration: 3000 },
+    delay: 3000,
+  }))
 
-  const arrowProps = useSpring({
-    to: { opacity: welcome ? 1 : 0 },
-    config: config.molasses,
-    // ref: arrowRef,
-  })
-
-  //useChain([headingRef, subheadingRef, arrowRef])
+  useChain(
+    welcome ? [headingRef, subheadingRef, arrowRef] : [headingRef, arrowRef]
+  )
 
   useEffect(() => {
     let timer = setTimeout(() => setShow(true), 500)
 
     const _onKeyUp = (e) => {
-      console.log(e.key)
       if (
         !e.key === 'ArrowDown' ||
         !e.key === 'ArrowUp' ||
@@ -110,7 +154,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       )
         return
       if (!show) return
-      console.log(e.key)
       setShow(false)
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         if (index === 0) return
@@ -137,21 +180,24 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
-
+    window.addEventListener('onScroll', _onScroll)
+    window.addEventListener('touchmove', _onScroll)
     return () => {
       clearTimeout(timer)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
+      window.removeEventListener('onScroll', _onScroll)
+      window.removeEventListener('touchmove', _onScroll)
     }
   }, [index, show])
 
   useEffect(() => {
-    console.log(index, 'useEffect called')
     switch (index) {
       case -1:
-        setWelcome(true)
+        setTimeout(() => checkIfScrolledCorrectly(zeroRef), 600)
         break
       case 0:
+        setWelcome(true)
         zeroRef.current.scrollIntoView(scrollConfig)
         break
       case 1:
@@ -171,7 +217,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         break
       case 3:
         thirdRef.current.scrollIntoView(scrollConfig)
-        setTimeout(() => checkIfScrolledCorrectly(thirdRef, index), 1000)
+        setTimeout(() => checkIfScrolledCorrectly(thirdRef), 600)
         break
       default:
         return
@@ -191,6 +237,19 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
   }
 
+  const memoizedLocation = useCallback(() => {
+    switch (index) {
+      case 1:
+        return firstRef
+      case 2:
+        return secondRef
+      case 3:
+        return thirdRef
+      default:
+        return undefined
+    }
+  }, [index])
+
   return (
     <main>
       {index < 4 && (
@@ -203,7 +262,10 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         description={seo.description}
         image={seo.image.name}
       />
-      <div /* style={lineStyle} */ className={`home-fixed ${getClass()}`}></div>
+      <div
+        style={lineStyle(memoizedLocation)}
+        className={`home-fixed ${getClass()}`}
+      ></div>
       <section
         ref={zeroRef}
         style={
@@ -224,21 +286,22 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             >
               {hero.heading}
             </animated.h1>
-            <div>
-              <h2 className='hero-subheading-a'>{hero.subheading}</h2>
-              <h2 className='hero-subheading-a'>{hero.description}</h2>
-            </div>
-            {/*             <Trail trailProps={trail} ref={subheadingRef}>
-              <h2 className='hero-subheading-a'>{hero.subheading}</h2>
-              <h2 className='hero-subheading-a'>{hero.description}</h2>
-            </Trail> */}
+            {welcome && (
+              <Trail welcome={welcome} ref={subheadingRef}>
+                <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+                <h2 className='hero-subheading-a'>{hero.description}</h2>
+              </Trail>
+            )}
           </div>
           <div className='arrow-container'>
-            <animated.div
-              style={arrowProps}
-              ref={arrowRef}
-              className='arrow'
-            ></animated.div>
+            {welcome ? (
+              <Mount />
+            ) : (
+              <animated.div
+                style={{ transform: 'rotate(45deg)', ...styles }}
+                className='arrow'
+              ></animated.div>
+            )}
           </div>
         </div>
       </section>
