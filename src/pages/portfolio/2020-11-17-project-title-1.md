@@ -7,7 +7,7 @@ blurb: Landing page copy, with a side of SEO optimization, strategic CTAs, and a
 featuredpost: true
 clientlogo: /img/cardinal_joinery.png
 featuredimage: /img/chemex.jpg
-title: Project Title
+title: Website launch
 description: Test
 tags:
   - Copy
