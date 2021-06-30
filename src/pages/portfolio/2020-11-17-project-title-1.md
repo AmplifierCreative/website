@@ -15,7 +15,7 @@ description: "After their recent rebrand, AudPop—a premium video entertainment
   small team to make their new brand tone and voice shine as bright as the new
   website. "
 tags:
-  - Design
+  - Copy
 whatWeDid: "When we partnered with AudPop, the core website pages were already
   laid out but several elements were left to be determined. So not only did we
   write landing page copy in their new voice and tone, we were also able to make
