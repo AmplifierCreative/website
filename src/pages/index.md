@@ -11,6 +11,7 @@ hero:
     serve.
   useImage: false
   image: /img/products-full-width.jpg
+  Use image: true
 about:
   title: About Us
   heading: Community-focused.
@@ -36,7 +37,9 @@ clients:
   title: Clients
   heading: We’re in good company
 seo:
-  title: homepage-amplifier
-  description: test test test
+  title: "amplifier creative | a full-service creative agency "
+  description: "amplifier creative is a full-service creative agency, specializing
+    in growing businesses, driven entrepreneurs, and committed creative
+    endeavors of all kinds. "
   image: /img/404-cropped.jpg
 ---
