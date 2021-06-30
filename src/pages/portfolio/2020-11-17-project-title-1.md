@@ -1,14 +1,14 @@
 ---
 templateKey: portfolio-post
-title: Project Title
-client: The Free Pizza Podcast
+client: AudPop
 date: 2020-11-17T00:40:24.948Z
-blurb: The Free Pizza Podcast (along with the Daniel White Show) partnered with
-  High Brew Coffee
-description: Test
+blurb: Landing page copy, with a side of SEO optimization, strategic CTAs, and a
+  seamless user experience.
 featuredpost: true
 clientlogo: /img/cardinal_joinery.png
 featuredimage: /img/chemex.jpg
+title: Project Title
+description: Test
 tags:
   - Strategy
 whatWeDid: With extensive research into the High Brew Coffee brand, we first
@@ -24,7 +24,7 @@ seo:
   title: Test123
   description: testing testing
   image: /img/products-grid3.jpg
-  slug: '/portfolio/example-slug-three'
+  slug: /portfolio/example-slug-three
 ---
 
 Description goes here and may be long, so let’s have body copy. Cardinal Joinery
