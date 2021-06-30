@@ -8,14 +8,30 @@ featuredpost: true
 clientlogo: /img/cardinal_joinery.png
 featuredimage: /img/chemex.jpg
 title: Website launch
-description: Test
+description: "After their recent rebrand, AudPop—a premium video entertainment
+  platform—saw the need to have their website match in both design and
+  functionality. With a team of marketers, executives, and web designers on
+  their side, AudPop identified the need to incorporate a copywriter on their
+  small team to make their new brand tone and voice shine as bright as the new
+  website. "
 tags:
   - Design
-whatWeDid: With extensive research into the High Brew Coffee brand, we first
-  pinpointed the best differentiators to reference in the advertisement. Then,
-  we created a positioning that ensured this information would resonate with the
-  Free Pizza Podcast audience of creators while maintaining the podcast’s voice
-  and tone.
+whatWeDid: "When we partnered with AudPop, the core website pages were already
+  laid out but several elements were left to be determined. So not only did we
+  write landing page copy in their new voice and tone, we were also able to make
+  strategic recommendations for the number of pages to ensure a seamless user
+  experience, the flow of individual pages, strategically written and placed
+  CTAs, and SEO optimization. "
+result: "A seamless user experience across all main pages, with a strategic
+  sitemap in place, that remains inclusive of AudPop’s globally diverse
+  audience. "
+testimonials:
+  - quote: '"Jen is a wordsmith master. She intently listens to my vision for AudPop
+      and puts just the right words to it. She excels at task management and
+      delivering premium work, always on time. Consider yourself lucky to hire
+      and work with Jen. I will hire her over and over."'
+    author: Paige Williams
+    authorBio: CEO and founder
 cta:
   heading: See something you like?
   subheading: "We'll buy the coffee. "
@@ -24,7 +40,6 @@ seo:
   title: Test123
   description: testing testing
   image: /img/products-grid3.jpg
-  slug: /portfolio/example-slug-three
+  slug: /portfolio/audpop-rebrand-website-launch/
 ---
-
-Description goes here and may be long, so let’s have body copy. Cardinal Joinery
+where does this show up
