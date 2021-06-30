@@ -136,7 +136,7 @@ const PortfolioPost = ({ data }) => {
   return (
     <Layout>
       <SEO
-        title={post.frontmatter.seo.title}
+        title={post.frontmatter.seo.title || null}
         description={post.frontmatter.seo.description || 'Blog'}
         image={post.frontmatter.seo.image.name || null}
         pathname={post.frontmatter.seo.slug || null}
