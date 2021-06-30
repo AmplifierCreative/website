@@ -7,7 +7,7 @@ blurb: The creation of wordmarks and logos that captured an all-new woodworking
 featuredpost: true
 clientlogo: /img/fpp_podstack_color.png
 featuredimage: /img/products-grid3.jpg
-title: Project Title
+title: Logo exploration
 description: Test
 tags:
   - Social
