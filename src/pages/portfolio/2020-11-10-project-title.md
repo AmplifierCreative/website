@@ -2,7 +2,7 @@
 templateKey: portfolio-post
 client: The Free Pizza Podcast
 date: 2020-11-10T02:55:34.791Z
-blurb: A podcast sponsorship you won’t want to skip through.
+blurb: A coffee sponsorship you won’t want to skip through.
 featuredpost: true
 clientlogo: /img/the_daniel_white_show_new.png
 featuredimage: /img/placeholder-2.jpg
