@@ -10,7 +10,7 @@ featuredimage: /img/products-grid3.jpg
 title: Logo exploration
 description: Test
 tags:
-  - Social
+  - Design
 whatWeDid: With extensive research into the High Brew Coffee brand, we first
   pinpointed the best differentiators to reference in the advertisement. Then,
   we created a positioning that ensured this information would resonate with the
