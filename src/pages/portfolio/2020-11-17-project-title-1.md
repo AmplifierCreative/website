@@ -37,8 +37,9 @@ cta:
   subheading: "We'll buy the coffee. "
   button: let's chat
 seo:
-  title: Test123
-  description: testing testing
+  title: "amplifier creative | AudPop website launch  "
+  description: "We partnered with AudPop to provide copywriting services for their
+    website launch, in support of their new rebrand. These are the results. "
   image: /img/products-grid3.jpg
   slug: /portfolio/audpop-rebrand-website-launch/
 ---
