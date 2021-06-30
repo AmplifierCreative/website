@@ -1,12 +1,12 @@
 ---
 templateKey: portfolio-post
-client: Sponsored ads
+client: The Free Pizza Podcast
 date: 2020-11-10T02:55:34.791Z
 blurb: Highlighting a podcast sponsorship you won’t want to skip through.
 featuredpost: true
 clientlogo: /img/the_daniel_white_show_new.png
 featuredimage: /img/placeholder-2.jpg
-title: The Free Pizza Podcast
+title: Podcast advertisements
 description: The Free Pizza Podcast (along with the Daniel White Show) partnered
   with High Brew Coffee to create sponsored ads that highlight High Brew
   Coffee's major differentiators while aligning to the podcast's demographic.
