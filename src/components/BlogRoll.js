@@ -34,7 +34,7 @@ class BlogRoll extends React.Component {
                       <Link
                         className='title is-size-1 link-black'
                         to={
-                          !!post.frontmatter.seo.slug
+                          !!post.frontmatter.seo
                             ? post.frontmatter.seo.slug
                             : post.fields.slug
                         }
