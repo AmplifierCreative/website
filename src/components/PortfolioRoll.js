@@ -30,7 +30,7 @@ class PortfolioRoll extends React.Component {
                       <Link
                         className='title is-size-2'
                         to={
-                          !!post.frontmatter.seo.slug
+                          !!post.frontmatter.seo
                             ? post.frontmatter.seo.slug
                             : post.fields.slug
                         }
@@ -62,7 +62,7 @@ class PortfolioRoll extends React.Component {
                     <Link
                       className='button'
                       to={
-                        !!post.frontmatter.seo.slug
+                        !!post.frontmatter.seo
                           ? post.frontmatter.seo.slug
                           : post.fields.slug
                       }
