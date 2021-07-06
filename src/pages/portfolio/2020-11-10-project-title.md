@@ -38,6 +38,16 @@ testimonials:
       to create ads that fit the mold of Free Pizza
     author: Dan White
     authorBio: Host and Founder, Free Pizza Podcast
+<<<<<<< Updated upstream
+=======
+statistics:
+  - number: '123'
+    blurb: increase in sales lorem ipsum
+  - number: '456'
+    blurb: increase in sales lorem ipsum
+  - number: '789'
+    blurb: increase in sales lorem ipsum
+>>>>>>> Stashed changes
 cta:
   heading: See something you like?
   subheading: "We'll buy the coffee. "

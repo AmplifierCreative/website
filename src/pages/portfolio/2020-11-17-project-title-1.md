@@ -15,6 +15,7 @@ description: "After their recent rebrand, AudPop—a premium video entertainment
   small team to make their new brand tone and voice shine as bright as the new
   website. "
 tags:
+<<<<<<< Updated upstream
   - Copy
 whatWeDid: "When we partnered with AudPop, the core website pages were already
   laid out but several elements were left to be determined. So not only did we
@@ -32,6 +33,14 @@ testimonials:
       and work with Jen. I will hire her over and over."'
     author: Paige Williams
     authorBio: CEO and founder
+=======
+  - Strategy
+whatWeDid: With extensive research into the High Brew Coffee brand, we first
+  pinpointed the best differentiators to reference in the advertisement. Then,
+  we created a positioning that ensured this information would resonate with the
+  Free Pizza Podcast audience of creators while maintaining the podcast’s voice
+  and tone.
+>>>>>>> Stashed changes
 cta:
   heading: See something you like?
   subheading: "We'll buy the coffee. "
