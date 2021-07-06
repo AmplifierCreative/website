@@ -21,18 +21,16 @@ export const BlogPostTemplate = ({
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section blog page-padding section-padding">
+    <section className='section blog page-padding section-padding'>
       {helmet || ''}
-      <div className="container is-max-widescreen">
-        <div className="container content">
-          <div className="columns">
-            <div className="column is-8 is-offset-2">
-              <span className="is-block is-uppercase orange-text">
+      <div className='container is-max-widescreen'>
+        <div className='container content'>
+          <div className='columns'>
+            <div className='column is-8 is-offset-2'>
+              <span className='is-block is-uppercase orange-text'>
                 {date} x {author}
               </span>
-              <h1
-                className="title has-text-weight-bold is-bold-light blog-header"
-              >
+              <h1 className='title has-text-weight-bold is-bold-light blog-header'>
                 {title}
               </h1>
               <p>{description}</p>
@@ -40,7 +38,7 @@ export const BlogPostTemplate = ({
               {tags && tags.length ? (
                 <div style={{ marginTop: `4rem` }}>
                   <h4>Tags</h4>
-                  <ul className="taglist">
+                  <ul className='taglist'>
                     {tags.map((tag) => (
                       <li key={tag + `tag`}>
                         <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
@@ -71,20 +69,22 @@ const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
-      <SEO
-        title={post.frontmatter.seo.title}
-        description={post.frontmatter.seo.description || 'Blog'}
-        image={post.frontmatter.seo.image.name || null}
-        pathname={post.frontmatter.seo.slug || null}
-        article={true}
-      />
+      {!!post.frontmatter.seo && (
+        <SEO
+          title={post.frontmatter.seo.title || null}
+          description={post.frontmatter.seo.description || 'Blog'}
+          image={post.frontmatter.seo.image.name || null}
+          pathname={post.frontmatter.seo.slug || null}
+          article={true}
+        />
+      )}
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
           <Helmet>
-            <body className="menu-color-2" />
+            <body className='menu-color-2' />
           </Helmet>
         }
         tags={post.frontmatter.tags}
