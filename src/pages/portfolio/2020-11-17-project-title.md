@@ -8,23 +8,29 @@ featuredpost: true
 clientlogo: /img/fpp_podstack_color.png
 featuredimage: /img/products-grid3.jpg
 title: Logo exploration
-description: Test
+description: Cardinal Joinery—an all-new company that specializes in restoring
+  and recreating historic woodwork—needed a logo that captured their specific
+  trade of preserving both the material fabric of history and the legacy of
+  previous generations of craftspeople.
 tags:
   - Design
-whatWeDid: With extensive research into the High Brew Coffee brand, we first
-  pinpointed the best differentiators to reference in the advertisement. Then,
-  we created a positioning that ensured this information would resonate with the
-  Free Pizza Podcast audience of creators while maintaining the podcast’s voice
-  and tone.
+whatWeDid: "We started with a discovery call to gain more insights into the
+  brand, mostly focusing on the team’s likes and dislikes as many branding
+  details were still to be determined. (But, that meant added flexibility for us
+  to explore fonts, colors, and design treatments!) Next, we created and
+  pressure-tested wordmarks and logos that incorporated their needs and
+  must-haves in a way that not only represented the brand but made their new
+  business stand out in a unique way. "
 cta:
   heading: See something you like?
   subheading: "We'll buy the coffee. "
   button: let's chat
 seo:
-  title: Test123
-  description: testing testing
+  title: amplifier creative | Cardinal Joinery logo exploration
+  description: Cardinal Joinery partnered with us to create the new company’s
+    logo, and these are the results.
   image: /img/products-grid3.jpg
-  slug: /portfolio/example-slug-four
+  slug: /portfolio/cardinal-joinery-logo-exploration/
 ---
 
 Description goes here and may be long, so let’s have body copy. The Free Pizza Podcast
