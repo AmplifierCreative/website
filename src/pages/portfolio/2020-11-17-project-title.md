@@ -32,5 +32,4 @@ seo:
   image: /img/products-grid3.jpg
   slug: /portfolio/cardinal-joinery-logo-exploration/
 ---
-
-Description goes here and may be long, so let’s have body copy. The Free Pizza Podcast
+fgh
