@@ -20,19 +20,14 @@ whatWeDid: With extensive research into the High Brew Coffee brand, we first
 result: >
   High Brew Coffee benefitted from a quicker uptick in sales than other podcast
   advertisements.
-statistics:
-  - number: "123"
-    blurb: increase in sales lorem ipsum
-  - number: "456"
-    blurb: increase in sales lorem ipsum
-  - number: "789"
-    blurb: increase in sales lorem ipsum
+statistics: []
 testimonials:
-  - quote: Jen works with precision and excellence when bringing ads to life for
+  - quote: “Jen works with precision and excellence when bringing ads to life for
       this podcast. Being a podcast that caters to all creatives, she was able
-      to create ads that fit the mold of Free Pizza
+      to create ads that fit the mold of Free Pizza.”
     author: Daniel White
     authorBio: Host and Founder, Free Pizza Podcast
+<<<<<<< HEAD
   - quote: Jen works with precision and excellence when bringing ads to life for
       this podcast. Being a podcast that caters to all creatives, she was able
       to create ads that fit the mold of Free Pizza
@@ -48,17 +43,18 @@ statistics:
   - number: '789'
     blurb: increase in sales lorem ipsum
 >>>>>>> Stashed changes
+=======
+>>>>>>> 88ab2f2a213722536a6002b7e8e4bb495d524bc8
 cta:
   heading: See something you like?
   subheading: "We'll buy the coffee. "
   button: let's chat
 seo:
-  title: blog Test 1
-  description: The Free Pizza Podcast (along with the Daniel White Show) partnered
-    with High Brew Coffee to create sponsored ads that highlight High Brew
-    Coffee's major differentiators while aligning to the podcast's demographic.
+  title: amplifier creative | The Free Pizza Podcast advertisements
+  description: The Free Pizza Podcast partnered with us to create High Brew Coffee
+    sponsored ads, and these are the results.
   image: /img/products-grid1.jpg
-  slug: /portfolio/example-slug-one
+  slug: /portfolio/free-pizza-podcast-high-brew-coffee-advertisements/
 ---
 
 `video: https://www.youtube.com/embed/5qap5aO4i9A`
