@@ -127,6 +127,7 @@ PortfolioPostTemplate.propTypes = {
   whatWeDid: PropTypes.string,
   helmet: PropTypes.object,
   testimonials: PropTypes.array,
+  statistics: PropTypes.array,
   cta: PropTypes.object,
 }
 
@@ -207,10 +208,6 @@ export const pageQuery = graphql`
           quote
           authorBio
         }
-        statistics {
-          number
-          blurb
-        }
         cta {
           heading
           subheading
@@ -227,3 +224,7 @@ export const pageQuery = graphql`
     }
   }
 `
+/* statistics {
+  number
+  blurb
+} */
