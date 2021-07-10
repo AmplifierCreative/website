@@ -421,10 +421,7 @@ h1
 
 //Home Page Styles
 .index-intro-animation
-  overflow-y: hidden
-@media screen and (min-width: 768px)
-  .index-intro-animation
-    overflow-y: initial
+  overflow-y: hidden !important
 
 .hero-slide
   position: relative
@@ -484,6 +481,7 @@ h1
   z-index: 0
 
 .home-fixed
+  visibility: hidden
   position: fixed
   z-index: 0
   opacity: .25

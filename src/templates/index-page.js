@@ -13,7 +13,7 @@ import {
 } from 'react-spring'
 
 import Layout from '../components/Layout'
-import { FadeIn } from '../components/Utilities'
+import { FadeIn, useWindowSize } from '../components/Utilities'
 import Carousel from '../components/Carousel'
 import SEO from '../components/Seo'
 
@@ -76,12 +76,12 @@ function lineStyle(ref) {
   let locationX = location ? location.x : '551'
 
   const getTop = () => {
-    console.log('top', locationY + 'px')
+    /* console.log('top', locationY + 'px') */
     return locationY + 'px'
   }
 
   const getLeft = () => {
-    console.log('left', locationX + 'px')
+    /* console.log('left', locationX + 'px') */
     return locationX + 'px'
   }
 
@@ -98,6 +98,8 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [index, setIndex] = useState(-1)
   const [show, setShow] = useState(true)
   const [welcome, setWelcome] = useState(false)
+
+  const { size } = useWindowSize()
 
   //Refs for scroll anchors
   const zeroRef = useRef()
@@ -166,6 +168,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
 
     const _onScroll = (e) => {
+      e.preventDefault()
       if (!show) return
       setShow(false)
       if (e.deltaY < 0) {

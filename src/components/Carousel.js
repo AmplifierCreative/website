@@ -32,21 +32,21 @@ class Carousel extends React.Component {
 
     const settings = {
       dots: true,
-      infinite: true,
+      infinite: false,
       autoplay: true,
       autoplaySpeed: 2000,
       speed: 500,
       arrows: false,
       lazyLoad: true,
-      slidesToShow: 4,
       slidesToScroll: 1,
+      slidesToShow: 4,
     }
 
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <div>
+      <>
         {isMobile ? (
           <div className='carousel'>
             {posts &&
@@ -92,7 +92,7 @@ class Carousel extends React.Component {
               ))}
           </Slider>
         )}
-      </div>
+      </>
     )
   }
 }
