@@ -33,7 +33,7 @@ After graduating and moving to the Triad, Angie felt fortunate to have a practic
 
 Recognizing this void, she found a space at the 205 Collaborative to get back in touch with this part of herself. She soon adopted the pseudonym “Angie the Rose” to represent this part of her world.
 
-> The story of Angie the Rose is told in emotive imagery, rather than typography and computer graphics.
+<div class="columns quote"><div class="has-text-left"> <blockquote>> The story of Angie the Rose is told in emotive imagery, rather than typography and computer graphics.</blockquote> <h3>-undefined</h3> <h4>undefined</h4></div></div>
 
 Angie finds energy in art that others might find in a high-adrenaline sport. Channeling her energy through painting is the release that keeps her balanced, and she describes spending time in the studio as her “happy place.” The need to express herself in this way takes shape as a visible passion, and when she doesn't have it, she admits that she starts to feel angst. 
 
