@@ -45,13 +45,11 @@ In this way, she is very similar to two of her inspirational icons, Lee Krasner 
 
 Krasner was often criticized for not having personally identifiable characteristics in her work, but she argued that the meaning of art transcended these traditional expectations. Telling personal stories through the arts requires a high level of courage and dedication for an artist, both of which are characteristics O’Keefe celebrated.
 
-![]()
+![angie the rose painting one](/img/angie-the-rose-painting-one.jpg "angie the rose painting one")
 
-![]()
+![angie the rose painting two](/img/angie-the-rose-painting-three.jpg "angie the rose painting two")
 
 Angie believes that the art is already there, but you have to make it and commit to it. In her college years, she mainly focused on ink drawings that were direct, dark, and moody. Later after moving to Greensboro, she did a series of watercolor-based paintings of dreamlike mountain scenes in a reflection of her homesickness. With the next series, the colors shifted to black and blue, with a more abstract theme to represent a kind of bruising as Angie worked through a personally challenging year.
-
-![](/img/placeholder-2.jpg#float=right;width=100%;)
 
 In her newest series “Molecular,” Angie continues to follow her heart towards the emotive abstract and thinks of this as the defining work of her career thus far. 
 
@@ -61,7 +59,7 @@ This series is in some ways a unique juxtaposition of neuroscience and art, but 
 
 These pieces communicate Angie’s dedication to embracing happiness and self-awareness, and she hopes that other people will feel that, too. She identifies this work as the highlight of her career, and it has been very liberating for her and a welcome change.
 
-![](/img/placeholder-2.jpg#float=left;width=50%;padding-right=20px;)
+![](/img/angie-the-rose-greensboro-artist.jpg)
 
 In reflection of her growth as an artist, Angie contemplates what it means to be an artist in today’s society. The loss of art programs and the unrelenting threat of their defunding worry her. 
 
@@ -70,9 +68,6 @@ She believes that children shouldn’t be forced to think in one specific patter
 Emotion interrupts her when she tries to consider what her life would be like if she could not paint or create.
 
 > Artists have to make a point to tell the political system that arts are valuable and meaningful. While it is seemingly less common today, historically, the arts have had a way of impacting the political spectrum, and there are still possibilities for using it as a gateway to change.
-
-![](/img/placeholder-2.jpg#float=left;width=49%;)
-![](/img/placeholder-2.jpg#float=right;width=49%;)
 
 Angie the Rose is richly talented, and the feelings and stories she shares are both personal to her and familiar to everyone, creating an intimate connection. 
 
