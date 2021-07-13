@@ -1,11 +1,11 @@
 ---
 templateKey: blog-post
-author: Jenny Don't Be Hasty
+author: Megan Westbrook
 title: "Angie the Rose: creating an intimate outlet for artistic storytelling"
 date: 2020-11-08T20:25:43.431Z
-description: |
+description: |-
   
-  subhead goes here hi hello hey annyeonghaseyo
+  A look into a Greensboro-based abstract artist’s past, present, and future. 
 featuredpost: true
 featuredimage: /img/placeholder.jpg
 seo:
@@ -14,13 +14,15 @@ seo:
   image: /img/products-grid3.jpg
   slug: /blog/angie
 ---
-
-`video: https://www.youtube.com/embed/5qap5aO4i9A`
-
 She charmingly describes her room being similar to Harry Potter’s space beneath the stairs, but the limited space does not limit what she accomplishes. Set in the middle of the arrangement of painted canvases is a black-and-white photograph from the ‘40s of a young woman with short dark hair and warm eyes wearing a nurse’s uniform. This woman is Angie’s grandmother, who was a strong supporter of Angie’s pursuit of art and showed her how to see the world differently. “I like to keep her in here while I’m working so I can channel her strength,” she says. “She really pushed me.”
 
+![]()
+
 Fine Arts in Graphic Design from Appalachian State University where she was also the head of the art committee and the editor of The Peel Literature & Arts Review. After graduating and moving to the Triad, Angie felt fortunate to have a practical degree lead her to jobs in web design but soon found herself needing a greater outlet for her creativity.
+
 Recognizing this void, she found a space at the 205 Collaborative to get back in touch with this part of herself. She soon adopted the pseudonym “Angie the Rose” as the name to represent this part of her world.
+
+<div class="columns quote"><div class="has-text-left"> <blockquote>The story of Angie the Rose is told in emotive imagery, rather than typography and computer graphics.</blockquote> <h3>-undefined</h3> <h4>undefined</h4></div></div>
 
 Angie the Rose finds energy in art that others might find in a high adrenaline sport. Channeling her energy through painting “is the release to keep \[her] a little more balanced,” and she describes spending time in the studio as her “happy place.” The need to express herself in this way takes shape as a visible passion, and when she does not have it, she admits that she starts to feel a little crazy and angsty. Where some people might write in a journal, Angie paints. For her, a swipe of a palette knife on a blank canvas is the equivalent of “Dear diary,” and the feelings of the moment lead the way. While she has her formal education in graphic design, Angie’s skills in painting and ink drawing are largely self-taught, and she relies on her mood to dictate the mediums and the themes.
 
