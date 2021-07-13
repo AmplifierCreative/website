@@ -9,12 +9,13 @@ description: |-
 featuredpost: true
 featuredimage: /img/angie-the-rose-abstract-artist-f.jpg
 seo:
-  title: Test123
-  description: testing testing
-  image: /img/products-grid3.jpg
-  slug: /blog/angie
+  title: "Angie the Rose: creating an intimate outlet for storytelling"
+  description: Angie the Rose—an abstract artist from Greensboro, North
+    Carolina—gives us a look into her past, present, and future.
+  image: /img/angie-the-rose-abstract-artist-f.jpg
+  slug: /blog/angie-the-rose-artist-greensboro/
 ---
-![](/img/angie-the-rose-abstract-artist-f.jpg)
+![angie the rose abstract artist](/img/angie-the-rose-abstract-artist-f.jpg "angie the rose abstract artist")
 
 When you walk into the studio of [Angie the Rose](https://www.angietherose.com/) at the [205 Collaborative](https://www.205collaborative.org/), the first thing you notice is the warm smell of incense hanging in the air. Turning the corner, natural light pours in through rusted windows and the concrete space comes to life as her paintings come into view.
 
@@ -22,7 +23,7 @@ She charmingly compares her room to Harry Potter’s space beneath the stairs, b
 
 “I like to keep her in here while I’m working so I can channel her strength,” she says. “She really pushed me.”
 
-![](/img/angie-the-rose-greensboro-abstract.jpg)
+![angie the rose greensboro abstract](/img/angie-the-rose-greensboro-abstract.jpg "angie the rose greensboro abstract")
 
 Outside the studio, Angie the Rose is simply Angie Barker. She hails from the mountains of Sylva, North Carolina, and remembers creating, painting, and drawing at a young age. 
 
