@@ -1,19 +1,21 @@
 ---
 templateKey: blog-post
 author: Megan Westbrook
-title: "Angie the Rose: creating an intimate outlet for artistic storytelling"
+title: "Angie the Rose: creating an intimate outlet for storytelling"
 date: 2020-11-08T20:25:43.431Z
 description: |-
   
   A look into a Greensboro-based abstract artist’s past, present, and future. 
 featuredpost: true
-featuredimage: /img/placeholder.jpg
+featuredimage: /img/angie-the-rose-abstract-artist-f.jpg
 seo:
   title: Test123
   description: testing testing
   image: /img/products-grid3.jpg
   slug: /blog/angie
 ---
+![](/img/angie-the-rose-abstract-artist-f.jpg)
+
 She charmingly describes her room being similar to Harry Potter’s space beneath the stairs, but the limited space does not limit what she accomplishes. Set in the middle of the arrangement of painted canvases is a black-and-white photograph from the ‘40s of a young woman with short dark hair and warm eyes wearing a nurse’s uniform. This woman is Angie’s grandmother, who was a strong supporter of Angie’s pursuit of art and showed her how to see the world differently. “I like to keep her in here while I’m working so I can channel her strength,” she says. “She really pushed me.”
 
 ![]()
@@ -28,7 +30,9 @@ Angie the Rose finds energy in art that others might find in a high adrenaline s
 
 In this way, she is very similar to two of her inspirational icons, Lee Krasner and Georgia O’Keefe. She communicates her feelings through art, developing her tools and techniques to meet her needs, an approach that leads to very different visuals across her body of work. Krasner was often criticized for not having personally identifiable characteristics in her work, but she argued that the meaning of art transcended these traditional expectations. Telling personal stories through the arts requires a high level of courage and dedication for an artist, both of which are characteristics O’Keefe celebrated.
 
-![](/img/placeholder-2.jpg#float=right;width=50%;)
+![]()
+
+![]()
 
 Angie believes that “the art is already there, but you have to make it \[and] commit to it,” which is her approach to a new canvas. In her college years, she mainly focused on ink drawings that were direct, dark and moody. Later after moving to Greensboro, she did a series of watercolor-based paintings of dreamlike mountain scenes in a reflection of her homesickness. With the next series, the colors shifted to black and blue and a more abstract theme to represent a kind of bruising as Angie worked through a personally challenging year.
 
