@@ -22,10 +22,9 @@ about:
     for them), we understand they’re not as accessible for growing businesses
     and new creative endeavors.
   description2: >
-    Agencies are everywhere—all specializing in one thing or another, or
-    everything under the sun. While we love those agencies (and have even worked
-    for them), we understand they’re not as accessible for growing businesses
-    and new creative endeavors.
+    That’s why we’re here to break through that noise by providing a resource
+    that allows all businesses and entrepreneurs to feel comfortable asking for
+    help with their advertising, marketing, and creative.
 services:
   title: Services
   heading: We’re passionate about
