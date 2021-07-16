@@ -149,6 +149,8 @@ Right aligned columns
 
 Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
+<a href="https://www.google.com" target="_blank">A link that opens in a new tab ** option available in markdown only ** </a>
+
 ## Images
 
 ![Minion](https://octodex.github.com/images/minion.png)
