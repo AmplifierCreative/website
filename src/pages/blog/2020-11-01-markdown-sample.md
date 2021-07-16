@@ -156,6 +156,10 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 ![Minion](https://octodex.github.com/images/minion.png)
 ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg 'The Stormtroopocat')
 
+![angie the rose painting one](/img/angie-the-rose-painting-one.jpg 'angie the rose painting one')
+
+![angie the rose painting two](/img/angie-the-rose-painting-three.jpg 'angie the rose painting two')
+
 Like links, Images also have a footnote style syntax
 
 ![Alt text](https://octodex.github.com/images/dojocat.jpg 'The Dojocat')
