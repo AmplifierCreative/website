@@ -21,7 +21,7 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
-function Mount() {
+function ScrollPrompt() {
   const [show, set] = useState(false)
   const transitions = useTransition(show, {
     from: { scale: 1.15, y: -30, opacity: 0 },
@@ -40,6 +40,22 @@ function Mount() {
         ></animated.div>
       )
   )
+}
+
+function AfterWelcomeScrollPrompt() {
+  const [time, setTime] = useState(0)
+  const [reset, setReset] = useState(false)
+
+  useEffect(() => {
+    if (reset) setTime(0)
+    if (time === 3) return
+    const timer = setTimeout(() => {
+      setTime((time) => time + 1)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [time, reset])
+  return time === 3 ? <ScrollPrompt /> : null
 }
 
 const Trail = ({ welcome, ref, children }) => {
@@ -99,6 +115,11 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [show, setShow] = useState(true)
   const [welcome, setWelcome] = useState(false)
 
+  //Touch event handler state
+  const [firstTouch, setFirstTouch] = useState()
+  const [touchLength, setTouchLength] = useState(0)
+  const [lastTouch, setLastTouch] = useState()
+
   const { size } = useWindowSize()
 
   //Refs for scroll anchors
@@ -106,6 +127,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const firstRef = useRef()
   const secondRef = useRef()
   const thirdRef = useRef()
+  const fourthRef = useRef()
 
   //Refs for backgroundPositions
   const aboutRef = useRef()
@@ -162,13 +184,14 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         setIndex((index) => index - 1)
       }
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        if (index === 4) return
+        if (index === 5) return
         setIndex((index) => index + 1)
       }
     }
 
     const _onScroll = (e) => {
       e.preventDefault()
+      console.log(size)
       if (!show) return
       setShow(false)
       if (e.deltaY < 0) {
@@ -176,7 +199,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         setIndex((index) => index - 1)
       }
       if (e.deltaY > 0) {
-        if (index === 4) return
+        if (index === 5) return
         setIndex((index) => index + 1)
       }
     }
@@ -184,13 +207,11 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
     window.addEventListener('onScroll', _onScroll)
-    window.addEventListener('touchmove', _onScroll)
     return () => {
       clearTimeout(timer)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
       window.removeEventListener('onScroll', _onScroll)
-      window.removeEventListener('touchmove', _onScroll)
     }
   }, [index, show])
 
@@ -220,12 +241,38 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         break
       case 3:
         thirdRef.current.scrollIntoView(scrollConfig)
-        setTimeout(() => checkIfScrolledCorrectly(thirdRef), 600)
+        //setTimeout(() => checkIfScrolledCorrectly(thirdRef), 600)
+        break
+      case 4:
+        fourthRef.current.scrollIntoView(scrollConfig)
+        //setTimeout(() => checkIfScrolledCorrectly(thirdRef), 600)
         break
       default:
         return
     }
   }, [index])
+
+  const _touchstart = (e) => {
+    let _firstTouch = e.changedTouches[0].clientX
+    setFirstTouch(_firstTouch)
+  }
+
+  const _touchend = (e) => {
+    let _lastTouch = e.changedTouches[0].clientX
+    let distance = _lastTouch - firstTouch
+    console.log('distance is', distance, show, index)
+    if (distance > 0) {
+      if (index === -1) return
+      setIndex((index) => index - 1)
+      console.log('should have scrolled up')
+    }
+    if (distance < 0) {
+      if (index === 5) return
+      setIndex((index) => index + 1)
+      console.log('should have scrolled down')
+    }
+    if (e.cancelable) e.preventDefault()
+  }
 
   const getClass = () => {
     switch (index) {
@@ -248,18 +295,22 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         return secondRef
       case 3:
         return thirdRef
+      case 4:
+        return fourthRef
       default:
         return undefined
     }
   }, [index])
 
   return (
-    <main>
-      {index < 4 && (
-        <Helmet>
-          <html lang='en' className='index-intro-animation' />
-        </Helmet>
-      )}
+    <main
+      onTouchStart={_touchstart}
+      /* onTouchMove={_touchmove} */
+      onTouchEnd={_touchend}
+    >
+      <Helmet>
+        <html lang='en' className='index-intro-animation' />
+      </Helmet>
       <SEO
         title={seo.title}
         description={seo.description}
@@ -297,14 +348,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             )}
           </div>
           <div className='arrow-container'>
-            {welcome ? (
-              <Mount />
-            ) : (
-              <animated.div
-                style={{ transform: 'rotate(45deg)', ...styles }}
-                className='arrow'
-              ></animated.div>
-            )}
+            {welcome ? <AfterWelcomeScrollPrompt /> : <ScrollPrompt />}
           </div>
         </div>
       </section>
@@ -403,6 +447,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             </div>
           </section>
         </FadeIn>
+        <div ref={fourthRef}></div>
       </div>
     </main>
   )
