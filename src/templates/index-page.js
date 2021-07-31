@@ -21,6 +21,19 @@ const headerStyle = {
   backgroundColor: '#2D2C2C',
 }
 
+function getClass(i) {
+  switch (i) {
+    case 1:
+      return 'circle-img'
+    case 2:
+      return 'line'
+    case 3:
+      return 'arrow-img'
+    default:
+      return null
+  }
+}
+
 function ScrollPrompt() {
   const [show, set] = useState(false)
   const transitions = useTransition(show, {
@@ -44,21 +57,20 @@ function ScrollPrompt() {
 
 function AfterWelcomeScrollPrompt() {
   const [time, setTime] = useState(0)
-  const [reset, setReset] = useState(false)
 
   useEffect(() => {
-    if (reset) setTime(0)
     if (time === 3) return
     const timer = setTimeout(() => {
       setTime((time) => time + 1)
     }, 1000)
 
     return () => clearTimeout(timer)
-  }, [time, reset])
-  return time === 3 ? <ScrollPrompt /> : null
+  }, [time])
+  return <>{time === 3 ? <ScrollPrompt /> : null}</>
 }
 
-const Trail = ({ welcome, ref, children }) => {
+const Trail = React.forwardRef((props, ref) => {
+  const { welcome, children } = props
   const items = React.Children.toArray(children)
   const trail = useTrail(items.length, {
     config: config.molasses,
@@ -77,27 +89,20 @@ const Trail = ({ welcome, ref, children }) => {
       ))}
     </>
   )
-}
+})
 
-function checkIfScrolledCorrectly(thirdRef) {
-  const view = thirdRef.current.getBoundingClientRect()
-  const inView = Math.floor(view.top) === 0
-  return inView ? null : thirdRef.current.scrollIntoView(scrollConfig)
-}
-
-function lineStyle(ref) {
+/* function lineStyle(ref) {
   let location =
     ref && ref.current ? ref.current.getBoundingClientRect() : undefined
   let locationY = location ? location.y : '375'
   let locationX = location ? location.x : '551'
 
   const getTop = () => {
-    /* console.log('top', locationY + 'px') */
+    
     return locationY + 'px'
   }
 
   const getLeft = () => {
-    /* console.log('left', locationX + 'px') */
     return locationX + 'px'
   }
 
@@ -106,7 +111,7 @@ function lineStyle(ref) {
     left: getLeft(),
   }
   return style
-}
+} */
 
 const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
 
@@ -114,12 +119,14 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [index, setIndex] = useState(-1)
   const [show, setShow] = useState(true)
   const [welcome, setWelcome] = useState(false)
+  const [touching, setTouching] = useState(false)
 
   //Touch event handler state
-  const [firstTouch, setFirstTouch] = useState()
+  const [firstTouch, setFirstTouch] = useState(0)
+  const [lastTouch, setLastTouch] = useState(0)
   const [touchLength, setTouchLength] = useState(0)
-  const [lastTouch, setLastTouch] = useState()
 
+  //use this to determine font size for heroHeaderProps, if it's mobile serve up a smaller initial hero text
   const { size } = useWindowSize()
 
   //Refs for scroll anchors
@@ -162,13 +169,36 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     delay: 3000,
   }))
 
+  //Simple orchestration of animations
   useChain(
     welcome ? [headingRef, subheadingRef, arrowRef] : [headingRef, arrowRef]
   )
 
+  //Used for dev, reset the page on reload
+  const checkIfScrolledCorrectly = () => {
+    if (!!zeroRef) return
+    const view = zeroRef.current.getBoundingClientRect()
+    const inView = Math.floor(view.top) === 0
+    return inView ? null : zeroRef.current.scrollIntoView(scrollConfig)
+  }
+
+  const updateIndex = (i) => {
+    switch (i) {
+      case 'increment':
+        if (index === 4) return
+        setIndex((index) => index + 1)
+        break
+      case 'decrement':
+        if (index === 0) return
+        setIndex((index) => index - 1)
+        break
+      default:
+        return undefined
+    }
+  }
+
   useEffect(() => {
     let timer = setTimeout(() => setShow(true), 500)
-
     const _onKeyUp = (e) => {
       if (
         !e.key === 'ArrowDown' ||
@@ -180,114 +210,107 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       if (!show) return
       setShow(false)
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        if (index === 0) return
-        setIndex((index) => index - 1)
+        updateIndex('decrement')
       }
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        if (index === 5) return
-        setIndex((index) => index + 1)
+        updateIndex('increment')
       }
     }
 
     const _onScroll = (e) => {
       e.preventDefault()
-      console.log(size)
       if (!show) return
       setShow(false)
       if (e.deltaY < 0) {
-        if (index === 0) return
-        setIndex((index) => index - 1)
+        updateIndex('decrement')
       }
       if (e.deltaY > 0) {
-        if (index === 5) return
-        setIndex((index) => index + 1)
+        updateIndex('increment')
       }
+    }
+
+    const _touchstart = (e) => {
+      if (!show) return
+      if (e.type.includes('mouse')) return
+      setTouching(true)
+      let startTouch = parseInt(e.changedTouches[0].pageY)
+      setFirstTouch(startTouch)
+      console.log('touch start ', firstTouch)
+    }
+
+    const _touchMove = (e) => {
+      if (!show) return
+      if (!touching) return
+      if (e.type.includes('mouse')) return
+      let moveTouch = parseInt(e.changedTouches[0].pageY)
+      setTouchLength(moveTouch)
+    }
+
+    const _touchend = (e) => {
+      if (!show) return
+      if (e.type.includes('mouse')) return
+      setShow(false)
+      setTouching(false)
+      let endTouch = parseInt(e.changedTouches[0].pageY)
+      setLastTouch(endTouch)
+      const touchDistance = lastTouch - firstTouch
+      console.log('touch distance', touchDistance)
+      //if (touchDistance > 100) updateIndex('decrement')
+      //if (touchDistance < -100) updateIndex('increment')
     }
 
     window.addEventListener('wheel', _onScroll)
+    window.addEventListener('mousewheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
     window.addEventListener('onScroll', _onScroll)
+    window.addEventListener('scroll', _onScroll)
+    /*     window.addEventListener('touchstart', _touchstart)
+    window.addEventListener('touchmove', _touchMove)
+    window.addEventListener('touchend', _touchend) */
     return () => {
       clearTimeout(timer)
       window.removeEventListener('wheel', _onScroll)
+      window.addEventListener('mousewheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
       window.removeEventListener('onScroll', _onScroll)
+      window.addEventListener('scroll', _onScroll)
+      /*       window.addEventListener('touchstart', _touchstart)
+      window.addEventListener('touchmove', _touchMove)
+      window.addEventListener('touchend', _touchend) */
     }
-  }, [index, show])
+  }, [updateIndex, show])
 
   useEffect(() => {
+    console.log('index changed to', index)
     switch (index) {
       case -1:
-        setTimeout(() => checkIfScrolledCorrectly(zeroRef), 600)
+        setTimeout(() => checkIfScrolledCorrectly(), 600)
         break
       case 0:
         setWelcome(true)
+        setTimeout(() => checkIfScrolledCorrectly(), 300)
         zeroRef.current.scrollIntoView(scrollConfig)
         break
       case 1:
+        console.log('case 1 called')
         firstRef.current.scrollIntoView(scrollConfig)
         break
       case 2:
-        let two =
-          secondRef.current.getBoundingClientRect().top +
-          document.documentElement.scrollTop
-
-        var scrollOptions = {
-          left: 0,
-          top: two,
-          behavior: 'smooth',
-        }
-        window.scroll(scrollOptions)
+        console.log('case 2 called')
+        secondRef.current.scrollIntoView(scrollConfig)
         break
       case 3:
         thirdRef.current.scrollIntoView(scrollConfig)
-        //setTimeout(() => checkIfScrolledCorrectly(thirdRef), 600)
         break
       case 4:
         fourthRef.current.scrollIntoView(scrollConfig)
-        //setTimeout(() => checkIfScrolledCorrectly(thirdRef), 600)
         break
       default:
         return
     }
   }, [index])
 
-  const _touchstart = (e) => {
-    let _firstTouch = e.changedTouches[0].clientX
-    setFirstTouch(_firstTouch)
-  }
-
-  const _touchend = (e) => {
-    let _lastTouch = e.changedTouches[0].clientX
-    let distance = _lastTouch - firstTouch
-    console.log('distance is', distance, show, index)
-    if (distance > 0) {
-      if (index === -1) return
-      setIndex((index) => index - 1)
-      console.log('should have scrolled up')
-    }
-    if (distance < 0) {
-      if (index === 5) return
-      setIndex((index) => index + 1)
-      console.log('should have scrolled down')
-    }
-    if (e.cancelable) e.preventDefault()
-  }
-
-  const getClass = () => {
-    switch (index) {
-      case 1:
-        return 'circle-img'
-      case 2:
-        return 'line'
-      case 3:
-        return 'arrow-img'
-      default:
-        return null
-    }
-  }
-
-  const memoizedLocation = useCallback(() => {
+  /*   const memoizedLocation = useCallback(() => {
     switch (index) {
       case 1:
         return firstRef
@@ -300,14 +323,30 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       default:
         return undefined
     }
-  }, [index])
+  }, [index]) */
+
+  const _touchStart = (e) => {
+    if (e.type.includes('mouse')) return
+    if (touching) return
+    setTouching(true)
+    let startTouch = parseInt(e.changedTouches[0].pageY)
+    setFirstTouch(startTouch)
+    console.log('touch start', firstTouch)
+  }
+
+  const _touchEnd = (e) => {
+    if (e.type.includes('mouse')) return
+    let endTouch = parseInt(e.changedTouches[0].pageY)
+    const touchDistance = endTouch - firstTouch
+    console.log('touch distance', touchDistance)
+    setTouching(false)
+    e.preventDefault()
+    if (touchDistance > 100) updateIndex('decrement')
+    if (touchDistance < -100) updateIndex('increment')
+  }
 
   return (
-    <main
-      onTouchStart={_touchstart}
-      /* onTouchMove={_touchmove} */
-      onTouchEnd={_touchend}
-    >
+    <main onTouchStart={_touchStart} onTouchEnd={_touchEnd}>
       <Helmet>
         <html lang='en' className='index-intro-animation' />
       </Helmet>
@@ -316,10 +355,10 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         description={seo.description}
         image={seo.image.name}
       />
-      <div
+      {/* <div
         style={lineStyle(memoizedLocation)}
-        className={`home-fixed ${getClass()}`}
-      ></div>
+        className={`home-fixed ${getClass(memoizedLocation)}`}
+      ></div> */}
       <section
         ref={zeroRef}
         style={
