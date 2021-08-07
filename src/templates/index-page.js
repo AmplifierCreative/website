@@ -34,10 +34,16 @@ function getClass(i) {
   }
 }
 
-const getWidth = () =>
-  window.innerWidth ||
-  document.documentElement.clientWidth ||
-  document.body.clientWidth
+// Check if window is defined (so if in the browser or in node.js).
+const isBrowser = typeof window !== 'undefined'
+
+const getWidth = () => {
+  if (isBrowser) {
+    window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth
+  }
+}
 
 function useCurrentWidth() {
   let [width, setWidth] = useState(getWidth())
