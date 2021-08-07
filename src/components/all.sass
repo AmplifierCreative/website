@@ -509,6 +509,35 @@ h1
     height: 343px
     transform: scaleX(-1) rotate(20deg)
 
+//Alt styling to work 
+.home-fixed-alt
+  position: fixed
+  z-index: 0
+  opacity: .25
+  background-position: center
+  background-repeat: repeat
+  background-size: cover
+  transition: all .5s ease
+  &.circle-img-alt
+    background-image: url('../img/homeCircle.png')
+    top: 411px
+    left: 110px
+    width: 262px
+    height: 251px
+    transform: rotate(236deg)
+  &.line-alt
+    background-image: url('../img/homeLine.png')
+    width: 320px
+    height: 320px
+    transform: rotate(50deg)
+  &.arrow-img-alt
+    background-image: url('../img/homeArrow.png')
+    top: 113px
+    left: 1066px
+    width: 343px
+    height: 343px
+    transform: scaleX(-1) rotate(20deg)
+
 .home-page-container
   padding: .25rem
 
@@ -608,6 +637,8 @@ h1
     bottom: 322px !important
   .hero-subheading-a, .hero-subheading-b
     line-height: 30px
+  .home-fixed-alt
+    visibility: hidden
 
 //Services Page
 .services-hero-container

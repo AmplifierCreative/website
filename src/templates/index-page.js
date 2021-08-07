@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
@@ -13,7 +13,7 @@ import {
 } from 'react-spring'
 
 import Layout from '../components/Layout'
-import { FadeIn, useWindowSize } from '../components/Utilities'
+import { FadeIn } from '../components/Utilities'
 import Carousel from '../components/Carousel'
 import SEO from '../components/Seo'
 
@@ -34,7 +34,31 @@ function getClass(i) {
   }
 }
 
-function ScrollPrompt() {
+const getWidth = () =>
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth
+
+function useCurrentWidth() {
+  let [width, setWidth] = useState(getWidth())
+
+  useEffect(() => {
+    let timeoutId = null
+    const resizeListener = () => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => setWidth(getWidth()), 150)
+    }
+    window.addEventListener('resize', resizeListener)
+
+    return () => {
+      window.removeEventListener('resize', resizeListener)
+    }
+  }, [])
+
+  return width
+}
+
+function ScrollPrompt({ hidden }) {
   const [show, set] = useState(false)
   const transitions = useTransition(show, {
     from: { scale: 1.15, y: -30, opacity: 0 },
@@ -48,25 +72,15 @@ function ScrollPrompt() {
     (styles, item) =>
       item && (
         <animated.div
-          style={{ transform: 'rotate(45deg)', ...styles }}
+          style={{
+            transform: 'rotate(45deg)',
+            visibility: hidden ? 'hidden' : 'unset',
+            ...styles,
+          }}
           className='arrow'
         ></animated.div>
       )
   )
-}
-
-function AfterWelcomeScrollPrompt() {
-  const [time, setTime] = useState(0)
-
-  useEffect(() => {
-    if (time === 3) return
-    const timer = setTimeout(() => {
-      setTime((time) => time + 1)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [time])
-  return <>{time === 3 ? <ScrollPrompt /> : null}</>
 }
 
 const Trail = React.forwardRef((props, ref) => {
@@ -113,21 +127,11 @@ const Trail = React.forwardRef((props, ref) => {
   return style
 } */
 
-const scrollConfig = { behavior: 'smooth', block: 'start', inline: 'nearest' }
-
 export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [index, setIndex] = useState(-1)
   const [show, setShow] = useState(true)
   const [welcome, setWelcome] = useState(false)
   const [touching, setTouching] = useState(false)
-
-  //Touch event handler state
-  const [firstTouch, setFirstTouch] = useState(0)
-  const [lastTouch, setLastTouch] = useState(0)
-  const [touchLength, setTouchLength] = useState(0)
-
-  //use this to determine font size for heroHeaderProps, if it's mobile serve up a smaller initial hero text
-  const { size } = useWindowSize()
 
   //Refs for scroll anchors
   const zeroRef = useRef()
@@ -135,6 +139,11 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const secondRef = useRef()
   const thirdRef = useRef()
   const fourthRef = useRef()
+
+  //Touch event handler state
+  const [firstTouch, setFirstTouch] = useState(0)
+  const [lastTouch, setLastTouch] = useState(0)
+  const [touchLength, setTouchLength] = useState(0)
 
   //Refs for backgroundPositions
   const aboutRef = useRef()
@@ -144,6 +153,14 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const subheadingRef = useSpringRef()
   const arrowRef = useSpringRef()
 
+  let width = useCurrentWidth()
+
+  let scrollConfig =
+    width < 800
+      ? true
+      : { behavior: 'smooth', block: 'start', inline: 'nearest' }
+
+  //react-spring animation props for welcome sequence
   const heroHeaderProps = useSpring({
     to: {
       fontSize: welcome ? '50px' : '136px',
@@ -155,34 +172,25 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     ref: headingRef,
   })
 
-  //New api for react-spring
-  const [styles] = useSpring(() => ({
-    loop: {
-      reverse: true,
-      to: { scale: 1.15, y: -30, opacity: 1 },
-      from: { scale: 1, y: 0, opacity: 1 },
-      config: { friction: 20, tension: 240, mass: 10 },
-      delay: 300,
-    },
-    from: { opacity: 0, scale: 1, y: 0 },
-    config: { duration: 3000 },
-    delay: 3000,
-  }))
-
-  //Simple orchestration of animations
+  //orchestration of animation
   useChain(
     welcome ? [headingRef, subheadingRef, arrowRef] : [headingRef, arrowRef]
   )
 
   //Used for dev, reset the page on reload
   const checkIfScrolledCorrectly = () => {
-    if (!!zeroRef) return
     const view = zeroRef.current.getBoundingClientRect()
     const inView = Math.floor(view.top) === 0
     return inView ? null : zeroRef.current.scrollIntoView(scrollConfig)
   }
 
   const updateIndex = (i) => {
+    if (index > 4) {
+      setIndex(4)
+    }
+    if (index < -1) {
+      setIndex(0)
+    }
     switch (i) {
       case 'increment':
         if (index === 4) return
@@ -197,8 +205,9 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
   }
 
+  //Set up state listeners and event handlers
   useEffect(() => {
-    let timer = setTimeout(() => setShow(true), 500)
+    let timer = setTimeout(() => setShow(true), 300)
     const _onKeyUp = (e) => {
       if (
         !e.key === 'ArrowDown' ||
@@ -229,74 +238,33 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       }
     }
 
-    const _touchstart = (e) => {
-      if (!show) return
-      if (e.type.includes('mouse')) return
-      setTouching(true)
-      let startTouch = parseInt(e.changedTouches[0].pageY)
-      setFirstTouch(startTouch)
-      console.log('touch start ', firstTouch)
-    }
-
-    const _touchMove = (e) => {
-      if (!show) return
-      if (!touching) return
-      if (e.type.includes('mouse')) return
-      let moveTouch = parseInt(e.changedTouches[0].pageY)
-      setTouchLength(moveTouch)
-    }
-
-    const _touchend = (e) => {
-      if (!show) return
-      if (e.type.includes('mouse')) return
-      setShow(false)
-      setTouching(false)
-      let endTouch = parseInt(e.changedTouches[0].pageY)
-      setLastTouch(endTouch)
-      const touchDistance = lastTouch - firstTouch
-      console.log('touch distance', touchDistance)
-      //if (touchDistance > 100) updateIndex('decrement')
-      //if (touchDistance < -100) updateIndex('increment')
-    }
-
     window.addEventListener('wheel', _onScroll)
-    window.addEventListener('mousewheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
     window.addEventListener('onScroll', _onScroll)
     window.addEventListener('scroll', _onScroll)
-    /*     window.addEventListener('touchstart', _touchstart)
-    window.addEventListener('touchmove', _touchMove)
-    window.addEventListener('touchend', _touchend) */
     return () => {
       clearTimeout(timer)
       window.removeEventListener('wheel', _onScroll)
-      window.addEventListener('mousewheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
       window.removeEventListener('onScroll', _onScroll)
       window.addEventListener('scroll', _onScroll)
-      /*       window.addEventListener('touchstart', _touchstart)
-      window.addEventListener('touchmove', _touchMove)
-      window.addEventListener('touchend', _touchend) */
     }
   }, [updateIndex, show])
 
   useEffect(() => {
-    console.log('index changed to', index)
+    console.log('index changed to', index, scrollConfig)
     switch (index) {
       case -1:
         setTimeout(() => checkIfScrolledCorrectly(), 600)
         break
       case 0:
         setWelcome(true)
-        setTimeout(() => checkIfScrolledCorrectly(), 300)
         zeroRef.current.scrollIntoView(scrollConfig)
         break
       case 1:
-        console.log('case 1 called')
         firstRef.current.scrollIntoView(scrollConfig)
         break
       case 2:
-        console.log('case 2 called')
         secondRef.current.scrollIntoView(scrollConfig)
         break
       case 3:
@@ -310,28 +278,13 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
   }, [index])
 
-  /*   const memoizedLocation = useCallback(() => {
-    switch (index) {
-      case 1:
-        return firstRef
-      case 2:
-        return secondRef
-      case 3:
-        return thirdRef
-      case 4:
-        return fourthRef
-      default:
-        return undefined
-    }
-  }, [index]) */
-
+  //Set up touch listeners
   const _touchStart = (e) => {
     if (e.type.includes('mouse')) return
     if (touching) return
     setTouching(true)
     let startTouch = parseInt(e.changedTouches[0].pageY)
     setFirstTouch(startTouch)
-    console.log('touch start', firstTouch)
   }
 
   const _touchEnd = (e) => {
@@ -343,6 +296,37 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     e.preventDefault()
     if (touchDistance > 100) updateIndex('decrement')
     if (touchDistance < -100) updateIndex('increment')
+  }
+
+  //Memoize state and pass it as props to children
+  /*   const memoizedLocation = useCallback(() => {
+  switch (index) {
+    case 1:
+      return firstRef
+    case 2:
+      return secondRef
+    case 3:
+      return thirdRef
+    case 4:
+      return fourthRef
+    default:
+      return undefined
+  }
+}, [index]) */
+
+  const circleStyle = () => {
+    let reference = aboutRef.current
+    let children = !!reference ? Array.from(reference?.children) : null
+    const topSetting = !!reference
+      ? //children[0].offsetHeight +
+        children[1].offsetHeight +
+        children[2].offsetHeight +
+        children[3].offsetHeight
+      : '420px'
+    console.log(topSetting)
+    const leftSetting = !!reference ? children[0].offsetHeight : '110px'
+    const style = { top: topSetting, left: leftSetting }
+    return style
   }
 
   return (
@@ -387,7 +371,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             )}
           </div>
           <div className='arrow-container'>
-            {welcome ? <AfterWelcomeScrollPrompt /> : <ScrollPrompt />}
+            {welcome ? <ScrollPrompt /> : <ScrollPrompt />}
           </div>
         </div>
       </section>

@@ -1,92 +1,66 @@
 import React from 'react'
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useSpring, useTrail, animated, config } from 'react-spring'
 import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
 
-
-/* Custom hook to check for resize events */
-
-export const useWindowSize = () => {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-  return size;
-}
-
 /* Custom hook to check if element has entered the viewport  */
 
 export const useIntersect = ({ root = null, rootMargin, threshold }) => {
-  const [entry, updateEntry] = useState({});
-  const [node, setNode] = useState(null);
+  const [entry, updateEntry] = useState({})
+  const [node, setNode] = useState(null)
 
-  const observer = useRef(null);
+  const observer = useRef(null)
 
-  useEffect(
-    () => {
-      if (observer.current) observer.current.disconnect();
+  useEffect(() => {
+    if (observer.current) observer.current.disconnect()
 
-      observer.current = new window.IntersectionObserver(
-        ([entry]) => updateEntry(entry),
-        {
-          root,
-          rootMargin,
-          threshold
-        }
-      );
+    observer.current = new window.IntersectionObserver(
+      ([entry]) => updateEntry(entry),
+      {
+        root,
+        rootMargin,
+        threshold,
+      }
+    )
 
-      const { current: currentObserver } = observer;
+    const { current: currentObserver } = observer
 
-      if (node) currentObserver.observe(node);
+    if (node) currentObserver.observe(node)
 
-      return () => currentObserver.disconnect();
+    return () => currentObserver.disconnect()
+  }, [node, root, rootMargin, threshold])
 
-    },
-    [node, root, rootMargin, threshold]
-  );
-
-  return [setNode, entry];
+  return [setNode, entry]
 }
 
 /* Lifts state up to let parent component know when an element has entered the viewport */
 
 export const VisibilityMonitor = ({ isVisible, children }) => {
   const [ref, entry] = useIntersect({ threshold: 1, rootMargin: '200px' })
-  
-  return (
-    <div ref={ref}>
-      {entry.isIntersecting ? children : null }
-    </div>
-  )
+
+  return <div ref={ref}>{entry.isIntersecting ? children : null}</div>
 }
 
 /* Wraps any element(s) and applies a React spring animation to fade in and translate up */
 
 export const FadeIn = ({ configuration, gate, delayStart, children }) => {
-  const [ref, entry] = useIntersect({ threshold: gate || 0.5 }) 
+  const [ref, entry] = useIntersect({ threshold: gate || 0.5 })
   const [view, setView] = useState(false)
 
   const props = useSpring({
-    to: { opacity: view ? 1 : 0, 
-          transform: view ? 'translate3d(0,0,0)' : 'translate3d(0,60px,0)' 
-        },
+    to: {
+      opacity: view ? 1 : 0,
+      transform: view ? 'translate3d(0,0,0)' : 'translate3d(0,60px,0)',
+    },
     config: configuration || config.slow,
     delay: delayStart || null,
   })
 
-  useEffect(
-    () => {
-      if (view) return
-      if (entry.isIntersecting) setView(true)
-    },
-    [view, entry.isIntersecting]
-  );
+  useEffect(() => {
+    if (view) return
+    if (entry.isIntersecting) setView(true)
+  }, [view, entry.isIntersecting])
 
   return (
     <animated.div ref={ref} style={props}>
@@ -98,7 +72,7 @@ export const FadeIn = ({ configuration, gate, delayStart, children }) => {
 FadeIn.propTypes = {
   FadeIn: PropTypes.arrayOf(
     PropTypes.shape({
-      configuration: PropTypes.object, 
+      configuration: PropTypes.object,
       gate: PropTypes.number,
       delayStart: PropTypes.number,
     })
@@ -107,9 +81,13 @@ FadeIn.propTypes = {
 
 /* This function iterates through react children to apply trails animation */
 
-export const TrailsWrapper = ({ configuration, gate, delayStart, children }) => {
-
-  const [ref, entry] = useIntersect({ threshold: gate || 0.5 }) 
+export const TrailsWrapper = ({
+  configuration,
+  gate,
+  delayStart,
+  children,
+}) => {
+  const [ref, entry] = useIntersect({ threshold: gate || 0.5 })
   const [view, setView] = useState(false)
 
   const items = React.Children.toArray(children)
@@ -121,27 +99,22 @@ export const TrailsWrapper = ({ configuration, gate, delayStart, children }) => 
     delay: delayStart || null,
   })
 
-    useEffect(
-      () => {
-        if (view) return
-        if (entry.isIntersecting) setView(true)
-      },
-      [view, entry.isIntersecting]
-    );
+  useEffect(() => {
+    if (view) return
+    if (entry.isIntersecting) setView(true)
+  }, [view, entry.isIntersecting])
 
-    return (
-        <div ref={ref}>
-          <Trail trailProps={trail} >
-            {children}
-          </Trail>
-        </div>
-    )
+  return (
+    <div ref={ref}>
+      <Trail trailProps={trail}>{children}</Trail>
+    </div>
+  )
 }
 
 TrailsWrapper.propTypes = {
   TrailsWrapper: PropTypes.arrayOf(
     PropTypes.shape({
-      configuration: PropTypes.object, 
+      configuration: PropTypes.object,
       gate: PropTypes.number,
       delayStart: PropTypes.number,
     })
@@ -153,14 +126,18 @@ TrailsWrapper.propTypes = {
 function Trail({ trailProps, children }) {
   const items = React.Children.toArray(children)
   return (
-      <React.Fragment>
-        {trailProps.map(({ y, ...rest }, index) => (
-          <animated.div
-            key={v4()}
-            style={{...rest, transform: y.interpolate((y) => `translate3d(0,${y}px,0)`) }}>
-            {items[index]}
-          </animated.div>
-        ))}
-      </React.Fragment>
+    <React.Fragment>
+      {trailProps.map(({ y, ...rest }, index) => (
+        <animated.div
+          key={v4()}
+          style={{
+            ...rest,
+            transform: y.interpolate((y) => `translate3d(0,${y}px,0)`),
+          }}
+        >
+          {items[index]}
+        </animated.div>
+      ))}
+    </React.Fragment>
   )
 }
