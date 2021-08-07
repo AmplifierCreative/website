@@ -168,8 +168,8 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //react-spring animation props for welcome sequence
   const heroHeaderProps = useSpring({
     to: {
-      fontSize: welcome ? '50px' : '136px',
-      lineHeight: welcome ? '67px' : '142px',
+      fontSize: welcome ? '50px' : width < 800 ? '69px' : '136px',
+      lineHeight: welcome ? '67px' : width < 800 ? '72px' : '142px',
       opacity: 1,
     },
     from: { opacity: 0 },
@@ -189,7 +189,18 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     return inView ? null : zeroRef.current.scrollIntoView(scrollConfig)
   }
 
+  const [indexTimer, setIndexTimer] = useState()
+
+  useEffect(() => {
+    let timer = setTimeout(() => setIndexTimer(true), 300)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [indexTimer])
+
   const updateIndex = (i) => {
+    setIndexTimer(false)
+    if (!indexTimer) return
     if (index > 4) {
       setIndex(4)
     }
@@ -212,7 +223,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
   //Set up state listeners and event handlers
   useEffect(() => {
-    let timer = setTimeout(() => setShow(true), 300)
     const _onKeyUp = (e) => {
       if (
         !e.key === 'ArrowDown' ||
@@ -221,8 +231,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         !e.key === 'PageDown'
       )
         return
-      if (!show) return
-      setShow(false)
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         updateIndex('decrement')
       }
@@ -233,8 +241,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
     const _onScroll = (e) => {
       e.preventDefault()
-      if (!show) return
-      setShow(false)
       if (e.deltaY < 0) {
         updateIndex('decrement')
       }
@@ -248,7 +254,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     window.addEventListener('onScroll', _onScroll)
     window.addEventListener('scroll', _onScroll)
     return () => {
-      clearTimeout(timer)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
       window.removeEventListener('onScroll', _onScroll)
@@ -298,9 +303,9 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     const touchDistance = endTouch - firstTouch
     console.log('touch distance', touchDistance)
     setTouching(false)
-    e.preventDefault()
-    if (touchDistance > 100) updateIndex('decrement')
-    if (touchDistance < -100) updateIndex('increment')
+    //e.preventDefault()
+    if (touchDistance > 10) updateIndex('decrement')
+    if (touchDistance < -10) updateIndex('increment')
   }
 
   //Memoize state and pass it as props to children
@@ -390,7 +395,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
               <div className='columns is-vcentered'>
                 <div className='column is-6 has-text-centered home-section-mobile-padding'>
                   <div className='columns is-mobile'>
-                    <div className='column is-2'>
+                    <div className='column is-2 home-sideways-container'>
                       <span className='home-sideways-title about'>
                         {about.title}
                       </span>
@@ -427,7 +432,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
               <div className='columns is-vcentered'>
                 <div className='column is-12 has-text-centered home-section-mobile-padding'>
                   <div className='columns is-mobile'>
-                    <div className='column is-2'>
+                    <div className='column is-2 home-sideways-container'>
                       <span className='home-sideways-title services'>
                         {services.title}
                       </span>
@@ -462,7 +467,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             ref={thirdRef}
           >
             <div className='columns is-mobile is-vcentered'>
-              <div className='column is-2 has-text-centered home-section-mobile-padding'>
+              <div className='column is-2 has-text-centered home-section-mobile-padding home-sideways-container'>
                 <span className='home-sideways-title clients'>
                   {clients.title}
                 </span>
