@@ -37,13 +37,12 @@ function getClass(i) {
 // Check if window is defined (so if in the browser or in node.js).
 const isBrowser = typeof window !== 'undefined'
 
-const getWidth = () => {
-  if (isBrowser) {
-    window.innerWidth ||
+const getWidth = () =>
+  isBrowser
+    ? window.innerWidth ||
       document.documentElement.clientWidth ||
       document.body.clientWidth
-  }
-}
+    : null
 
 function useCurrentWidth() {
   let [width, setWidth] = useState(getWidth())
@@ -258,7 +257,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   }, [updateIndex, show])
 
   useEffect(() => {
-    console.log('index changed to', index, scrollConfig)
+    console.log('index changed to', index, scrollConfig, width)
     switch (index) {
       case -1:
         setTimeout(() => checkIfScrolledCorrectly(), 600)
