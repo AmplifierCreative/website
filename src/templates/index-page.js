@@ -251,13 +251,13 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
-    window.addEventListener('onScroll', _onScroll)
-    window.addEventListener('scroll', _onScroll)
+    /* window.addEventListener('onScroll', _onScroll)
+    window.addEventListener('scroll', _onScroll) */
     return () => {
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
-      window.removeEventListener('onScroll', _onScroll)
-      window.addEventListener('scroll', _onScroll)
+      /* window.removeEventListener('onScroll', _onScroll)
+      window.addEventListener('scroll', _onScroll) */
     }
   }, [updateIndex, show])
 
