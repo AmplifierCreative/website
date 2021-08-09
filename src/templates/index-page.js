@@ -192,7 +192,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [indexTimer, setIndexTimer] = useState()
 
   useEffect(() => {
-    let timer = setTimeout(() => setIndexTimer(true), 300)
+    let timer = setTimeout(() => setIndexTimer(true), 500)
     return () => {
       clearTimeout(timer)
     }
@@ -240,11 +240,12 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
 
     const _onScroll = (e) => {
-      e.preventDefault()
-      if (e.deltaY < 0) {
+      if (e.cancelable) e.preventDefault()
+      if (!indexTimer) return
+      if (e.deltaY < -100) {
         updateIndex('decrement')
       }
-      if (e.deltaY > 0) {
+      if (e.deltaY > 100) {
         updateIndex('increment')
       }
     }
