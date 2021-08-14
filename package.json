@@ -3,6 +3,7 @@
   "description": "",
   "version": "0.0.1",
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.19",
     "bulma": "^0.9.0",
     "gatsby": "^2.20.35",
     "gatsby-image": "^2.3.5",

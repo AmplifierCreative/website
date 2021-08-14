@@ -51,7 +51,7 @@ function useCurrentWidth() {
     let timeoutId = null
     const resizeListener = () => {
       clearTimeout(timeoutId)
-      timeoutId = setTimeout(() => setWidth(getWidth()), 150)
+      timeoutId = setTimeout(() => setWidth(getWidth()), 3000)
     }
     window.addEventListener('resize', resizeListener)
 
@@ -158,18 +158,27 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const subheadingRef = useSpringRef()
   const arrowRef = useSpringRef()
 
+  //Use custom hook to get current width of viewport
   let width = useCurrentWidth()
 
-  let scrollConfig =
-    width < 800
-      ? true
-      : { behavior: 'smooth', block: 'start', inline: 'nearest' }
+  //State that holds whether or not it is a mobile viewport
+  const [isMobile, setIsMobile] = useState(false)
+
+  //Watches for changes in width, state of viewport is updated
+  useEffect(() => {
+    if (!width) return
+    setIsMobile(!!(width < 768))
+  }, [width])
+
+  let scrollConfig = isMobile
+    ? true
+    : { behavior: 'smooth', block: 'start', inline: 'nearest' }
 
   //react-spring animation props for welcome sequence
   const heroHeaderProps = useSpring({
     to: {
-      fontSize: welcome ? '50px' : width < 800 ? '69px' : '136px',
-      lineHeight: welcome ? '67px' : width < 800 ? '72px' : '142px',
+      fontSize: welcome ? '50px' : isMobile ? '69px' : '136px',
+      lineHeight: welcome ? '67px' : isMobile ? '72px' : '142px',
       opacity: 1,
     },
     from: { opacity: 0 },
@@ -189,8 +198,10 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     return inView ? null : zeroRef.current.scrollIntoView(scrollConfig)
   }
 
+  //Initialize timer state
   const [indexTimer, setIndexTimer] = useState()
 
+  //Timer used to debounce updateIndex
   useEffect(() => {
     let timer = setTimeout(() => setIndexTimer(true), 500)
     return () => {
@@ -198,6 +209,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
   }, [indexTimer])
 
+  //Function to change the index
   const updateIndex = (i) => {
     setIndexTimer(false)
     if (!indexTimer) return
@@ -221,7 +233,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
   }
 
-  //Set up state listeners and event handlers
+  //State listeners and event handlers for scroll jacking
   useEffect(() => {
     const _onKeyUp = (e) => {
       if (
@@ -242,46 +254,48 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     const _onScroll = (e) => {
       if (e.cancelable) e.preventDefault()
       if (!indexTimer) return
-      if (e.deltaY < -100) {
+      if (e.deltaY < -50) {
         updateIndex('decrement')
       }
-      if (e.deltaY > 100) {
+      if (e.deltaY > 50) {
         updateIndex('increment')
       }
     }
 
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
-    /* window.addEventListener('onScroll', _onScroll)
-    window.addEventListener('scroll', _onScroll) */
     return () => {
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
-      /* window.removeEventListener('onScroll', _onScroll)
-      window.addEventListener('scroll', _onScroll) */
     }
   }, [updateIndex, show])
 
+  //Index listener, once index is updated, this effect is triggerd
   useEffect(() => {
-    console.log('index changed to', index, scrollConfig, width)
+    console.log('current index: ', index, 'current width: ', width)
     switch (index) {
       case -1:
         setTimeout(() => checkIfScrolledCorrectly(), 600)
         break
       case 0:
         setWelcome(true)
+        if (isMobile) return
         zeroRef.current.scrollIntoView(scrollConfig)
         break
       case 1:
+        if (isMobile) return
         firstRef.current.scrollIntoView(scrollConfig)
         break
       case 2:
+        if (isMobile) return
         secondRef.current.scrollIntoView(scrollConfig)
         break
       case 3:
+        if (isMobile) return
         thirdRef.current.scrollIntoView(scrollConfig)
         break
       case 4:
+        if (isMobile) return
         fourthRef.current.scrollIntoView(scrollConfig)
         break
       default:
@@ -291,6 +305,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
   //Set up touch listeners
   const _touchStart = (e) => {
+    if (isMobile) return
     if (e.type.includes('mouse')) return
     if (touching) return
     setTouching(true)
@@ -299,6 +314,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   }
 
   const _touchEnd = (e) => {
+    if (isMobile) return
     if (e.type.includes('mouse')) return
     let endTouch = parseInt(e.changedTouches[0].pageY)
     const touchDistance = endTouch - firstTouch
@@ -343,7 +359,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   return (
     <main onTouchStart={_touchStart} onTouchEnd={_touchEnd}>
       <Helmet>
-        <html lang='en' className='index-intro-animation' />
+        <html lang='en' className={isMobile ? '' : 'index-intro-animation'} />
       </Helmet>
       <SEO
         title={seo.title}
