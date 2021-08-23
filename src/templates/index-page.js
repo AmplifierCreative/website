@@ -9,6 +9,7 @@ import {
   config,
   animated,
   useSpringRef,
+  useChain,
 } from 'react-spring'
 
 import ReactFullpage from '@fullpage/react-fullpage'
@@ -106,19 +107,75 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //State that holds whether or not it is a mobile viewport
   const [isMobile, setIsMobile] = useState(false)
 
+  const [intro, setIntro] = useState(false)
+  const [welcome, setWelcome] = useState(false)
+
+  //react-spring animation props for welcome sequence
+  const heroHeaderProps = useSpring({
+    to: {
+      fontSize: welcome ? '50px' : '136px',
+      lineHeight: welcome ? '67px' : '142px',
+      opacity: 1,
+    },
+    from: { opacity: 0 },
+    config: config.molasses,
+    ref: headingRef,
+    onRest: () => {
+      if (!welcome) return
+      setIntro(true)
+    },
+  })
+
+  //Refs for welcome animation
+  const headingRef = useSpringRef()
+  const subheadingRef = useSpringRef()
+  const arrowRef = useSpringRef()
+
+  //orchestration of animation
+  useChain(
+    welcome ? [headingRef, subheadingRef, arrowRef] : [headingRef, arrowRef]
+  )
+
   //Watches for changes in width, state of viewport is updated
   useEffect(() => {
     if (!width) return
     setIsMobile(!!(width < 768))
   }, [width])
 
+  //Timer to handle activating scroll for fullpage api
+  useEffect(() => {
+    console.log(intro, 'use effect called')
+    if (intro) return
+    const _onKeyUp = (e) => {
+      if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        setWelcome(true)
+      }
+    }
+
+    const _onScroll = (e) => {
+      if (e.cancelable) e.preventDefault()
+      if (e.deltaY > 50) {
+        setWelcome(true)
+      }
+    }
+
+    window.addEventListener('wheel', _onScroll)
+    window.addEventListener('keyup', _onKeyUp)
+    return () => {
+      window.removeEventListener('wheel', _onScroll)
+      window.removeEventListener('keyup', _onKeyUp)
+    }
+  }, [intro])
+
   return (
     <ReactFullpage
       //fullpage options
       licenseKey={'YOUR_KEY_HERE'}
-      scrollingSpeed={1000} /* Options here */
+      scrollingSpeed={1000}
       slidesNavigation={true}
-      render={({ state, fullpageApi }) => {
+      render={({ fullpageApi }) => {
+        if (fullpageApi) fullpageApi.setAllowScrolling(intro)
         return (
           <ReactFullpage.Wrapper>
             <SEO
@@ -140,12 +197,22 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
               className='section'
             >
               <div className='container is-max-widescreen'>
-                <h1 className='home-header-text'>{hero.heading}</h1>
-                <h2 className='hero-subheading-a'>{hero.subheading}</h2>
-                <h2 className='hero-subheading-a'>{hero.description}</h2>
-                {/* <div className='arrow-container'>
+                <animated.h1
+                  className='home-header-text'
+                  style={heroHeaderProps}
+                  ref={headingRef}
+                >
+                  {hero.heading}
+                </animated.h1>
+                {welcome && (
+                  <Trail welcome={welcome} ref={subheadingRef}>
+                    <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+                    <h2 className='hero-subheading-a'>{hero.description}</h2>
+                  </Trail>
+                )}
+                <div className='arrow-container'>
                   <ScrollPrompt />
-                </div> */}
+                </div>
               </div>
             </section>
             <section className='section'>
@@ -227,9 +294,9 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                 </div>
               </div>
             </section>
-            <section className='section'>
+            <div className='section fp-auto-height'>
               <Footer />
-            </section>
+            </div>
           </ReactFullpage.Wrapper>
         )
       }}
