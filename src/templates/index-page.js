@@ -110,6 +110,11 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [intro, setIntro] = useState(false)
   const [welcome, setWelcome] = useState(false)
 
+  //Refs for welcome animation
+  const headingRef = useSpringRef()
+  const subheadingRef = useSpringRef()
+  const arrowRef = useSpringRef()
+
   //react-spring animation props for welcome sequence
   const heroHeaderProps = useSpring({
     to: {
@@ -125,11 +130,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       setIntro(true)
     },
   })
-
-  //Refs for welcome animation
-  const headingRef = useSpringRef()
-  const subheadingRef = useSpringRef()
-  const arrowRef = useSpringRef()
 
   //orchestration of animation
   useChain(
