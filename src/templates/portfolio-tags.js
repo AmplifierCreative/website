@@ -10,7 +10,7 @@ class PortfolioTagRoute extends React.Component {
     const postLinks = posts.map((post) => (
       <li key={post.node.fields.slug}>
         <Link to={post.node.fields.slug}>
-          <h2 className='is-size-2'>{post.node.frontmatter.title}</h2>
+          <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
         </Link>
       </li>
     ))
@@ -25,14 +25,14 @@ class PortfolioTagRoute extends React.Component {
       <Layout>
         <PortfolioHero />
         <PortfolioFilter />
-        <section className='section'>
+        <section className="section">
           <Helmet title={`${tag} | ${title}`} />
-          <div className='container is-max-widescreen content'>
-            <div className='columns'>
-              <div className='column' style={{ marginBottom: '6rem' }}>
-                <h3 className='title is-size-4 is-bold-light'>{tagHeader}</h3>
-                <ul className='taglist'>{postLinks}</ul>
-                <div className='project'>
+          <div className="container is-max-widescreen content">
+            <div className="columns">
+              <div className="column" style={{ marginBottom: '6rem' }}>
+                <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
+                <ul className="taglist">{postLinks}</ul>
+                <div className="project">
                   {/* {items.map(() => {
 
                   })} */}
@@ -98,8 +98,8 @@ class PortfolioTagRoute extends React.Component {
                   </Trail> */}
                 </div>
                 <p>
-                  <Link to='/portfolio/tags/'>
-                    <button className='button'>Browse all tags</button>
+                  <Link to="/portfolio/tags/">
+                    <button className="button">Browse all tags</button>
                   </Link>
                 </p>
               </div>
