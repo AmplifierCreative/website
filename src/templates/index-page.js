@@ -111,7 +111,6 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [welcome, setWelcome] = useState(false)
 
   //Refs for welcome animation
-
   const subheadingRef = useSpringRef()
   const arrowRef = useSpringRef()
 
@@ -119,8 +118,8 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const headingRef = useSpringRef()
   const heroHeaderProps = useSpring({
     to: {
-      fontSize: welcome ? '50px' : '136px',
-      lineHeight: welcome ? '67px' : '142px',
+      fontSize: welcome ? '50px' : isMobile ? '60px' : '136px',
+      lineHeight: welcome ? '67px' : isMobile ? '50px' : '142px',
       opacity: 1,
     },
     from: { opacity: 0 },
@@ -162,24 +161,14 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     setIsMobile(!!(width < 768))
   }, [width])
 
-  /*   useEffect(() => {
-    let timer = null
-    timer = setTimeout(() => setShowArrow(true), 3000)
-    if (!!welcome) setShowArrow(false)
-    return () => {
-      if (!!timer) clearTimeout(timer)
-    }
-  }, [welcome]) */
-
   //Timer to handle activating scroll for fullpage api
   useEffect(() => {
     if (intro) return
-    let timer = null
+    let timer = setTimeout(() => setWelcome(true), 10000)
     const _onKeyUp = (e) => {
       if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         setWelcome(true)
-        //timer = setTimeout(() => setShowArrow(true), 3000)
       }
     }
 
@@ -187,13 +176,20 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       if (e.cancelable) e.preventDefault()
       if (e.deltaY > 50) {
         setWelcome(true)
-        //timer = setTimeout(() => setShowArrow(true), 3000)
       }
     }
 
+    const _onTouch = (e) => {
+      if (e.cancelable) e.preventDefault()
+      if (welcome) return
+      setWelcome(true)
+    }
+
+    window.addEventListener('touchmove', _onTouch)
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
     return () => {
+      window.removeEventListener('touchmove', _onScroll)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
       if (!!timer) clearTimeout(timer)
@@ -247,7 +243,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                         className='drawn-header-text'
                         x='50'
                         y='90'
-                        fontSize='136px'
+                        fontSize={isMobile ? '60px' : '136px'}
                         fill='#F8F3F1'
                         style={fillProps}
                         ref={fillTextRef}
