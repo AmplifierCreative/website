@@ -441,15 +441,36 @@ h1
 .hero-body
   padding-top: 8rem
 
+.drawn-header
+  stroke: $AC-white
+  min-width: 553px
+  stroke-width: 2
+  stroke-dasharray: 500
+  overflow: visible
+  position: relative
+  top: 58px
+  left: -52px
+
+.drawn-header-text
+  font-family: $family-sans-serif-bold
+  font-weight: normal
+  font-style: normal
+
 .home-header-text
   color: $AC-white
   font-family: $family-sans-serif-bold
   font-weight: 400
   font-size: 136px
   line-height: 142px
+  display: inline
+
+@media screen and (min-width: 1240px)
+  .home-header-text
+    margin-right: .13em
 
 .arrow-container
   width: 100%
+  max-width: 1240px
   position: fixed
   text-align: center
   margin-top: 6rem

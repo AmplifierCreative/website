@@ -111,11 +111,12 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const [welcome, setWelcome] = useState(false)
 
   //Refs for welcome animation
-  const headingRef = useSpringRef()
+
   const subheadingRef = useSpringRef()
   const arrowRef = useSpringRef()
 
   //react-spring animation props for welcome sequence
+  const headingRef = useSpringRef()
   const heroHeaderProps = useSpring({
     to: {
       fontSize: welcome ? '50px' : '136px',
@@ -131,9 +132,28 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     },
   })
 
+  const drawnTextRef = useSpringRef()
+  const dashProps = useSpring({
+    from: { strokeDashoffset: 500 },
+    to: { strokeDashoffset: 0 },
+    ref: drawnTextRef,
+    config: config.molasses,
+  })
+
+  const fillTextRef = useSpringRef()
+  const fillProps = useSpring({
+    from: { fill: '#2D2C2C' },
+    to: { fill: '#F8F3F1' },
+    ref: fillTextRef,
+    config: config.molasses,
+  })
+
   //orchestration of animation
   useChain(
-    welcome ? [headingRef, subheadingRef, arrowRef] : [headingRef, arrowRef]
+    welcome
+      ? [headingRef, subheadingRef, arrowRef]
+      : [headingRef, drawnTextRef, fillTextRef, arrowRef],
+    welcome ? [0, 0.1, 0.1] : [0, 0.5, 1, 0.5]
   )
 
   //Watches for changes in width, state of viewport is updated
@@ -142,14 +162,24 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     setIsMobile(!!(width < 768))
   }, [width])
 
+  /*   useEffect(() => {
+    let timer = null
+    timer = setTimeout(() => setShowArrow(true), 3000)
+    if (!!welcome) setShowArrow(false)
+    return () => {
+      if (!!timer) clearTimeout(timer)
+    }
+  }, [welcome]) */
+
   //Timer to handle activating scroll for fullpage api
   useEffect(() => {
-    console.log(intro, 'use effect called')
     if (intro) return
+    let timer = null
     const _onKeyUp = (e) => {
       if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         setWelcome(true)
+        //timer = setTimeout(() => setShowArrow(true), 3000)
       }
     }
 
@@ -157,6 +187,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       if (e.cancelable) e.preventDefault()
       if (e.deltaY > 50) {
         setWelcome(true)
+        //timer = setTimeout(() => setShowArrow(true), 3000)
       }
     }
 
@@ -165,6 +196,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     return () => {
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
+      if (!!timer) clearTimeout(timer)
     }
   }, [intro])
 
@@ -197,13 +229,48 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
               className='section'
             >
               <div className='container is-max-widescreen'>
-                <animated.h1
-                  className='home-header-text'
-                  style={heroHeaderProps}
-                  ref={headingRef}
-                >
-                  {hero.heading}
-                </animated.h1>
+                {!welcome ? (
+                  <>
+                    <animated.h1
+                      className='home-header-text'
+                      style={heroHeaderProps}
+                      ref={headingRef}
+                    >
+                      Your new
+                    </animated.h1>
+                    <animated.svg
+                      className='drawn-header'
+                      style={dashProps}
+                      ref={drawnTextRef}
+                    >
+                      <animated.text
+                        className='drawn-header-text'
+                        x='50'
+                        y='90'
+                        fontSize='136px'
+                        fill='#F8F3F1'
+                        style={fillProps}
+                        ref={fillTextRef}
+                      >
+                        creative
+                      </animated.text>
+                    </animated.svg>
+                    <animated.h1
+                      className='home-header-text'
+                      style={heroHeaderProps}
+                    >
+                      team has arrived
+                    </animated.h1>
+                  </>
+                ) : (
+                  <animated.h1
+                    className='home-header-text'
+                    style={heroHeaderProps}
+                    ref={headingRef}
+                  >
+                    {hero.heading}
+                  </animated.h1>
+                )}
                 {welcome && (
                   <Trail welcome={welcome} ref={subheadingRef}>
                     <h2 className='hero-subheading-a'>{hero.subheading}</h2>
