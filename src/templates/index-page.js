@@ -5,33 +5,23 @@ import { Helmet } from 'react-helmet'
 import {
   useSpring,
   useTrail,
-  useChain,
   useTransition,
   config,
   animated,
   useSpringRef,
+  useChain,
 } from 'react-spring'
+
+import ReactFullpage from '@fullpage/react-fullpage'
 
 import Layout from '../components/Layout'
 import { FadeIn } from '../components/Utilities'
 import Carousel from '../components/Carousel'
+import Footer from '../components/Footer'
 import SEO from '../components/Seo'
 
 const headerStyle = {
   backgroundColor: '#2D2C2C',
-}
-
-function getClass(i) {
-  switch (i) {
-    case 1:
-      return 'circle-img'
-    case 2:
-      return 'line'
-    case 3:
-      return 'arrow-img'
-    default:
-      return null
-  }
 }
 
 // Check if window is defined (so if in the browser or in node.js).
@@ -110,59 +100,61 @@ const Trail = React.forwardRef((props, ref) => {
   )
 })
 
-/* function lineStyle(ref) {
-  let location =
-    ref && ref.current ? ref.current.getBoundingClientRect() : undefined
-  let locationY = location ? location.y : '375'
-  let locationX = location ? location.x : '551'
-
-  const getTop = () => {
-    
-    return locationY + 'px'
-  }
-
-  const getLeft = () => {
-    return locationX + 'px'
-  }
-
-  const style = {
-    top: getTop(),
-    left: getLeft(),
-  }
-  return style
-} */
-
 export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
-  const [index, setIndex] = useState(-1)
-  const [show, setShow] = useState(true)
-  const [welcome, setWelcome] = useState(false)
-  const [touching, setTouching] = useState(false)
-
-  //Refs for scroll anchors
-  const zeroRef = useRef()
-  const firstRef = useRef()
-  const secondRef = useRef()
-  const thirdRef = useRef()
-  const fourthRef = useRef()
-
-  //Touch event handler state
-  const [firstTouch, setFirstTouch] = useState(0)
-  const [lastTouch, setLastTouch] = useState(0)
-  const [touchLength, setTouchLength] = useState(0)
-
-  //Refs for backgroundPositions
-  const aboutRef = useRef()
-
-  //Refs for welcome animation
-  const headingRef = useSpringRef()
-  const subheadingRef = useSpringRef()
-  const arrowRef = useSpringRef()
-
   //Use custom hook to get current width of viewport
   let width = useCurrentWidth()
 
   //State that holds whether or not it is a mobile viewport
   const [isMobile, setIsMobile] = useState(false)
+
+  const [intro, setIntro] = useState(false)
+  const [welcome, setWelcome] = useState(false)
+
+  //Refs for welcome animation
+
+  const subheadingRef = useSpringRef()
+  const arrowRef = useSpringRef()
+
+  //react-spring animation props for welcome sequence
+  const headingRef = useSpringRef()
+  const heroHeaderProps = useSpring({
+    to: {
+      fontSize: welcome ? '50px' : '136px',
+      lineHeight: welcome ? '67px' : '142px',
+      opacity: 1,
+    },
+    from: { opacity: 0 },
+    config: config.molasses,
+    ref: headingRef,
+    onRest: () => {
+      if (!welcome) return
+      setIntro(true)
+    },
+  })
+
+  const drawnTextRef = useSpringRef()
+  const dashProps = useSpring({
+    from: { strokeDashoffset: 500 },
+    to: { strokeDashoffset: 0 },
+    ref: drawnTextRef,
+    config: config.molasses,
+  })
+
+  const fillTextRef = useSpringRef()
+  const fillProps = useSpring({
+    from: { fill: '#2D2C2C' },
+    to: { fill: '#F8F3F1' },
+    ref: fillTextRef,
+    config: config.molasses,
+  })
+
+  //orchestration of animation
+  useChain(
+    welcome
+      ? [headingRef, subheadingRef, arrowRef]
+      : [headingRef, drawnTextRef, fillTextRef, arrowRef],
+    welcome ? [0, 0.1, 0.1] : [0, 0.5, 1, 0.5]
+  )
 
   //Watches for changes in width, state of viewport is updated
   useEffect(() => {
@@ -170,95 +162,32 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     setIsMobile(!!(width < 768))
   }, [width])
 
-  let scrollConfig = isMobile
-    ? true
-    : { behavior: 'smooth', block: 'start', inline: 'nearest' }
-
-  //react-spring animation props for welcome sequence
-  const heroHeaderProps = useSpring({
-    to: {
-      fontSize: welcome ? '50px' : isMobile ? '69px' : '136px',
-      lineHeight: welcome ? '67px' : isMobile ? '72px' : '142px',
-      opacity: 1,
-    },
-    from: { opacity: 0 },
-    config: config.molasses,
-    ref: headingRef,
-  })
-
-  //orchestration of animation
-  useChain(
-    welcome ? [headingRef, subheadingRef, arrowRef] : [headingRef, arrowRef]
-  )
-
-  //Used for dev, reset the page on reload
-  const checkIfScrolledCorrectly = () => {
-    const view = zeroRef.current.getBoundingClientRect()
-    const inView = Math.floor(view.top) === 0
-    return inView ? null : zeroRef.current.scrollIntoView(scrollConfig)
-  }
-
-  //Initialize timer state
-  const [indexTimer, setIndexTimer] = useState()
-
-  //Timer used to debounce updateIndex
-  useEffect(() => {
-    let timer = setTimeout(() => setIndexTimer(true), 500)
+  /*   useEffect(() => {
+    let timer = null
+    timer = setTimeout(() => setShowArrow(true), 3000)
+    if (!!welcome) setShowArrow(false)
     return () => {
-      clearTimeout(timer)
+      if (!!timer) clearTimeout(timer)
     }
-  }, [indexTimer])
+  }, [welcome]) */
 
-  //Function to change the index
-  const updateIndex = (i) => {
-    setIndexTimer(false)
-    if (!indexTimer) return
-    if (index > 4) {
-      setIndex(4)
-    }
-    if (index < -1) {
-      setIndex(0)
-    }
-    switch (i) {
-      case 'increment':
-        if (index === 4) return
-        setIndex((index) => index + 1)
-        break
-      case 'decrement':
-        if (index === 0) return
-        setIndex((index) => index - 1)
-        break
-      default:
-        return undefined
-    }
-  }
-
-  //State listeners and event handlers for scroll jacking
+  //Timer to handle activating scroll for fullpage api
   useEffect(() => {
+    if (intro) return
+    let timer = null
     const _onKeyUp = (e) => {
-      if (
-        !e.key === 'ArrowDown' ||
-        !e.key === 'ArrowUp' ||
-        !e.key === 'PageUp' ||
-        !e.key === 'PageDown'
-      )
-        return
+      if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        updateIndex('decrement')
-      }
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        updateIndex('increment')
+        setWelcome(true)
+        //timer = setTimeout(() => setShowArrow(true), 3000)
       }
     }
 
     const _onScroll = (e) => {
       if (e.cancelable) e.preventDefault()
-      if (!indexTimer) return
-      if (e.deltaY < -50) {
-        updateIndex('decrement')
-      }
       if (e.deltaY > 50) {
-        updateIndex('increment')
+        setWelcome(true)
+        //timer = setTimeout(() => setShowArrow(true), 3000)
       }
     }
 
@@ -267,239 +196,178 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     return () => {
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
+      if (!!timer) clearTimeout(timer)
     }
-  }, [updateIndex, show])
-
-  //Index listener, once index is updated, this effect is triggerd
-  useEffect(() => {
-    console.log('current index: ', index, 'current width: ', width)
-    switch (index) {
-      case -1:
-        setTimeout(() => checkIfScrolledCorrectly(), 600)
-        break
-      case 0:
-        setWelcome(true)
-        if (isMobile) return
-        zeroRef.current.scrollIntoView(scrollConfig)
-        break
-      case 1:
-        if (isMobile) return
-        firstRef.current.scrollIntoView(scrollConfig)
-        break
-      case 2:
-        if (isMobile) return
-        secondRef.current.scrollIntoView(scrollConfig)
-        break
-      case 3:
-        if (isMobile) return
-        thirdRef.current.scrollIntoView(scrollConfig)
-        break
-      case 4:
-        if (isMobile) return
-        fourthRef.current.scrollIntoView(scrollConfig)
-        break
-      default:
-        return
-    }
-  }, [index])
-
-  //Set up touch listeners
-  const _touchStart = (e) => {
-    if (isMobile) return
-    if (e.type.includes('mouse')) return
-    if (touching) return
-    setTouching(true)
-    let startTouch = parseInt(e.changedTouches[0].pageY)
-    setFirstTouch(startTouch)
-  }
-
-  const _touchEnd = (e) => {
-    if (isMobile) return
-    if (e.type.includes('mouse')) return
-    let endTouch = parseInt(e.changedTouches[0].pageY)
-    const touchDistance = endTouch - firstTouch
-    console.log('touch distance', touchDistance)
-    setTouching(false)
-    //e.preventDefault()
-    if (touchDistance > 10) updateIndex('decrement')
-    if (touchDistance < -10) updateIndex('increment')
-  }
-
-  //Memoize state and pass it as props to children
-  /*   const memoizedLocation = useCallback(() => {
-  switch (index) {
-    case 1:
-      return firstRef
-    case 2:
-      return secondRef
-    case 3:
-      return thirdRef
-    case 4:
-      return fourthRef
-    default:
-      return undefined
-  }
-}, [index]) */
-
-  const circleStyle = () => {
-    let reference = aboutRef.current
-    let children = !!reference ? Array.from(reference?.children) : null
-    const topSetting = !!reference
-      ? //children[0].offsetHeight +
-        children[1].offsetHeight +
-        children[2].offsetHeight +
-        children[3].offsetHeight
-      : '420px'
-    console.log(topSetting)
-    const leftSetting = !!reference ? children[0].offsetHeight : '110px'
-    const style = { top: topSetting, left: leftSetting }
-    return style
-  }
+  }, [intro])
 
   return (
-    <main onTouchStart={_touchStart} onTouchEnd={_touchEnd}>
-      <Helmet>
-        <html lang='en' className={isMobile ? '' : 'index-intro-animation'} />
-      </Helmet>
-      <SEO
-        title={seo.title}
-        description={seo.description}
-        image={seo.image.name}
-      />
-      {/* <div
-        style={lineStyle(memoizedLocation)}
-        className={`home-fixed ${getClass(memoizedLocation)}`}
-      ></div> */}
-      <section
-        ref={zeroRef}
-        style={
-          hero.useImage
-            ? {
-                backgroundImage: `url(${hero.image.publicURL})`,
+    <ReactFullpage
+      //fullpage options
+      licenseKey={'YOUR_KEY_HERE'}
+      scrollingSpeed={1000}
+      slidesNavigation={true}
+      render={({ fullpageApi }) => {
+        if (fullpageApi) fullpageApi.setAllowScrolling(intro)
+        return (
+          <ReactFullpage.Wrapper>
+            <SEO
+              title={seo.title}
+              description={seo.description}
+              image={seo.image.name}
+            />
+            <Helmet>
+              <body className='home-page-style' />
+            </Helmet>
+            <section
+              style={
+                hero.useImage
+                  ? {
+                      backgroundImage: `url(${hero.image.publicURL})`,
+                    }
+                  : headerStyle
               }
-            : headerStyle
-        }
-        className={`hero is-medium page-padding hero-slide active`}
-      >
-        <div className='hero-body'>
-          <div className='container is-max-widescreen'>
-            <animated.h1
-              className='home-header-text'
-              style={heroHeaderProps}
-              ref={headingRef}
+              className='section'
             >
-              {hero.heading}
-            </animated.h1>
-            {welcome && (
-              <Trail welcome={welcome} ref={subheadingRef}>
-                <h2 className='hero-subheading-a'>{hero.subheading}</h2>
-                <h2 className='hero-subheading-a'>{hero.description}</h2>
-              </Trail>
-            )}
-          </div>
-          <div className='arrow-container'>
-            {welcome ? <ScrollPrompt /> : <ScrollPrompt />}
-          </div>
-        </div>
-      </section>
-      <div className='container home-page-container is-max-widescreen'>
-        <FadeIn>
-          <section
-            className='section--gradient home-about-section home-section-container'
-            ref={firstRef}
-          >
-            <div className='section'>
-              <div className='columns is-vcentered'>
-                <div className='column is-6 has-text-centered home-section-mobile-padding'>
-                  <div className='columns is-mobile'>
-                    <div className='column is-2 home-sideways-container'>
-                      <span className='home-sideways-title about'>
-                        {about.title}
-                      </span>
-                    </div>
-                    <div className='column is-9'>
-                      <span className='home-orange-header'>xx</span>
-                      <h3 className='home-about-heading' ref={aboutRef}>
-                        {about.heading}
-                      </h3>
-                      <p className='home-section-subheading'>
-                        {about.subheading}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className='column is-6'>
-                  <p className='first-letter-stroke home-about-description'>
-                    {about.description1}
-                  </p>
-                  <p className='home-about-description home-about-margin'>
-                    {about.description2}
-                  </p>
+              <div className='container is-max-widescreen'>
+                {!welcome ? (
+                  <>
+                    <animated.h1
+                      className='home-header-text'
+                      style={heroHeaderProps}
+                      ref={headingRef}
+                    >
+                      Your new
+                    </animated.h1>
+                    <animated.svg
+                      className='drawn-header'
+                      style={dashProps}
+                      ref={drawnTextRef}
+                    >
+                      <animated.text
+                        className='drawn-header-text'
+                        x='50'
+                        y='90'
+                        fontSize='136px'
+                        fill='#F8F3F1'
+                        style={fillProps}
+                        ref={fillTextRef}
+                      >
+                        creative
+                      </animated.text>
+                    </animated.svg>
+                    <animated.h1
+                      className='home-header-text'
+                      style={heroHeaderProps}
+                    >
+                      team has arrived
+                    </animated.h1>
+                  </>
+                ) : (
+                  <animated.h1
+                    className='home-header-text'
+                    style={heroHeaderProps}
+                    ref={headingRef}
+                  >
+                    {hero.heading}
+                  </animated.h1>
+                )}
+                {welcome && (
+                  <Trail welcome={welcome} ref={subheadingRef}>
+                    <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+                    <h2 className='hero-subheading-a'>{hero.description}</h2>
+                  </Trail>
+                )}
+                <div className='arrow-container'>
+                  <ScrollPrompt />
                 </div>
               </div>
-            </div>
-          </section>
-        </FadeIn>
-        <FadeIn>
-          <section
-            className='home-section home-section-container'
-            ref={secondRef}
-          >
-            <div className='section'>
-              <div className='columns is-vcentered'>
-                <div className='column is-12 has-text-centered home-section-mobile-padding'>
-                  <div className='columns is-mobile'>
-                    <div className='column is-2 home-sideways-container'>
-                      <span className='home-sideways-title services'>
-                        {services.title}
-                      </span>
+            </section>
+            <section className='section'>
+              <div className='container is-max-widescreen'>
+                <div className='columns is-vcentered'>
+                  <div className='column is-6 has-text-centered home-section-mobile-padding'>
+                    <div className='columns is-mobile'>
+                      <div className='column is-2 home-sideways-container'>
+                        <span className='home-sideways-title about'>
+                          {about.title}
+                        </span>
+                      </div>
+                      <div className='column is-9'>
+                        <span className='home-orange-header'>xx</span>
+                        <h3 className='home-about-heading'>{about.heading}</h3>
+                        <p className='home-section-subheading'>
+                          {about.subheading}
+                        </p>
+                      </div>
                     </div>
-                    <div className='column is-9'>
-                      <span className='home-orange-header'>xx</span>
-                      <h3 className='home-section-subheading'>
-                        {services.heading}
-                      </h3>
-                      <p className='home-services-description'>
-                        {services.subheading1}
-                      </p>
-                      <p className='home-services-description'>
-                        {services.subheading2}
-                      </p>
-                      <p className='home-services-description'>
-                        {services.subheading3}
-                      </p>
-                      <p className='home-services-description'>
-                        {services.subheading4}
-                      </p>
-                    </div>
+                  </div>
+                  <div className='column is-6'>
+                    <p className='first-letter-stroke home-about-description'>
+                      {about.description1}
+                    </p>
+                    <p className='home-about-description home-about-margin'>
+                      {about.description2}
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </FadeIn>
-        <FadeIn>
-          <section
-            className='home-section home-client-section home-section-container'
-            ref={thirdRef}
-          >
-            <div className='columns is-mobile is-vcentered'>
-              <div className='column is-2 has-text-centered home-section-mobile-padding home-sideways-container'>
-                <span className='home-sideways-title clients'>
-                  {clients.title}
-                </span>
+            </section>
+            <section className='section'>
+              <div className='container is-max-widescreen'>
+                <div className='columns is-vcentered'>
+                  <div className='column is-12 has-text-centered home-section-mobile-padding'>
+                    <div className='columns is-mobile'>
+                      <div className='column is-2 home-sideways-container'>
+                        <span className='home-sideways-title services'>
+                          {services.title}
+                        </span>
+                      </div>
+                      <div className='column is-9'>
+                        <span className='home-orange-header'>xx</span>
+                        <h3 className='home-section-subheading'>
+                          {services.heading}
+                        </h3>
+                        <p className='home-services-description'>
+                          {services.subheading1}
+                        </p>
+                        <p className='home-services-description'>
+                          {services.subheading2}
+                        </p>
+                        <p className='home-services-description'>
+                          {services.subheading3}
+                        </p>
+                        <p className='home-services-description'>
+                          {services.subheading4}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className='column is-9 has-text-centered'>
-                <span className='home-orange-header'>xx</span>
-                <h3 className='home-client-heading'>{clients.heading}</h3>
-                <Carousel />
+            </section>
+            <section className='section'>
+              <div className='container is-max-widescreen'>
+                <div className='columns is-mobile is-vcentered'>
+                  <div className='column is-2 has-text-centered home-section-mobile-padding home-sideways-container'>
+                    <span className='home-sideways-title clients'>
+                      {clients.title}
+                    </span>
+                  </div>
+                  <div className='column is-9 has-text-centered'>
+                    <span className='home-orange-header'>xx</span>
+                    <h3 className='home-client-heading'>{clients.heading}</h3>
+                    <Carousel />
+                  </div>
+                </div>
               </div>
+            </section>
+            <div className='section fp-auto-height'>
+              <Footer />
             </div>
-          </section>
-        </FadeIn>
-        <div ref={fourthRef}></div>
-      </div>
-    </main>
+          </ReactFullpage.Wrapper>
+        )
+      }}
+    />
   )
 }
 

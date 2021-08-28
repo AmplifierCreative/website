@@ -30,20 +30,20 @@ class Carousel extends React.Component {
   render() {
     const isMobile = this.state.isMobile
 
+    const { data } = this.props
+    const { edges: posts } = data.allMarkdownRemark
+
     const settings = {
       dots: true,
-      infinite: false,
+      infinite: true,
       autoplay: true,
       autoplaySpeed: 2000,
       speed: 500,
       arrows: false,
       lazyLoad: true,
       slidesToScroll: 1,
-      slidesToShow: 4,
+      slidesToShow: posts.length <= 3 ? posts.length : 4,
     }
-
-    const { data } = this.props
-    const { edges: posts } = data.allMarkdownRemark
 
     return (
       <>
