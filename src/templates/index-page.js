@@ -53,7 +53,7 @@ function useCurrentWidth() {
   return width
 }
 
-function ScrollPrompt({ hidden }) {
+function ScrollPrompt() {
   const [show, set] = useState(false)
   const transitions = useTransition(show, {
     from: { scale: 1.15, y: -30, opacity: 0 },
@@ -69,7 +69,7 @@ function ScrollPrompt({ hidden }) {
         <animated.div
           style={{
             transform: 'rotate(45deg)',
-            visibility: hidden ? 'hidden' : 'unset',
+            //visibility: hidden ? 'hidden' : 'unset',
             ...styles,
           }}
           className='arrow'
@@ -196,6 +196,156 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     }
   }, [intro])
 
+  if (isMobile) {
+    return (
+      <main>
+        <Helmet>
+          <body className={welcome ? '' : 'index-intro-animation'} />
+        </Helmet>
+        <SEO
+          title={seo.title}
+          description={seo.description}
+          image={seo.image.name}
+        />
+        <section
+          style={
+            hero.useImage
+              ? {
+                  backgroundImage: `url(${hero.image.publicURL})`,
+                }
+              : headerStyle
+          }
+          className={`hero is-medium page-padding hero-slide active`}
+        >
+          <div className='hero-body'>
+            <div className='container is-max-widescreen'>
+              {!welcome ? (
+                <>
+                  <animated.h1
+                    className='home-header-text'
+                    style={heroHeaderProps}
+                    ref={headingRef}
+                  >
+                    Your new
+                  </animated.h1>
+                  <animated.svg
+                    className='drawn-header'
+                    style={dashProps}
+                    ref={drawnTextRef}
+                  >
+                    <animated.text
+                      className='drawn-header-text'
+                      x='50'
+                      y='90'
+                      fontSize='60px'
+                      fill='#F8F3F1'
+                      style={fillProps}
+                      ref={fillTextRef}
+                    >
+                      creative
+                    </animated.text>
+                  </animated.svg>
+                  <animated.h1
+                    className='home-header-text'
+                    style={heroHeaderProps}
+                  >
+                    team has arrived
+                  </animated.h1>
+                </>
+              ) : (
+                <animated.h1
+                  className='home-header-text'
+                  style={heroHeaderProps}
+                  ref={headingRef}
+                >
+                  {hero.heading}
+                </animated.h1>
+              )}
+              {welcome && (
+                <Trail welcome={welcome} ref={subheadingRef}>
+                  <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+                  <h2 className='hero-subheading-a'>{hero.description}</h2>
+                </Trail>
+              )}
+              <div className='arrow-container' style={{ position: 'absolute' }}>
+                <ScrollPrompt />
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className='container home-page-container is-max-widescreen'>
+          <FadeIn>
+            <section className='section--gradient home-about-section home-section-container'>
+              <div className='section'>
+                <div className='columns is-vcentered'>
+                  <div className='column is-6 has-text-centered home-section-mobile-padding'>
+                    <div className='columns is-mobile'>
+                      <div className='column'>
+                        <span className='home-orange-header'>xx</span>
+                        <h3 className='home-about-heading'>{about.heading}</h3>
+                        <p className='home-section-subheading'>
+                          {about.subheading}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='column is-6'>
+                    <p className='first-letter-stroke home-about-description'>
+                      {about.description1}
+                    </p>
+                    <p className='home-about-description home-about-margin'>
+                      {about.description2}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </FadeIn>
+          <FadeIn>
+            <section className='home-section home-section-container'>
+              <div className='section'>
+                <div className='columns is-vcentered'>
+                  <div className='column is-12 has-text-centered home-section-mobile-padding'>
+                    <div className='columns is-mobile'>
+                      <div className='column'>
+                        <span className='home-orange-header'>xx</span>
+                        <h3 className='home-section-subheading'>
+                          {services.heading}
+                        </h3>
+                        <p className='home-services-description'>
+                          {services.subheading1}
+                        </p>
+                        <p className='home-services-description'>
+                          {services.subheading2}
+                        </p>
+                        <p className='home-services-description'>
+                          {services.subheading3}
+                        </p>
+                        <p className='home-services-description'>
+                          {services.subheading4}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </FadeIn>
+          <FadeIn>
+            <section className='home-section home-client-section home-section-container'>
+              <div className='columns is-mobile is-vcentered'>
+                <div className='column has-text-centered'>
+                  <span className='home-orange-header'>xx</span>
+                  <h3 className='home-client-heading'>{clients.heading}</h3>
+                  <Carousel />
+                </div>
+              </div>
+            </section>
+          </FadeIn>
+        </div>
+      </main>
+    )
+  }
   return (
     <ReactFullpage
       //fullpage options
@@ -243,7 +393,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                         className='drawn-header-text'
                         x='50'
                         y='90'
-                        fontSize={isMobile ? '60px' : '136px'}
+                        fontSize='136px'
                         fill='#F8F3F1'
                         style={fillProps}
                         ref={fillTextRef}
