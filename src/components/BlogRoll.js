@@ -7,14 +7,17 @@ class BlogRoll extends React.Component {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
     return (
-      <div className='blog page-padding'>
+      <div
+        className='blog page-padding'
+        style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
+      >
         <Helmet>
           <body className='menu-color-2' />
         </Helmet>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className='columns mb-2' key={post.id}>
-              <div className='column is-8 is-offset-2'>
+            <div className='columns mb-2' style={{ margin: '0' }} key={post.id}>
+              <div className='column is-8 is-offset-2' style={{ padding: '0' }}>
                 <article>
                   <header>
                     {/* {post.frontmatter.featuredimage ? (

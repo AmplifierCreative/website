@@ -7,27 +7,34 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import SEO from '../components/Seo'
 
-export const TermsPageTemplate = ({ title, seo, mtime, content, contentComponent }) => {
+export const TermsPageTemplate = ({
+  title,
+  seo,
+  mtime,
+  content,
+  contentComponent,
+}) => {
   const PageContent = contentComponent || Content
   return (
-    <main className="section section--gradient page-padding">
+    <main
+      className='section section--gradient page-padding'
+      style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
+    >
       <Helmet>
-        <body className="menu-color-2" />
-      </Helmet> 
-      <SEO 
+        <body className='menu-color-2' />
+      </Helmet>
+      <SEO
         title={seo.title}
         description={seo.description}
         image={seo.image.name}
-      /> 
-      <div className="container is-text">
-        <div className="columns">
-          <div className="column">
-            <div className="section contracts">
-              <h1 className="">
-                {title}
-              </h1>
-              <p className="date-modified">Last Updated: {mtime}</p>
-              <PageContent className="content contracts" content={content} />
+      />
+      <div className='container is-text'>
+        <div className='columns' style={{ margin: '0' }}>
+          <div className='column' style={{ padding: '0' }}>
+            <div className='section contracts'>
+              <h1 className=''>{title}</h1>
+              <p className='date-modified'>Last Updated: {mtime}</p>
+              <PageContent className='content contracts' content={content} />
             </div>
           </div>
         </div>
@@ -87,4 +94,3 @@ export const TermsPageQuery = graphql`
     }
   }
 `
-

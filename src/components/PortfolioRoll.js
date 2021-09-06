@@ -18,12 +18,14 @@ class PortfolioRoll extends React.Component {
         {posts &&
           posts.map(({ node: post }) => (
             <div className='columns mb-4 is-vcentered' key={post.id}>
-              <div className='column has-text-centered'>
+              <div
+                className='column has-text-centered'
+                style={{ padding: '0' }}
+              >
                 <FadeIn>
                   <h4 className='vertical-text'>{post.frontmatter.tags}</h4>
                   <div className='project-container'>
                     <span className='is-block is-uppercase orange-text'>
-                      {/* {post.frontmatter.date} */}
                       {post.frontmatter.client}
                     </span>
                     <h1 className='post-meta mt-0'>
@@ -46,6 +48,7 @@ class PortfolioRoll extends React.Component {
                     </p>
                     <div
                       className='column portfolio-mobile-image'
+                      style={{ padding: '0' }}
                       key={post.id}
                     >
                       {post.frontmatter.featuredimage ? (
@@ -72,7 +75,11 @@ class PortfolioRoll extends React.Component {
                   </div>
                 </FadeIn>
               </div>
-              <div className='column portfolio-desktop-image' key={post.id}>
+              <div
+                className='column portfolio-desktop-image'
+                style={{ padding: '0' }}
+                key={post.id}
+              >
                 <FadeIn>
                   {post.frontmatter.featuredimage ? (
                     <div className='featured-thumbnail'>

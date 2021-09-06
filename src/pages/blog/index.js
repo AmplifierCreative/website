@@ -10,20 +10,18 @@ const BlogIndexPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark
   console.log(posts)
   return (
-      <Layout>
-        <SEO 
-          title={posts[0].node.frontmatter.blog.title}
-          description={posts[0].node.frontmatter.blog.description}
-          image={posts[0].node.frontmatter.blog.image.name}
-        />
-        <section className="section page-padding">
-          <div className="container is-max-widescreen">
-            <div className="content">
-              <BlogRoll />
-            </div>
-          </div>
-        </section>
-      </Layout>
+    <Layout>
+      <SEO
+        title={posts[0].node.frontmatter.blog.title}
+        description={posts[0].node.frontmatter.blog.description}
+        image={posts[0].node.frontmatter.blog.image.name}
+      />
+      <div className='container page-padding is-max-widescreen'>
+        <div className='content'>
+          <BlogRoll />
+        </div>
+      </div>
+    </Layout>
   )
 }
 
@@ -59,6 +57,6 @@ export default () => (
         }
       }
     `}
-  render={(data) => <BlogIndexPage data={data} />}
+    render={(data) => <BlogIndexPage data={data} />}
   />
 )

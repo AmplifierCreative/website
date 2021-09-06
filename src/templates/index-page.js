@@ -158,13 +158,13 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //Watches for changes in width, state of viewport is updated
   useEffect(() => {
     if (!width) return
-    setIsMobile(!!(width < 768))
+    setIsMobile(!!(width <= 768))
   }, [width])
 
   //Timer to handle activating scroll for fullpage api
   useEffect(() => {
     if (intro) return
-    let timer = setTimeout(() => setWelcome(true), 10000)
+    //let timer = setTimeout(() => setWelcome(true), 10000)
     const _onKeyUp = (e) => {
       if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
@@ -192,7 +192,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       window.removeEventListener('touchmove', _onScroll)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
-      if (!!timer) clearTimeout(timer)
+      //if (!!timer) clearTimeout(timer)
     }
   }, [intro])
 
@@ -215,7 +215,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                 }
               : headerStyle
           }
-          className={`hero is-medium page-padding hero-slide active`}
+          className='hero is-medium page-padding'
         >
           <div className='hero-body'>
             <div className='container is-max-widescreen'>
@@ -235,8 +235,8 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                   >
                     <animated.text
                       className='drawn-header-text'
-                      x='50'
-                      y='90'
+                      x='45'
+                      y='45'
                       fontSize='60px'
                       fill='#F8F3F1'
                       style={fillProps}

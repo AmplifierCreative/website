@@ -66,6 +66,8 @@ h1
     width: 100% !important
     padding-left: 0px !important
     padding-right: 0px !important
+  .button
+    margin-top: 2rem
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6
   font-weight: 400
@@ -665,8 +667,16 @@ h1
   .home-fixed-alt
     visibility: hidden
   .drawn-header
-    top: -33px
-    height: 69px
+    top: 16px
+    left: -37px
+    height: 60px
+    min-width: 230px
+    width: 252px
+
+@media screen and (max-width: 492px)
+  .drawn-header
+    top: 10px
+    left: -43px
 
 @media screen and (max-width: 420px)
   .home-sideways-container
@@ -1052,6 +1062,9 @@ h1
   max-width: 1029px
   font-family: $family-sans-serif !important
   font-size: clamp(30px, 2vw, 35px)
+
+.portfolio-filter-padding
+  padding: 5rem 0
 
 .portfolio-mobile-image
   display: none

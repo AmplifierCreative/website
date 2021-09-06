@@ -18,14 +18,14 @@ const PortfolioIndexPage = ({ data }) => {
         image={posts[0].node.frontmatter.portfolio.seo.image.name}
       />
       <PortfolioHero />
-      <PortfolioFilter />
-      <main className='section'>
+      <div style={{ overflowY: 'hidden', padding: '0 2rem' }}>
+        <PortfolioFilter />
         <div className='container is-max-widescreen'>
           <div className='content'>
             <PortfolioRoll />
           </div>
         </div>
-      </main>
+      </div>
     </Layout>
   )
 }
