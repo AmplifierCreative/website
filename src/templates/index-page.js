@@ -119,7 +119,13 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   const heroHeaderProps = useSpring({
     to: {
       fontSize: welcome ? '50px' : isMobile ? '60px' : '136px',
-      lineHeight: welcome ? '67px' : isMobile ? '50px' : '142px',
+      lineHeight: welcome
+        ? isMobile
+          ? '55.5px'
+          : '67px'
+        : isMobile
+        ? '50px'
+        : '142px',
       opacity: 1,
     },
     from: { opacity: 0 },
