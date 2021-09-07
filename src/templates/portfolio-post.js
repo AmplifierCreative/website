@@ -24,16 +24,26 @@ export const PortfolioPostTemplate = ({
 }) => {
   const PostContent = contentComponent || Content
   return (
-    <div className='page-padding'>
+    <div
+      className='page-padding'
+      style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
+    >
       <FadeIn>
         <section className='hero is-small'>
           <div
             className='hero-body'
-            style={{ minHeight: '30vh', paddingTop: '10vh' }}
+            style={{
+              minHeight: '30vh',
+              paddingTop: '10vh',
+              padding: '1.5rem 0',
+            }}
           >
             <div className='container is-max-widescreen'>
-              <div className='columns'>
-                <div className='column is-8 is-offset-2'>
+              <div className='columns' style={{ margin: '0' }}>
+                <div
+                  className='column is-8 is-offset-2'
+                  style={{ padding: '0' }}
+                >
                   <h1 className='title project-title-text'>{title}</h1>
                 </div>
               </div>
@@ -161,24 +171,28 @@ const PortfolioPost = ({ data }) => {
         testimonials={post.frontmatter.testimonials}
         statistics={post.frontmatter.statistics}
       />
-      <section className='section portfolio-cta-container project-cta-container'>
-        <div className='container is-max-widescreen'>
-          <div className='content'>
-            <h2 className='project-contact-header'>
-              {post.frontmatter.cta.heading}
-            </h2>
-            <p className='project-contact-text'>
-              {' '}
-              {post.frontmatter.cta.subheading}
-            </p>
-            <Link to='/contact'>
-              <button className='button is-uppercase project-button-style'>
-                {post.frontmatter.cta.button}
-              </button>
-            </Link>
+      <div className='container is-max-widescreen'>
+        <div className='columns' style={{ margin: '0' }}>
+          <div className='column is-8 is-offset-2' style={{ padding: '0' }}>
+            <section className='section portfolio-cta-container project-cta-container'>
+              <div className='content'>
+                <h2 className='project-contact-header'>
+                  {post.frontmatter.cta.heading}
+                </h2>
+                <p className='project-contact-text'>
+                  {' '}
+                  {post.frontmatter.cta.subheading}
+                </p>
+                <Link to='/contact'>
+                  <button className='button is-uppercase project-button-style'>
+                    {post.frontmatter.cta.button}
+                  </button>
+                </Link>
+              </div>
+            </section>
           </div>
         </div>
-      </section>
+      </div>
     </Layout>
   )
 }

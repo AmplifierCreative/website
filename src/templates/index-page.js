@@ -170,6 +170,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //Timer to handle activating scroll for fullpage api
   useEffect(() => {
     if (intro) return
+    if (welcome) return
     //let timer = setTimeout(() => setWelcome(true), 10000)
     const _onKeyUp = (e) => {
       if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
@@ -200,7 +201,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       window.removeEventListener('keyup', _onKeyUp)
       //if (!!timer) clearTimeout(timer)
     }
-  }, [intro])
+  }, [intro, welcome])
 
   if (isMobile) {
     return (

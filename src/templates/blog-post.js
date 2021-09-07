@@ -23,10 +23,13 @@ export const BlogPostTemplate = ({
   return (
     <section className='section blog page-padding section-padding'>
       {helmet || ''}
-      <div className='container is-max-widescreen'>
+      <div
+        className='container is-max-widescreen'
+        style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
+      >
         <div className='container content'>
-          <div className='columns'>
-            <div className='column is-8 is-offset-2'>
+          <div className='columns' style={{ margin: '0' }}>
+            <div className='column is-8 is-offset-2' style={{ padding: '0' }}>
               <span className='is-block is-uppercase orange-text'>
                 {date} x {author}
               </span>
