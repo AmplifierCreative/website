@@ -28,7 +28,7 @@ about:
 services:
   title: Services
   heading: We’re passionate about
-  subheading1: Copywriting + editing
+  subheading1: Copywriting
   subheading2: Design
   subheading3: Social
   subheading4: Strategy
