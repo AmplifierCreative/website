@@ -69,7 +69,9 @@ h1
   .button
     margin-top: 2rem
   .blog .title
-    font-size: 4rem !important
+    font-size: 3rem !important
+  .title
+    font-size: 3rem !important
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6
   font-weight: 400
@@ -460,6 +462,11 @@ h1
   font-weight: normal
   font-style: normal
 
+.drawn-circle
+  height: 100px
+  width: 100px
+  position: absolute
+
 .home-header-text
   color: $AC-white
   font-family: $family-sans-serif-bold
@@ -780,7 +787,7 @@ h1
   background-color: $AC-black
   margin-top: 0
   margin-bottom: 0
-  height: 400px
+  min-height: 400px
   padding: 5rem 0
 .about-line-header
   color: $AC-white
@@ -800,9 +807,9 @@ h1
   border-right: 2px solid $AC-orange
 .about-paragraph-text
   font-family: $family-serif
-  font-size: 1.5rem
   color: $AC-white
-  line-height: 2.35rem
+  font-size: clamp(20px, 1.5vw, 25px)
+  line-height: clamp(30px, 2.35vw, 37.5px)
   margin-bottom: 1rem
 .about-image-container
   display: flex
@@ -1084,7 +1091,7 @@ h1
   .project-container > p
     margin-bottom: 0 !important
   .project-title-text
-    font-size: 4rem !important
+    font-size: 3rem !important
   .section-padding
     margin-top: 0 !important
   .project-cta-container

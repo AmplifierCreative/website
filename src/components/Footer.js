@@ -18,8 +18,8 @@ const LinksMenu = ({ links, start, end }) => {
     if (local) {
       return (
         <li key={v4()}>
-          <Link to={link.path} className='footer-item footer-menu-item'>
-            {link.text}
+          <Link to={`/${path}`} className='footer-item footer-menu-item'>
+            {text}
           </Link>
         </li>
       )

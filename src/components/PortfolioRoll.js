@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
+import { navigate } from '@reach/router'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 import { FadeIn } from './Utilities'
 
@@ -17,7 +18,21 @@ class PortfolioRoll extends React.Component {
       <div className='project'>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className='columns mb-4 is-vcentered' key={post.id}>
+            <div
+              className='columns mb-4 is-vcentered'
+              style={{ padding: '3rem 0' }}
+              key={post.id}
+              onClick={(e) => {
+                const ele = e.target.outerHTML
+                if (ele.slice(1, 4) == 'img') {
+                  navigate(
+                    !!post.frontmatter.seo
+                      ? post.frontmatter.seo.slug
+                      : post.fields.slug
+                  )
+                }
+              }}
+            >
               <div
                 className='column has-text-centered'
                 style={{ padding: '0' }}

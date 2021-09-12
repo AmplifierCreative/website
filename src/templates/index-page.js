@@ -15,7 +15,7 @@ import {
 import ReactFullpage from '@fullpage/react-fullpage'
 
 import Layout from '../components/Layout'
-import { FadeIn } from '../components/Utilities'
+import { FadeIn, useIntersect } from '../components/Utilities'
 import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
 import SEO from '../components/Seo'
@@ -100,6 +100,35 @@ const Trail = React.forwardRef((props, ref) => {
   )
 })
 
+const CircleSVG = () => {
+  const [ref, entry] = useIntersect({ threshold: 1 })
+  const [view, setView] = useState(false)
+
+  const dashProps = useSpring({
+    from: { strokeDashoffset: 500 },
+    to: { strokeDashoffset: 0 },
+    config: config.molasses,
+  })
+
+  useEffect(() => {
+    if (view) return
+    if (entry.isIntersecting) setView(true)
+  }, [view, entry.isIntersecting])
+
+  return (
+    <animated.svg className='drawn-circle' style={dashProps}>
+      <circle
+        cx='50'
+        cy='50'
+        r='40'
+        stroke='orange'
+        strokeWidth='2'
+        fill='none'
+      />
+    </animated.svg>
+  )
+}
+
 export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //Use custom hook to get current width of viewport
   let width = useCurrentWidth()
@@ -113,6 +142,9 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //Refs for welcome animation
   const subheadingRef = useSpringRef()
   const arrowRef = useSpringRef()
+
+  //Ref for mobile welcome sequence
+  const subheadingMobileRef = useSpringRef()
 
   //react-spring animation props for welcome sequence
   const headingRef = useSpringRef()
@@ -135,6 +167,19 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       if (!welcome) return
       setIntro(true)
     },
+  })
+
+  //react-spring animation props for mobile intro sequence
+  const headingMobileRef = useSpringRef()
+  const heroHeaderMobileProps = useSpring({
+    to: {
+      fontSize: '60px',
+      lineHeight: '55.5px',
+      opacity: 1,
+    },
+    from: { opacity: 0 },
+    config: config.molasses,
+    ref: headingMobileRef,
   })
 
   const drawnTextRef = useSpringRef()
@@ -161,6 +206,9 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     welcome ? [0, 0.1, 0.1] : [0, 0.5, 1, 0.5]
   )
 
+  //orchestration of mobile animations
+  useChain([headingMobileRef, subheadingMobileRef], [0, 0.5])
+
   //Watches for changes in width, state of viewport is updated
   useEffect(() => {
     if (!width) return
@@ -171,7 +219,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   useEffect(() => {
     if (intro) return
     if (welcome) return
-    //let timer = setTimeout(() => setWelcome(true), 10000)
+    let timer = setTimeout(() => setWelcome(true), 10000)
     const _onKeyUp = (e) => {
       if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
@@ -199,16 +247,13 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       window.removeEventListener('touchmove', _onScroll)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
-      //if (!!timer) clearTimeout(timer)
+      if (!!timer) clearTimeout(timer)
     }
   }, [intro, welcome])
 
   if (isMobile) {
     return (
       <main>
-        <Helmet>
-          <body className={welcome ? '' : 'index-intro-animation'} />
-        </Helmet>
         <SEO
           title={seo.title}
           description={seo.description}
@@ -226,57 +271,17 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
         >
           <div className='hero-body'>
             <div className='container is-max-widescreen'>
-              {!welcome ? (
-                <>
-                  <animated.h1
-                    className='home-header-text'
-                    style={heroHeaderProps}
-                    ref={headingRef}
-                  >
-                    Your new
-                  </animated.h1>
-                  <animated.svg
-                    className='drawn-header'
-                    style={dashProps}
-                    ref={drawnTextRef}
-                  >
-                    <animated.text
-                      className='drawn-header-text'
-                      x='45'
-                      y='45'
-                      fontSize='60px'
-                      fill='#F8F3F1'
-                      style={fillProps}
-                      ref={fillTextRef}
-                    >
-                      creative
-                    </animated.text>
-                  </animated.svg>
-                  <animated.h1
-                    className='home-header-text'
-                    style={heroHeaderProps}
-                  >
-                    team has arrived
-                  </animated.h1>
-                </>
-              ) : (
-                <animated.h1
-                  className='home-header-text'
-                  style={heroHeaderProps}
-                  ref={headingRef}
-                >
-                  {hero.heading}
-                </animated.h1>
-              )}
-              {welcome && (
-                <Trail welcome={welcome} ref={subheadingRef}>
-                  <h2 className='hero-subheading-a'>{hero.subheading}</h2>
-                  <h2 className='hero-subheading-a'>{hero.description}</h2>
-                </Trail>
-              )}
-              <div className='arrow-container' style={{ position: 'absolute' }}>
-                <ScrollPrompt />
-              </div>
+              <animated.h1
+                className='home-header-text'
+                style={heroHeaderMobileProps}
+                ref={headingMobileRef}
+              >
+                {hero.heading}
+              </animated.h1>
+              <Trail welcome={true} ref={subheadingMobileRef}>
+                <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+                <h2 className='hero-subheading-a'>{hero.description}</h2>
+              </Trail>
             </div>
           </div>
         </section>
@@ -361,6 +366,12 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       slidesNavigation={true}
       render={({ fullpageApi }) => {
         if (fullpageApi) fullpageApi.setAllowScrolling(intro)
+        const handleClicked = fullpageApi
+        const promptClick = (e) => {
+          e.preventDefault()
+          if (welcome) handleClicked.moveSectionDown()
+          if (!welcome) setWelcome(true)
+        }
         return (
           <ReactFullpage.Wrapper>
             <SEO
@@ -430,7 +441,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                     <h2 className='hero-subheading-a'>{hero.description}</h2>
                   </Trail>
                 )}
-                <div className='arrow-container'>
+                <div className='arrow-container' onClick={promptClick}>
                   <ScrollPrompt />
                 </div>
               </div>
@@ -451,6 +462,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                         <p className='home-section-subheading'>
                           {about.subheading}
                         </p>
+                        <CircleSVG />
                       </div>
                     </div>
                   </div>

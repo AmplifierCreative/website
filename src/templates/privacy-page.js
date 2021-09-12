@@ -18,7 +18,7 @@ export const PrivacyPageTemplate = ({
   return (
     <main
       className='section section--gradient page-padding'
-      style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
+      style={{ padding: '10rem 2rem 6rem 2rem' }}
     >
       <Helmet>
         <body className='menu-color-2' />
