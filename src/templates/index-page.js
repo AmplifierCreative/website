@@ -462,7 +462,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                         <p className='home-section-subheading'>
                           {about.subheading}
                         </p>
-                        <CircleSVG />
+                        {/*  <CircleSVG /> */}
                       </div>
                     </div>
                   </div>
