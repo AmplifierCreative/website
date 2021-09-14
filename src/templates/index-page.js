@@ -105,9 +105,9 @@ const CircleSVG = () => {
   const [view, setView] = useState(false)
 
   const dashProps = useSpring({
-    from: { strokeDashoffset: 500 },
-    to: { strokeDashoffset: 0 },
+    strokeDashoffset: view ? 0 : 1000,
     config: config.molasses,
+    delay: 1000,
   })
 
   useEffect(() => {
@@ -116,14 +116,51 @@ const CircleSVG = () => {
   }, [view, entry.isIntersecting])
 
   return (
-    <animated.svg className='drawn-circle' style={dashProps}>
-      <circle
-        cx='50'
-        cy='50'
-        r='40'
-        stroke='orange'
-        strokeWidth='2'
-        fill='none'
+    <animated.svg
+      className='drawn-circle'
+      style={dashProps}
+      viewBox='0 0 312 116'
+    >
+      <path
+        ref={ref}
+        style={{
+          fill: 'none',
+          stroke: '#bd6039',
+          strokeDasharray: '1000',
+          strokeMiterlimit: '10',
+        }}
+        d='M152.24,20.62c-32.39-.61-72.3-1.33-103.19,10C37.43,34.86,26.6,45,26.92,57.39,27.27,71,40.55,80.69,53.4,85.31c30.69,11,64.21,12.55,96.52,12.5C184,97.75,218.57,95.94,251.36,86c22.12-6.72,50.46-31.21,19.39-49.22C255.48,27.9,236.21,25.52,218.92,24c-29.6-2.69-59.87,0-89,5.41'
+      />
+    </animated.svg>
+  )
+}
+
+const LineSVG = () => {
+  const [ref, entry] = useIntersect({ threshold: 1 })
+  const [view, setView] = useState(false)
+
+  const dashProps = useSpring({
+    strokeDashoffset: view ? 0 : 1000,
+    config: config.molasses,
+    delay: 1000,
+  })
+
+  useEffect(() => {
+    if (view) return
+    if (entry.isIntersecting) setView(true)
+  }, [view, entry.isIntersecting])
+
+  return (
+    <animated.svg className='drawn-line' style={dashProps} viewBox='0 0 205 75'>
+      <path
+        ref={ref}
+        style={{
+          fill: 'none',
+          stroke: '#bd6039',
+          strokeDasharray: '1000',
+          strokeMiterlimit: '10',
+        }}
+        d='M24.82,58.82c53.75-6.71,107.69.08,161.73-3.62'
       />
     </animated.svg>
   )
@@ -462,7 +499,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                         <p className='home-section-subheading'>
                           {about.subheading}
                         </p>
-                        {/*  <CircleSVG /> */}
+                        <CircleSVG />
                       </div>
                     </div>
                   </div>
@@ -492,6 +529,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                         <h3 className='home-section-subheading'>
                           {services.heading}
                         </h3>
+                        <LineSVG />
                         <p className='home-services-description'>
                           {services.subheading1}
                         </p>
