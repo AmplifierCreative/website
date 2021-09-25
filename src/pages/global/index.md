@@ -36,7 +36,7 @@ footer:
   social:
     twitter: https://www.twitter.com/amplifiercreative
     ig: https://www.instagram.com
-    linkedin: www.linked.com/company/amplifiercreative
+    linkedin: https://www.linked.com/company/amplifiercreative
 blog:
   title: "amplifier creative | a full-service creative agency "
   description: "amplifier creative is a full-service creative agency, specializing
