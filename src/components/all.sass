@@ -50,6 +50,9 @@ h1
 .page-padding
   padding-top: 125px
 
+.blog-page-padding
+  padding-top: 25px
+
 .content a .gatsby-resp-image-image
   position: relative
 
@@ -463,6 +466,10 @@ h1
   font-style: normal
 
 .drawn-circle
+  stroke: $AC-orange
+  fill: none
+  stroke-miterlimit: 10
+  stroke-dasharray: 1000
   position: absolute
   top: 47%
   width: 26%
@@ -668,7 +675,7 @@ h1
   .header-arrow-container
     display: none
   .hero-body
-    min-height: 90vh
+    min-height: clamp(500px, 90vh, 600px)
     padding-top: 3rem
     padding-bottom: 5rem
   .home-header-text
@@ -1110,9 +1117,11 @@ h1
   .project-title-text
     font-size: 3rem !important
   .section-padding
-    margin-top: 0 !important
+    margin-top: 25px !important
   .project-cta-container
     padding: 0 2rem
+  .project-contact-text
+    font-size: 1.5rem
 
 //Project-post
 .project-title-text
@@ -1126,7 +1135,7 @@ h1
 
 .project-contact-text
   font-family: $family-sans-serif
-  font-size: 2.5rem
+  font-size: clamp(1.5rem, 4vw, 2.5rem)
 
 .project-contact-header
   margin-bottom: 0
@@ -1150,6 +1159,9 @@ h1
 .blog-header
   font-size: 6rem
   margin-top: 0
+
+.blog-subheading
+  font-family: $family-sans-serif
 
 // notFoundPage
 .not-found-container

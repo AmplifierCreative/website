@@ -10,9 +10,14 @@
   flex-basis: 35%
   margin: 0 1.5em 0 0
 .link-black
-  margin-top: 0
   color: $AC-black
-  // responsiveness
+  &:hover
+    color: $AC-orange
+    box-shadow: inset 0em -.7em #f9d3c3
+    display: inline
+  &:active
+    color: $AC-orange
+
 +tablet-only
   .blog-list-item .featured-thumbnail
     flex-basis: 50%

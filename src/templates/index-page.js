@@ -110,7 +110,9 @@ const CircleSVG = () => {
     delay: 1000,
   })
 
+  //isIntersection not turning true
   useEffect(() => {
+    console.log(view)
     if (view) return
     if (entry.isIntersecting) setView(true)
   }, [view, entry.isIntersecting])
@@ -123,12 +125,6 @@ const CircleSVG = () => {
     >
       <path
         ref={ref}
-        style={{
-          fill: 'none',
-          stroke: '#bd6039',
-          strokeDasharray: '1000',
-          strokeMiterlimit: '10',
-        }}
         d='M152.24,20.62c-32.39-.61-72.3-1.33-103.19,10C37.43,34.86,26.6,45,26.92,57.39,27.27,71,40.55,80.69,53.4,85.31c30.69,11,64.21,12.55,96.52,12.5C184,97.75,218.57,95.94,251.36,86c22.12-6.72,50.46-31.21,19.39-49.22C255.48,27.9,236.21,25.52,218.92,24c-29.6-2.69-59.87,0-89,5.41'
       />
     </animated.svg>

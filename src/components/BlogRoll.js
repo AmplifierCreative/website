@@ -8,7 +8,7 @@ class BlogRoll extends React.Component {
     const { edges: posts } = data.allMarkdownRemark
     return (
       <div
-        className='blog page-padding'
+        className='blog blog-page-padding'
         style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
       >
         <Helmet>

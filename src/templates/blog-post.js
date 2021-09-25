@@ -25,7 +25,7 @@ export const BlogPostTemplate = ({
       {helmet || ''}
       <div
         className='container is-max-widescreen'
-        style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
+        style={{ padding: '0 2rem 6rem' }}
       >
         <div className='container content'>
           <div className='columns' style={{ margin: '0' }}>
@@ -36,7 +36,7 @@ export const BlogPostTemplate = ({
               <h1 className='title has-text-weight-bold is-bold-light blog-header'>
                 {title}
               </h1>
-              <p>{description}</p>
+              <p className='blog-subheading'>{description}</p>
               <PostContent content={content} />
               {tags && tags.length ? (
                 <div style={{ marginTop: `4rem` }}>

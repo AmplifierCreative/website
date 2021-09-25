@@ -31,6 +31,7 @@ const Trail = ({ open, children }) => {
 export const Navbar = ({ data }) => {
   const [active, setActive] = useState(false)
   const [navBarActiveClass, setNavBarActiveClass] = useState('')
+  const [navbaractivity, setNavbaracitivty] = useState(true)
   const [open, setOpen] = useState(false)
   const [isTop, setIsTop] = useState(true)
 
@@ -40,6 +41,10 @@ export const Navbar = ({ data }) => {
     setOpen((o) => !o)
     setActive((a) => !a)
     setNavBarActiveClass(active ? '' : 'is-active')
+    setTimeout(
+      setNavbaracitivty((navbaractivity) => !navbaractivity),
+      5000
+    )
   }, [active])
 
   useEffect(() => {
@@ -114,7 +119,11 @@ export const Navbar = ({ data }) => {
               </div>
             </div>
             <div className='navbar-menu-container'>
-              <ul className={`menu-list has-text-right ${navBarActiveClass}`}>
+              <ul
+                className={`menu-list has-text-right ${
+                  navbaractivity ? '' : 'is-active'
+                }`}
+              >
                 <Trail open={open}>
                   {items.map((item) => (
                     <li key={item.key}>
