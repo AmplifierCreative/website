@@ -45,7 +45,7 @@ class PortfolioRoll extends React.Component {
                     </span>
                     <h1 className='post-meta mt-0'>
                       <Link
-                        className='title is-size-2'
+                        className='title is-size-2 project-title'
                         to={
                           !!post.frontmatter.seo
                             ? post.frontmatter.seo.slug

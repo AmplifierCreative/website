@@ -112,22 +112,20 @@ const CircleSVG = () => {
 
   //isIntersection not turning true
   useEffect(() => {
-    console.log(view)
     if (view) return
     if (entry.isIntersecting) setView(true)
   }, [view, entry.isIntersecting])
 
   return (
-    <animated.svg
-      className='drawn-circle'
-      style={dashProps}
-      viewBox='0 0 312 116'
-    >
-      <path
-        ref={ref}
-        d='M152.24,20.62c-32.39-.61-72.3-1.33-103.19,10C37.43,34.86,26.6,45,26.92,57.39,27.27,71,40.55,80.69,53.4,85.31c30.69,11,64.21,12.55,96.52,12.5C184,97.75,218.57,95.94,251.36,86c22.12-6.72,50.46-31.21,19.39-49.22C255.48,27.9,236.21,25.52,218.92,24c-29.6-2.69-59.87,0-89,5.41'
-      />
-    </animated.svg>
+    <div ref={ref}>
+      <animated.svg
+        className='drawn-circle'
+        style={dashProps}
+        viewBox='0 0 312 116'
+      >
+        <path d='M152.24,20.62c-32.39-.61-72.3-1.33-103.19,10C37.43,34.86,26.6,45,26.92,57.39,27.27,71,40.55,80.69,53.4,85.31c30.69,11,64.21,12.55,96.52,12.5C184,97.75,218.57,95.94,251.36,86c22.12-6.72,50.46-31.21,19.39-49.22C255.48,27.9,236.21,25.52,218.92,24c-29.6-2.69-59.87,0-89,5.41' />
+      </animated.svg>
+    </div>
   )
 }
 
@@ -147,18 +145,23 @@ const LineSVG = () => {
   }, [view, entry.isIntersecting])
 
   return (
-    <animated.svg className='drawn-line' style={dashProps} viewBox='0 0 205 75'>
-      <path
-        ref={ref}
-        style={{
-          fill: 'none',
-          stroke: '#bd6039',
-          strokeDasharray: '1000',
-          strokeMiterlimit: '10',
-        }}
-        d='M24.82,58.82c53.75-6.71,107.69.08,161.73-3.62'
-      />
-    </animated.svg>
+    <div ref={ref}>
+      <animated.svg
+        className='drawn-line'
+        style={dashProps}
+        viewBox='0 0 205 75'
+      >
+        <path
+          style={{
+            fill: 'none',
+            stroke: '#bd6039',
+            strokeDasharray: '1000',
+            strokeMiterlimit: '10',
+          }}
+          d='M24.82,58.82c53.75-6.71,107.69.08,161.73-3.62'
+        />
+      </animated.svg>
+    </div>
   )
 }
 
@@ -391,183 +394,188 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       </main>
     )
   }
-  return (
-    <ReactFullpage
-      //fullpage options
-      licenseKey={'YOUR_KEY_HERE'}
-      scrollingSpeed={1000}
-      slidesNavigation={true}
-      render={({ fullpageApi }) => {
-        if (fullpageApi) fullpageApi.setAllowScrolling(intro)
-        const handleClicked = fullpageApi
-        const promptClick = (e) => {
-          e.preventDefault()
-          if (welcome) handleClicked.moveSectionDown()
-          if (!welcome) setWelcome(true)
-        }
-        return (
-          <ReactFullpage.Wrapper>
-            <SEO
-              title={seo.title}
-              description={seo.description}
-              image={seo.image.name}
-            />
-            <Helmet>
-              <body className='home-page-style' />
-            </Helmet>
-            <section
-              style={
-                hero.useImage
-                  ? {
-                      backgroundImage: `url(${hero.image.publicURL})`,
-                    }
-                  : headerStyle
-              }
-              className='section'
-            >
-              <div className='container is-max-widescreen'>
-                {!welcome ? (
-                  <>
+  if (!isMobile) {
+    return (
+      <ReactFullpage
+        //fullpage options
+        licenseKey={'YOUR_KEY_HERE'}
+        scrollingSpeed={1000}
+        slidesNavigation={true}
+        render={({ fullpageApi }) => {
+          if (fullpageApi) fullpageApi.setAllowScrolling(intro)
+          const handleClicked = fullpageApi
+          const promptClick = (e) => {
+            e.preventDefault()
+            if (welcome) handleClicked.moveSectionDown()
+            if (!welcome) setWelcome(true)
+          }
+          return (
+            <ReactFullpage.Wrapper>
+              <SEO
+                title={seo.title}
+                description={seo.description}
+                image={seo.image.name}
+              />
+              <Helmet>
+                <body className='home-page-style' />
+              </Helmet>
+              <section
+                style={
+                  hero.useImage
+                    ? {
+                        backgroundImage: `url(${hero.image.publicURL})`,
+                      }
+                    : headerStyle
+                }
+                className='section'
+              >
+                <div className='container is-max-widescreen'>
+                  {!welcome ? (
+                    <>
+                      <animated.h1
+                        className='home-header-text'
+                        style={heroHeaderProps}
+                        ref={headingRef}
+                      >
+                        Your new
+                      </animated.h1>
+                      <animated.svg
+                        className='drawn-header'
+                        style={dashProps}
+                        ref={drawnTextRef}
+                      >
+                        <animated.text
+                          className='drawn-header-text'
+                          x='50'
+                          y='90'
+                          fontSize='136px'
+                          fill='#F8F3F1'
+                          style={fillProps}
+                          ref={fillTextRef}
+                        >
+                          creative
+                        </animated.text>
+                      </animated.svg>
+                      <animated.h1
+                        className='home-header-text'
+                        style={heroHeaderProps}
+                      >
+                        team has arrived
+                      </animated.h1>
+                    </>
+                  ) : (
                     <animated.h1
                       className='home-header-text'
                       style={heroHeaderProps}
                       ref={headingRef}
                     >
-                      Your new
+                      {hero.heading}
                     </animated.h1>
-                    <animated.svg
-                      className='drawn-header'
-                      style={dashProps}
-                      ref={drawnTextRef}
-                    >
-                      <animated.text
-                        className='drawn-header-text'
-                        x='50'
-                        y='90'
-                        fontSize='136px'
-                        fill='#F8F3F1'
-                        style={fillProps}
-                        ref={fillTextRef}
-                      >
-                        creative
-                      </animated.text>
-                    </animated.svg>
-                    <animated.h1
-                      className='home-header-text'
-                      style={heroHeaderProps}
-                    >
-                      team has arrived
-                    </animated.h1>
-                  </>
-                ) : (
-                  <animated.h1
-                    className='home-header-text'
-                    style={heroHeaderProps}
-                    ref={headingRef}
-                  >
-                    {hero.heading}
-                  </animated.h1>
-                )}
-                {welcome && (
-                  <Trail welcome={welcome} ref={subheadingRef}>
-                    <h2 className='hero-subheading-a'>{hero.subheading}</h2>
-                    <h2 className='hero-subheading-a'>{hero.description}</h2>
-                  </Trail>
-                )}
-                <div className='arrow-container' onClick={promptClick}>
-                  <ScrollPrompt />
+                  )}
+                  {welcome && (
+                    <Trail welcome={welcome} ref={subheadingRef}>
+                      <h2 className='hero-subheading-a'>{hero.subheading}</h2>
+                      <h2 className='hero-subheading-a'>{hero.description}</h2>
+                    </Trail>
+                  )}
+                  <div className='arrow-container' onClick={promptClick}>
+                    <ScrollPrompt />
+                  </div>
                 </div>
-              </div>
-            </section>
-            <section className='section'>
-              <div className='container is-max-widescreen'>
-                <div className='columns is-vcentered'>
-                  <div className='column is-6 has-text-centered home-section-mobile-padding'>
-                    <div className='columns is-mobile'>
-                      <div className='column is-2 home-sideways-container'>
-                        <span className='home-sideways-title about'>
-                          {about.title}
-                        </span>
-                      </div>
-                      <div className='column is-9'>
-                        <span className='home-orange-header'>xx</span>
-                        <h3 className='home-about-heading'>{about.heading}</h3>
-                        <p className='home-section-subheading'>
-                          {about.subheading}
-                        </p>
-                        <CircleSVG />
+              </section>
+              <section className='section'>
+                <div className='container is-max-widescreen'>
+                  <div className='columns is-vcentered'>
+                    <div className='column is-6 has-text-centered home-section-mobile-padding'>
+                      <div className='columns is-mobile'>
+                        <div className='column is-2 home-sideways-container'>
+                          <span className='home-sideways-title about'>
+                            {about.title}
+                          </span>
+                        </div>
+                        <div className='column is-9'>
+                          <span className='home-orange-header'>xx</span>
+                          <h3 className='home-about-heading'>
+                            {about.heading}
+                          </h3>
+                          <p className='home-section-subheading'>
+                            {about.subheading}
+                          </p>
+                          <CircleSVG />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className='column is-6'>
-                    <p className='first-letter-stroke home-about-description'>
-                      {about.description1}
-                    </p>
-                    <p className='home-about-description home-about-margin'>
-                      {about.description2}
-                    </p>
+                    <div className='column is-6'>
+                      <p className='first-letter-stroke home-about-description'>
+                        {about.description1}
+                      </p>
+                      <p className='home-about-description home-about-margin'>
+                        {about.description2}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
-            <section className='section'>
-              <div className='container is-max-widescreen'>
-                <div className='columns is-vcentered'>
-                  <div className='column is-12 has-text-centered home-section-mobile-padding'>
-                    <div className='columns is-mobile'>
-                      <div className='column is-2 home-sideways-container'>
-                        <span className='home-sideways-title services'>
-                          {services.title}
-                        </span>
-                      </div>
-                      <div className='column is-9'>
-                        <span className='home-orange-header'>xx</span>
-                        <h3 className='home-section-subheading'>
-                          {services.heading}
-                        </h3>
-                        <LineSVG />
-                        <p className='home-services-description'>
-                          {services.subheading1}
-                        </p>
-                        <p className='home-services-description'>
-                          {services.subheading2}
-                        </p>
-                        <p className='home-services-description'>
-                          {services.subheading3}
-                        </p>
-                        <p className='home-services-description'>
-                          {services.subheading4}
-                        </p>
+              </section>
+              <section className='section'>
+                <div className='container is-max-widescreen'>
+                  <div className='columns is-vcentered'>
+                    <div className='column is-12 has-text-centered home-section-mobile-padding'>
+                      <div className='columns is-mobile'>
+                        <div className='column is-2 home-sideways-container'>
+                          <span className='home-sideways-title services'>
+                            {services.title}
+                          </span>
+                        </div>
+                        <div className='column is-9'>
+                          <span className='home-orange-header'>xx</span>
+                          <h3 className='home-section-subheading'>
+                            {services.heading}
+                          </h3>
+                          <LineSVG />
+                          <p className='home-services-description'>
+                            {services.subheading1}
+                          </p>
+                          <p className='home-services-description'>
+                            {services.subheading2}
+                          </p>
+                          <p className='home-services-description'>
+                            {services.subheading3}
+                          </p>
+                          <p className='home-services-description'>
+                            {services.subheading4}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
-            <section className='section'>
-              <div className='container is-max-widescreen'>
-                <div className='columns is-mobile is-vcentered'>
-                  <div className='column is-2 has-text-centered home-section-mobile-padding home-sideways-container'>
-                    <span className='home-sideways-title clients'>
-                      {clients.title}
-                    </span>
-                  </div>
-                  <div className='column is-9 has-text-centered'>
-                    <span className='home-orange-header'>xx</span>
-                    <h3 className='home-client-heading'>{clients.heading}</h3>
-                    <Carousel />
+              </section>
+              <section className='section'>
+                <div className='container is-max-widescreen'>
+                  <div className='columns is-mobile is-vcentered'>
+                    <div className='column is-2 has-text-centered home-section-mobile-padding home-sideways-container'>
+                      <span className='home-sideways-title clients'>
+                        {clients.title}
+                      </span>
+                    </div>
+                    <div className='column is-9 has-text-centered'>
+                      <span className='home-orange-header'>xx</span>
+                      <h3 className='home-client-heading'>{clients.heading}</h3>
+                      <Carousel />
+                    </div>
                   </div>
                 </div>
+              </section>
+              <div className='section fp-auto-height'>
+                <Footer />
               </div>
-            </section>
-            <div className='section fp-auto-height'>
-              <Footer />
-            </div>
-          </ReactFullpage.Wrapper>
-        )
-      }}
-    />
-  )
+            </ReactFullpage.Wrapper>
+          )
+        }}
+      />
+    )
+  }
+  return <></>
 }
 
 IndexPageTemplate.propTypes = {

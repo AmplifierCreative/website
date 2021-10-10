@@ -25,19 +25,12 @@ export const PortfolioPostTemplate = ({
   const PostContent = contentComponent || Content
   return (
     <div
-      className='page-padding'
+      className='page-padding-portfolio'
       style={{ paddingRight: '2rem', paddingLeft: '2rem' }}
     >
       <FadeIn>
         <section className='hero is-small'>
-          <div
-            className='hero-body'
-            style={{
-              minHeight: '30vh',
-              paddingTop: '10vh',
-              padding: '1.5rem 0',
-            }}
-          >
+          <div className='hero-body portfolio-post-hero'>
             <div className='container is-max-widescreen'>
               <div className='columns' style={{ margin: '0' }}>
                 <div
@@ -58,15 +51,17 @@ export const PortfolioPostTemplate = ({
             <div className='column is-8 is-offset-2'>
               <div className='columns'>
                 <div className='column is-9 overview'>
-                  <FadeIn>
+                  <FadeIn gate={0.1}>
                     <h2 className='orange-text'>Overview</h2>
-                    <p>{description}</p>
+                    <p className='project-overview-description'>
+                      {description}
+                    </p>
                   </FadeIn>
                 </div>
                 <div className='column is-3'>
                   {tags && tags.length ? (
                     <div>
-                      <FadeIn>
+                      <FadeIn gate={0.1}>
                         <h2 className='orange-text'>Services</h2>
                       </FadeIn>
                       <ul className='taglist' style={{ marginTop: 0 }}>
@@ -113,7 +108,7 @@ export const PortfolioPostTemplate = ({
                 {testimonials && testimonials.length ? (
                   <div className='columns'>
                     <div className='column is-8 is-offset-2'>
-                      <FadeIn>
+                      <FadeIn gate={0.1}>
                         <Testimonials testimonials={testimonials} />
                       </FadeIn>
                     </div>
@@ -173,10 +168,13 @@ const PortfolioPost = ({ data }) => {
       />
       <div className='container is-max-widescreen'>
         <div className='columns' style={{ margin: '0' }}>
-          <div className='column is-8 is-offset-2' style={{ padding: '0' }}>
+          <div className='column is-8 portfolio-post-cta'>
             <section className='section portfolio-cta-container project-cta-container'>
               <div className='content'>
-                <h2 className='project-contact-header'>
+                <h2
+                  className='project-contact-header'
+                  style={{ marginBottom: '0', lineHeight: '1' }}
+                >
                   {post.frontmatter.cta.heading}
                 </h2>
                 <p className='project-contact-text'>
