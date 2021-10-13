@@ -404,7 +404,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       <ReactFullpage
         //fullpage options
         licenseKey={'YOUR_KEY_HERE'}
-        scrollingSpeed={1000}
+        scrollingSpeed={500}
         slidesNavigation={true}
         render={({ fullpageApi }) => {
           if (fullpageApi) fullpageApi.setAllowScrolling(intro)
