@@ -41,7 +41,7 @@ function useCurrentWidth() {
     let timeoutId = null
     const resizeListener = () => {
       clearTimeout(timeoutId)
-      timeoutId = setTimeout(() => setWidth(getWidth()), 3000)
+      timeoutId = setTimeout(() => setWidth(getWidth()), 100)
     }
     window.addEventListener('resize', resizeListener)
 
@@ -171,6 +171,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
 
   //State that holds whether or not it is a mobile viewport
   const [isMobile, setIsMobile] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   const [intro, setIntro] = useState(false)
   const [welcome, setWelcome] = useState(false)
@@ -248,6 +249,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
   //Watches for changes in width, state of viewport is updated
   useEffect(() => {
     if (!width) return
+    setIsDesktop(!!(width >= 769))
     setIsMobile(!!(width <= 768))
   }, [width])
 
@@ -394,7 +396,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       </main>
     )
   }
-  if (!isMobile) {
+  if (isDesktop) {
     return (
       <ReactFullpage
         //fullpage options
@@ -575,7 +577,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
       />
     )
   }
-  return <></>
+  return <div className='placeholder'></div>
 }
 
 IndexPageTemplate.propTypes = {
