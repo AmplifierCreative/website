@@ -15,25 +15,30 @@ export const _404PageTemplate = ({
   const PageContent = contentComponent || Content
 
   return (
-    <main className="not-found-container page-padding">
+    <main className='not-found-container page-padding'>
       <Helmet>
-        <body className="menu-color-2" />
+        <body className='menu-color-2' />
       </Helmet>
-      {!!image && !!image.childImageSharp 
-        ? <figure className="not-found-image">
-            <PreviewCompatibleImage
-              imageInfo={{
-                image: image,
-                alt: `Page not found`
-                }}
-            />
-          </figure>
-        : <figure>
-            <img alt="Page not found" className="not-found-image" src={image.publicURL}/>
-          </figure>
-        }
-      <div className="container not-found-page not-found-text">
-        <PageContent className="container not-found-page" content={content} />
+      {image && image.childImageSharp ? (
+        <figure className='not-found-image'>
+          <PreviewCompatibleImage
+            imageInfo={{
+              image: image,
+              alt: `Page not found`,
+            }}
+          />
+        </figure>
+      ) : (
+        <figure>
+          <img
+            alt='Page not found'
+            className='not-found-image'
+            src={image.publicURL}
+          />
+        </figure>
+      )}
+      <div className='container not-found-page not-found-text'>
+        <PageContent className='container not-found-page' content={content} />
       </div>
     </main>
   )

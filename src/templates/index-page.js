@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
@@ -259,8 +259,11 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     if (welcome) return
     let timer = setTimeout(() => setWelcome(true), 10000)
     const _onKeyUp = (e) => {
-      if (!e.key === 'ArrowDown' || !e.key === 'PageDown') return
-      if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      let keyPressUp = e.key === 'ArrowUp' || e.key === 'PageUp' ? true : false
+      let keyPressDown =
+        e.key === 'ArrowDown' || e.key === 'PageDown' ? true : false
+      if (keyPressDown) return
+      if (keyPressUp) {
         setWelcome(true)
       }
     }
@@ -282,7 +285,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     window.addEventListener('wheel', _onScroll)
     window.addEventListener('keyup', _onKeyUp)
     return () => {
-      window.removeEventListener('touchmove', _onScroll)
+      window.removeEventListener('touchmove', _onTouch)
       window.removeEventListener('wheel', _onScroll)
       window.removeEventListener('keyup', _onKeyUp)
       if (!!timer) clearTimeout(timer)
@@ -411,6 +414,10 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
             if (welcome) handleClicked.moveSectionDown()
             if (!welcome) setWelcome(true)
           }
+          const promptKeyUp = (e) => {
+            e.preventDefault()
+            if (e.key === 'enter') promptClick()
+          }
           return (
             <ReactFullpage.Wrapper>
               <SEO
@@ -480,7 +487,13 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                       <h2 className='hero-subheading-a'>{hero.description}</h2>
                     </Trail>
                   )}
-                  <div className='arrow-container' onClick={promptClick}>
+                  <div
+                    className='arrow-container'
+                    onClick={promptClick}
+                    onKeyUp={promptKeyUp}
+                    tabIndex='0'
+                    role='button'
+                  >
                     <ScrollPrompt />
                   </div>
                 </div>

@@ -22,11 +22,25 @@ class PortfolioRoll extends React.Component {
               className='columns mb-4 is-vcentered'
               style={{ padding: '3rem 0' }}
               key={post.id}
+              role='button'
+              tabIndex='0'
+              onKeyUp={(e) => {
+                if (e.key === 'enter') {
+                  const ele = e.target.outerHTML
+                  if (ele.slice(1, 4) === 'img') {
+                    navigate(
+                      post.frontmatter.seo
+                        ? post.frontmatter.seo.slug
+                        : post.fields.slug
+                    )
+                  }
+                }
+              }}
               onClick={(e) => {
                 const ele = e.target.outerHTML
-                if (ele.slice(1, 4) == 'img') {
+                if (ele.slice(1, 4) === 'img') {
                   navigate(
-                    !!post.frontmatter.seo
+                    post.frontmatter.seo
                       ? post.frontmatter.seo.slug
                       : post.fields.slug
                   )

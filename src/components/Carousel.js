@@ -49,7 +49,7 @@ class Carousel extends React.Component {
       <>
         {isMobile ? (
           <div className='carousel'>
-            {posts &&
+            {posts ?
               posts.slice(0, 4).map(({ node: post }) => (
                 <div key={post.id}>
                   <Link to={post.fields.slug}>
@@ -67,7 +67,7 @@ class Carousel extends React.Component {
                     </div>
                   </Link>
                 </div>
-              ))}
+              )) : null}
           </div>
         ) : (
           <Slider {...settings}>

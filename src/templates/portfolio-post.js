@@ -133,7 +133,6 @@ PortfolioPostTemplate.propTypes = {
   helmet: PropTypes.object,
   testimonials: PropTypes.array,
   statistics: PropTypes.array,
-  cta: PropTypes.object,
 }
 
 const PortfolioPost = ({ data }) => {

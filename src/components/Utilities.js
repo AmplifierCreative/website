@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSpring, useTrail, animated, config } from 'react-spring'
-import PropTypes from 'prop-types'
 import { v4 } from 'uuid'
 
 /* Custom hook to check if element has entered the viewport  */
@@ -69,16 +68,6 @@ export const FadeIn = ({ configuration, gate, delayStart, children }) => {
   )
 }
 
-FadeIn.propTypes = {
-  FadeIn: PropTypes.arrayOf(
-    PropTypes.shape({
-      configuration: PropTypes.object,
-      gate: PropTypes.number,
-      delayStart: PropTypes.number,
-    })
-  ),
-}
-
 /* This function iterates through react children to apply trails animation */
 
 export const TrailsWrapper = ({
@@ -109,16 +98,6 @@ export const TrailsWrapper = ({
       <Trail trailProps={trail}>{children}</Trail>
     </div>
   )
-}
-
-TrailsWrapper.propTypes = {
-  TrailsWrapper: PropTypes.arrayOf(
-    PropTypes.shape({
-      configuration: PropTypes.object,
-      gate: PropTypes.number,
-      delayStart: PropTypes.number,
-    })
-  ),
 }
 
 /* Helper function for above component */

@@ -17,186 +17,212 @@ export const ServicesPageTemplate = ({
   section3,
   section4,
   cta,
-  seo
+  seo,
 }) => {
   return (
-    <main className="services-container page-padding">
-      <SEO 
+    <main className='services-container page-padding'>
+      <SEO
         title={seo.title}
         description={seo.description}
         image={seo.image.name}
       />
-      <div className="services-hero-container has-text-left">
-        <div className="container is-max-widescreen">
+      <div className='services-hero-container has-text-left'>
+        <div className='container is-max-widescreen'>
           <FadeIn configuration={config}>
-            <h1 className="line-header">
-              {hero.heading}
-            </h1>
-            <p className="hero-text">{hero.subheading}</p>
+            <h1 className='line-header'>{hero.heading}</h1>
+            <p className='hero-text'>{hero.subheading}</p>
           </FadeIn>
         </div>
       </div>
-      <section className="section services-section-container" >
-        <div className="container">
-          <div className="columns is-vcentered">
-            <div className="column is-half has-text-right services-column-mobile">
+      <section className='section services-section-container'>
+        <div className='container'>
+          <div className='columns is-vcentered'>
+            <div className='column is-half has-text-right services-column-mobile'>
               <FadeIn configuration={config}>
-                {!!section1.image && !!section1.image.childImageSharp 
-                ? <figure className="services-image-copywrite">
+                {section1.image && section1.image.childImageSharp ? (
+                  <figure className='services-image-copywrite'>
                     <PreviewCompatibleImage
                       imageInfo={{
                         image: section1.image.image,
-                        }}
+                      }}
                     />
                   </figure>
-                : <figure>
-                  <img alt={section1.image.alt} className="services-image-copywrite" src={section1.image.image.publicURL}/>
-                </figure>}
+                ) : (
+                  <figure>
+                    <img
+                      alt={section1.image.alt}
+                      className='services-image-copywrite'
+                      src={section1.image.image.publicURL}
+                    />
+                  </figure>
+                )}
               </FadeIn>
             </div>
-            <div className="column is-half services-column-mobile">
+            <div className='column is-half services-column-mobile'>
               <TrailsWrapper configuration={config}>
-                <h2 className="services-title-text">{section1.heading}</h2>
-                {section1.subheadings && section1.subheadings.map((item) => (
-                <p key={v4()} className="services-paragraph-text">{item.text}</p>
-              )) 
-              }
+                <h2 className='services-title-text'>{section1.heading}</h2>
+                {section1.subheadings &&
+                  section1.subheadings.map((item) => (
+                    <p key={v4()} className='services-paragraph-text'>
+                      {item.text}
+                    </p>
+                  ))}
               </TrailsWrapper>
             </div>
           </div>
         </div>
       </section>
-      <section className="section services-section-container">
-        <div className="container is-max-widescreen">
-          <div className="columns is-vcentered is-mobile">
-            <div className="column is-half services-filler-style"></div>
+      <section className='section services-section-container'>
+        <div className='container is-max-widescreen'>
+          <div className='columns is-vcentered is-mobile'>
+            <div className='column is-half services-filler-style'></div>
           </div>
         </div>
       </section>
-      <section className="section services-section-container">
-        <div className="container">
-          <div className="columns is-vcentered services-reverse-column">
-            <div className="column is-half has-text-right services-column-mobile">
+      <section className='section services-section-container'>
+        <div className='container'>
+          <div className='columns is-vcentered services-reverse-column'>
+            <div className='column is-half has-text-right services-column-mobile'>
               <TrailsWrapper configuration={config}>
-                <h2 className="services-title-text">{section2.heading}</h2>
-                {section2.subheadings && section2.subheadings.map((item) => (
-                <p key={v4()} className="services-paragraph-text">{item.text}</p>
-              )) 
-              }
+                <h2 className='services-title-text'>{section2.heading}</h2>
+                {section2.subheadings &&
+                  section2.subheadings.map((item) => (
+                    <p key={v4()} className='services-paragraph-text'>
+                      {item.text}
+                    </p>
+                  ))}
               </TrailsWrapper>
             </div>
-            <div className="column is-half services-column-mobile">
+            <div className='column is-half services-column-mobile'>
               <FadeIn configuration={config}>
-              {!!section2.image && !!section2.image.childImageSharp 
-                ? <figure className="services-image-design">
+                {section2.image && section2.image.childImageSharp ? (
+                  <figure className='services-image-design'>
                     <PreviewCompatibleImage
                       imageInfo={{
                         image: section2.image.image,
-                        }}
+                      }}
                     />
                   </figure>
-                : <figure>
-                  <img alt={section2.image.alt} className="services-image-design" src={section2.image.image.publicURL}/>
-                </figure>}
+                ) : (
+                  <figure>
+                    <img
+                      alt={section2.image.alt}
+                      className='services-image-design'
+                      src={section2.image.image.publicURL}
+                    />
+                  </figure>
+                )}
               </FadeIn>
             </div>
           </div>
         </div>
       </section>
-      <section className="section services-section-container">
-        <div className="container is-max-widescreen">
-          <div className="columns is-vcentered is-mobile">
-            <div className="column is-half services-filler-style"></div>
+      <section className='section services-section-container'>
+        <div className='container is-max-widescreen'>
+          <div className='columns is-vcentered is-mobile'>
+            <div className='column is-half services-filler-style'></div>
           </div>
         </div>
       </section>
-      <section className="section services-section-container">
-        <div className="container">
-          <div className="columns is-vcentered">
-            <div className="column is-half has-text-right services-column-mobile">
+      <section className='section services-section-container'>
+        <div className='container'>
+          <div className='columns is-vcentered'>
+            <div className='column is-half has-text-right services-column-mobile'>
               <FadeIn configuration={config}>
-              {!!section3.image.image && !!section3.image.image.childImageSharp 
-                ? <figure className="services-image-social">
+                {section3.image.image &&
+                section3.image.image.childImageSharp ? (
+                  <figure className='services-image-social'>
                     <PreviewCompatibleImage
                       imageInfo={{
                         image: section3.image.image,
-                        }}
+                      }}
                     />
                   </figure>
-                : <figure>
-                  <img alt={section3.image.alt} className="services-image-social" src={section3.image.image.publicURL}/>
-                </figure>}
+                ) : (
+                  <figure>
+                    <img
+                      alt={section3.image.alt}
+                      className='services-image-social'
+                      src={section3.image.image.publicURL}
+                    />
+                  </figure>
+                )}
               </FadeIn>
             </div>
-            <div className="column is-half services-column-mobile">
+            <div className='column is-half services-column-mobile'>
               <TrailsWrapper configuration={config}>
-                <h2 className="services-title-text">{section3.heading}</h2>
-                {section3.subheadings && section3.subheadings.map((item) => (
-                <p key={v4()} className="services-paragraph-text">{item.text}</p>
-              )) 
-              }
+                <h2 className='services-title-text'>{section3.heading}</h2>
+                {section3.subheadings &&
+                  section3.subheadings.map((item) => (
+                    <p key={v4()} className='services-paragraph-text'>
+                      {item.text}
+                    </p>
+                  ))}
               </TrailsWrapper>
             </div>
           </div>
         </div>
       </section>
-      <section className="section services-section-container" >
-        <div className="container is-max-widescreen">
-          <div className="columns is-vcentered is-mobile">
-            <div className="column is-half services-filler-style"></div>
+      <section className='section services-section-container'>
+        <div className='container is-max-widescreen'>
+          <div className='columns is-vcentered is-mobile'>
+            <div className='column is-half services-filler-style'></div>
           </div>
         </div>
       </section>
-      <section
-        className="section services-strategy-section services-section-container"
-      >
-        <div className="container ">
-          <div className="columns is-vcentered services-reverse-column">
-            <div className="column is-half has-text-right services-column-mobile">
+      <section className='section services-strategy-section services-section-container'>
+        <div className='container '>
+          <div className='columns is-vcentered services-reverse-column'>
+            <div className='column is-half has-text-right services-column-mobile'>
               <TrailsWrapper configuration={config}>
-                <h2 className="services-title-text">{section4.heading}</h2>
-                {section4.subheadings && section4.subheadings.map((item) => (
-                <p key={v4()} className="services-paragraph-text">{item.text}</p>
-              )) 
-              }
+                <h2 className='services-title-text'>{section4.heading}</h2>
+                {section4.subheadings &&
+                  section4.subheadings.map((item) => (
+                    <p key={v4()} className='services-paragraph-text'>
+                      {item.text}
+                    </p>
+                  ))}
               </TrailsWrapper>
             </div>
-            <div className="column is-half services-column-mobile">
+            <div className='column is-half services-column-mobile'>
               <FadeIn configuration={config}>
-              {!!section4.image.image && !!section4.image.image.childImageSharp 
-                ? <figure className="services-image-strategy">
+                {section4.image.image &&
+                section4.image.image.childImageSharp ? (
+                  <figure className='services-image-strategy'>
                     <PreviewCompatibleImage
                       imageInfo={{
                         image: section4.image.image,
-                        }}
+                      }}
                     />
                   </figure>
-                : <figure>
-                  <img alt={section4.image.alt} className="services-image-strategy" src={section4.image.image.publicURL}/>
-                </figure>}
+                ) : (
+                  <figure>
+                    <img
+                      alt={section4.image.alt}
+                      className='services-image-strategy'
+                      src={section4.image.image.publicURL}
+                    />
+                  </figure>
+                )}
               </FadeIn>
             </div>
           </div>
         </div>
       </section>
-      <section
-        className="section services-filler-mobile-only services-section-container"
-      >
-        <div className="container is-max-widescreen">
-          <div className="columns is-vcentered is-mobile">
-            <div className="column is-half services-filler-style"></div>
+      <section className='section services-filler-mobile-only services-section-container'>
+        <div className='container is-max-widescreen'>
+          <div className='columns is-vcentered is-mobile'>
+            <div className='column is-half services-filler-style'></div>
           </div>
         </div>
       </section>
-      <section
-        className="section services-cta-container services-section-container contact"
-      >
-        <div className="container is-max-widescreen">
+      <section className='section services-cta-container services-section-container contact'>
+        <div className='container is-max-widescreen'>
           <FadeIn configuration={config}>
-            <h2 className="services-contact-heading">{cta.heading}</h2>
-            <p className="services-contact-subheading">{cta.subheading}</p>
-            <Link to="/contact">
-              <button className="button dk is-uppercase services-button">
+            <h2 className='services-contact-heading'>{cta.heading}</h2>
+            <p className='services-contact-subheading'>{cta.subheading}</p>
+            <Link to='/contact'>
+              <button className='button dk is-uppercase services-button'>
                 {cta.button}
               </button>
             </Link>
@@ -208,8 +234,6 @@ export const ServicesPageTemplate = ({
 }
 
 ServicesPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
   hero: PropTypes.object,
   section1: PropTypes.object,
   section2: PropTypes.object,

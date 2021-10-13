@@ -77,15 +77,11 @@ class Footer extends React.Component {
   }
 
   formStatus(res) {
-    if (res === 'error') {
-      this.setState({ sent: !this.state.sent })
-    } else {
-      this.setState({ sent: !this.state.sent })
-    }
+    this.setState({ sent: false })
   }
 
   resetForm() {
-    this.setState({ sent: !this.state.sent })
+    this.setState({ sent: false })
   }
 
   showSubmit = () => {

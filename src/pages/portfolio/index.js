@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import Layout from '../../components/Layout'
 import PortfolioRoll from '../../components/PortfolioRoll'
 import SEO from '../../components/Seo'
-import PortfolioFilter from './filter'
 import PortfolioHero from './hero'
 
 const PortfolioIndexPage = ({ data }) => {

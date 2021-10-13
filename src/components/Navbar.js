@@ -58,11 +58,13 @@ export const Navbar = ({ data }) => {
       window.scrollY === 0 ? setIsTop(true) : setIsTop(false)
     }
 
-    window.addEventListener('scroll', _.throttle(checkPosition, 200))
+    const throttleFunc = () => _.throttle(checkPosition, 200)
+
+    window.addEventListener('scroll', throttleFunc())
     window.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      window.removeEventListener('scroll', _.throttle(checkPosition, 200))
+      window.removeEventListener('scroll', throttleFunc())
       window.removeEventListener('mousedown', handleClickOutside)
     }
   }, [active, toggleHamburger])
