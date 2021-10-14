@@ -30,22 +30,30 @@ const Trail = ({ open, children }) => {
 
 export const Navbar = ({ data }) => {
   const [active, setActive] = useState(false)
-  const [navBarActiveClass, setNavBarActiveClass] = useState('')
   const [navbaractivity, setNavbaracitivty] = useState(true)
   const [open, setOpen] = useState(false)
   const [isTop, setIsTop] = useState(true)
 
   const wrapperRef = useRef()
 
+  useEffect(() => {
+    let navMenuTimer
+    if (!active) {
+      navMenuTimer = setTimeout(() => setNavbaracitivty(true), 700)
+    }
+    if (active) {
+      if (navMenuTimer) clearTimeout(navMenuTimer)
+      setNavbaracitivty(false)
+    }
+    return () => {
+      if (navMenuTimer) clearTimeout(navMenuTimer)
+    }
+  }, [active])
+
   const toggleHamburger = useCallback(() => {
     setOpen((o) => !o)
     setActive((a) => !a)
-    setNavBarActiveClass(active ? '' : 'is-active')
-    setTimeout(
-      setNavbaracitivty((navbaractivity) => !navbaractivity),
-      5000
-    )
-  }, [active])
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -85,6 +93,7 @@ export const Navbar = ({ data }) => {
 
   const { edges: posts } = data.allMarkdownRemark
   const items = posts[0].node.frontmatter.nav
+  const navbarToggleFunction = navbaractivity ? '' : 'is-active'
 
   return (
     <nav
@@ -115,16 +124,18 @@ export const Navbar = ({ data }) => {
                 aria-pressed='false'
                 tabIndex={0}
               >
-                <span className={`burger-line-top ${navBarActiveClass}`} />
-                <span className={`burger-line middle ${navBarActiveClass}`} />
-                <span className={`burger-line bottom ${navBarActiveClass}`} />
+                <span className={`burger-line-top ${navbarToggleFunction}`} />
+                <span
+                  className={`burger-line middle ${navbarToggleFunction}`}
+                />
+                <span
+                  className={`burger-line bottom ${navbarToggleFunction}`}
+                />
               </div>
             </div>
             <div className='navbar-menu-container'>
               <ul
-                className={`menu-list has-text-right ${
-                  navbaractivity ? '' : 'is-active'
-                }`}
+                className={`menu-list has-text-right ${navbarToggleFunction}`}
               >
                 <Trail open={open}>
                   {items.map((item) => (
