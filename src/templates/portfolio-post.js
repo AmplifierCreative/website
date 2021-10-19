@@ -34,7 +34,7 @@ export const PortfolioPostTemplate = ({
             <div className='container is-max-widescreen'>
               <div className='columns' style={{ margin: '0' }}>
                 <div
-                  className='column is-8 is-offset-2'
+                  className='column is-10 is-offset-2'
                   style={{ padding: '0' }}
                 >
                   <h1 className='title project-title-text'>{title}</h1>
@@ -50,23 +50,31 @@ export const PortfolioPostTemplate = ({
           <div className='columns'>
             <div className='column is-8 is-offset-2'>
               <div className='columns'>
-                <div className='column is-9 overview'>
-                  <FadeIn gate={0.1}>
+                <div className='column is-9' style={{ marginBottom: '2em' }}>
+                  <FadeIn gate={0.1} className='content'>
                     <h2 className='orange-text'>Overview</h2>
                     <p className='project-overview-description'>
                       {description}
                     </p>
                   </FadeIn>
                 </div>
-                <div className='column is-3'>
+                <div className='column is-3 is-offset-2'>
                   {tags && tags.length ? (
                     <div>
                       <FadeIn gate={0.1}>
-                        <h2 className='orange-text'>Services</h2>
+                        <h2 className='orange-text has-text-centered-desktop'>
+                          Services
+                        </h2>
                       </FadeIn>
-                      <ul className='taglist' style={{ marginTop: 0 }}>
+                      <ul
+                        className='taglist portfolio-taglist'
+                        style={{ marginTop: 0 }}
+                      >
                         {tags.map((tag) => (
-                          <li key={tag + `tag`}>
+                          <li
+                            key={tag + `tag`}
+                            className='portfolio-taglist-item'
+                          >
                             <FadeIn>
                               {/* <Link to={`/projects/tags/${kebabCase(tag)}/`}> */}
                               <span style={{ fontSize: '1.5em' }}>{tag}</span>

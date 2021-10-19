@@ -39,7 +39,6 @@ h1
   line-height: 1
   text-transform: uppercase
   font-family: $family-sans-serif-medium
-  transition: color .6s, background-color .6s
   &:hover
     background-color: $AC-white
     color: $AC-orange
@@ -64,24 +63,42 @@ h1
   clear: both
   display: table
 
+.project-overview-description
+  font-family: $family-sans-serif-bold
+  font-size: 2.25em
+  margin-bottom: 5em !important
+
+.portfolio-taglist
+  justify-content: center !important
+
+.portfolio-taglist-item
+  padding: 0 !important
+
 @media screen and (max-width: 768px)
   .content img
     width: 100% !important
     padding-left: 0px !important
     padding-right: 0px !important
   .button
-    margin-top: 2rem
+    margin-top: 1rem
   .blog .title
     font-size: 3rem !important
   .title
     font-size: 3rem !important
   .project-overview-description
     font-family: $family-serif !important
-    font-size: 2rem !important
+    font-size: 1.5rem !important
+    margin-bottom: 0 !important
   .page-padding-portfolio
     padding-top: 150px !important
   .portfolio-post-cta
     padding: 0 !important
+  .project-body
+    margin-bottom: 2em !important
+  .portfolio-taglist
+    justify-content: left !important
+  .portfolio-taglist-item
+    padding: 0 2rem 1rem 0 !important
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6
   font-weight: 400
@@ -123,11 +140,6 @@ h1
   font-family: $family-sans-serif-bold
   font-size: 2.25em
   margin-bottom: 2em
-
-.project-overview-description
-  font-family: $family-sans-serif-bold
-  font-size: 2.25em
-  margin-bottom: 5em !important
 
 .content .message
   position: relative
@@ -1105,7 +1117,7 @@ h1
   margin-bottom: 3rem
 
 .page-padding-portfolio
-  padding-top: 200px
+  padding-top: 300px
 
 .projects-btn
   margin: 2rem 0
@@ -1124,7 +1136,6 @@ h1
 
 .project-title:hover
   color: $AC-peach !important
-  transition: color .6s
 
 .portfolio-filter-padding
   padding: 5rem 0
@@ -1136,6 +1147,9 @@ h1
 
 .portfolio-post-cta
   padding: 3rem 1.5rem
+
+.project-contact-text
+  margin-bottom: .5em !important
 
 @media screen and (max-width: 768px)
   .line-header:after
@@ -1154,9 +1168,13 @@ h1
   .project-cta-container
     padding: 0 2rem
   .project-contact-text
-    font-size: 1.5rem
+    font-family: $family-sans-serif
+    font-size: clamp(1.5rem, 3vw, 2rem)
+    margin-bottom: 0 !important
   .portfolio-post-hero
     min-height: 15vh
+  .project-result-text
+    margin-bottom: 2em !important
 
 //Project-post
 .project-title-text
@@ -1167,10 +1185,6 @@ h1
 .project-button-style
   width: 244px
   height: 51px
-
-.project-contact-text
-  font-family: $family-sans-serif
-  font-size: clamp(1.5rem, 3vw, 2rem)
 
 .project-contact-header
   margin-bottom: 0
