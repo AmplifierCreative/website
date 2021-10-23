@@ -50,7 +50,7 @@ export const PortfolioPostTemplate = ({
           <div className='columns'>
             <div className='column is-8 is-offset-2'>
               <div className='columns'>
-                <div className='column is-9' style={{ marginBottom: '2em' }}>
+                <div className='column is-9' style={{ marginBottom: '80px' }}>
                   <FadeIn gate={0.1} className='content'>
                     <h2 className='orange-text'>Overview</h2>
                     <p className='project-overview-description'>

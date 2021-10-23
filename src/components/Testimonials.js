@@ -5,14 +5,14 @@ import { v4 } from 'uuid'
 const Testimonials = ({ testimonials }) => (
   <div>
     {testimonials.map((testimonial) => (
-      <article key={v4()} className="message">
-        <div className="message-body">
-          <h2> {testimonial.quote}</h2>
+      <article key={v4()} className='message'>
+        <div className='message-body'>
+          <h2 className='project-message-body'> {testimonial.quote}</h2>
           <br />
           <cite>
             {' '}
-            <span className="cite-name">– {testimonial.author} </span>
-            <span className="cite-credentials orange-text">
+            <span className='cite-name'>– {testimonial.author} </span>
+            <span className='cite-credentials orange-text'>
               {testimonial.authorBio}
             </span>
           </cite>
