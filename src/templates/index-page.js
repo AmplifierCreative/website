@@ -493,6 +493,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
                     onKeyUp={promptKeyUp}
                     tabIndex='0'
                     role='button'
+                    aria-label='Move to next section'
                   >
                     <ScrollPrompt />
                   </div>

@@ -20,9 +20,9 @@ const Trail = ({ open, children }) => {
   return (
     <>
       {trail.map(({ height, ...style }, index) => (
-        <a.div key={index} style={style}>
+        <a.li key={index} style={style}>
           <a.div style={{ height }}>{items[index]}</a.div>
-        </a.div>
+        </a.li>
       ))}
     </>
   )
@@ -139,11 +139,13 @@ export const Navbar = ({ data }) => {
               >
                 <Trail open={open}>
                   {items.map((item) => (
-                    <li key={item.key}>
-                      <Link to={`/${item.path}`} className='navbar-item'>
-                        {item.text}
-                      </Link>
-                    </li>
+                    <Link
+                      to={`/${item.path}`}
+                      className='navbar-item'
+                      key={item.key}
+                    >
+                      {item.text}
+                    </Link>
                   ))}
                 </Trail>
               </ul>
