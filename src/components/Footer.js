@@ -77,7 +77,7 @@ class Footer extends React.Component {
   }
 
   formStatus(res) {
-    this.setState({ sent: false })
+    this.setState({ sent: true })
   }
 
   resetForm() {

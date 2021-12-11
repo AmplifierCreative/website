@@ -403,7 +403,7 @@ export const IndexPageTemplate = ({ hero, about, services, clients, seo }) => {
     return (
       <ReactFullpage
         //fullpage options
-        licenseKey='5C0201A4-04394701-BC70CA81-F838B472'
+        licenseKey={process.env.REACT_FULLPAGE_LICENSE_KEY}
         scrollingSpeed={500}
         slidesNavigation={true}
         render={({ fullpageApi }) => {
